@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Newji</title>
+    <title>NEWJI</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'color' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :head %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="login-body">
+    <div class="login-mypage">
+      <div class="container-fluid">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <%# <div class="container"> %>
+        <div class="login-form">
+        <%= yield %>
+        </div>
+      <%# </div> %>
+    </div>
   </body>
 </html>

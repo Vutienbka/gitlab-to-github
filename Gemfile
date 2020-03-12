@@ -38,14 +38,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Assets
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '3.3.7'
 gem "font-awesome-rails"
 gem 'adminlte_theme'
+gem 'jquery-ui-rails'
 
 # Others
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'toastr-rails'
+gem "devise", "~> 4.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

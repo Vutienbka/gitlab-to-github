@@ -29,12 +29,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
-  logout: "Log out"
-  register: "Register new user"
-  forgot_your_password: "If you forgot password"
-  click_here: "please click here!"
-  forgot_your_password_title: "Please input your email and click continue!"
-  change_my_password: "Change my password"
-  continue: "Continue"
+ja:
+  logout: "ログアウト"
+  register: "ユーザー登録"
+  forgot_your_password: "パスワードを忘れた方は"
+  click_here: "こちら"
+  forgot_your_password_title: "ご登録のメールアドレスを入力して続行してください"
+  change_my_password: パスワードのご変更
+  continue: "続行"
