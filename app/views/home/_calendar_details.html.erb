@@ -1,0 +1,24 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'calendar' %>
+<% end %>
+
+<%= month_calendar do |date| %>
+  <div class="text-center text-bold">
+    <div class="<%= 'active-day' if date == @date %>"></div>&nbsp;
+    <%= date == date.beginning_of_month ? date.strftime("%m月%d日") : date.strftime("%d") %>	
+  </div>
+  <div class="day_box">
+    <div class="day_box-content-calendar">
+      <span>Always deliver more than expected.</span>
+    </div>
+    <div class="day_box-content-calendar">
+      <span>hello kity</span>
+    </div>
+    <div class="day_box-content-calendar">
+      <span>hello kity</span>
+    </div>
+    <div class="day_box-content-calendar">
+      <span>hello kity</span>
+    </div>
+	</div>
+<% end %>

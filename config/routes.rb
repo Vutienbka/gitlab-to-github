@@ -5,6 +5,12 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :home, only: [] do
+    collection do
+      get :show_calendar
+    end
+  end
+
   namespace :admins do
     root 'dashboard#index'
     resources :admins

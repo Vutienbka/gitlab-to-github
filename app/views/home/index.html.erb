@@ -1,5 +1,6 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'home' %>
+  <%= javascript_include_tag 'home' %>
 <% end %>
 
 <div class="container-user">
@@ -8,11 +9,15 @@
 
 	<%= render 'layouts/left_menu' %>
 
-	<div class="contents">
-	</div>
-
-	<div class="fixed-footer">
-      <div class="container">Copyright &copy; 2016 Your Company</div>        
+  <div class="contents">
+    <div class="container-contents">
+      <div id="show_calendar_contents">
+        <%= render 'home/calendar_details' %>
+      </div>
     </div>
-</div>
+  </div>
 
+  <div class="fixed-footer">
+    <div class="container">Copyright &copy; 2020 Your Company</div>
+   </div>
+</div>

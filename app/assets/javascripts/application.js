@@ -14,19 +14,3 @@
 //= require activestorage
 //= require jquery3
 //= require jquery-ui
-//= require_tree .
-
-$(function () {
-  $("#datepicker").datepicker({
-    inline: true,
-    firstDay: 1,
-    altFormat: "m月d日 (D)",
-    showOtherMonths: true,
-    locale: 'ja',
-    dayNamesMin: ["日", "月", "火", "水", "木", "金", "土"],
-    yearSuffix: "年",
-    showMonthAfterYear: true,
-    monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-    changeYear: true
-  });
-});

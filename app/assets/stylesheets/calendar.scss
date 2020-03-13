@@ -1,0 +1,50 @@
+.day_box {
+  min-height: 100px;
+}
+
+#table-calendar th, td {
+  border: 1px solid #ccc;
+}
+
+#table-calendar td {
+  width: 14.285%;
+  background: white;
+}
+
+.simple-calendar table tr th {
+  border-bottom: 1px solid white !important;
+}
+
+.container-contents {
+  padding: 10px;
+  padding-left: 15px;
+  margin-bottom: 40px;
+}
+
+.text-bold {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-day {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: blue;
+}
+
+.day_box-content-calendar {
+  width: 98%;
+  background: green;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.day_box-content-calendar span {
+  padding: 2px;
+  margin-left: 5px;
+  color: white;
+  font-weight: 600;
+}
