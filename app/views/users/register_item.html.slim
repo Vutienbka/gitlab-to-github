@@ -1,0 +1,16 @@
+- content_for :head do
+  = stylesheet_link_tag 'users/register_item'
+.container-user
+  .header
+  .menu
+    = render 'layouts/left_menu'
+  .contents
+    .title
+      p
+        | どの方法でアイテムを登録しますか​
+    .group-button
+      a href=choose_provider_users_path 
+        button.btn.default.button 単品登録​
+      button.btn.default.button 一括登録​
+  .fixed-footer
+    .container Copyright © 2016 Your Company

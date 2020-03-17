@@ -1,5 +1,8 @@
+<%= stylesheet_link_tag 'newji/left_menu' %>
+<%= javascript_include_tag 'home', 'menu' %>
+
 <div class="left-menu">
-  <nav class="main-menu">
+  <nav class="menu">
     <ul>
       <li>
         <div>
@@ -7,14 +10,16 @@
           <span class="nav-text lef-menu-name-app">NEWJI</span>
         </div>
         <div>
-          <i class="fa fa-bars" id="btn-toggle-left-menu"></i>
+          <a id="closeNav" href="javascript:void(0)">
+            <i class="fa fa-bars" id="btn-toggle-left-menu"></i>
+          </a>
         </div>
       </li>
 
       <div id="datepicker-left-menu"></div>
 
       <li class="has-subnav">
-        <a href="#">
+        <a href="<%= register_item_users_path %>">
           <i class="fa fa-laptop fa-2x"></i>
           <span class="nav-text">
             アイテム登録​
