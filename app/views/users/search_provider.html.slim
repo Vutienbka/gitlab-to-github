@@ -1,0 +1,20 @@
+- content_for :head do
+  = stylesheet_link_tag 'users/search_provider'
+.container-user
+  .header
+  .menu
+    = render 'layouts/left_menu'
+  .contents
+    .title
+      p
+        | サプライヤーコード、または名称で検索してください​
+    .sub-title
+      p#text-2.section-lead
+        | NEWJI登録済サプライヤー​
+    .search-provider
+      form
+        input name="search" placeholder="🔍　検索​" type="text" /
+      a href="" 
+        button.btn 続行​
+  .fixed-footer
+    .container Copyright © 2016 Your Company

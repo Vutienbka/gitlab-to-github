@@ -11,7 +11,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w( color.css )
+Rails.application.config.assets.precompile += %w( color.css users/choose_provider.scss users/invite_from.scss users/register_item.scss users/search_provider.scss users/email_register_supplier.scss users/email_register_item.scss)
 Rails.application.config.assets.precompile += %w( application_admin.scss application_admin.js devise.scss)
-
+Rails.application.config.assets.precompile += %w( stylesheets/*users)
 Rails.application.config.assets.precompile += %w( home.scss home.js calendar.scss)
