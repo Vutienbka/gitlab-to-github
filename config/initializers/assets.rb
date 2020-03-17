@@ -14,4 +14,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( color.css )
 Rails.application.config.assets.precompile += %w( application_admin.scss application_admin.js devise.scss)
 
-Rails.application.config.assets.precompile += %w( home.scss home.js calendar.scss)
+Rails.application.config.assets.precompile += %w( home.scss home.js calendar.scss menu.js)
+Rails.application.config.assets.precompile += %w( newji/*.css )

@@ -15,6 +15,29 @@
  *= require_self
  */
 
-  @import "toastr";
-  @import "bootstrap";
+@import "toastr";
+@import "bootstrap";
 
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+.sidebar {
+    width: 350px;
+}
+#full-content {
+    width: 100%;
+    background: #fafafa;
+}
+.wrapper-newji {
+    display: flex;
+}
+
+// @media screen and ( max-width: 1024px) {
+// }
+// @media screen and ( max-width: 768px ) {
+
+// }
