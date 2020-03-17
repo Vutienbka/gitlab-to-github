@@ -42,6 +42,8 @@ gem 'bootstrap-sass', '3.3.7'
 gem "font-awesome-rails"
 gem 'adminlte_theme'
 gem 'jquery-ui-rails'
+gem 'sass-rails', '~> 5.0'
+gem 'slim', '~> 4.0', '>= 4.0.1'
 
 # Others
 gem 'dotenv-rails'
@@ -53,8 +55,10 @@ gem "simple_calendar", "~> 2.0"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails', '~> 0.3.9'
   gem 'pry'
   gem 'foreman'
+  gem 'bullet', '~> 6.1'
 end
 
 group :development do
@@ -66,6 +70,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
   gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -80,3 +85,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'aws-ses', '~> 0.6'
+gem 'enumerize', '~> 2.3', '>= 2.3.1'
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+gem 'ransack', '~> 2.3', '>= 2.3.2'
+gem 'activerecord-import', '~> 1.0', '>= 1.0.4'
+gem 'carrierwave', '~> 2.1'
+gem 'carrierwave-base64', '~> 2.8'
+gem 'sentry-raven', '~> 3.0'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'cancancan', '~> 3.1'
