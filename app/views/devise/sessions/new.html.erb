@@ -1,22 +1,43 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'devise' %>
 <% end %>
+<div class=login-body>
+  <div class="login-mypage row">
+    <div class=login-form>
+      <div class="form-login-user"> 
+        <h4><%= t "devise.sessions.new.sign_in" %></h4>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%# <%= f.label :email <br /> %>
+            <%=f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color" %>
+          </div>
 
-<h2><%= t "devise.sessions.new.sign_in" %></h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%# <%= f.label :email <br /> %>
-    <%=f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true %>
+          <div class="field">
+            <%# <%= f.label :password <br/> %>
+            <%= f.password_field :password, autocomplete: "current-password",placeholder: true, class:"bg-color" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit t "devise.sessions.new.sign_in" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="link-forgotten">パスワードを忘れた方は<a href="/users/password/new">こちら</a></div>
+
+      <div class="form-register">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <h4>ユーザー登録</h4>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color"%>
+          </div>
+          
+          <div class="actions">
+            <%= f.submit "登録" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%# <%= f.label :password <br/> %>
-    <%= f.password_field :password, autocomplete: "current-password",placeholder: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t "devise.sessions.new.sign_in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
