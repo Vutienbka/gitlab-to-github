@@ -11,6 +11,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if current_user.present? %>
+      <div class="wrapper-newji">
+        <div class="sidebar" id="mysidebar">
+          <%= render "layouts/left_menu" %>
+        </div>
+        <div class="full-content" id="full-content">
+          <%= render 'layouts/header' %>
+          <%= yield %>
+          <%= render 'layouts/footer' %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

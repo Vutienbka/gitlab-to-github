@@ -15,9 +15,26 @@
  *= require_self
  */
 
-  @import "toastr";
-  @import "bootstrap";
+@import "toastr";
+@import "bootstrap";
 
 html, body {
     min-height: 100%;
 }
+
+.sidebar {
+    width: 350px;
+}
+#full-content {
+    width: 100%;
+    background: #fafafa;
+}
+.wrapper-newji {
+    display: flex;
+}
+
+// @media screen and ( max-width: 1024px) {
+// }
+// @media screen and ( max-width: 768px ) {
+
+// }
