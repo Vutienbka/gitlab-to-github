@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   root 'user#index'
   devise_for :users
 
-  resources :users
+  resources :users, only: [] do
+    collection do
+      get :sample_input
+      get :batch_items_selector
+    end
+  end
 
   resources :home, only: [] do
     collection do
