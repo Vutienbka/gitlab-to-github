@@ -1,0 +1,75 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'users/sample_input' %>
+<% end %>
+
+<div class="container-user">
+    <div class="header">
+    </div>
+    <div class="left-menu">
+        <%= render 'layouts/left_menu' %>
+    </div>
+    <div class="contents">
+        <div class="container">
+            <div class="mobile-process-title">サンプル​</div>
+            <div class="process-head">
+                <div class="process">
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                    <div class="proces"><label>情報</label><div class="point"></div></div>
+                </div>
+                <div class="row bar"></div>
+            </div>
+            <div class="main">
+                <div class="title">サンプルが必要な場合は登録してください</div>
+                <div class="content-table">
+                    <div class="description-zone">
+                        <div class="description"></div>
+                    </div>
+                    <div class="select-template-zone">
+                        <div class="title-first">
+                            <input placeholder="必要なサンプルを入力してください">
+                            <!-- 必要なサンプルを入力してください -->
+                        </div>
+                        <div class="title-second">要求するサンプルをクリックしてください</div>
+                        <div class="templates">
+                            <a href="#">
+                                <div class="template" style="background-color: #fa1f6c;">
+                                    <div class="text">類似品サンプル</div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="template" style="background-color: #ffe699;">
+                                    <div class="text">カラーサンプル</div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="template" style="background-color: #ffe699;">
+                                    <div class="text">意匠サンプル</div>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="template" style="background-color: #b4c7e8;">
+                                    <div class="text">オリジナルサンプル</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="continue-btn">
+                    <button type="submit">続行</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-footer">
+        <div class="container">Copyright &copy; 2016 Your Company</div>
+    </div>
+</div>
