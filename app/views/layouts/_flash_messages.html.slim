@@ -1,0 +1,7 @@
+.notification
+  - flash.try(:each) do |key, value|
+    |  <div class="alert alert-
+    = key == 'notice' ? 'success' : (key == 'alert' ? 'danger' : key)
+    |  pull-right"> 
+    = raw value unless value.blank?
+- flash.clear if flash.present?

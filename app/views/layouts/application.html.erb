@@ -25,5 +25,9 @@
     <% else %>
       <%= yield %>
     <% end %>
+    <div id='flash_message'>
+      <%= render 'layouts/flash_messages' %>
+    </div>
   </body>
+  <%= yield :footer %>
 </html>
