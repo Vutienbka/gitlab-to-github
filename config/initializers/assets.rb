@@ -13,8 +13,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w[color.css users/*.sass users/*.scss]
-Rails.application.config.assets.precompile += %w[users/sample_input.scss users/batch_items_selector.scss]
+Rails.application.config.assets.precompile += %w[color.css users/*.sass users/*.css]
 
 Rails.application.config.assets.precompile += %w[application_admin.scss application_admin.js devise.scss]
 

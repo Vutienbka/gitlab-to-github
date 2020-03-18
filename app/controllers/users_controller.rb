@@ -12,7 +12,4 @@ class UsersController < ApplicationController
     def batch_items_selector
         
     end
-    def input_items_drawing
-        
-    end
 end
