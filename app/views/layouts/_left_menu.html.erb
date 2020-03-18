@@ -106,15 +106,15 @@
       </div>
     </ul>
 
-    <!-- <ul class="logout">
-        <li>
-           <a href="#">
-                 <i class="fa fa-power-off fa-2x"></i>
-                <span class="nav-text">
-                    Logout
-                </span>
-            </a>
-        </li>  
-    </ul> -->
+    <ul class="logout">
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしてもよろしいですか?' } do %>
+          <i class="fa fa-power-off fa-2x"></i>
+          <span class="nav-text">
+              Logout
+          </span>
+        <% end %>
+      </li>  
+    </ul>
   </nav>
 </div>

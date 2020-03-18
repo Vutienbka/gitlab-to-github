@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  root 'user#index'
   devise_for :users
+  root 'home#index'
 
   resources :users, only: [] do 
     collection do 
@@ -25,5 +24,9 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'dashboard#index'
     resources :admins
+  end
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 end

@@ -11,8 +11,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
+ 
+  def after_sign_in_path_for(resource)
+    if resource.is_a? Buyer
+      root_path
+    end
+  end
 
-  def index
-    return redirect_to new_user_session_path unless user_signed_in?
+  def after_sign_out_path_for(resource)
+    new_user_session_path
   end
 end
