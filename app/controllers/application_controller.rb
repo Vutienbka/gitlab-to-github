@@ -15,6 +15,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.is_a? Buyer
       root_path
+    else
+      root_path
+      # TODO:: redirect_to edit_profile
     end
   end
 

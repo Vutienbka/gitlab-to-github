@@ -20,4 +20,15 @@ module ApplicationHelper
   def javascripts(*js)
     content_for(:head) { javascript_include_tag(*js) }
   end
+
+  def show_errors(object, field_name)
+    if session[:register_errors].present?
+      str = "<p class='error-message text-danger'>#{session[:register_errors][field_name.to_s]&.first}</p>"
+      return str.html_safe
+    end
+
+    return if object&.errors.blank?
+    str = "<p class='error-message text-danger'>#{object.errors[field_name.to_s]&.first}</p>"
+    str.html_safe
+  end
 end

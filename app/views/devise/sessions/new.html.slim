@@ -7,7 +7,6 @@
         h4
           = t "devise.sessions.new.sign_in"
         = form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }) do |f|
-          = render "devise/shared/error_messages", resource: resource
           .field
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color"
           .field
@@ -18,16 +17,4 @@
         | パスワードを忘れた方は
         a[href="/users/password/new"]
           | こちら
-      .form-register
-        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-          = render "devise/shared/error_messages", resource: resource
-          .field
-            h4
-              | ユーザー登録
-            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color"
-          .field
-            = f.password_field :password, autocomplete: "new-password", placeholder: true, class:"bg-color"
-          .field
-            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: true, class:"bg-color"
-          .actions
-            = f.submit "登録"
+      = render 'devise/shared/registration'
