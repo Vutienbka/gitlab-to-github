@@ -1,0 +1,23 @@
+- content_for :head do
+  = stylesheet_link_tag 'users/choose_provider'
+.container-user
+  .header
+  .menu
+    = render 'layouts/left_menu'
+  .contents
+    .title
+      p#text-1.section-lead
+        | 購入先のサプライヤーを選択してください​​
+    .button-group
+      a href=search_provider_users_path 
+        button.btn.default.button
+          | NEWJI登録済​
+          br/
+          | サプライヤー
+      a href=invite_form_users_path 
+        button.btn.default.button
+          | NEWJI未登録​
+          br/
+          | サプライヤー
+  .fixed-footer
+    .container Copyright © 2016 Your Company
