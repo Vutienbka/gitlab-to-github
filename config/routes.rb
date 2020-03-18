@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   resources :home, only: [] do
     collection do
+      get :index
+    end
+
+  end
+
+  resources :calendar do
+    collection do
       get :show_calendar
     end
   end

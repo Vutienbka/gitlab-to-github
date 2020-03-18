@@ -1,0 +1,61 @@
+.title
+  text-align: center
+.content-home
+  margin-top: 10%
+.search-home
+  width: 60%
+  margin: auto
+  padding: 40px 0
+  .form-control
+    border-radius: 25px
+    height: 60px
+    text-align: center
+    background: #fbe5d6
+.list-submit-home
+  padding-top: 20px
+  display: flex
+  justify-content: center
+  .submit
+    width: 20%
+    margin: 0 10px
+    text-align: center
+    .btn
+      width: 100%
+      height: 20vh
+.list-submit-bottom
+  display: flex
+  justify-content: center
+  padding-top: 100px
+  .submit-2
+    margin: 0 20px
+    width: 13%
+    .btn
+      width: 100%
+      height: 10vh
+      border-top-left-radius: 25px
+      border-top-right-radius: 0
+      border-bottom-right-radius: 25px
+      border-bottom-left-radius: 0
+.btn-success
+  color: #fff
+  background-color: #92d050
+  border-color: #92d050
+@media screen and ( max-width: 1025px)
+  .content-home
+    margin-top: 15%
+  .search-home
+    width: 76%
+  .list-submit-bottom .submit-2
+    margin: 0 7px
+    width: 14%
+  .list-submit-home .submit
+    width: 25%
+    margin: 0 5px
+@media screen and ( max-width: 768px )
+  .list-submit-bottom
+    display: grid
+    grid-template-columns: auto auto
+    grid-gap: 10px
+    .submit-2
+      margin: 0
+      width: 100%

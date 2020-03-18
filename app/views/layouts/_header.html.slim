@@ -1,5 +1,26 @@
 = stylesheet_link_tag 'newji/header'
 
-.header
+.fixed-header-new
   a#hiden-bar href="javascript:void(0)"
-    i.fa.fa-bars
+    i.fa.fa-bars.icons-menu
+  .left-header
+    .search
+      form
+        .input-group.input-search
+          input.form-control[type="text" placeholder="捜索"]
+          .input-group-btn
+            button.submit-header.btn.btn-default[type="submit"]
+              i.fa.fa-search
+    .setting
+      = link_to "/" do
+        i.fa.fa-cog.icons
+    .hint
+      = link_to "/" do
+        .icons.padding-icon
+          = image_tag("icon", class:"icon-hint")
+    .grap
+      = link_to "/" do
+        i.fa.fa-bar-chart.icons
+    .users-newji
+      = link_to destroy_user_session_path, method: :delete, data: {confirm: t('logout_confirmation')} do
+        i.fa.fa-user.icons
