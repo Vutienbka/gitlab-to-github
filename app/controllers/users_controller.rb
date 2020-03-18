@@ -6,22 +6,10 @@ class UsersController < ApplicationController
     def destroy
         # redirect_to signout_path
     end
-
-    def choose_provider
-    end 
-
-    def email_register_item
-    end 
-
-    def email_register_supplier
-    end 
-
-    def invite_form
-    end 
-
-    def register_item
-    end 
-
-    def search_provider
-    end 
+    def sample_input
+        
+    end
+    def batch_items_selector
+        
+    end
 end

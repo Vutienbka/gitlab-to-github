@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       get :invite_form
       get :register_item
       get :search_provider
-    end 
+      get :sample_input
+      get :batch_items_selector
+    end
   end
 
   resources :home, only: [] do
