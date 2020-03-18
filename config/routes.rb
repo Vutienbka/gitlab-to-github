@@ -30,9 +30,14 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admins do
+  namespace :admin do
     root 'dashboard#index'
-    resources :admins
+  end
+
+  namespace :buyer do
+  end
+
+  namespace :supplier do
   end
 
   if Rails.env.development?
