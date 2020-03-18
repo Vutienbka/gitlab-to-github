@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users, :controllers => { :registrations => 'users/registrations', 
+                                       :passwords => 'users/passwords',
+                                       :sessions => 'users/sessions'}
   root 'home#index'
 
   resources :users, only: [] do 
@@ -27,6 +29,6 @@ Rails.application.routes.draw do
   end
 
   if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end
 end

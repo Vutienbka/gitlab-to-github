@@ -3,10 +3,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     unless resource.save
-      session[:register_errors] = resource.errors
-      return redirect_to new_user_session_path if request.referrer == new_user_session_url
-
-      return redirect_to new_user_password_path if request.referrer == new_user_password_url
+      if request.referrer == new_user_session_url
+        session[:register_errors_for_new_user] = resource.errors
+        return redirect_to new_user_session_path
+      end
+      
+      if request.referrer == new_user_password_url
+        session[:register_errors_for_new_password] = resource.errors
+        return redirect_to new_user_password_path
+      end
     end
     
     yield resource if block_given?

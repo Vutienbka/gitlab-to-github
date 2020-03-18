@@ -22,8 +22,13 @@ module ApplicationHelper
   end
 
   def show_errors(object, field_name)
-    if session[:register_errors].present?
-      str = "<p class='error-message text-danger'>#{session[:register_errors][field_name.to_s]&.first}</p>"
+    if session[:register_errors_for_new_user].present?
+      str = "<p class='error-message text-danger'>#{session[:register_errors_for_new_user][field_name.to_s]&.first}</p>"
+      return str.html_safe
+    end
+
+    if session[:register_errors_for_new_password].present?
+      str = "<p class='error-message text-danger'>#{session[:register_errors_for_new_password][field_name.to_s]&.first}</p>"
       return str.html_safe
     end
 

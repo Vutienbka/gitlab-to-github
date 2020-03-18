@@ -19,16 +19,18 @@
           .actions
             = f.submit "続行"
           = show_errors resource, :email
-      .link-forgotten
-        div
-          | パスワード変更のメールを送信いたしました
-        div
-          | ご確認お願いいたします
-        
-      .form-register
-        .title-register[style="margin-bottom:30px"]
+
+      - if session[:send_email_reset]
+        .link-forgotten
           div
-            | 入力されたメールアドレスはご登録頂いていないようです
+            | パスワード変更のメールを送信いたしました
           div
-            | 下記より新規ユーザー登録をしてください
-      = render 'devise/shared/registration'
+            | ご確認お願いいたします
+      - if session[:count_to_show].present? && session[:count_to_show] > 1
+        .form-register
+          .title-register[style="margin-bottom:30px"]
+            div
+              | 入力されたメールアドレスはご登録頂いていないようです
+            div
+              | 下記より新規ユーザー登録をしてください
+        = render 'devise/shared/registration'

@@ -19,37 +19,41 @@
 @import "bootstrap";
 
 html, body {
-	min-height: 100%;
+  min-height: 100%;
 }
 
 .sidebar {
-	width: 350px;
+  width: 350px;
 }
 #full-content {
-	width: 100%;
-	background: #fafafa;
+  width: 100%;
+  background: #fafafa;
 }
 .wrapper-newji {
-	display: flex;
+  display: flex;
 }
 
 .notification {
-	position: fixed;
-	top: 100px;
-	width: 100%;
-	margin: 16px;
-	padding: 16px;
-	font-size: 0.8rem;
-	font-weight: bold;
-	background-color: transparent;
+  position: fixed;
+  top: 100px;
+  width: 100%;
+  margin: 16px;
+  padding: 16px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: transparent;
 
-	.notice {
-		color: #343a40;
-	}
+  .notice {
+    color: lightgreen;
+    font-size: 1.2rem;
+    padding: 1%;
+  }
 
-	.alert {
-		color: #dc3545;
-	}
+  .alert {
+    color: #ff6771;
+    font-size: 1.2rem;
+    padding: 1%;
+  }
 }
   
 // @media screen and ( max-width: 1024px) {
