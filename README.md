@@ -9,4 +9,11 @@ $ cp .env.sample .env
 
 $ bundle install
 $ rails db:create
-$ rails db:migrate
+
+# Init DB :
+
+$ bundle exec rails db < db/structure.sql
+
+# Import Seed data DB:
+
+$ rake db:seed

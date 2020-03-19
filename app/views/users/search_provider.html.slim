@@ -1,5 +1,5 @@
-- content_for :head do
-  = stylesheet_link_tag 'users/search_provider'
+= stylesheets 'users/search_provider'
+
 .container-user
   .header
   .contents
@@ -12,7 +12,22 @@
     .search-provider
       form
         input name="search" placeholder="🔍　検索​" type="text" /
-      a href="" 
-        button.btn 続行​
+
+      button.btn.btn-primary[type="button" data-toggle="modal" data-target="#exampleModalCenter"]
+        |  続行​ 
+      #exampleModalCenter.modal.fade[tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"]
+        .modal-dialog.modal-dialog-centered[role="document"]
+          .modal-content
+            .modal-body
+              |  このサプライヤーで登録しますか 
+            .modal-footer
+              / TODO:: Fix css and modal for link_to
+              / button.btn.btn-secondary[type="button" data-dismiss="modal"]
+              /   | キャンセル
+              = link_to 'キャンセル', buyers_requests_path, method: :post, class: 'btn btn-secondary'
+              button.btn.btn-primary[type="button"]
+                | 続ける
+
+
   .fixed-footer
     .container Copyright © 2016 Your Company

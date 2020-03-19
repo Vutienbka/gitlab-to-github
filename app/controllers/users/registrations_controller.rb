@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def create
-    build_resource(sign_up_params)
+    resource = Buyer.new(sign_up_params)
 
     unless resource.save
       if request.referrer == new_user_session_url

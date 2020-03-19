@@ -1,0 +1,25 @@
+- content_for :head do
+  = stylesheet_link_tag 'users/batch_register'
+.container-user
+.header
+  .contents
+    .title
+      p#text-1.section-lead
+        | アイテム一括登録ファイルをダウンロードして、入力したファイルをアップロードしてください​
+    .button-group
+      a href=search_provider_users_path 
+        button.btn.default.button.btn-1
+          | アイテム一括登録ファイル​
+    p.sub-text
+      | アイテム一括登録ファイルアップロード
+    .sub-content
+      .sub-title
+        p
+          | ここにファイルをドラッグ&ドロップ​
+          br/
+          | または​
+      a href=invite_unregisted_supplier_buyers_path 
+        button.btn.default.button.btn-2
+          | PCからアップロード​
+.fixed-footer
+    .container Copyright © 2016 Your Company

@@ -1,49 +1,84 @@
-Rails.application.routes.draw do
-  devise_for :users, :controllers => { :registrations => 'users/registrations', 
-                                       :passwords => 'users/passwords',
-                                       :sessions => 'users/sessions'}
-  root 'buyer/home#index'
+# frozen_string_literal: true
 
-  resources :users, only: [] do 
-    collection do 
+Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: 'users/registrations',
+                                    passwords: 'users/passwords',
+                                    sessions: 'users/sessions' }
+  root 'buyers/home#index'
+
+  resources :users, only: [] do
+    collection do
       get :choose_provider
       get :email_register_item
-      get :email_register_supplier
-      get :invite_form
       get :register_item
       get :search_provider
       get :sample_input
       get :batch_items_selector
+      get :input_items_info
+      get :input_items_drawing
+      get :input_items_image
+      get :inspect_supplier
+      get :email_inspection
+      get :order_list
+      get :batch_register
+      get :input_item_quality
     end
   end
 
-  namespace :buyer do
+  namespace :buyers do
     resources :home, only: [] do
       collection do
         get :index
       end
     end
-  
+
     resources :calendar do
       collection do
         get :show_calendar
       end
     end
-    resources :setting do
+
+    resources :profiles, only: [] do
       collection do
-        get :index
+        get :edit
+        patch :update
+        get :set_account
+        post :update_account
+      end
+    end
+
+    resources :requests, only: %i[create] do
+    end
+
+    resources :item_requests, only: %i[create] do
+    end
+
+    resources :item_info, only: %i[create] do
+      collection do
+        get :new
+      end
+    end
+
+    resources :item_drawings, only: %i[create] do
+      collection do
+        get :new
       end
     end
   end
 
-  namespace :supplier do
+  namespace :suppliers do
   end
 
   namespace :admin do
     root 'dashboard#index'
   end
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  resources :buyers, only: [] do
+    collection do
+      get :invite_unregisted_supplier
+      post :send_email_invite
+    end
   end
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

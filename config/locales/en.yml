@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  login: "Login"
   logout: "Log out"
   register: "Register new user"
   forgot_your_password: "If you forgot password"
@@ -38,3 +38,6 @@ en:
   forgot_your_password_title: "Please input your email and click continue!"
   change_my_password: "Change my password"
   continue: "Continue"
+  please_change_password: "Please change password by click button below."
+  email_register_instruction: "You can confirm your account email through the button below:"
+  logout_confirmation: "Do you want to logout?"

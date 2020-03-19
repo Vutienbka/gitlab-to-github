@@ -1,0 +1,33 @@
+= stylesheets 'buyer/invite_form'
+
+.container-user
+  .header
+  .content
+    .title
+      p
+        | サプライヤーを招待してください​
+    .sub-contents
+      .sub-title
+        p
+          | サプライヤーを招待する​
+      .sub-title-1
+        p
+          | サプライヤーご担当者様のメールアドレスとお名前を入力して、NEWJIへ招待してください​
+          br/
+          | メールソフトが起動しますので、招待メールを送信してください。
+      .input
+        = form_for :invite, url: send_email_invite_buyers_path, method: 'post' do |f|
+          = f.email_field :email, placeholder: 'メールアドレス​​', required: true
+          br
+          = f.text_field :company, placeholder: 'ご担当者名​', required: true
+          br
+          = f.submit '招待する​', class: 'button-1'
+      .text
+        p
+          | または
+      .button-2
+        a href=inspect_supplier_users_path
+          button.btn 信用調査を依頼する
+    .button-3
+    a href=root_path 
+      button.btn トップへもどる

@@ -1,0 +1,19 @@
+p 
+  | #{@supplier_company}様
+p
+  | #{@buyer.profile&.company_name}社の#{@buyer.profile&.last_name}様から、
+  br
+  | 調達購買システム「NEWJI」のご招待メールが
+  br
+  | #{@supplier_email}様宛に届きました。
+p
+  | #{@buyer.profile&.company_name}社の調達購買先（サプライヤー）として、
+  br
+  | ご登録の依頼が来ています。
+p 下記URLをクリックしてサプライヤー登録を完了してください。
+
+= link_to 'サプライヤー登録​', new_user_session_url
+br
+br
+= link_to 'NEWJIとは', root_url 
+/ TODO:: redirect_to NEWJI GUIDE

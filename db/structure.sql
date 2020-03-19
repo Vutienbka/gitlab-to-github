@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `last_name` VARCHAR(40) NULL DEFAULT NULL COMMENT 'プロバイダー別姓',
   `tel` VARCHAR(15) NULL DEFAULT NULL COMMENT 'プロバイダーTEL',
   `company_name` VARCHAR(100) NULL DEFAULT NULL COMMENT '会社名',
+  `code` VARCHAR(45) NULL DEFAULT NULL COMMENT '会社番号',
   `logo` VARCHAR(45) NULL,
   `department` VARCHAR(50) NULL DEFAULT NULL COMMENT '部署名',
   `position` VARCHAR(30) NULL DEFAULT NULL COMMENT '役職',
@@ -63,8 +64,9 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `updater` BIGINT(20) NULL DEFAULT NULL COMMENT '最終更新者Id',
   `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最終更新日',
   `deleted_at` TIMESTAMP NULL DEFAULT NULL COMMENT '削除時点 Deleted time',
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `user_type_UNIQUE` (`type` ASC)
+  PRIMARY KEY (`id`)
+  -- ,
+  -- UNIQUE INDEX `user_type_UNIQUE` (`type` ASC)
   )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -102,14 +104,17 @@ DROP TABLE IF EXISTS `item_info` ;
 CREATE TABLE IF NOT EXISTS `item_info` (
   `id` BIGINT(20) NOT NULL COMMENT '項目情報Id',
   `SKU` VARCHAR(45) NULL,
-  `category1` VARCHAR(2000) NULL COMMENT '項目Id',
-  `category2` VARCHAR(2000) NULL COMMENT '項目Id',
-  `category3` VARCHAR(2000) NULL COMMENT '項目Id',
-  `info1` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目説明情報',
-  `info2` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目説明情報',
-  `info3` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目説明情報',
-  `expected_sales_volume` INT NULL,
-  `lead_time` VARCHAR(45) NULL,
+  `info_sku` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目説明情報',
+  `name` VARCHAR(100) NULL,
+  `info_name` VARCHAR(2000) NULL,
+  `category1` VARCHAR(1000) NULL DEFAULT NULL,
+  `category2` VARCHAR(1000) NULL DEFAULT NULL,
+  `category3` VARCHAR(1000) NULL DEFAULT NULL,
+  `info_category` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目説明情報',
+  `expected_sales_volume` INT(11) NULL DEFAULT NULL,
+  `info_expected_sales_volume` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目説明情報',
+  `lead_time` VARCHAR(45) NULL DEFAULT NULL,
+  `info_lead_time` VARCHAR(2000) NULL,
   `creator` BIGINT(20) NULL DEFAULT NULL COMMENT '登録者Id',
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登録日',
   `updater` BIGINT(20) NULL DEFAULT NULL COMMENT '最終更新者Id',
@@ -259,7 +264,6 @@ DROP TABLE IF EXISTS `item_requests` ;
 CREATE TABLE IF NOT EXISTS `item_requests` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '依頼Id',
   `request_id` BIGINT(20) NOT NULL COMMENT '項目Id',
-  `name` VARCHAR(45) NULL,
   `item_info_id` BIGINT(20) NULL COMMENT '項目情報Id',
   `item_draw_id` BIGINT(20) NULL,
   `item_image_id` BIGINT(20) NULL,
@@ -328,8 +332,6 @@ CREATE TABLE IF NOT EXISTS `contracts` (
   INDEX `fk_buyer_contracts_profile1_idx` (`profile_id` ASC, `user_id` ASC)
   )
 ENGINE = InnoDB;
-
-USE `newji_development` ;
 
 -- -----------------------------------------------------
 -- Table `user_calendars`

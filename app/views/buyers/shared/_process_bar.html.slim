@@ -1,0 +1,58 @@
+= stylesheets 'buyer/process_bar'
+
+.stepwizard
+  .stepwizard-row
+    .stepwizard-step
+      p
+        | 情報
+      .proces-bar
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:information] ? 'btn-circle-red' : ''}"
+        | 1
+    .stepwizard-step
+      p
+        | 図面
+      .proces-bar
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:draw] ? 'btn-circle-red' : ''}"
+        | 2
+    .stepwizard-step
+      p
+        | 画像
+      .proces-bar
+      .btn-circle[type="button"]
+        | 3
+    .stepwizard-step
+      p
+        | 品質
+      .proces-bar
+      .btn-circle[type="button"]
+        | 4
+    .stepwizard-step
+      p
+        | 基準
+      .proces-bar
+      .btn-circle[type="button"]
+        | 5
+    .stepwizard-step
+      p
+        | 条件
+      .proces-bar
+      .btn-circle[type="button"]
+        | 6
+    .stepwizard-step
+      p
+        | サンプル
+      .proces-bar
+      .btn-circle[type="button"]
+        | 7
+    .stepwizard-step
+      p
+        | 見積
+      .proces-bar
+      .btn-circle[type="button"]
+        | 8
+    .stepwizard-step
+      p
+        | 原低
+      .proces-bar
+      .btn-circle[type="button"]
+        | 9

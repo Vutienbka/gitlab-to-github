@@ -7,9 +7,10 @@ class User < ApplicationRecord
 
   PARAMS_ATTRIBUTES = [
     :email, :password, :password_confirmation,
-    :last_name, :first_name, :company_name, :access_IP,
+    :accept_flg, :antiforce_flg, :access_IP, :creator, :updater,
     profile_attributes: [
-      :contract_status
+      :id, :first_name, :last_name, :tel, :company_name, :logo,
+      :department, :position, :creator, :contract_status, :updater
     ]
   ]
 

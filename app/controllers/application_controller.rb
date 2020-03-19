@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
-     # Prevent CSRF attacks by raising an exception.
+  # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
  
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :basic_auth
 
   protected 
   def configure_permitted_parameters
@@ -13,15 +14,23 @@ class ApplicationController < ActionController::Base
   end
  
   def after_sign_in_path_for(resource)
-    if resource.is_a? Buyer
-      root_path
-    else
-      root_path
-      # TODO:: redirect_to edit_profile
-    end
+    return edit_buyers_profiles_path if current_user.profile.blank?
+    root_path
   end
 
   def after_sign_out_path_for(resource)
     new_user_session_path
+  end
+
+  private
+
+  def basic_auth
+    return unless Rails.env.staging?
+
+    username = 'newjiapp'
+    password = 'appnewji'
+    authenticate_or_request_with_http_basic do |user, pass|
+      user == username && pass == password
+    end
   end
 end

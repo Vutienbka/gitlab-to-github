@@ -8,9 +8,11 @@
         label どの方法でアイテムを一括登録しますか​
       .buttons
         .row
-        .col-md-6
-          button.btn type="button" CSV＋各種ファイル​
-        .col-md-6
-          button.btn type="button" CSV＋各種ファイル
+          a href=batch_register_users_path
+            .col-md-6.various-btn
+              button.btn type="button" CSV＋各種ファイル​
+          a href=order_list_users_path
+            .col-md-6.round-throw-btn
+              button.btn type="button" 丸投げ（有料サービス）
   .fixed-footer
     .container Copyright © 2016 Your Company

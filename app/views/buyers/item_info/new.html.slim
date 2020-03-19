@@ -1,0 +1,47 @@
+= stylesheets 'buyer/input_items_info'
+
+= form_for @item_info, url: buyers_item_info_index_path, method: 'post' do |f|
+  .container-user
+    .contents
+      .container-fluid
+        .mobile-process-title 情報
+        .process-head
+          = render 'buyers/shared/process_bar'
+        .main
+          .content-table-title アイテムの情報を登録してください
+          .content-table
+            .description-zone
+              .description
+            .infos
+              .container
+                .col-md-12.info
+                  .input-label
+                    label 必須
+                  = f.text_field :SKU, placeholder: 'アイテムの商品コード（SKU）を入力してください', required: true, class: 'info-input'
+                .col-md-12.info
+                  .input-label
+                    label 必須
+                  = f.text_field :category1, placeholder: 'アイテムのカテゴリー１を入力してください', required: true, class: 'info-input'
+                .col-md-12.info
+                  = f.text_field :category2, placeholder: 'アイテムのカテゴリー２を入力してください', class: 'info-input'
+                .col-md-12.info
+                  = f.text_field :category3, placeholder: 'アイテムのカテゴリー３を入力してください', class: 'info-input'
+                .col-md-12.info
+                  .input-label
+                    label 必須
+                  = f.text_field :name, placeholder: 'アイテムの名称を入力してください', required: true, class: 'info-input'
+                .col-md-12.info
+                  .input-label
+                    label 必須
+                  = f.number_field :cost, placeholder: 'アイテムの単価を入力してください', required: true, class: 'info-input'
+                .col-md-12.info
+                  .input-label
+                    label 必須
+                  = f.number_field :expected_sales_volume, placeholder: 'アイテムの販売予測量（年間）を入力してください', required: true, class: 'info-input'
+                .col-md-12.info
+                  .input-label
+                    label 必須
+                  = f.text_field :lead_time, placeholder: 'アイテムのリードタイムを入力してください', required: true, class: 'info-input'
+                = hidden_field_tag :item_request_id, params[:item_request_id]
+          .continue-btn
+            button type="submit"  続行

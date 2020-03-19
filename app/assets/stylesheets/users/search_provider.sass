@@ -4,40 +4,18 @@
   margin-left: 40px
   font-size: large
 
-input[type=text]
-  padding-left: 10px
-  width: 30%
-  box-sizing: border-box
-  border: 2px solid #ccc
-  font-size: 16px
-  background-color: white
-  background-position: 10px 10px
-  background-repeat: no-repeat
-  height: 50px
-  margin-bottom: 50px
-  background-color: #f5e2d6
-
-button
-  height: 40px
-  width: 20%
-  border-radius: 0px !important
-  background-color: #8bcf5a
+.modal-footer
+  justify-content: space-around
 
 .contents
   position: relative
   text-align: center
   padding-top: 10%
-
-@media screen and (max-width: 770px)
-  .menu
-    display: none
-
-  .title, .sub-title
-    margin-bottom: 5%
-    text-align: center
-    margin-left: 40px
-    font-size: large
-
+  button
+    height: 40px
+    width: 26%
+    border-radius: 0px !important
+    background-color: #8bcf5a
   input[type=text]
     padding-left: 10px
     width: 30%
@@ -51,14 +29,31 @@ button
     margin-bottom: 50px
     background-color: #f5e2d6
 
-  button
-    height: 40px
-    width: 20%
-    border-radius: 0px !important
-    background-color: #8bcf5a
+@media screen and (max-width: 770px)
+  .title, .sub-title
+    margin-bottom: 5%
+    text-align: center
+    margin-left: 40px
+    font-size: large
 
   .contents
     position: relative
     text-align: center
     padding-top: 10%
-    margin-right: 10%
+    button
+      height: 40px
+      width: 30%
+      border-radius: 0px !important
+      background-color: #8bcf5a
+    input[type=text]
+      padding-left: 10px
+      width: 30%
+      box-sizing: border-box
+      border: 2px solid #ccc
+      font-size: 16px
+      background-color: white
+      background-position: 10px 10px
+      background-repeat: no-repeat
+      height: 50px
+      margin-bottom: 50px
+      background-color: #f5e2d6

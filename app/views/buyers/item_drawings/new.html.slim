@@ -1,0 +1,89 @@
+= stylesheets 'buyer/input_items_drawing'
+
+.container-user
+  .contents
+    .container-fluid
+      .mobile-process-title サンプル​
+      .process-head
+        = render  'buyers/shared/process_bar'
+      .main
+        .content-table-title アイテムの図面を登録してください
+        .content-table
+          .description-zone
+            .description
+          .drawings
+            .container
+              .col-md-12.drawing
+                .drawings-2d-title アイテムに関連する2D図面を全てアップロードしてください（複数可）
+                .drawing-inner
+                  .drawing-item
+                    .drawing-head
+                      .drawing-require-label
+                        label 必須
+                      .drawing-title-label
+                        label 製品仕様図（2D）
+                    .drawing-content
+                      .drawing-content-hint
+                        label ここにファイルをドラッグ&ドロップまたは
+                      .drawing-upload-button
+                        input.btn type="button" value="PCからアップロード"
+                  .drawing-item
+                    .drawing-head
+                      / .drawing-require-label
+                      /   label 必須
+                      .drawing-title-label
+                        label 組立仕様図（2D）
+                    .drawing-content
+                      .drawing-content-hint
+                        label ここにファイルをドラッグ&ドロップまたは
+                      .drawing-upload-button
+                        input.btn type="button" value="PCからアップロード"
+                  .drawing-item
+                    .drawing-head
+                      / .drawing-require-label
+                      /   label 必須
+                      .drawing-title-label
+                        label 梱包仕様図（2D）
+                    .drawing-content
+                      .drawing-content-hint
+                        label ここにファイルをドラッグ&ドロップまたは
+                      .drawing-upload-button
+                        input.btn type="button" value="PCからアップロード"
+              .col-md-12.drawing
+                .drawings-2d-title アイテムに関連する3D図面を全てアップロードしてください（複数可）
+                .drawing-inner
+                  .drawing-item
+                    .drawing-head
+                      .drawing-require-label
+                        label 必須
+                      .drawing-title-label
+                        label 製品仕様図（3D）
+                    .drawing-content
+                      .drawing-content-hint
+                        label ここにファイルをドラッグ&ドロップまたは
+                      .drawing-upload-button
+                        input.btn type="button" value="PCからアップロード"
+                  .drawing-item
+                    .drawing-head
+                      / .drawing-require-label
+                      /   label 必須
+                      .drawing-title-label
+                        label 組立仕様図（3D）
+                    .drawing-content
+                      .drawing-content-hint
+                        label ここにファイルをドラッグ&ドロップまたは
+                      .drawing-upload-button
+                        input.btn type="button" value="PCからアップロード"
+                  .drawing-item
+                    .drawing-head
+                      / .drawing-require-label
+                      /   label 必須
+                      .drawing-title-label
+                        label 梱包仕様図（3D）
+                    .drawing-content  
+                      .drawing-content-hint
+                        label ここにファイルをドラッグ&ドロップまたは
+                      .drawing-upload-button
+                        input.btn type="button" value="PCからアップロード"
+        .continue-btn
+          button type="submit"  続行

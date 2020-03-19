@@ -1,0 +1,21 @@
+= stylesheets 'buyer/set_account'
+= javascripts 'buyer/profile_set_account'
+
+.content-settig
+  .input-setting
+    = form_for @buyer, url: update_account_buyers_profiles_path, method: 'post' do |f|
+      .row
+        .col-4
+          label for="buyer_account" class="submit-account #{current_user.buyer? ? 'submit-account-background' : ''}" id='label_buyer_account'
+            | バイヤー
+          = f.text_field :type, id: 'buyer_account', type: 'radio', value: 'Buyer', class: 'd-none'
+        .col-4
+          label for="supplier_account" class="submit-account #{current_user.supplier? ? 'submit-account-background' : ''}" id='label_supplier_account'
+            | サプライヤー
+          = f.text_field :type, id: 'supplier_account', type: 'radio', value: 'Supplier', class: 'd-none'
+        .col-4
+          label for="buyer_supplier_account" class="submit-account #{current_user.both? ? 'submit-account-background' : ''}" id='label_buyer_supplier_account'
+            | 両方
+          = f.text_field :type, id: 'buyer_supplier_account', type: 'radio', value: 'BuyerSupplier', class: 'd-none'
+      .submit-setting
+        = f.submit '続行', class: 'btn btn-success'
