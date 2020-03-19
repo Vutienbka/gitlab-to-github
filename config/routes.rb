@@ -29,6 +29,11 @@ Rails.application.routes.draw do
         get :show_calendar
       end
     end
+    resources :setting do
+      collection do
+        get :index
+      end
+    end
   end
 
   namespace :supplier do

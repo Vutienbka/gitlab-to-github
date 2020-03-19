@@ -1,5 +1,5 @@
 .title
-  text-align: center
+  justify-content: center
 .content-home
   margin-top: 10%
 .search-home
@@ -32,12 +32,12 @@
     .btn
       width: 100%
       height: 10vh
-      border-top-left-radius: 25px
+      border-top-left-radius: 16px
       border-top-right-radius: 0
-      border-bottom-right-radius: 25px
+      border-bottom-right-radius: 16px
       border-bottom-left-radius: 0
 .btn-success
-  color: #fff
+  color: #000
   background-color: #92d050
   border-color: #92d050
 @media screen and ( max-width: 1025px)
@@ -53,9 +53,17 @@
     margin: 0 5px
 @media screen and ( max-width: 768px )
   .list-submit-bottom
+    padding-top: 50px
     display: grid
     grid-template-columns: auto auto
     grid-gap: 10px
     .submit-2
       margin: 0
       width: 100%
+  .list-submit-home
+    display: block
+    .submit
+      width: 100%
+      margin: 22px 0 0 0
+  .list-submit-bottom .submit-2 .btn
+    width: 140px
