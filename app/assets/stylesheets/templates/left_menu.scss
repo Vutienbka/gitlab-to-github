@@ -1,6 +1,31 @@
 .container-user {
   margin: 0px;
 }
+
+.new-a a {
+  color: #e2e2e2 !important;
+}
+.newji-text {
+  border: 1px solid #e2e2e2;
+  padding: 6px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.bor-buttom {
+  border: 1px solid;
+  border-radius: 15px;
+}
+
+.ui-datepicker td a {
+  padding: 0px !important;
+}
+.ui-datepicker-calendar td {
+  padding: 0px !important;
+}
+.row {
+  flex-wrap: inherit;
+}
 .parent-content-left {
   display: flex;
 }
@@ -81,6 +106,8 @@
 }
 
 .menu .nav-text {
+  padding: 5px;
+  text-align: center;
   position:relative;
   display:table-cell;
   vertical-align:middle;
@@ -122,7 +149,7 @@ nav ul,nav li {
 }
 .menu li>a,nav.menu li.active>a,.dropdown-menu>li>a,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li a,.dashboard-page nav.dashboard-menu ul li.active a {
   color:black;
-  background-color:#92d066;
+  background-color: #92d050;
 }
 
 .ui-datepicker {
@@ -190,7 +217,7 @@ nav ul,nav li {
 }
 
 .parent-of-block-btn div {
-  background: #92d066;
+  background: #92d050;
   color: black;
   padding: 10px;
 }
@@ -211,7 +238,9 @@ nav ul,nav li {
 //   text-decoration: none;
 // }
 @media screen and (max-width: 768px) {
-  
+  .ui-datepicker-calendar td {
+    padding: 7px !important;
+  }
   .sidebar {
     width: 0;
     position: fixed;

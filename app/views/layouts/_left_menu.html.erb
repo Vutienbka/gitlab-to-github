@@ -20,7 +20,6 @@
 
       <li class="has-subnav">
         <a href="<%= register_item_users_path %>">
-          <i class="fa fa-laptop fa-2x"></i>
           <span class="nav-text">
             アイテム登録​
           </span>
@@ -28,7 +27,6 @@
       </li>
       <li class="has-subnav">
         <a href="#">
-          <i class="fa fa-list fa-2x"></i>
           <span class="nav-text">
             受発注​
           </span>
@@ -36,7 +34,6 @@
       </li>
       <li class="has-subnav">
         <a href="#">
-          <i class="fa fa-folder-open fa-2x"></i>
           <span class="nav-text">
             クレーム​
           </span>
@@ -44,7 +41,6 @@
       </li>
       <li>
         <a href="#">
-          <i class="fa fa-bar-chart-o fa-2x"></i>
           <span class="nav-text">
             サンプル​
           </span>
@@ -52,7 +48,6 @@
       </li>
       <li>
         <a href="#">
-          <i class="fa fa-font fa-2x"></i>
           <span class="nav-text">
             取引先​
           </span>
@@ -60,7 +55,6 @@
       </li>
       <li>
         <a href="#">
-          <i class="fa fa-table fa-2x"></i>
           <span class="nav-text">
             マイカタログ​
           </span>
@@ -68,53 +62,38 @@
       </li>
 
       <div class="row parent-of-block-btn">
-        <div class="col-xs-5 btn-left-in-parent-of-block-btn">
+        <div class="col-md mr-3 bor-buttom">
           <a href="#">
-            <i class="fa fa-info fa-2x"></i>
             <span class="nav-text">
-              Documentation
+              品質
             </span>
           </a>
         </div>
-        <div class="col-xs-5">
+        <div class="col-md bor-buttom">
           <a href="#">
-            <i class="fa fa-info fa-2x"></i>
             <span class="nav-text">
-              Documentation
+              コスト
             </span>
           </a>
         </div>
       </div>
 
       <div class="row parent-of-block-btn">
-        <div class="col-xs-5 btn-left-in-parent-of-block-btn">
+        <div class="col-md mr-3 bor-buttom">
           <a href="#">
-            <i class="fa fa-info fa-2x"></i>
             <span class="nav-text">
-              Documentation
+              納期
             </span>
           </a>
         </div>
-        <div class="col-xs-5">
+        <div class="col-md bor-buttom">
           <a href="#">
-            <i class="fa fa-info fa-2x"></i>
             <span class="nav-text">
-              Documentation
+              書類
             </span>
           </a>
         </div>
       </div>
-    </ul>
-
-    <ul class="logout">
-      <li>
-        <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしてもよろしいですか?' } do %>
-          <i class="fa fa-power-off fa-2x"></i>
-          <span class="nav-text">
-              Logout
-          </span>
-        <% end %>
-      </li>  
     </ul>
   </nav>
 </div>

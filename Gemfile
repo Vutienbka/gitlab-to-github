@@ -38,12 +38,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Assets
 gem 'jquery-rails'
-gem 'bootstrap-sass', '3.3.7'
 gem "font-awesome-rails"
 gem 'adminlte_theme'
 gem 'jquery-ui-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'slim', '~> 4.0', '>= 4.0.1'
+gem 'bootstrap', '~> 4.1.0'
 
 # Others
 gem 'dotenv-rails'
