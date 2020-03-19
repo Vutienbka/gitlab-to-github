@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => 'users/registrations', 
                                        :passwords => 'users/passwords',
                                        :sessions => 'users/sessions'}
-  root 'home#index'
+  root 'buyer/home#index'
 
   resources :users, only: [] do 
     collection do 
@@ -17,27 +17,25 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :home, only: [] do
-    collection do
-      get :index
+  namespace :buyer do
+    resources :home, only: [] do
+      collection do
+        get :index
+      end
     end
-
+  
+    resources :calendar do
+      collection do
+        get :show_calendar
+      end
+    end
   end
 
-  resources :calendar do
-    collection do
-      get :show_calendar
-    end
+  namespace :supplier do
   end
 
   namespace :admin do
     root 'dashboard#index'
-  end
-
-  namespace :buyer do
-  end
-
-  namespace :supplier do
   end
 
   if Rails.env.development?

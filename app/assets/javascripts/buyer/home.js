@@ -15,7 +15,7 @@ $(document).ready(function () {
     onSelect: function (e) {
       var date = convert_date($(this).datepicker('getDate'));
       $.ajax({
-        url: '/calendar/show_calendar',
+        url: '/buyer/calendar/show_calendar',
         method: 'GET',
         dataType: 'script',
         data: {

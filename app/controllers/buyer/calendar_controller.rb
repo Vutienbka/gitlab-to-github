@@ -1,4 +1,4 @@
-class CalendarController < ApplicationController
+class Buyer::CalendarController < Buyer::BaseController
   def index
     @date = Date.current
   end

@@ -14,7 +14,7 @@
 //= require activestorage
 //= require jquery3
 //= require jquery-ui
-//= require notification
+//= require components/notification
 
 $(document).ready(function() {
   removeNotification();
