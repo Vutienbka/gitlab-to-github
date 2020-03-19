@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `newji_development`.`users` (
   `accept_flg` INT(1) NULL DEFAULT NULL COMMENT '利用規約',
   `antiforce_flg` INT(1) NULL DEFAULT NULL COMMENT '反社会勢力',
   `access_IP` VARCHAR(45) NULL,
-  `reset_password_token` VARCHAR(255) NOT NULL DEFAULT "",
+  `reset_password_token` VARCHAR(255) NULL,
   `reset_password_sent_at` TIMESTAMP NULL,
   `remember_created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `creator` BIGINT(20) NULL DEFAULT NULL COMMENT '登録者Id',
