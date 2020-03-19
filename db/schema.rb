@@ -11,32 +11,4 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_03_17_062742) do
-
-  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "buyer_id"
-    t.bigint "supplier_id"
-    t.bigint "buyer_supplier_id"
-    t.string "contract_status"
-    t.string "type"
-    t.datetime "deleted_at"
-  end
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "last_name"
-    t.string "first_name"
-    t.string "company_name"
-    t.string "type"
-    t.string "access_IP"
-    t.datetime "deleted_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
 end
