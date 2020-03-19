@@ -1,5 +1,55 @@
 #hiden-bar
   display: none
+.btn-default:hover
+  background: #fafafa
+.icons-menu
+  font-size: 30px
+
+.fixed-header-new
+  width: 85%
+  background: #e2e2e2
+  position: fixed
+  padding: 10px
+  top: 0
+  a
+    color: black
+
+.left-header
+  padding-right: 22px
+  float: right
+  display: flex
+  align-items: center
+  justify-content: space-between
+  a
+    color: black
+.input-search
+  position: relative
+  .form-control
+    padding-left: 40px !important
+    border-radius: 25px !important
+.input-group-btn
+  position: absolute
+  top: 4px
+  left: 10px
+  z-index: 10
+  .btn
+    padding: 3px 8px !important
+.submit-header
+  border: none
+.left-header
+  .icons
+    font-size: 25px
+    margin-left: 25px
+
+.padding-icon
+  padding-bottom: 5px
+  .icon-hint
+    width: 23px
+@media screen and ( max-width: 1300px )
+  .fixed-header-new
+    width: 80%
 @media screen and ( max-width: 550px )
   #hiden-bar
     display: block
+  .fixed-header-new
+    width: 100%
