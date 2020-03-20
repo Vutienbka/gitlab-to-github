@@ -9,21 +9,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema newji_development
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `newji_development` ;
-
--- -----------------------------------------------------
--- Schema newji_development
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `newji_development` DEFAULT CHARACTER SET utf8 ;
-USE `newji_development` ;
-
 
 -- -----------------------------------------------------
 -- Table `newji_development`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`users` ;
+DROP TABLE IF EXISTS `users` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'ユーザId',
   `email` VARCHAR(100) NOT NULL DEFAULT "" COMMENT 'ログインメールアドレス',
   `encrypted_password` VARCHAR(255) NOT NULL DEFAULT "" COMMENT 'ログインパスワード',
@@ -48,11 +40,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = 'ユーザテーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`profiles`
+-- Table `profiles`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`profiles` ;
+DROP TABLE IF EXISTS `profiles` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`profiles` (
+CREATE TABLE IF NOT EXISTS `profiles` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'プロバイダーId',
   `buyer_id` BIGINT(20),
   `supplier_id` BIGINT(20),
@@ -79,11 +71,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = 'プロバイダー詳細テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`inspection_requests`
+-- Table `inspection_requests`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`inspection_requests` ;
+DROP TABLE IF EXISTS `inspection_requests` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`inspection_requests` (
+CREATE TABLE IF NOT EXISTS `inspection_requests` (
   `id` BIGINT(20) NOT NULL,
   `buyer_id` BIGINT(20) NULL,
   `request_date` DATE NULL,
@@ -103,11 +95,11 @@ CREATE TABLE IF NOT EXISTS `newji_development`.`inspection_requests` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_info`
+-- Table `item_info`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_info` ;
+DROP TABLE IF EXISTS `item_info` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_info` (
+CREATE TABLE IF NOT EXISTS `item_info` (
   `id` BIGINT(20) NOT NULL COMMENT '項目情報Id',
   `SKU` VARCHAR(45) NULL,
   `category1` VARCHAR(2000) NULL COMMENT '項目Id',
@@ -130,11 +122,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目情報テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`requests`
+-- Table `requests`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`requests` ;
+DROP TABLE IF EXISTS `requests` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`requests` (
+CREATE TABLE IF NOT EXISTS `requests` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '依頼Id',
   `buyer_id` BIGINT(20) NOT NULL COMMENT '購入者Id',
   `supplier_id` BIGINT(20) NOT NULL COMMENT '供給者Id',
@@ -154,11 +146,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '依頼テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_drawings`
+-- Table `item_drawings`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_drawings` ;
+DROP TABLE IF EXISTS `item_drawings` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_drawings` (
+CREATE TABLE IF NOT EXISTS `item_drawings` (
   `id` BIGINT(20) NOT NULL COMMENT '項目図面Id',
   `category_id` BIGINT(20) NULL COMMENT '項目図面ファイルId',
   `info` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目図面説明情報',
@@ -173,11 +165,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目図面テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_qualities`
+-- Table `item_qualities`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_qualities` ;
+DROP TABLE IF EXISTS `item_qualities` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_qualities` (
+CREATE TABLE IF NOT EXISTS `item_qualities` (
   `id` BIGINT(20) NOT NULL COMMENT '項目品質Id',
   `quality1` INT(1) NULL DEFAULT '0' COMMENT '項目品質1',
   `info1` VARCHAR(500) NULL DEFAULT NULL COMMENT '品質情報1',
@@ -222,11 +214,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目品質テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_images`
+-- Table `item_images`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_images` ;
+DROP TABLE IF EXISTS `item_images` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_images` (
+CREATE TABLE IF NOT EXISTS `item_images` (
   `id` BIGINT(20) NOT NULL COMMENT '項目画面Id',
   `category_id` BIGINT(20) NULL COMMENT '項目画面ファイルId',
   `info` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目画面説明情報',
@@ -241,11 +233,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目画面テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_samples`
+-- Table `item_samples`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_samples` ;
+DROP TABLE IF EXISTS `item_samples` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_samples` (
+CREATE TABLE IF NOT EXISTS `item_samples` (
   `id` BIGINT(20) NOT NULL COMMENT '項目サンプルId',
   `category_id` BIGINT(20) NULL COMMENT '項目サンプルファイルId',
   `info` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目サンプル説明情報',
@@ -260,11 +252,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目サンプルテーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_requests`
+-- Table `item_requests`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_requests` ;
+DROP TABLE IF EXISTS `item_requests` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_requests` (
+CREATE TABLE IF NOT EXISTS `item_requests` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '依頼Id',
   `request_id` BIGINT(20) NOT NULL COMMENT '項目Id',
   `name` VARCHAR(45) NULL,
@@ -296,11 +288,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '依頼テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`item_conditions`
+-- Table `item_conditions`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`item_conditions` ;
+DROP TABLE IF EXISTS `item_conditions` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`item_conditions` (
+CREATE TABLE IF NOT EXISTS `item_conditions` (
   `id` BIGINT(20) NOT NULL,
   `item_id` BIGINT(20) NOT NULL,
   `condition` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目条件情報',
@@ -319,11 +311,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目条件情報';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`contracts`
+-- Table `contracts`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`contracts` ;
+DROP TABLE IF EXISTS `contracts` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`contracts` (
+CREATE TABLE IF NOT EXISTS `contracts` (
   `id` BIGINT(20) NOT NULL,
   `user_id` BIGINT(20) NOT NULL,
   `contract_type` TINYINT(3) NULL,
@@ -340,11 +332,11 @@ ENGINE = InnoDB;
 USE `newji_development` ;
 
 -- -----------------------------------------------------
--- Table `newji_development`.`user_calendars`
+-- Table `user_calendars`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`user_calendars` ;
+DROP TABLE IF EXISTS `user_calendars` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`user_calendars` (
+CREATE TABLE IF NOT EXISTS `user_calendars` (
   `id` BIGINT(20) NOT NULL COMMENT '項目カレンダーId',
   `user_id` BIGINT(20) NOT NULL COMMENT 'ユーザId',
   `type` INT(11) NULL,
@@ -366,11 +358,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目カレンダーテーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`image_categories`
+-- Table `image_categories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`image_categories` ;
+DROP TABLE IF EXISTS `image_categories` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`image_categories` (
+CREATE TABLE IF NOT EXISTS `image_categories` (
   `id` BIGINT(20) NOT NULL COMMENT '項目画面Id',
    `item_image_id` BIGINT(20) NOT NULL,
   `image_info` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目画面説明情報',
@@ -387,11 +379,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = '項目画面テーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`file_images`
+-- Table `file_images`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`file_images` ;
+DROP TABLE IF EXISTS `file_images` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`file_images` (
+CREATE TABLE IF NOT EXISTS `file_images` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'ファイルId',
   `item_category` BIGINT(8) NOT NULL,
   `item_image_id` BIGINT(20) NOT NULL COMMENT 'Item Draw/Image/Sample Id\n',
@@ -410,11 +402,11 @@ DEFAULT CHARACTER SET = utf8
 COMMENT = 'ファイルテーブル';
 
 -- -----------------------------------------------------
--- Table `newji_development`.`draw_categories`
+-- Table `draw_categories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`draw_categories` ;
+DROP TABLE IF EXISTS `draw_categories` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`draw_categories` (
+CREATE TABLE IF NOT EXISTS `draw_categories` (
   `id` BIGINT(20) NOT NULL COMMENT '項目画面Id',
   `item_draw_id` BIGINT(20) NOT NULL,
   `draw_info` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目画面説明情報',
@@ -432,11 +424,11 @@ COMMENT = '項目画面テーブル';
 
 
 -- -----------------------------------------------------
--- Table `newji_development`.`file_draws`
+-- Table `file_draws`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`file_draws` ;
+DROP TABLE IF EXISTS `file_draws` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`file_draws` (
+CREATE TABLE IF NOT EXISTS `file_draws` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'ファイルId',
   `item_category` BIGINT(8) NOT NULL,
   `item_draw_id` BIGINT(20) NOT NULL COMMENT 'Item Draw/Image/Sample Id\n',
@@ -456,11 +448,11 @@ COMMENT = 'ファイルテーブル';
 
 
 -- -----------------------------------------------------
--- Table `newji_development`.`sample_categories`
+-- Table `sample_categories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`sample_categories` ;
+DROP TABLE IF EXISTS `sample_categories` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`sample_categories` (
+CREATE TABLE IF NOT EXISTS `sample_categories` (
   `id` BIGINT(20) NOT NULL COMMENT '項目画面Id',
   `item_sample_id` BIGINT(20) NOT NULL,
   `sample_info` VARCHAR(2000) NULL DEFAULT NULL COMMENT '項目画面説明情報',
@@ -478,11 +470,11 @@ COMMENT = '項目画面テーブル';
 
 
 -- -----------------------------------------------------
--- Table `newji_development`.`file_samples`
+-- Table `file_samples`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `newji_development`.`file_samples` ;
+DROP TABLE IF EXISTS `file_samples` ;
 
-CREATE TABLE IF NOT EXISTS `newji_development`.`file_samples` (
+CREATE TABLE IF NOT EXISTS `file_samples` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'ファイルId',
   `item_category` BIGINT(8) NOT NULL,
   `item_sample_id` BIGINT(20) NOT NULL COMMENT 'Item Draw/Image/Sample Id\n',
