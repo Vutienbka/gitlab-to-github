@@ -1,93 +1,59 @@
-@import "buyer/home"
-
-.mobile-process-title
-  display: none
-
-.left-menu
+.container-user
   display: flex
-  float: left
-  width: 15%
-  margin-right: 10%
-
+  position: relative
+  height: 100%
 .contents
   display: flex
-  float: right
   width: 100%
-
+  height: 95%
+  box-sizing: border-box
 .process-head
   position: relative
-  margin: 2% 5%
   width: 90%
   height: 80px
-
-.process
-  width: 100%
-  position: absolute
-  display: flex
-  text-align: center
-
-.proces
-  position: relative
-  width: 15%
-
-  label
-    margin-left: 7%
-
-.bar
-  position: absolute
-  background-color: #177abe
-  height: 6.5px
-  width: 90%
-  top: 38%
-  margin: 0 5%
-
-.point
-  background-color: #177abe
-  position: absolute
-  height: 75%
-  width: 18.75%
-  align-items: center
-  margin-left: 45%
-  border-radius: 50%
-  z-index: 1
-
+  margin-top: 2%
+  margin-left: 5%
+  margin-right: 5%
+  margin-bottom: 3%
 .main
   margin: 0 5%
-  align-items: center
   width: 90%
-  height: 550px
-
-  > .title
-    height: 5%
-    text-align: center
-
+  height: 500px
+.content-table-title
+  height: 5%
+  text-align: center
+  font-size: 1em
+.mobile-process-title
+  display: none
+  height: 5%
+  text-align: center
+  font-size: 1em
 .content-table
   background-color: #dae3f3
   position: relative
-  height: 80%
-
+  height: 95%
 .description-zone
   float: left
   width: 20%
   height: 100%
   padding: 1.2%
-
 .description
   background-color: #8faadc
   height: 100%
-
+.main
+  > .title
+    height: 5%
+    text-align: center
 .select-template-zone
   float: right
   width: 80%
   height: 100%
   padding: 1.2%
-
 .title-first
   position: relative
   background-color: whitesmoke
   height: 10%
   text-align: center
-
   input
     background-color: #f5f5f5
     border: 0
@@ -98,48 +64,40 @@
     width: 100%
     height: 100%
     text-align: center
-
 .title-second
   height: 20%
   text-align: center
-  padding-top: 10%
-
+  padding-top: 7%
 .templates
   position: relative
-  height: 70%
-  padding-top: 5%
+  height: 74%
+  padding-top: 3%
   padding-bottom: 2%
-
 .template
   float: left
   margin-right: 2%
   width: 23%
   height: 100%
   text-align: center
-
   .text
     position: relative
     text-align: center
     top: 40%
     color: #000
-
 .continue-btn
   width: 30%
   height: 10%
   margin: 5% 35% 0 35%
   position: relative
-
   button
     background-color: #92cf50
     width: 100%
     height: 100%
     position: absolute
-
 @media screen and (max-width: 770px)
   .main
     margin: 0
     width: 100%
-
   .mobile-process-title
     display: block
     background-color: #92cf50
@@ -148,23 +106,18 @@
     font-size: 3rem
     color: #000
     text-align: center
-
   .process-head, .left-menu
     display: none
-
   .content-table
     position: relative
     width: 100%
-
   .select-template-zone
     position: relative
     width: 98%
     margin: 1%
-
   .description-zone
     height: 30%
     width: 100%
-
   .title-first
     position: relative
     display: flex
@@ -172,7 +125,6 @@
     background-color: whitesmoke
     height: 10%
     text-align: center
-
     input
       background-color: #f5f5f5
       border: 0
@@ -183,16 +135,13 @@
       width: 100%
       height: 100%
       text-align: center
-
   .title-second
     height: 10%
     text-align: center
     padding-top: 5%
-
   .templates
     height: 60%
     padding: 0
-
   .template
     margin: 2%
     position: relative
@@ -201,7 +150,6 @@
     height: 36%
     box-sizing: border-box
     display: table-cell
-
   .continue-btn
     width: 100%
     height: 10%

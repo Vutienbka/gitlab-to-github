@@ -3,7 +3,7 @@
 .container-user
   .contents
     .container-fluid
-      .mobile-process-title サンプル​
+      .mobile-process-title 図面
       .process-head
         = render  'buyers/shared/process_bar'
       .main
@@ -29,8 +29,6 @@
                         input.btn type="button" value="PCからアップロード"
                   .drawing-item
                     .drawing-head
-                      / .drawing-require-label
-                      /   label 必須
                       .drawing-title-label
                         label 組立仕様図（2D）
                     .drawing-content
@@ -40,8 +38,6 @@
                         input.btn type="button" value="PCからアップロード"
                   .drawing-item
                     .drawing-head
-                      / .drawing-require-label
-                      /   label 必須
                       .drawing-title-label
                         label 梱包仕様図（2D）
                     .drawing-content
@@ -65,8 +61,6 @@
                         input.btn type="button" value="PCからアップロード"
                   .drawing-item
                     .drawing-head
-                      / .drawing-require-label
-                      /   label 必須
                       .drawing-title-label
                         label 組立仕様図（3D）
                     .drawing-content
@@ -76,8 +70,6 @@
                         input.btn type="button" value="PCからアップロード"
                   .drawing-item
                     .drawing-head
-                      / .drawing-require-label
-                      /   label 必須
                       .drawing-title-label
                         label 梱包仕様図（3D）
                     .drawing-content  
@@ -85,5 +77,6 @@
                         label ここにファイルをドラッグ&ドロップまたは
                       .drawing-upload-button
                         input.btn type="button" value="PCからアップロード"
-        .continue-btn
-          button type="submit"  続行
+      .continue-btn
+          a href=input_items_image_users_path
+            button type="submit"  続行

@@ -1,40 +1,11 @@
-- content_for :head do
-  = stylesheet_link_tag 'users/sample_input'
+= stylesheets 'users/sample_input'
+
 .container-user
-  .header
   .contents
-    .container
+    .container-fluid
       .mobile-process-title サンプル​
       .process-head
-        .process
-          .proces
-            label 情報
-            .point
-          .proces
-            label 図面​
-            .point
-          .proces
-            label 画像​
-            .point
-          .proces
-            label 品質​
-            .point
-          .proces
-            label 基準​
-            .point
-          .proces
-            label 条件​
-            .point
-          .proces
-            label サンプル​
-            .point
-          .proces
-            label 見積​
-            .point
-          .proces
-            label 原低​
-            .point
-        .row.bar
+        = render  'process_bar'
       .main
         .title サンプルが必要な場合は登録してください
         .content-table
@@ -43,7 +14,6 @@
           .select-template-zone
             .title-first
               input placeholder="必要なサンプルを入力してください" /
-              /! 必要なサンプルを入力してください
             .title-second 要求するサンプルをクリックしてください
             .templates
               a href="#" 
