@@ -13,8 +13,9 @@
       button.btn.btn-success
         | データ
     .submit
-      button.btn.btn-success
-        | アイテム登録
+      = link_to register_item_buyers_path do
+        button.btn.btn-success
+          | アイテム登録
   .list-submit-bottom
     .submit-2
       button.btn.btn-success

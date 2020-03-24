@@ -79,6 +79,9 @@ Rails.application.routes.draw do
     collection do
       get :invite_unregisted_supplier
       post :send_email_invite
+      get :register_item
+      get :choose_provider
+      get :search_provider
     end
   end
 

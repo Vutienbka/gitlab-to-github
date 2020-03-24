@@ -1,0 +1,5 @@
+.users
+  - if @search_suppliers.present?
+    - @search_suppliers.each do |supplier|
+      .email-user id="email_user_#{supplier.id}"
+        = supplier.profile.company_name

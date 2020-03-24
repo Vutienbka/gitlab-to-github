@@ -1,0 +1,37 @@
+- content_for :head do
+  = stylesheet_link_tag 'users/search_provider'
+  = javascript_include_tag 'buyer/search_provider'
+.container-user
+  .header
+  .contents
+    .title
+      p
+        | サプライヤーコード、または名称で検索してください​
+    .sub-title
+      p#text-2.section-lead
+        | NEWJI登録済サプライヤー​
+    .search-provider
+      = search_form_for(@search, url: search_provider_buyers_path, remote: true) do |f|
+        = text_field_tag :search
+      
+      #list_email.list_name
+        = render "buyers/result"
+      .submit
+        button#myBtn.btn.btn-pro data-toggle="modal" data-target="#myModal"
+          | 続行​
+    #myModal.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-body
+            .title-modal
+              | 確認が必要です。
+            .content-modal
+              | このサプライヤーで登録しますか
+          .modal-footer
+            .submit-modal-pro
+              button.btn.btn-modal-pro.btn-cloes[type="button" data-dismiss="modal"]
+                | キャンセル
+            .submit-modal-pro
+              = link_to "#" do  
+                button.btn.btn-modal-pro
+                  | 続ける

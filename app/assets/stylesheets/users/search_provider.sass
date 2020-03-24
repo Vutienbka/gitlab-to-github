@@ -4,21 +4,58 @@
   margin-left: 40px
   font-size: large
 
+.list_name
+  z-index: 1
+  background: #fff
+  position: absolute
+  width: 100%
+
+.search-provider
+  position: relative
+  width: 30%
+  margin: auto
+  .submit
+    margin-top: 10vh
+.list_name
+  width: 100%
+  border: 1px solid #f5e2d6
+  .email-user
+    border-top: 1px solid #f5e2d6
+    padding: 14px
+.email-user:hover
+  background: #f5e2d6
+
+.modal-dialog
+  margin: 13% auto
+  margin-left: 23%
+  width: 360px
+.submit-modal-pro
+  width: 50%
+.btn-cloes
+  border-right: 1px solid #e9ecef
+.btn-modal-pro
+  background: #fff
+  width: 100%
+  border-radius: 0
 .modal-footer
-  justify-content: space-around
+  padding: 0
+.modal-footer > :not(:last-child)
+  margin-right: 0
+.modal-footer > :not(:first-child)
+  margin-left: 0
 
 .contents
   position: relative
   text-align: center
   padding-top: 10%
-  button
+  .btn-pro
     height: 40px
-    width: 26%
+    width: 100%
     border-radius: 0px !important
     background-color: #8bcf5a
   input[type=text]
     padding-left: 10px
-    width: 30%
+    width: 100%
     box-sizing: border-box
     border: 2px solid #ccc
     font-size: 16px
@@ -26,7 +63,6 @@
     background-position: 10px 10px
     background-repeat: no-repeat
     height: 50px
-    margin-bottom: 50px
     background-color: #f5e2d6
 
 @media screen and (max-width: 770px)
@@ -40,7 +76,7 @@
     position: relative
     text-align: center
     padding-top: 10%
-    button
+    .btn-pro
       height: 40px
       width: 30%
       border-radius: 0px !important
@@ -57,3 +93,6 @@
       height: 50px
       margin-bottom: 50px
       background-color: #f5e2d6
+  .modal-dialog
+    margin: 13.75rem auto !important
+    width: 360px
