@@ -13,7 +13,8 @@ class Buyers::ItemInfoController < Buyers::BaseController
 
         return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
       rescue
-        
+        redirect_to root_path, flash: { alert: I18n.t('create.success') }
+        # TODO:: render new
       end
     end
   end
