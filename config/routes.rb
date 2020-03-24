@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get :order_list
       get :batch_register
       get :input_item_quality
+      get :input_item_standard
+      get :input_item_condition
     end
   end
 
