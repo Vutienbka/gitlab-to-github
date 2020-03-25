@@ -1,6 +1,6 @@
-- content_for :head do
-  = stylesheet_link_tag 'users/search_provider'
-  = javascript_include_tag 'buyer/search_provider'
+= stylesheets 'users/search_provider'
+= javascripts 'buyer/search_provider'
+
 .container-user
   .header
   .contents
@@ -12,10 +12,10 @@
         | NEWJI登録済サプライヤー​
     .search-provider
       = search_form_for(@search, url: search_provider_buyers_path, remote: true) do |f|
-        = text_field_tag :search
+        = text_field_tag :search, nil, placeholder:"🔍　検索​"  ,autocomplete:"off"
       
       #list_email.list_name
-        = render "buyers/result"
+        = render "buyers/shared/result"
       .submit
         button#myBtn.btn.btn-pro data-toggle="modal" data-target="#myModal"
           | 続行​
@@ -32,6 +32,6 @@
               button.btn.btn-modal-pro.btn-cloes[type="button" data-dismiss="modal"]
                 | キャンセル
             .submit-modal-pro
-              = link_to "#" do  
+              = link_to buyers_requests_path, method: :post do  
                 button.btn.btn-modal-pro
                   | 続ける

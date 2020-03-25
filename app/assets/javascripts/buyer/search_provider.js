@@ -4,7 +4,6 @@ $(document).ready(function() {
   });
 
   $("#list_email").hide();
-  
 
   $("#search").on("keyup", function() {
     var data = $(this).val();
@@ -31,7 +30,4 @@ $(document).ready(function() {
       $("#list_email").show()
     }
   });
-  
-  
-
 });

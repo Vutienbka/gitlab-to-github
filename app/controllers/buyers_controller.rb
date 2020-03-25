@@ -11,7 +11,5 @@ class BuyersController < UsersController
   def search_provider
     @search = Supplier.ransack({ profile_company_name_or_profile_code_cont: params[:search] })
     @search_suppliers = @search.result
-    # binding.pry
   end
-
 end
