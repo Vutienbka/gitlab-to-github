@@ -40,15 +40,13 @@ class Users::PasswordsController < DeviseController
 
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
-      if Devise.sign_in_after_reset_password
-        flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
-        set_flash_message!(:notice, flash_message)
-        resource.after_database_authentication
-        sign_in(resource_name, resource)
-      else
-        set_flash_message!(:notice, :updated_not_active)
-      end
-      respond_with resource, location: after_resetting_password_path_for(resource)
+      # Override after resetting password
+      random_fake_token = random_str
+      flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
+      set_flash_message!(:notice, flash_message)
+      session[:reset_password_success] = true
+
+      return redirect_to edit_user_password_path(reset_password_token: "#{random_fake_token}")
     else
       set_minimum_password_length
       respond_with resource
@@ -87,5 +85,10 @@ class Users::PasswordsController < DeviseController
 
     def clear_session
       session.delete(:register_errors_for_new_user)
+    end
+
+    def random_str(len = 6, character_set = ['A'..'Z', '0'..'9'])
+      chars = character_set.map { |x| x.is_a?(Range) ? x.to_a : x }.flatten
+      Array.new(len) { chars.sample }.join
     end
 end

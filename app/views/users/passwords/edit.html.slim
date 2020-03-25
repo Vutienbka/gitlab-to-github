@@ -1,4 +1,5 @@
 = stylesheets 'devise'
+= javascripts 'components/reset_password'
 
 .login-body
   .login-mypage.row
@@ -9,25 +10,26 @@
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
           = f.hidden_field :reset_password_token
           .field
-            = f.password_field :password, autofocus: true, autocomplete: "new-password" , placeholder: true, class:"bg-color"
+            = f.password_field :password, autofocus: true, autocomplete: "new-password" , placeholder: true, class:"bg-color btn-reset-password"
             = show_errors resource, :password
           .field
-            = f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: true, class:"bg-color"
+            = f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: true, class:"bg-color btn-reset-password"
             = show_errors resource, :password_confirmation
           .actions
-            = f.submit t "continue"
-      .link-forgotten
-        div
-          | パスワード変更のメールを送信いたしました
-        div
-          | ご確認お願いいたします
-      .form-login-user[style="margin-bottom:30px"]
-        h4
-          = t "devise.sessions.new.sign_in"
-        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }) do |f|
-          .field
-            =f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color"
-          .field
-            = f.password_field :password, autocomplete: "current-password",placeholder: true, class:"bg-color"
-          .actions
-            = f.submit t "devise.sessions.new.sign_in"
+            = f.submit '続行', class:"btn-reset-password"
+      - if session[:reset_password_success]
+        .link-forgotten
+          div
+            | パスワード変更のメールを送信いたしました
+          div
+            | ご確認お願いいたします
+        .form-login-user[style="margin-bottom:30px"]
+          h4
+            = t "devise.sessions.new.sign_in"
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }) do |f|
+            .field
+              =f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color"
+            .field
+              = f.password_field :password, autocomplete: "current-password",placeholder: true, class:"bg-color"
+            .actions
+              = f.submit t "devise.sessions.new.sign_in"
