@@ -8,13 +8,13 @@ class Buyers::ItemInfoController < Buyers::BaseController
   def create
     begin
       ActiveRecord::Base.transaction do
-        @item_info.update(item_info_params)
+        @item_info.update!(item_info_params)
         @item_request.request&.update(request_status: Request::REQUEST_STATUSES[:draw])
 
         return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
       rescue
-        redirect_to root_path, flash: { alert: I18n.t('create.success') }
-        # TODO:: render new
+        flash.now[:alert] = I18n.t('create.failed')
+        render :new
       end
     end
   end

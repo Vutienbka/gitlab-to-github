@@ -1,13 +1,9 @@
 $(document).ready(function() {
-  $("#myBtn").click(function(){
-    $("#myModal").modal();
-  });
-
   $("#list_email").hide();
+  $("#myBtn").attr('disabled', true);
 
   $("#search").on("keyup", function() {
     var data = $(this).val();
-    console.log(data);
     $.ajax({
         url: '/buyers/search_provider',
         type: 'GET',
@@ -17,9 +13,13 @@ $(document).ready(function() {
         },
         success: function(data){
           $( ".email-user" ).click(function() {
-            $("#list_email").hide()
-            let id = $(this).html()
-            $('#search').val(id);
+            $("#list_email").hide();
+            $("#myBtn").attr('disabled', false);
+            let name = $(this).html();
+            $('#search').val(name);
+            let id = $(this).attr('id').replace('email_user_','');
+            let url = window.location.origin;
+            $("#link_to_href").attr("href", url+ "/buyers/requests?supplier_id=" + id);
           });
         }
     });

@@ -38,7 +38,7 @@ class Buyers::ProfilesController < Buyers::BaseController
   def set_buyer
     @buyer = current_user
     @profile = @buyer.profile if @buyer.present?
-    @buyer.build_profile if @buyer.profile.blank?
+    @profile = @buyer.build_profile if @buyer.profile.blank?
   end
 
   def buyer_params
