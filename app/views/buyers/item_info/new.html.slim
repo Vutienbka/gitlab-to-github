@@ -25,11 +25,11 @@
                   = f.text_field :category1, placeholder: 'アイテムのカテゴリー１を入力してください', required: true, class: 'info-input'
                   = show_errors @item_info, :category1
                 .col-md-12.info
-                  = f.text_field :category2, placeholder: 'アイテムのカテゴリー２を入力してください', class: 'info-input'
+                  = f.text_field :category2, placeholder: 'アイテムのカテゴリー２を入力してください', class: 'info-input unrequire'
                   .zz
                     = show_errors @item_info, :category2
                 .col-md-12.info
-                  = f.text_field :category3, placeholder: 'アイテムのカテゴリー３を入力してください', class: 'info-input'
+                  = f.text_field :category3, placeholder: 'アイテムのカテゴリー３を入力してください', class: 'info-input unrequire'
                   = show_errors @item_info, :category3
                 .col-md-12.info
                   .input-label
