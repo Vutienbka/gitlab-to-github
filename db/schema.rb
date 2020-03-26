@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_080609) do
+ActiveRecord::Schema.define(version: 2020_03_26_110559) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -24,27 +24,27 @@ ActiveRecord::Schema.define(version: 2020_03_25_080609) do
   end
 
   create_table "draw_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目画面テーブル", force: :cascade do |t|
-    t.bigint "item_draw_id", null: false
+    t.string "name"
+    t.bigint "item_drawing_id", null: false
     t.string "draw_info", limit: 2000, comment: "項目画面説明情報"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["item_draw_id"], name: "fk_draw_category_item_draw_idx"
+    t.index ["item_drawing_id"], name: "fk_draw_category_item_draw_idx"
   end
 
   create_table "file_draws", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
-    t.bigint "item_category", null: false
-    t.bigint "item_draw_id", null: false, comment: "Item Draw/Image/Sample Id\n"
-    t.string "file_link", null: false, comment: "ファイルリンク"
+    t.bigint "draw_category_id", null: false
+    t.string "file_link", comment: "ファイルリンク"
     t.string "file_name", comment: "ファイルタイプ"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["item_draw_id", "item_category"], name: "fk_file_item_draw1_idx"
+    t.index ["draw_category_id"], name: "fk_file_item_draw1_idx"
   end
 
   create_table "file_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 2020_03_25_080609) do
 
   create_table "item_drawings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目図面テーブル", force: :cascade do |t|
     t.bigint "item_request_id"
-    t.bigint "category_id", comment: "項目図面ファイルId"
     t.string "info", limit: 2000, comment: "項目図面説明情報"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"

@@ -1,82 +1,40 @@
 = stylesheets 'buyer/input_items_drawing'
 
-.container-user
-  .contents
-    .container-fluid
-      .mobile-process-title 図面
-      .process-head
-        = render  'buyers/shared/process_bar'
-      .main
-        .content-table-title アイテムの図面を登録してください
-        .content-table
-          .description-zone
-            .description
-          .drawings
-            .container
-              .col-md-12.drawing
+= form_for @item_drawing, url: buyers_item_drawings_path, method: 'post' do |f|
+  = f.hidden_field :item_request_id, value: params[:item_request_id]
+  .container-user
+    .contents
+      .container-fluid
+        .mobile-process-title 図面
+        .process-head
+          = render 'buyers/shared/process_bar'
+        .main
+          .content-table-title アイテムの図面を登録してください
+          .content-table
+            .description-zone
+              .description
+            .drawings
+              .container
                 .drawings-2d-title アイテムに関連する2D図面を全てアップロードしてください（複数可）
-                .drawing-inner
-                  .drawing-item
-                    .drawing-head
-                      .drawing-require-label
-                        label 必須
-                      .drawing-title-label
-                        label 製品仕様図（2D）
-                    .drawing-content
-                      .drawing-content-hint
-                        label ここにファイルをドラッグ&ドロップまたは
-                      .drawing-upload-button
-                        input.btn type="button" value="PCからアップロード"
-                  .drawing-item
-                    .drawing-head
-                      .drawing-title-label
-                        label 組立仕様図（2D）
-                    .drawing-content
-                      .drawing-content-hint
-                        label ここにファイルをドラッグ&ドロップまたは
-                      .drawing-upload-button
-                        input.btn type="button" value="PCからアップロード"
-                  .drawing-item
-                    .drawing-head
-                      .drawing-title-label
-                        label 梱包仕様図（2D）
-                    .drawing-content
-                      .drawing-content-hint
-                        label ここにファイルをドラッグ&ドロップまたは
-                      .drawing-upload-button
-                        input.btn type="button" value="PCからアップロード"
-              .col-md-12.drawing
-                .drawings-2d-title アイテムに関連する3D図面を全てアップロードしてください（複数可）
-                .drawing-inner
-                  .drawing-item
-                    .drawing-head
-                      .drawing-require-label
-                        label 必須
-                      .drawing-title-label
-                        label 製品仕様図（3D）
-                    .drawing-content
-                      .drawing-content-hint
-                        label ここにファイルをドラッグ&ドロップまたは
-                      .drawing-upload-button
-                        input.btn type="button" value="PCからアップロード"
-                  .drawing-item
-                    .drawing-head
-                      .drawing-title-label
-                        label 組立仕様図（3D）
-                    .drawing-content
-                      .drawing-content-hint
-                        label ここにファイルをドラッグ&ドロップまたは
-                      .drawing-upload-button
-                        input.btn type="button" value="PCからアップロード"
-                  .drawing-item
-                    .drawing-head
-                      .drawing-title-label
-                        label 梱包仕様図（3D）
-                    .drawing-content  
-                      .drawing-content-hint
-                        label ここにファイルをドラッグ&ドロップまたは
-                      .drawing-upload-button
-                        input.btn type="button" value="PCからアップロード"
-      .continue-btn
-          a href=input_items_image_users_path
-            button type="submit"  続行
+                .drawing-inner.col-md-12.row
+                  = f.fields_for :draw_categories do |fc|
+                    = fc.hidden_field :name
+                    .drawing-item.col-md-4
+                      .drawing-head
+                        - if ['製品仕様図（2D）', '製品仕様図（3D）'].include?(fc.object.name)
+                          .drawing-require-label
+                            label 必須
+                        .drawing-title-label
+                          label #{fc.object&.name}
+                      = fc.fields_for :file_draws do |fd|
+                        = fd.hidden_field :draw_category_id
+                        .drawing-content
+                          .drawing-content-hint
+                            label ここにファイルをドラッグ&ドロップまたは
+                          .drawing-upload-button
+                            label for="draw_categories_#{fc.object&.name}"
+                              | PCからアップロード
+                            = fd.file_field(:file_link, multiple: false, id:"draw_categories_#{fc.object&.name}", class: 'd-none')
+                .drawings-2d-title.mt-3 アイテムに関連する3D図面を全てアップロードしてください（複数可）
+        .continue-btn
+          button type="submit"  続行

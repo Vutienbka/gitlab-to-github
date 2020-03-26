@@ -18,7 +18,7 @@
       p
         | 画像
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:image] ? 'btn-circle-red' : ''}"
         | 3
     .stepwizard-step
       p
