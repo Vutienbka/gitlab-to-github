@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :input_item_quality
       get :input_item_standard
       get :input_item_condition
+      get :cost_down_item
     end
   end
 

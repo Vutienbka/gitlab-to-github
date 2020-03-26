@@ -49,4 +49,7 @@ class UsersController < ApplicationController
 
   def input_item_quality
   end 
+
+  def cost_down_item
+  end 
 end
