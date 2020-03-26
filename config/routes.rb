@@ -66,6 +66,14 @@ Rails.application.routes.draw do
         get :new
       end
     end
+
+    resources :inspection_requests, only: %i[create] do
+      collection do
+        get :new
+      end
+    end
+
+
   end
 
   namespace :suppliers do

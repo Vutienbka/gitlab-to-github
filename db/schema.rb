@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_065054) do
+ActiveRecord::Schema.define(version: 2020_03_25_080609) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -95,9 +95,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_065054) do
     t.integer "inspection_result", limit: 1
     t.string "inspection_result_detail", limit: 45
     t.date "result_issued_date"
-    t.bigint "users_id", null: false
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["users_id"], name: "fk_inspection_requests_users1_idx"
   end
 
   create_table "item_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目条件情報", force: :cascade do |t|

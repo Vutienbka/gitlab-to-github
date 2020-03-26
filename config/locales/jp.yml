@@ -64,3 +64,8 @@ ja:
           sample: 'サンプル'
           estimate: '見積'
           low_cost: '原低'
+      inspection_requests:
+        request_type:
+          ordinary: '普通'
+          limited: '特急'
+          super: '超特急'
