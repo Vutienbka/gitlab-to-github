@@ -63,6 +63,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :item_quality, only: %i[create] do
+      collection do
+        get :new
+      end
+    end
+
     resources :item_drawings, only: %i[create] do
       collection do
         get :new
