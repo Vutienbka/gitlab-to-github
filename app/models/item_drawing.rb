@@ -7,6 +7,7 @@ class ItemDrawing < ApplicationRecord
     :item_request_id, :info, :creator, :updater,
     draw_categories_attributes: [
       :id, :name, :item_drawing_id, :draw_info, :creator, :updater,
+      file_draw_attributes: [:id, :draw_category_id, { file_link:[] }]
     ]
   ]
 end

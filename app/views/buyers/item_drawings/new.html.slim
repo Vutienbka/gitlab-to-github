@@ -19,6 +19,7 @@
                 .drawing-inner.col-md-12.row
                   = f.fields_for :draw_categories do |fc|
                     = fc.hidden_field :name
+                    = fc.hidden_field :id
                     .drawing-item.col-md-4
                       .drawing-head
                         - if ['製品仕様図（2D）', '製品仕様図（3D）'].include?(fc.object.name)
@@ -30,10 +31,10 @@
                         .drawing-content-hint
                           label ここにファイルをドラッグ&ドロップまたは
                         .drawing-upload-button
-                          label for="draw_categories_#{fc.object&.name}"
-                            | PCからアップロード
-                          = fc.file_field(:file_link, multiple: true, id:"draw_categories_#{fc.object&.name}", class: 'd-none',
-                            name: "item_drawing[draw_categories_attributes][#{fc.index}][file_link][]")
+                          .dropzone id="myDropzone#{fc.index}"
+                            .fallback
+                              = fc.file_field(:file_link, multiple: true)
                 .drawings-2d-title.mt-3 アイテムに関連する3D図面を全てアップロードしてください（複数可）
         .continue-btn
           button type="submit"  続行
+= javascript_include_tag 'my_dropzone'

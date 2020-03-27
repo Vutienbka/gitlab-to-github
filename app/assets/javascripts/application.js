@@ -18,6 +18,7 @@
 //= require jquery-ui
 //= require components/notification
 //= require cocoon
+//= require dropzone
 
 $(document).ready(function() {
   removeNotification();
