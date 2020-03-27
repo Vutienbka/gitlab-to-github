@@ -18,6 +18,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
     @item_drawing = ItemDrawing.find_by(item_request_id: params[:item_drawing][:item_request_id])
     if @item_drawing.blank?
       @item_drawing = ItemDrawing.new(item_drawing_params)
+      build_file_draw
 
       if @item_drawing.save
         flash[:success] = I18n.t('create.success')
@@ -30,6 +31,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
       flash.now[:alert] = I18n.t('create.failed')
       render :new
     else
+      build_file_draw
       @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
       item_request = ItemRequest.find_by(id: params[:item_drawing][:item_request_id])
@@ -48,5 +50,13 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
   def item_drawing_params
     params.require(:item_drawing).permit(ItemDrawing::PARAMS_ATTRIBUTES)
+  end
+
+  def build_file_draw
+    params[:item_drawing][:draw_categories_attributes].each do |index, dc|
+      params[:item_drawing][:draw_categories_attributes][index][:file_link]&.each do |file|
+        @item_drawing.draw_categories[index.to_i].file_draws.build(file_link: file)
+      end
+    end
   end
 end

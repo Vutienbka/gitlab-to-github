@@ -26,15 +26,14 @@
                             label 必須
                         .drawing-title-label
                           label #{fc.object&.name}
-                      = fc.fields_for :file_draws do |fd|
-                        = fd.hidden_field :draw_category_id
-                        .drawing-content
-                          .drawing-content-hint
-                            label ここにファイルをドラッグ&ドロップまたは
-                          .drawing-upload-button
-                            label for="draw_categories_#{fc.object&.name}"
-                              | PCからアップロード
-                            = fd.file_field(:file_link, multiple: false, id:"draw_categories_#{fc.object&.name}", class: 'd-none')
+                      .drawing-content
+                        .drawing-content-hint
+                          label ここにファイルをドラッグ&ドロップまたは
+                        .drawing-upload-button
+                          label for="draw_categories_#{fc.object&.name}"
+                            | PCからアップロード
+                          = fc.file_field(:file_link, multiple: true, id:"draw_categories_#{fc.object&.name}", class: 'd-none',
+                            name: "item_drawing[draw_categories_attributes][#{fc.index}][file_link][]")
                 .drawings-2d-title.mt-3 アイテムに関連する3D図面を全てアップロードしてください（複数可）
         .continue-btn
           button type="submit"  続行
