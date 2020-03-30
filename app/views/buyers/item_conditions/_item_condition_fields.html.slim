@@ -1,0 +1,6 @@
+.nested-fields
+  .title
+    = f.text_field :condition, placeholder: 'アイテムの条件を入力してください（複数可）', class:"input-condition", autocomplete:"off"
+    = f.hidden_field :position, class: 'hidden-field'
+    = hidden_field_tag :item_request_id, params[:item_request_id]
+    = link_to_remove_association "X", f, class:"btn remove-condition"

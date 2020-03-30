@@ -1,0 +1,28 @@
+= stylesheets 'users/input_item_condition'
+= javascripts 'buyer/condition'
+
+= form_for @item_request, url: buyers_item_conditions_path, method: 'post' do |f|
+  .container-user
+    .contents
+      .container-fluid
+        .mobile-process-title 情報
+        .process-head
+          = render 'buyers/shared/process_bar'
+        .main
+          .content-table-title アイテムの基準を登録してください​
+          .content-table
+            .description-zone
+              .description
+            .infos
+              .container
+                .title
+                  p.p-1
+                    label for="tag" 必読​
+                    | 基本条件は、「取引基本契約書」および「品質協定書」によります​
+                #condition
+                  = f.fields_for :item_conditions do |task|
+                    = render 'item_condition_fields', f: task
+                  .links
+                    = link_to_add_association '+', f, :item_conditions, class:"btn add-condition"
+          .continue-btn
+            button.btn-conti type="submit"  続行​

@@ -87,6 +87,12 @@ Rails.application.routes.draw do
         get :new
       end
     end
+    
+    resources :item_conditions, only: %i[create] do
+      collection do
+        get :new
+      end
+    end
   end
 
   namespace :suppliers do

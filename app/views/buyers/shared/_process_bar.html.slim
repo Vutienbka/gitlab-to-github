@@ -36,7 +36,7 @@
       p
         | 条件
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle.btn-red-condition class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:condition] ? 'btn-circle-red' : ''}"
         | 6
     .stepwizard-step
       p
