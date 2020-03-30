@@ -21,7 +21,7 @@
 
 LOCK TABLES `ar_internal_metadata` WRITE;
 /*!40000 ALTER TABLE `ar_internal_metadata` DISABLE KEYS */;
-INSERT INTO `ar_internal_metadata` VALUES ('environment','development','2020-03-23 01:41:11','2020-03-23 01:41:11');
+INSERT IGNORE INTO `ar_internal_metadata` VALUES ('environment','development','2020-03-23 01:41:11','2020-03-23 01:41:11');
 /*!40000 ALTER TABLE `ar_internal_metadata` ENABLE KEYS */;
 UNLOCK TABLES;
 
