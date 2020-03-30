@@ -234,6 +234,15 @@ nav ul,nav li {
   overflow-x: hidden;
   transition: 0.5s;
 }
+
+.invite-button {
+  text-align: center;
+  margin-top: 10px;
+  button {
+    height: 40px;
+    width: 100%;
+  }
+}
 // .sidebar a {
 //   text-decoration: none;
 // }
