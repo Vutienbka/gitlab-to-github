@@ -2,7 +2,7 @@
 
 class Buyers::ItemQualityController < Buyers::BaseController
   before_action :redirect_to_profile
-  before_action :set_item_request, only: %i[new create]
+  before_action :set_item_request, only: %i[new create edit ]
 
   def new; end
 
@@ -10,10 +10,12 @@ class Buyers::ItemQualityController < Buyers::BaseController
     ActiveRecord::Base.transaction do
       @item_quality.update(item_quality_params)
       @item_request&.request&.update(request_status: Request::REQUEST_STATUSES[:standard])
-      return redirect_to root_path, flash: { success: I18n.t('create.success') }
+      flash[:success] = I18n.t('create.success')
+      return redirect_to root_path
       # TO_DO redirect_to  standard_screen
     rescue StandardError
-      redirect_to root_path, flash: { alert: I18n.t('create.failed') }
+      flash[:alert] = I18n.t('create.failed')
+      render :new
     end
   end
 
