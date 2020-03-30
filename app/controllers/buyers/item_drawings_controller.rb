@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Buyers::ItemDrawingsController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create]
@@ -25,7 +27,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
         item_request = ItemRequest.find_by(id: params[:item_drawing][:item_request_id])
         item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
 
-        return redirect_to input_items_image_users_path(item_request_id: params[:item_drawing][:item_request_id])
+        return redirect_to buyers_item_image_index_path(item_request_id: params[:item_drawing][:item_request_id])
       end
 
       flash.now[:alert] = I18n.t('create.failed')
@@ -37,8 +39,8 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
       item_request = ItemRequest.find_by(id: params[:item_drawing][:item_request_id])
       item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
 
-      return redirect_to input_items_image_users_path(item_request_id: params[:item_drawing][:item_request_id])
-      # TODO:: For update function
+      redirect_to buyers_item_image_index_path(item_request_id: params[:item_drawing][:item_request_id])
+      # TODO: : For update function
     end
   end
 
@@ -53,7 +55,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def build_file_draw
-    params[:item_drawing][:draw_categories_attributes].each do |index, dc|
+    params[:item_drawing][:draw_categories_attributes].each do |index, _dc|
       params[:item_drawing][:draw_categories_attributes][index][:file_link]&.each do |file|
         @item_drawing.draw_categories[index.to_i].file_draws.build(file_link: file)
       end

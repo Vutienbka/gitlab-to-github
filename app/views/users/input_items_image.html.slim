@@ -31,6 +31,7 @@
                   label ここにファイルをドラッグ&ドロップまたは
                 .image-upload-button
                   input.btn type="button" value="PCからアップロード"
+          = hidden_field_tag :item_request_id, params[:item_request_id]
         .continue-btn
           button type="submit"  続行
 .fixed-footer
