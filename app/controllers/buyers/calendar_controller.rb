@@ -3,6 +3,7 @@ class Buyers::CalendarController < Buyers::BaseController
 
   def index
     @date = Date.current
+    show_calendar
   end
 
   def show_calendar
