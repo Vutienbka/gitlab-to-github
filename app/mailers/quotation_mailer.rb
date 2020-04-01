@@ -6,8 +6,8 @@ class QuotationMailer < ApplicationMailer
     @email_supplier = email
     @buyer = buyer
     mail(
-      to: @email_supplier,
-      subject: "社の#{@buyer.profile&.company_name} 見積もりを送る"
+      to: @email_supplier.email,
+      subject: "#{@buyer.profile&.company_name}社の#{@buyer.profile&.last_name}様から調達購買システム「NEWJI」のご見積依頼メール"
     )
   end
 end

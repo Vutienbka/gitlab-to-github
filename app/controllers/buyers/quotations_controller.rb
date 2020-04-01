@@ -7,9 +7,9 @@ class Buyers::QuotationsController < Buyers::BaseController
   def send_mailer_quotation
     @request = Request.find_by(id: "#{@item_request.request_id}")
     @supplier = Supplier.find_by(id: "#{@request.supplier_id}")
-    email = @supplier.email
+    email = @supplier
     buyer = current_user
-    return redirect_to root_path, flash: {success: 'が正常に送信されました'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
+    return redirect_to root_path, flash: {success: '見積依頼メールがサプライヤーに送信しました。'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
   end
 
   def set_item_request
