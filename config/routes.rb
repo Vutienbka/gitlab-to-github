@@ -93,6 +93,12 @@ Rails.application.routes.draw do
         get :new
       end
     end
+    resources :quotations do
+      collection do
+        get :new
+        get :send_mailer_quotation
+      end
+    end
   end
 
   namespace :suppliers do
