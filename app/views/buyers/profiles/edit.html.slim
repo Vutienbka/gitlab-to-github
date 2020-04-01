@@ -14,6 +14,7 @@
 
   .input-setting
     = form_for @buyer, url: buyers_profiles_path, method: 'patch' do |f|
+      = f.hidden_field :update_profile, value: true
       = f.fields_for :profile do |pf|
         .input-content.row
           .setting-must. 必須
