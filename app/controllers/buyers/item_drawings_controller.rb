@@ -21,10 +21,9 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
       @item_drawing.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
-      # Already redirect to input_items_image page at my_dropzone.js
+      redirect_to input_items_image_users_path(item_request_id: params[:item_drawing][:item_request_id]) # Already redirect to input_items_image page at my_dropzone.js
+      # TODO:: change path to buyer
     end
-    redirect_to input_items_image_users_path(item_request_id: params[:item_drawing][:item_request_id])
-    # TODO:: change path to buyer
   end
 
   private

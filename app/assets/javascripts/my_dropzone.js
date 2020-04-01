@@ -33,6 +33,9 @@ $('.dropzone').each(function(){
         formData.append("item_drawing[draw_categories_attributes][" + id + "][name]", $('#item_drawing_draw_categories_attributes_' + id + '_name').val());
         formData.append("item_drawing[draw_categories_attributes][" + id + "][id]", $('#item_drawing_draw_categories_attributes_' + id + '_id').val());
       });
+      this.on("addedfile", function(file) {
+        $("#dropzone-alert" + id).css("display", "block");
+      });
       this.on("successmultiple", function(files, response) {
         window.location.href = "/users/input_items_image?item_request_id=" + item_request_id
       });
