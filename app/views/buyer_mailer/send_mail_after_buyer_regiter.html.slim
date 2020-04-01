@@ -1,3 +1,4 @@
+
 = stylesheet_link_tag 'users/email_login_form'
 .content
   .title
@@ -11,10 +12,10 @@
     /   .greeting
     /   p = t('devise.mailer.reset_password_instructions.greeting', recipient: @email)
     /   p = t 'devise.mailer.reset_password_instructions'
- .notification-form
+  .notification-form
     .text-form
       p 
       p = t 'email_register_instruction'
       p
-      a href= confirmation_url(@resource, confirmation_token: @token)
+      a href= confirm_email_buyers_url(token: @buyer.token)
         button.btn = t 'devise.mailer.confirmation_instructions.action'
