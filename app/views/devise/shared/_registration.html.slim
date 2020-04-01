@@ -1,15 +1,15 @@
 .form-register
-  = form_for(resource, as: resource_name, url: user_registration_path, html: { method: :post }) do |f|
+  = form_for(@buyer, url: sign_up_buyers_path, html: { method: :post }) do |f|
     .field
       h4
         = t 'register'
       = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: true, class:"bg-color"
-      = show_errors resource, :email
+      = show_errors_buyer @buyer_error, 'email'
     .field
       = f.password_field :password, autocomplete: "new-password", placeholder: true, class:"bg-color"
-      = show_errors resource, :password
+      = show_errors_buyer @buyer_error, 'password'
     .field
       = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: true, class:"bg-color"
-      = show_errors resource, :password_confirmation
+      = show_errors_buyer @buyer_error, 'password_confirmation'
     .actions
       = f.submit "登録"

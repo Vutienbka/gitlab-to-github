@@ -14,6 +14,10 @@ class User < ApplicationRecord
     ]
   ]
 
+  validates :password, confirmation: { case_sensitive: true }
+  validates :password, presence: true
+  validates :email, presence: true
+
   def buyer?
     type == 'Buyer'
   end

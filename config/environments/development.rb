@@ -36,20 +36,21 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Config letter opener
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  ActionMailer::Base.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :domain               => "gmail.com",
-    :user_name            => "newjisystem2020@gmail.com",
-    :password             => "appnewji",
-    :authentication       => "plain",
-    # :ssl                  => true,
-    # :tsl                  => true,
-    :enable_starttls_auto => true
-  }
+  config.action_mailer.delivery_method = :letter_opener_web
+  # ActionMailer::Base.smtp_settings = {
+  #   :address              => "smtp.gmail.com",
+  #   :port                 => 587,
+  #   :domain               => "gmail.com",
+  #   :user_name            => "newjisystem2020@gmail.com",
+  #   :password             => "appnewji",
+  #   :authentication       => "plain",
+  #   # :ssl                  => true,
+  #   # :tsl                  => true,
+  #   :enable_starttls_auto => true
+  # }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

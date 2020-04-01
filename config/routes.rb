@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'users/registrations',
-                                    passwords: 'users/passwords',
+  devise_for :users, controllers: { passwords: 'users/passwords',
                                     sessions: 'users/sessions' }
   root 'buyers/home#index'
 
@@ -115,6 +114,8 @@ Rails.application.routes.draw do
       get :register_item
       get :choose_provider
       get :search_provider
+      post :sign_up
+      get :confirm_email
     end
   end
 

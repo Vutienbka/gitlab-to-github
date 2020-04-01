@@ -21,17 +21,12 @@ module ApplicationHelper
     content_for(:head) { javascript_include_tag(*js) }
   end
 
+  def show_errors_buyer(object, field_name)
+    return '' if object.blank? || object[field_name].nil?
+    raw "<p class='error-message text-danger'>#{object[field_name].join('')}</p>"
+  end
+
   def show_errors(object, field_name)
-    if session[:register_errors_for_new_user].present?
-      str = "<p class='error-message text-danger'>#{session[:register_errors_for_new_user][field_name.to_s]&.first}</p>"
-      return str.html_safe
-    end
-
-    if session[:register_errors_for_new_password].present?
-      str = "<p class='error-message text-danger'>#{session[:register_errors_for_new_password][field_name.to_s]&.first}</p>"
-      return str.html_safe
-    end
-
     return if object&.errors.blank?
     str = "<p class='error-message text-danger'>#{object.errors[field_name.to_s]&.first}</p>"
     str.html_safe

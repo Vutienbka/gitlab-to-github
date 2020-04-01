@@ -10,4 +10,12 @@ class BuyerMailer < ActionMailer::Base
       subject: "#{@buyer.profile&.company_name}社の#{@buyer.profile&.last_name}様から調達購買システム「NEWJI」のご招待メール"
     )
   end
+
+  def send_mail_after_buyer_regiter(buyer)
+    @buyer = buyer
+    mail(
+      to: @buyer.email,
+      subject: t('devise.mailer.confirmation_instructions.subject')
+    )
+  end
 end
