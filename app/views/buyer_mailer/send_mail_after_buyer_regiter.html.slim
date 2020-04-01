@@ -5,9 +5,9 @@
     span
       p
       = image_tag("logo.png", class:"icon-hint") 
-      NEWJI
-      span
+      a NEWJI
       p
+      span
     /   Reference Devise Template
     /   .greeting
     /   p = t('devise.mailer.reset_password_instructions.greeting', recipient: @email)
@@ -15,7 +15,7 @@
   .notification-form
     .text-form
       p 
-      p = t 'email_register_instruction'
+      p = t 'email.register_instruction'
       p
       a href= confirm_email_buyers_url(token: @buyer.token)
-        button.btn = t 'devise.mailer.confirmation_instructions.action'
+        button.btn = t 'email.confirm'

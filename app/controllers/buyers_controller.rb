@@ -20,7 +20,6 @@ class BuyersController < UsersController
     @buyer = Buyer.new(buyer_params)
     return redirect_to new_user_session_path, notice: t('devise.confirmations.send_instructions') if @buyer.save
     session[:register_buyer_errors] = @buyer.errors
-    binding.pry
     redirect_to new_user_session_path
   end
 

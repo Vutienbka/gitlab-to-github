@@ -41,3 +41,34 @@ en:
   please_change_password: "Please change password by click button below."
   email_register_instruction: "You can confirm your account email through the button below:"
   logout_confirmation: "Do you want to logout?"
+  email:
+    send_quotation_supplier: "Quotation request mail is sent to supplier"
+    register_instruction: "NEWJIにご登録いただきありがとうございます。まずは下のボタンをクリックしてメールアドレスの確認を行ってください。"
+    confirm: "Confirm"
+  create:
+    success: '作成しました'
+    failed: '作成できませんでした'
+  update:
+    success: '更新しました'
+    failed: '更新に失敗しました'
+  destroy:
+    success: '案件を削除しました'
+    failed: '削除できませんでした。'
+  activerecord:
+    attributes:
+      request:
+        request_status:
+          information: '情報'
+          draw: '図面'
+          image: '画像'
+          quality: '品質'
+          standard: '基準'
+          condition: '条件'
+          sample: 'サンプル'
+          estimate: '見積'
+          low_cost: '原低'
+      inspection_requests:
+        request_type:
+          ordinary: '普通'
+          limited: '特急'
+          super: '超特急'
