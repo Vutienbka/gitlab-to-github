@@ -45,9 +45,10 @@ class Users::PasswordsController < DeviseController
       flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
       set_flash_message!(:notice, flash_message)
       session[:reset_password_success] = true
-
+      resource.send_password_change_notification
       return redirect_to edit_user_password_path(reset_password_token: "#{random_fake_token}")
     else
+      flash[:alert] = I18n.t('update.failed')
       set_minimum_password_length
       respond_with resource
     end

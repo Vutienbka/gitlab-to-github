@@ -117,10 +117,10 @@ Devise.setup do |config|
   # config.pepper = 'ecf41a243f2da59ab75698c9158b8002958f86d96118bda822680feaf040ffdb5278cfd9ebaf8374123257c18d6fc2b48d6db7906929f6ef30719540acea8592'
 
   # Send a notification to the original email when the user's email is changed.
-  # config.send_email_changed_notification = false
+  config.send_email_changed_notification = true
 
   # Send a notification email when the user's password is changed.
-  # config.send_password_change_notification = false
+  config.send_password_change_notification = true
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
