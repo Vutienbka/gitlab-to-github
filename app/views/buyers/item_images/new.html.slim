@@ -15,25 +15,27 @@
               .description
             .images
               .container
-                .col-md-12.image-input-head
-                  .image-require-label
-                    label 必須
-                  .image-title-label
-                    label アイテムの画像をアップロードしてください（複数可）
-                .col-md-12.image-input-content
-                  .image-content-hint
-                    label ここにファイルをドラッグ&ドロップまたは
-                  .image-upload-button
-                    input.btn type="button" value="PCからアップロード"
-                .col-md-12.design-input-head
-                  .design-title-label
-                    label アイテムのデザイン画をアップロードしてください（複数可）
-                .col-md-12.image-input-content
-                  .image-content-hint
-                    label ここにファイルをドラッグ&ドロップまたは
-                  .image-upload-button
-                    input.btn type="button" value="PCからアップロード"
-          
+                = f.fields_for :image_categories do |fc|
+                  = fc.hidden_field :name
+                  = fc.hidden_field :id
+                  - if fc.index == 0
+                    .col-md-12.image-input-head
+                      .image-require-label
+                        label 必須
+                      .image-title-label
+                        label アイテムの画像をアップロードしてください（複数可）
+                  - else
+                      .col-md-12.design-input-head
+                        .design-title-label
+                          label アイテムのデザイン画をアップロードしてください（複数可）
+                  .col-md-12.image-input-content
+                    .dropzone id="myDropzone#{fc.index}"
+                      .fallback
+                        = fc.file_field(:file_link, multiple: true)
+                    .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"
+                      | ファイルをまだアップロードされていません。
+                    .dropzone-alert.text-success.mt-2 id="dropzone_alert#{fc.index}"
+                      | ファイルアップロードが完了しました。
           .continue-btn
-            button type="submit"  続行
-
+            button type="submit" id="btnSubmit" 続行
+= javascript_include_tag 'dropzone/image_dropzone'

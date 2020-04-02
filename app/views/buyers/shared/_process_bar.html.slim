@@ -24,13 +24,13 @@
       p
         | 品質
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:quality] ? 'btn-circle-red' : ''}"
         | 4
     .stepwizard-step
       p
         | 基準
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:standard] ? 'btn-circle-red' : ''}"
         | 5
     .stepwizard-step
       p
@@ -42,17 +42,17 @@
       p
         | サンプル
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:sample] ? 'btn-circle-red' : ''}"
         | 7
     .stepwizard-step
       p
         | 見積
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:estimate] ? 'btn-circle-red' : ''}"
         | 8
     .stepwizard-step
       p
         | 原低
       .proces-bar
-      .btn-circle[type="button"]
+      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:low_cost] ? 'btn-circle-red' : ''}"
         | 9
