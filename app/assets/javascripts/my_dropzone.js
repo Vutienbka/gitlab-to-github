@@ -49,7 +49,7 @@ $('.dropzone').each(function(){
         }
       });
       this.on("successmultiple", function(files, response) {
-        window.location.href = "/users/input_items_image?item_request_id=" + item_request_id
+        window.location.href = "/buyers/item_images?item_request_id=" + item_request_id
       });
     }
   });

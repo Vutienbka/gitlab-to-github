@@ -1,5 +1,5 @@
 = stylesheets 'buyer/input_items_image'
-= form_for @item_image, url: buyers_item_image_index_path, method: 'post' do |f|
+= form_for @item_image, url: buyers_item_images_path, method: 'post' do |f|
   = f.hidden_field :item_request_id, value: params[:item_request_id]
   .container-user
     .contents

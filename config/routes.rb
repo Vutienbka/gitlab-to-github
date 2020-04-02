@@ -15,7 +15,6 @@ Rails.application.routes.draw do
       get :batch_items_selector
       get :input_items_info
       get :input_items_drawing
-      get :input_items_image
       get :inspect_supplier
       get :email_inspection
       get :order_list
@@ -75,7 +74,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_image, only: %i[create] do
+    resources :item_images, only: %i[create] do
       collection do
         get :new
       end
