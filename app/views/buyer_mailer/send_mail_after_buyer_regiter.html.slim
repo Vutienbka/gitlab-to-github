@@ -1,21 +1,19 @@
-
-= stylesheet_link_tag 'users/email_login_form'
-.content
-  .title
-    span
-      p
-      = image_tag("logo.png", class:"icon-hint") 
-      a NEWJI
-      p
-      span
-    /   Reference Devise Template
-    /   .greeting
-    /   p = t('devise.mailer.reset_password_instructions.greeting', recipient: @email)
-    /   p = t 'devise.mailer.reset_password_instructions'
-  .notification-form
-    .text-form
-      p 
-      p = t 'email.register_instruction'
-      p
-      a href= confirm_email_buyers_url(token: @buyer.token)
-        button.btn = t 'email.confirm'
+.content style="margin: 50px 0;"
+  .title style="text-align:center;"
+    = image_tag("logo_txt.png")
+  .notification-form style="margin-top: 40px;"
+    .text-form style="width: 380px;text-align: center; padding:40px; margin:auto;border:1px solid #ccc" 
+      .title-mail
+        = t 'email.register_instruction'
+      .submit style="margin: auto; padding-top: 30px;"
+        a href= confirm_email_buyers_url(token: @buyer.token)
+          button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
+            = t 'email.confirm'
+  .footer-mail style="padding-top: 50px"
+    .content-footer style="width: 614px;background: #f7f8f9;margin: auto;padding: 25px;padding-left: 33px;font-size: 14px;"
+      .title-footer-mail
+        | このメールは、このメールアドレスでNEWJIアカウントにご登録いただいたため送信されていま
+      .title-footer-mail
+        | す。誤りである場合は、このメールを無視してください。まだアカウントは作成されていません。
+      .logo-footer style="padding-top:15px"
+        = image_tag("logo_txt.png")
