@@ -12,7 +12,9 @@ class Buyers::QuotationsController < Buyers::BaseController
     return redirect_to root_path, flash: {success: '見積依頼メールがサプライヤーに送信しました。'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
   end
 
+  private
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
   end
 end

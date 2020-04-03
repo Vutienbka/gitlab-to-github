@@ -16,12 +16,12 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def create
-    @item_drawing = ItemDrawing.find_by(item_request_id: params[:item_drawing][:item_request_id])
+    @item_drawing = ItemDrawing.find_by(item_request_id: @item_request.id)
 
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
       @item_drawing.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
-      redirect_to buyers_item_images_path(item_request_id: params[:item_drawing][:item_request_id])
+      redirect_to buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
     end
   end
@@ -30,6 +30,8 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
+
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
   end
 
   def item_drawing_params

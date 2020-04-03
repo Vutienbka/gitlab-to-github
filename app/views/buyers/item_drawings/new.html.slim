@@ -1,7 +1,7 @@
 = stylesheets 'buyer/input_items_drawing'
 
 = form_for @item_drawing, url: buyers_item_drawings_path, method: 'post' do |f|
-  = f.hidden_field :item_request_id, value: params[:item_request_id]
+  = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
       .container-fluid

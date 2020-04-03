@@ -1,6 +1,7 @@
 = stylesheets 'buyer/input_items_info'
 
 = form_for @item_info, url: buyers_item_info_index_path, method: 'post' do |f|
+  = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
       .container-fluid
@@ -51,6 +52,5 @@
                     label 必須
                   = f.text_field :lead_time, placeholder: 'アイテムのリードタイムを入力してください', required: true, class: 'info-input'
                   = show_errors @item_info, :lead_time
-                = hidden_field_tag :item_request_id, params[:item_request_id]
           .continue-btn
             button type="submit"  続行

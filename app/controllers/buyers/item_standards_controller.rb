@@ -17,12 +17,12 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def create
-    @item_standard = ItemStandard.find_by(item_request_id: params[:item_standard][:item_request_id])
+    @item_standard = ItemStandard.find_by(item_request_id: @item_request.id)
 
     if @item_standard.update(item_standard_params)
       flash[:success] = I18n.t('create.success')
       @item_standard.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:condition])
-      redirect_to buyers_item_conditions_path(item_request_id: params[:item_standard][:item_request_id])
+      redirect_to buyers_item_conditions_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
     end
   end
@@ -31,6 +31,7 @@ class Buyers::ItemStandardsController < Buyers::BaseController
 
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
   end
 
   def item_standard_params

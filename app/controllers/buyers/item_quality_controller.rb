@@ -11,7 +11,7 @@ class Buyers::ItemQualityController < Buyers::BaseController
       @item_quality.update(item_quality_params)
       @item_request&.request&.update(request_status: Request::REQUEST_STATUSES[:standard])
       flash[:success] = I18n.t('create.success')
-      return redirect_to buyers_item_standards_path(item_request_id: params[:item_quality][:item_request_id])
+      return redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
     rescue StandardError
       flash[:alert] = I18n.t('create.failed')
       render :new
@@ -22,9 +22,9 @@ class Buyers::ItemQualityController < Buyers::BaseController
 
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    if @item_request.present?
-      @item_quality = ItemQuality.find_or_create_by(item_request_id: @item_request.id)
-    end
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
+
+    @item_quality = ItemQuality.find_or_create_by(item_request_id: @item_request.id)
   end
 
   def item_quality_params

@@ -2,13 +2,13 @@ Dropzone.autoDiscover = false;
 
 $('.dropzone').each(function(){ 
   let id = $(this).attr('id').replace('myDropzone', '')
-  let item_request_id = $('#item_standard_item_request_id').val();
+  let item_request_id = $('#item_request_id').val();
 
   $(this).dropzone({
     url: "/buyers/item_standards",
     dictDefaultMessage: "PCからアップロード",
     params: {
-      "item_standard[item_request_id]": item_request_id
+      "item_request_id": item_request_id
     },
     paramName: "item_standard[standard_categories_attributes][" + id+ "][file_standard_attributes][file_link]",
     uploadMultiple: true,

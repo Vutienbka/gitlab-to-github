@@ -83,3 +83,4 @@ ja:
     please_register_item_criteria: 'アイテムの基準を登録してください'
     please_upload_test_criteria_for_the_item: 'アイテムの試験基準をアップロードしてください（複数可）​'
     upload_item_inspection_criteria: 'アイテムの検査基準をアップロードしてください（複数可）'
+    no_authenticated : '認証に失敗しました。'

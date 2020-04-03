@@ -1,7 +1,7 @@
 = stylesheets 'buyer/input_item_quality'
 = javascripts 'buyer/item_quality.js'
 = form_for @item_quality, url: buyers_item_quality_index_path, method: 'post' do |f|
-  = f.hidden_field :item_request_id, value: params[:item_request_id]
+  = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
       .container-fluid
@@ -104,6 +104,5 @@
                         .btn
                           | 工程変更
                       = f.text_field :quality16, id: 'quality16', type: 'checkbox', class: 'd-none'
-          = hidden_field_tag :item_request_id, params[:item_request_id]
           .continue-btn
             button type="submit"  続行
