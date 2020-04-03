@@ -5,15 +5,15 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   before_action :set_item_request, only: %i[new create]
 
   def new
-    @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
-
-    if @item_image.image_categories.blank?
-      ImageCategory::TYPES.each do |name|
-        @item_image.image_categories.build(name: name).build_file_image
+    @item_standard = ItemStandard.find_or_create_by(item_request_id: @item_request&.id)
+    
+    if @item_standard.standard_categories.blank?
+      StandardCategory::TYPES.each do |name|
+        @item_standard.standard_categories.build(name: name).build_file_standard
       end
     end
 
-    @item_image.save
+    @item_standard.save
   end
 
   # def create
