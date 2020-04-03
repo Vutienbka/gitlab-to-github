@@ -4,7 +4,9 @@ class Buyers::ItemQualityController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit ]
 
-  def new; end
+  def new
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 3
+  end
 
   def create
     ActiveRecord::Base.transaction do

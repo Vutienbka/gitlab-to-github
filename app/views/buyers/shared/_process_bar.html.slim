@@ -5,54 +5,73 @@
     .stepwizard-step
       p
         | 情報
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:information] ? 'btn-circle-red' : ''}"
-        | 1
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 1}"
+      / - binding.pry
+      a href="#{ session[:check_number_on_progress].to_i >= 1 ? buyers_item_info_index_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('item_info') ? 'btn-circle-red' : ''} 
+          #{ !check_params_controller_action('item_info') && session[:check_number_on_progress].to_i >= 1 ? 'btn-circle-green' : '' }"
+          | 1
     .stepwizard-step
       p
         | 図面
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:draw] ? 'btn-circle-red' : ''}"
-        | 2
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 2}"
+      a href="#{ session[:check_number_on_progress].to_i >= 2 ? buyers_item_drawings_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('item_drawings') ? 'btn-circle-red' : ''} 
+          #{ !check_params_controller_action('item_drawings') && session[:check_number_on_progress].to_i >= 2 ? 'btn-circle-green' : '' }"
+          | 2
     .stepwizard-step
       p
         | 画像
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:image] ? 'btn-circle-red' : ''}"
-        | 3
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 3}"
+      a href="#{ session[:check_number_on_progress].to_i >= 3 ? buyers_item_images_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('item_images') ? 'btn-circle-red' : ''}
+          #{ !check_params_controller_action('item_images') && session[:check_number_on_progress].to_i >= 3 ? 'btn-circle-green' : '' }"
+          | 3
     .stepwizard-step
       p
         | 品質
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:quality] ? 'btn-circle-red' : ''}"
-        | 4
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 4}"
+      a href="#{ session[:check_number_on_progress].to_i >= 4 ? buyers_item_quality_index_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('quality') ? 'btn-circle-red' : ''} 
+          #{ !check_params_controller_action('quality') && session[:check_number_on_progress].to_i >= 4 ? 'btn-circle-green' : '' }"
+          | 4
     .stepwizard-step
       p
         | 基準
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:standard] ? 'btn-circle-red' : ''}"
-        | 5
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 5}"
+      a href="#{ session[:check_number_on_progress].to_i >= 5 ? input_item_standard_users_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('standard') ? 'btn-circle-red' : ''}
+          #{!check_params_controller_action('standard') && session[:check_number_on_progress].to_i >= 5 ? 'btn-circle-green' : '' }"
+          | 5
     .stepwizard-step
       p
         | 条件
-      .proces-bar
-      .btn-circle.btn-red-condition class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:condition] ? 'btn-circle-red' : ''}"
-        | 6
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 6}"
+      a href="#{ session[:check_number_on_progress].to_i >= 6 ? input_item_condition_users_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle.btn-red-condition class="#{check_params_controller_action('condition') ? 'btn-circle-red' : ''}
+          #{!check_params_controller_action('condition') && session[:check_number_on_progress].to_i >= 6 ? 'btn-circle-green' : '' }"
+          | 6
     .stepwizard-step
       p
         | サンプル
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:sample] ? 'btn-circle-red' : ''}"
-        | 7
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 7}"
+      a href="#{ session[:check_number_on_progress].to_i >= 7 ? sample_input_users_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('sample') ? 'btn-circle-red' : ''}
+          #{!check_params_controller_action('sample') && session[:check_number_on_progress].to_i >= 7 ? 'btn-circle-green' : '' }"
+          | 7
     .stepwizard-step
       p
         | 見積
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:estimate] ? 'btn-circle-red' : ''}"
-        | 8
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 8}"
+      a href="#{ session[:check_number_on_progress].to_i >= 8 ? buyers_quotations_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('quotations') ? 'btn-circle-red' : ''}
+          #{!check_params_controller_action('quotations') && session[:check_number_on_progress].to_i >= 8 ? 'btn-circle-green' : '' }"
+          | 8
     .stepwizard-step
       p
         | 原低
-      .proces-bar
-      .btn-circle class="#{@item_request&.request&.request_status == Request::REQUEST_STATUSES[:low_cost] ? 'btn-circle-red' : ''}"
-        | 9
+      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 9}"
+      a href="#{ session[:check_number_on_progress].to_i >= 9 ? cost_down_item_users_path(item_request_id: params[:item_request_id]) : '#' }"
+        .btn-circle class="#{check_params_controller_action('cost_down') ? 'btn-circle-red' : ''}
+          #{!check_params_controller_action('cost_down') &&  session[:check_number_on_progress].to_i >= 9 ? 'btn-circle-green' : '' }"
+          | 9

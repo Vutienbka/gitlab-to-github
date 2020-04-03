@@ -2,6 +2,7 @@ class Buyers::ItemConditionsController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create]
   def new
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 5
     @item_request = ItemRequest.new
     @item_request.item_conditions.build
   end

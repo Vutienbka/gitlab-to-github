@@ -2,6 +2,7 @@ class Buyers::QuotationsController < Buyers::BaseController
   before_action :set_item_request, only: %i[ new send_mailer_quotation]
 
   def new
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 7
   end
 
   def send_mailer_quotation

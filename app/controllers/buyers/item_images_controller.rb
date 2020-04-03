@@ -5,6 +5,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
   before_action :set_item_request, only: %i[new create]
 
   def new
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 2
     @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
 
     if @item_image.image_categories.blank?

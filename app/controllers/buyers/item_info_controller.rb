@@ -3,6 +3,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
   before_action :set_item_request, only: %i[new create]
 
   def new
+    session[:check_number_on_progress] = 1 if session[:check_number_on_progress].nil?
   end
 
   def create

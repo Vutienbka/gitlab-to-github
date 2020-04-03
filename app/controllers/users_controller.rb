@@ -13,7 +13,13 @@ class UsersController < ApplicationController
     # redirect_to signout_path
   end
 
-  def sample_input; end
+  def input_item_standard
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 4
+  end
+
+  def sample_input
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 6
+  end
 
   def batch_items_selector; end
 
@@ -51,6 +57,7 @@ class UsersController < ApplicationController
   end 
 
   def cost_down_item
+    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 8
   end
 
   def status_inspect

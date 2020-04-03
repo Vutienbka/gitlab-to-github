@@ -31,4 +31,9 @@ module ApplicationHelper
     str = "<p class='error-message text-danger'>#{object.errors[field_name.to_s]&.first}</p>"
     str.html_safe
   end
+
+  def check_params_controller_action(text)
+    return true if params[:controller].include?(text) || params[:action].include?(text)
+    false
+  end
 end
