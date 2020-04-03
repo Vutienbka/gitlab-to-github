@@ -80,3 +80,6 @@ ja:
     file_has_not_been_uploaded: 'ファイルをまだアップロードされていません。'
     file_uploaded : 'ファイルアップロードが完了しました。'
     upload_file_format_is_not_incompatible: 'アップロードファイルフォーマットが不適合ではありません。'
+    please_register_item_criteria: 'アイテムの基準を登録してください'
+    please_upload_test_criteria_for_the_item: 'アイテムの試験基準をアップロードしてください（複数可）​'
+    upload_item_inspection_criteria: 'アイテムの検査基準をアップロードしてください（複数可）'

@@ -1,43 +1,39 @@
-= stylesheets 'users/input_item_standard'
+= stylesheets 'buyer/input_items_image'
 
-.container-user
-  .contents
-    .container-fluid
-      .mobile-process-title 情報
-      .process-head
-        = render 'buyers/shared/process_bar'
-      .main
-        .content-table-title アイテムの基準を登録してください​
-        .content-table
-          .description-zone
-            .description
-          .infos
-            .container
-              .title
-                p.p-1
-                  | アイテムの試験基準をアップロードしてください（複数可）​
-              .form-button
-                .form-title
-                  p
-                    | ここにファイルをドラッグ&ドロップ​ 
-                    br/
-                    | または
-                .button-form
-                  a href="#" 
-                    button.btn PCからアップロード
-              .title
-                p.p-1
-                  | アイテムの検査基準をアップロードしてください（複数可）
-              .form-button
-                .form-title
-                  p
-                    | ここにファイルをドラッグ&ドロップ​ 
-                    br/
-                    | または   
-                .button-form
-                  a href= "#"
-                    button.btn PCからアップロード​
-        .continue-btn
-          button type="submit"  続行​
-.fixed-footer
-  .container Copyright © 2016 Your Company
+= form_for @item_standard, url: buyers_item_standards_path, method: 'post' do |f|
+  = f.hidden_field :item_request_id, value: params[:item_request_id]
+  .container-user
+    .contents
+      .container-fluid
+        .mobile-process-title 情報
+        .process-head
+          = render 'buyers/shared/process_bar'
+        .main
+          .content-table-title
+            = I18n.t('messages.please_register_item_criteria')
+          .content-table
+            .description-zone
+              .description
+            .images
+              .container
+                = f.fields_for :standard_categories do |fc|
+                  = fc.hidden_field :name
+                  = fc.hidden_field :id
+                  .col-md-12.image-input-head
+                    .design-title-label.mt-3
+                      label
+                        - if fc.index == 0
+                          = I18n.t('messages.please_upload_test_criteria_for_the_item')
+                        - else
+                          = I18n.t('messages.upload_item_inspection_criteria')
+                  .col-md-12.image-input-content
+                    .dropzone id="myDropzone#{fc.index}"
+                      .fallback
+                        = fc.file_field(:file_link, multiple: true)
+                    .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"
+                      = I18n.t('messages.file_has_not_been_uploaded')
+                    .dropzone-file-uploaded.text-success.mt-2 id="dropzone_file_uploaded#{fc.index}"
+                      = I18n.t('messages.file_uploaded')
+          .continue-btn
+            button type="submit" id="btnSubmit" 続行​
+= javascript_include_tag 'dropzone/standard_dropzone'

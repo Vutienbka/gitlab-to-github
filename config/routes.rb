@@ -19,7 +19,6 @@ Rails.application.routes.draw do
       get :email_inspection
       get :order_list
       get :batch_register
-      get :input_item_condition
       get :cost_down_item
       get :status_inspect
       get :contract_form

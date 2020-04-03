@@ -10,7 +10,7 @@ class ItemStandard < ApplicationRecord
     :item_request_id, :info, :creator, :updater,
     standard_categories_attributes: [
       :id, :name, :item_standard_id, :draw_info, :creator, :updater,
-      file_standards_attributes: [:id, :standard_category_id, { file_link:[] }]
+      file_standard_attributes: [:id, :standard_category_id, { file_link:[] }]
     ]
   ]
 end
