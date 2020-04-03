@@ -11,8 +11,7 @@ class Buyers::ItemQualityController < Buyers::BaseController
       @item_quality.update(item_quality_params)
       @item_request&.request&.update(request_status: Request::REQUEST_STATUSES[:standard])
       flash[:success] = I18n.t('create.success')
-      return redirect_to root_path
-      # TO_DO redirect_to  standard_screen
+      return redirect_to buyers_item_standards_path(item_request_id: params[:item_quality][:item_request_id])
     rescue StandardError
       flash[:alert] = I18n.t('create.failed')
       render :new

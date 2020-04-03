@@ -19,8 +19,6 @@ Rails.application.routes.draw do
       get :email_inspection
       get :order_list
       get :batch_register
-      get :input_item_quality
-      get :input_item_standard
       get :input_item_condition
       get :cost_down_item
       get :status_inspect
@@ -75,6 +73,12 @@ Rails.application.routes.draw do
     end
 
     resources :item_images, only: %i[create] do
+      collection do
+        get :new
+      end
+    end
+
+    resources :item_standards, only: %i[create] do
       collection do
         get :new
       end
