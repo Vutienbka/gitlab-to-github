@@ -9,7 +9,8 @@
         .process-head
           = render 'buyers/shared/process_bar'
         .main
-          .content-table-title アイテムの画像を登録してください
+          .content-table-title 
+            = I18n.t('messages.please_register_the_image_of_the_item')
           .content-table
             .description-zone
               .description
@@ -23,19 +24,24 @@
                       .image-require-label
                         label 必須
                       .image-title-label
-                        label アイテムの画像をアップロードしてください（複数可）
+                        label
+                          = I18n.t('messages.please_upload_an_image_of_the_item')
                   - else
                       .col-md-12.design-input-head
                         .design-title-label
-                          label アイテムのデザイン画をアップロードしてください（複数可）
+                          label
+                            = I18n.t('messages.please_upload_the_design_picture_of_the_item')
                   .col-md-12.image-input-content
                     .dropzone id="myDropzone#{fc.index}"
                       .fallback
                         = fc.file_field(:file_link, multiple: true)
-                    .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"
-                      | ファイルをまだアップロードされていません。
-                    .dropzone-alert.text-success.mt-2 id="dropzone_alert#{fc.index}"
-                      | ファイルアップロードが完了しました。
+                    - if fc.index == 0
+                      .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"
+                        = I18n.t('messages.file_has_not_been_uploaded')
+                    .dropzone-file-uploaded.text-success.mt-2 id="dropzone_file_uploaded#{fc.index}"
+                      = I18n.t('messages.file_uploaded')
+                    .check-unaccepted-file.text-danger.mt-2 id="check_unaccepted_file#{fc.index}"
+                      = I18n.t('messages.upload_file_format_is_not_incompatible')
           .continue-btn
             button type="submit" id="btnSubmit" 続行
 = javascript_include_tag 'dropzone/image_dropzone'

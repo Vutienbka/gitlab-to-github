@@ -73,3 +73,10 @@ ja:
           ordinary: '普通'
           limited: '特急'
           super: '超特急'
+  messages:
+    please_register_the_image_of_the_item: 'アイテムの画像を登録してください'
+    please_upload_an_image_of_the_item: 'アイテムの画像をアップロードしてください（複数可）'
+    please_upload_the_design_picture_of_the_item: 'アイテムのデザイン画をアップロードしてください（複数可）'
+    file_has_not_been_uploaded: 'ファイルをまだアップロードされていません。'
+    file_uploaded : 'ファイルアップロードが完了しました。'
+    upload_file_format_is_not_incompatible: 'アップロードファイルフォーマットが不適合ではありません。'

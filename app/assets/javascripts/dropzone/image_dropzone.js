@@ -16,22 +16,18 @@ $('.dropzone').each(function(){
     autoProcessQueue: false,
     parallelUploads: 100,
     maxFiles: 100,
+    acceptedFiles: ".jpeg,.jpg,.png,.gif",
     headers: {
       'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     },
     init: function() {
       var myDropzone = this;
-
       $(".continue-btn").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
         if (myDropzone.getQueuedFiles().length > 0) {
-          dropzone_uploaded_file(id);
-          check_dropzone_length();
           myDropzone.processQueue();
           return;
-        } else {
-          dropzone_no_file_upload(id);
         }
       });
       this.on("sendingmultiple", function(data, xhr, formData) {
@@ -55,19 +51,18 @@ $('.dropzone').each(function(){
   });
 });
 
-
 function dropzone_no_file_upload(id) {
   $("#dropzone_no_file_upload" + id).css("display", "block");
-  $("#dropzone_alert" + id).css("display", "none");
+  $("#dropzone_file_uploaded" + id).css("display", "none");
 }
 
 function dropzone_uploaded_file(id) {
   $("#dropzone_no_file_upload" + id).css("display", "none");
-  $("#dropzone_alert" + id).css("display", "block");
+  $("#dropzone_file_uploaded" + id).css("display", "block");
 }
 
 function check_dropzone_length() {
-  if($('#dropzone_alert0').is(':visible')) {
+  if($('#dropzone_file_uploaded0').is(':visible')) {
     $("#btnSubmit").removeAttr('disabled');
   } else {
     $("#btnSubmit").attr('disabled', 'disabled');
