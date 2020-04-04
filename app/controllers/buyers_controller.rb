@@ -1,19 +1,28 @@
 class BuyersController < UsersController
   skip_before_action :authenticate_user!, only: [:sign_up, :confirm_email]
   skip_before_action :redirect_to_profile, only: [:sign_up, :confirm_email]
+  before_action :check_authentication_of_buyer # Define at concerns/profile_setting.rb
 
-  def invite_unregisted_supplier
-  end
+  def invite_unregisted_supplier; end
 
   def send_email_invite
-    buyer = current_user
-    return redirect_to root_path, flash: {success: 'サプライヤーのご登録をお待ちください'} if BuyerMailer.send_mail_invite_unregisted_supplier(params, buyer).deliver_now
+    @supplier = User.find_by(email: params[:invite][:email])
+    
+    if @supplier.blank?
+      BuyerMailer.send_mail_invite_unregisted_supplier(params, current_user).deliver_now
+      flash[:success] = t('messages.please_wait_for_supplier_registration')
+      return redirect_to root_path
+    end
+
+    flash.now[:alert] = t('messages.email_already_exists')
+    render :invite_unregisted_supplier
   end
 
+  def register_item; end
 
   def search_provider
     @search = Supplier.ransack({ profile_company_name_or_profile_code_cont: params[:search] })
-    @search_suppliers = @search.result
+    @search_suppliers = @search.result.includes(:profile)
   end
 
   def sign_up

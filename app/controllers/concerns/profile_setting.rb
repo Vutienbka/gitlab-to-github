@@ -8,4 +8,8 @@ module ProfileSetting
     # TODO:: Change text
     redirect_to buyers_profiles_path
   end
+
+  def check_authentication_of_buyer
+    return redirect_to root_path, flash: {alert: t('messages.no_authenticated')} unless current_user.buyer?
+  end
 end

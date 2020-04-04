@@ -84,3 +84,5 @@ ja:
     please_upload_test_criteria_for_the_item: 'アイテムの試験基準をアップロードしてください（複数可）​'
     upload_item_inspection_criteria: 'アイテムの検査基準をアップロードしてください（複数可）'
     no_authenticated : '認証に失敗しました。'
+    please_wait_for_supplier_registration: 'サプライヤーのご登録をお待ちください'
+    email_already_exists: 'メールが既に存在しています。'

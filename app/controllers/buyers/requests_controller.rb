@@ -11,8 +11,7 @@ class Buyers::RequestsController < Buyers::BaseController
 
         redirect_to buyers_item_info_index_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
       rescue
-        redirect_to root_path, flash: { alert: I18n.t('create.success') }
-        # TODO:: render to /search_provider
+        redirect_to search_provider_buyers_path, flash: { alert: I18n.t('create.failed') }
       end
     end
   end
