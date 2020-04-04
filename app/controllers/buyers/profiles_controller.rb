@@ -1,19 +1,31 @@
 class Buyers::ProfilesController < Buyers::BaseController
+  before_action :redirect_to_profile, except: %i[new create]
   before_action :clear_session
   before_action :set_buyer, only: %i[edit update set_account update_account]
 
-  def edit
+  def new
+    return redirect_to root_path if current_user.profile.present?
+    @profile = current_user.build_profile
   end
 
+  def create
+    @profile = current_user.build_profile
+    return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('create.success') } if current_user.update(buyer_params)
+
+    flash.now[:alert] = I18n.t('create.failed')
+    render :new
+  end
+
+  def edit; end
+
   def update
-    return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') } if @buyer.update(buyer_params)
+    return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') } if current_user.update(buyer_params)
     
     flash.now[:alert] = I18n.t('update.failed')
     render :edit
   end
 
-  def set_account
-  end
+  def set_account; end
 
   def update_account
     begin
@@ -22,7 +34,7 @@ class Buyers::ProfilesController < Buyers::BaseController
         return redirect_to root_path, flash: { success: I18n.t('update.success') } if current_user.type == params[require][:type]
 
         value = { "#{require.to_s}_id": nil, type: "#{params[require][:type]}Profile", "#{convert_type(params[require][:type]).to_s}_id": current_user.id }
-        current_user.update(type: params[require][:type])
+        current_user.update_attribute(:type, params[require][:type])
         @profile.update(value)
         redirect_to root_path, flash: { success: I18n.t('update.success') }
       rescue
@@ -36,9 +48,7 @@ class Buyers::ProfilesController < Buyers::BaseController
   private
 
   def set_buyer
-    @buyer = current_user
-    @profile = @buyer.profile if @buyer.present?
-    @profile = @buyer.build_profile if @buyer.profile.blank?
+    @profile = current_user.profile if current_user.profile.present?
   end
 
   def buyer_params

@@ -3,12 +3,12 @@
 
 .content-settig
   .input-setting
-    = form_for @buyer, url: update_account_buyers_profiles_path, method: 'post' do |f|
+    = form_for current_user, url: update_account_buyers_profiles_path, method: 'post' do |f|
       .row
         .col-4
           label for="buyer_account" class="submit-account #{current_user.buyer? ? 'submit-account-background' : ''}" id='label_buyer_account'
             | バイヤー
-          = f.text_field :type, id: 'buyer_account', type: 'radio', value: 'Buyer', class: 'd-none'
+          = f.text_field :type, id: 'buyer_account', type: 'radio', value: 'Buyer', class: 'd-none', checked: 'checked'
         .col-4
           label for="supplier_account" class="submit-account #{current_user.supplier? ? 'submit-account-background' : ''}" id='label_supplier_account'
             | サプライヤー

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
  
   def after_sign_in_path_for(resource)
-    return edit_buyers_profiles_path if current_user.profile.blank?
+    return buyers_profiles_path if current_user.profile.blank?
     root_path
   end
 

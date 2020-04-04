@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
     resources :profiles, only: [] do
       collection do
+        get :new
+        post :create
         get :edit
         patch :update
         get :set_account
