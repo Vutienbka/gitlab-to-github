@@ -6,8 +6,7 @@
       p
         | 情報
       .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 1}"
-      / - binding.pry
-      a href="#{ session[:check_number_on_progress].to_i >= 1 ? buyers_item_info_index_path(item_request_id: params[:item_request_id]) : '#' }"
+      a href="#{ session[:check_number_on_progress].to_i >= 1 ? edit_buyers_item_info_index_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_info') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_info') && session[:check_number_on_progress].to_i >= 1 ? 'btn-circle-green' : '' }"
           | 1
