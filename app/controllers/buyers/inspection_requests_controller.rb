@@ -5,9 +5,15 @@ class Buyers::InspectionRequestsController < Buyers::BaseController
 
   def create
     @inspection_request = current_user.inspection_requests.build(suppliers_params)
+    supplier_profile = Profile.where.not(supplier_id: nil).find_by(company_name: @inspection_request.inspect_company_name)
+    if supplier_profile.blank?
+      flash[:alert] = I18n.t('create.failed')
+      render :new
+    end
     if @inspection_request.save
       flash[:success] = I18n.t('create.success')
-      redirect_to root_path
+      BuyerMailer.send_mail_inspection_request(@inspection_request, supplier_profile, current_user).deliver_now
+      redirect_to status_inspect_users_path
     else
       flash[:alert] = I18n.t('create.failed')
       render :new
