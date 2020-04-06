@@ -6,6 +6,12 @@ Rails.application.routes.draw do
                                     sessions: 'users/sessions' }
   root 'buyers/home#index'
 
+  resources :user_calendars do 
+    collection do
+      get :new 
+    end 
+  end 
+
   resources :users, only: [] do
     collection do
       get :choose_provider

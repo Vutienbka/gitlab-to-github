@@ -341,10 +341,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.index ["item_standard_id"], name: "fk_standard_category_item_standard_idx"
   end
 
-  create_table "user_calendars", primary_key: ["id", "user_id"], options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
-    t.bigint "id", null: false, comment: "項目カレンダーId", auto_increment: true
-    t.bigint "user_id", null: false, comment: "ユーザId"
-    t.integer "type"
+  create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
     t.string "title", limit: 45
     t.datetime "occur_date", comment: "イベント日"
     t.string "content", limit: 2000, comment: "イベント内容"
@@ -355,7 +352,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["user_id"], name: "fk_user_calendar_users1_idx"
+    t.integer "user_id"
   end
 
   create_table "user_invites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

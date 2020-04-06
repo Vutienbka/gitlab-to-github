@@ -1,0 +1,16 @@
+= form_for @user_calendar do |f|
+  .form-group
+    = f.label :title​
+    = f.text_field :title, class: 'form-control'
+    = f.label :occur_date
+    = f.date_field :occur_date , class: 'form-control', value: params[:start_date]
+    = f.label :content
+    = f.text_field :content, class: 'form-control'
+    = f.label :occur_time_from
+    = f.text_field :occur_time_from, class: 'form-control'
+    = f.label :occur_time_to
+    = f.text_field :occur_time_to, class: 'form-control'
+    = f.label :creator
+    = f.text_field :creator, class: 'form-control'
+  = f.submit 'create event', class: 'btn btn-success'
+    
