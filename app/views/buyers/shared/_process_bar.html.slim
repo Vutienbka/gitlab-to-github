@@ -14,7 +14,7 @@
       p
         | 図面
       .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 2}"
-      a href="#{ session[:check_number_on_progress].to_i >= 2 ? buyers_item_drawings_path(item_request_id: params[:item_request_id]) : '#' }"
+      a href="#{ session[:check_number_on_progress].to_i >= 2 ? edit_buyers_item_drawings_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_drawings') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_drawings') && session[:check_number_on_progress].to_i >= 2 ? 'btn-circle-green' : '' }"
           | 2

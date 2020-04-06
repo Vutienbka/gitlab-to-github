@@ -31,7 +31,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   def update
-    return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('update.success') } if @item_info.update(item_info_params)
+    return redirect_to edit_buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('update.success') } if @item_info.update(item_info_params)
 
     flash.now[:alert] = I18n.t('update.failed')
     render :edit

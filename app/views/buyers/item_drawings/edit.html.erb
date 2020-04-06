@@ -1,0 +1,307 @@
+<%= stylesheets 'buyer/input_items_drawing' %>
+
+<%= form_for @item_drawing, url: buyers_item_drawing_path(@item_drawing), method: 'patch' do |f| %>
+  <%= hidden_field_tag :item_request_id, params[:item_request_id] %>
+  <div class="container-user">
+    <div class="contents">
+      <div class="container-fluid">
+        <div class="mobile-process-title">
+          図面
+        </div>
+        <div class="process-head">
+          <%= render 'buyers/shared/process_bar' %>
+        </div>
+        <div class="main">
+          <div class="content-table-title">
+            アイテムの図面を登録してください
+          </div>
+          <div class="content-table">
+            <div class="description-zone">
+              <div class="description">
+              </div>
+            </div>
+            <div class="drawings">
+              <div class="container">
+                <div class="drawings-2d-title">
+                  アイテムに関連する2D図面を全てアップロードしてください（複数可）
+                </div>
+                
+                <div class="drawing-inner col-md-12 row">
+                  <%= f.fields_for :draw_categories do |fc| %>
+                    <%= fc.hidden_field :name %>
+                    <%= fc.hidden_field :id %>
+                    <div class="drawing-item col-md-4">
+                      <div class="drawing-head">
+                        <% if fc.index == 0 || fc.index == 3 %>
+                          <div class="drawing-require-label">
+                            <label>必須</label>
+                          </div>
+                        <% end %>
+                        <div class="drawing-title-label">
+                          <label><%= fc.object&.name %></label>
+                        </div>
+                      </div>
+
+                      <div class="drawing-content">
+                        <div class="drawing-content-hint">
+                          <label>ここにファイルをドラッグ&ドロップまたは</label>
+                        </div>
+                        <div class="drawing-upload-button">
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-primary modal-dropzone" data-toggle="modal" data-target="#exampleModalCenter<%= fc.index %>">
+                            PCからアップロード
+                          </button>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModalCenter<%= fc.index %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle<%= fc.index %>" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                  <div class="dropzone" id="myDropzone<%= fc.index %>">
+                                    <div class="fallback">
+                                      <%= fc.file_field(:file_link, multiple: true) %>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <% if fc.index == 0 || fc.index == 3 %>
+                            <% if @item_drawing.draw_categories[fc.index].file_draw.file_link.blank? %>
+                              <div class="dropzone-no-file-upload text-danger mt-2" id="dropzone_no_file_upload<%= fc.index %>">
+                                ファイルをまだアップロードされていません。
+                              </div>
+                            <% end %>
+                          <% end %>
+
+                          <div class="dropzone-alert text-success mt-2" id="dropzone_alert<%= fc.index %>">
+                            ファイルアップロードが完了しました。
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="drawings-2d-title mt-3">
+                  アイテムに関連する3D図面を全てアップロードしてください（複数可）     
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="continue-btn">
+            <button type="submit" id="btnSubmit">続行</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  Dropzone.autoDiscover = false;
+
+  $('.dropzone').each(function(){ 
+    var id = $(this).attr('id').replace('myDropzone', '')
+    var item_request_id = $('#item_request_id').val();
+
+    switch (id) {
+      case '0':
+        var draw_category_id = <%= @item_drawing.draw_categories[0].id %>
+        break;
+      case '1':
+        var draw_category_id = <%= @item_drawing.draw_categories[1].id %>
+        break;
+      case '2':
+        var draw_category_id = <%= @item_drawing.draw_categories[2].id %>
+        break;
+      case '3':
+        var draw_category_id = <%= @item_drawing.draw_categories[3].id %>
+        break;
+      case '4':
+        var draw_category_id = <%= @item_drawing.draw_categories[4].id %>
+        break;
+      default:
+        var draw_category_id = <%= @item_drawing.draw_categories[5].id %>
+    }
+    var post_url = "/buyers/item_drawings/" + <%= @item_drawing.id %> + "/draw_categories/" + draw_category_id + "/file_draws";
+    
+    $(this).dropzone({
+      url: post_url,
+      dictDefaultMessage: "PCからアップロード",
+      params: {
+        "draw_category_id": draw_category_id
+      },
+      paramName: "[file_draw][file_link]",
+      uploadMultiple: true,
+      addRemoveLinks: true,
+      autoProcessQueue: false,
+      parallelUploads: 100,
+      maxFiles: 100,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      init: function() {
+        var myDropzone = this;
+        check_dropzone_length();
+
+        $(".continue-btn").on("click", function(e) {
+          if (myDropzone.getQueuedFiles().length > 0) {
+            e.preventDefault();
+            e.stopPropagation();
+            myDropzone.processQueue();
+            return;
+          }
+        });
+        this.on("addedfile", function(file) {
+          dropzone_uploaded_file(id);
+          check_dropzone_length();
+        });
+        this.on("removedfile", function(file) {
+          if (myDropzone.files.length <= 0) {
+            dropzone_no_file_upload(id);
+            check_dropzone_length();
+          }
+
+          var _ref,
+              image_index = file.index,
+              item_drawing_id = file.item_drawing_id,
+              draw_category_id = file.draw_category_id,
+              url = "/buyers/item_drawings/" + item_drawing_id + "/draw_categories/" + draw_category_id + "/file_draws/" + image_index;
+          
+          $.ajax({
+            type: 'DELETE',
+            url: url,
+            headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+              $("#exampleModalCenter" + id).fadeOut();
+              window.location.href = "/buyers/item_drawings/edit?item_request_id=" + item_request_id
+            }
+          });
+        });
+        this.on("successmultiple", function(files, response) {
+          window.location.href = "/buyers/item_images?item_request_id=" + item_request_id
+          // TODO:: redirect to edit next page
+        });
+        
+        switch (id) {
+          case '0':
+            <% @item_drawing.draw_categories[0].file_draw.file_link.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+                item_drawing_id: <%= @item_drawing.id %>,
+                draw_category_id: <%= image.model.draw_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case '1':
+            <% @item_drawing.draw_categories[1].file_draw.file_link.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+                item_drawing_id: <%= @item_drawing.id %>,
+                draw_category_id: <%= image.model.draw_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case '2':
+            <% @item_drawing.draw_categories[2].file_draw.file_link.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+                item_drawing_id: <%= @item_drawing.id %>,
+                draw_category_id: <%= image.model.draw_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case '3':
+            <% @item_drawing.draw_categories[3].file_draw.file_link.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+                item_drawing_id: <%= @item_drawing.id %>,
+                draw_category_id: <%= image.model.draw_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case '4':
+            <% @item_drawing.draw_categories[4].file_draw.file_link.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+                item_drawing_id: <%= @item_drawing.id %>,
+                draw_category_id: <%= image.model.draw_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          default:
+            <% @item_drawing.draw_categories[5].file_draw.file_link.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+                item_drawing_id: <%= @item_drawing.id %>,
+                draw_category_id: <%= image.model.draw_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+        }
+        // TODO:: Refactor code
+      }
+    });
+  });
+
+  function dropzone_no_file_upload(id) {
+    $("#dropzone_no_file_upload" + id).css("display", "block");
+    $("#dropzone_alert" + id).css("display", "none");
+  }
+
+  function dropzone_uploaded_file(id) {
+    $("#dropzone_no_file_upload" + id).css("display", "none");
+    $("#dropzone_alert" + id).css("display", "block");
+  }
+
+  function check_dropzone_length() {
+    if($('#dropzone_no_file_upload0').is(':visible') || $('#dropzone_no_file_upload3').is(':visible')) {
+      console.log(1);
+      $("#btnSubmit").attr('disabled', 'disabled');
+    } else {
+      $("#btnSubmit").removeAttr('disabled');
+    }
+  }
+</script>

@@ -13,8 +13,6 @@ Rails.application.routes.draw do
       get :search_provider
       get :sample_input
       get :batch_items_selector
-      get :input_items_info
-      get :input_items_drawing
       get :inspect_supplier
       get :email_inspection
       get :order_list
@@ -68,9 +66,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_drawings, only: %i[create] do
+    resources :item_drawings, only: %i[create update destroy] do
       collection do
         get :new
+        get :edit
+      end
+      resources :draw_categories, only: [] do
+        resources :file_draws, only: %i[create destroy]
       end
     end
 

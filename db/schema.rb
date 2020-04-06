@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_092500) do
+ActiveRecord::Schema.define(version: 2020_04_06_165312) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
     t.integer "price"
     t.integer "quantity"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["estimation_id"], name: "fk_estimation_detail_estimations1_idx"
     t.index ["item_requests_id"], name: "fk_estimation_detail_item_requests1_idx"
@@ -56,16 +56,16 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
     t.integer "total_cost"
     t.date "request_by"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["request_id"], name: "fk_estimations_requests1_idx"
   end
 
   create_table "file_draws", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
     t.bigint "draw_category_id", null: false
-    t.string "file_link", comment: "ファイルリンク"
+    t.text "file_link", comment: "ファイルリンク"
     t.string "file_name", comment: "ファイルタイプ"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
 
   create_table "file_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
     t.bigint "image_category_id", null: false
-    t.string "file_link", comment: "ファイルリンク"
+    t.text "file_link", comment: "ファイルリンク"
     t.string "file_name", comment: "ファイルタイプ"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
   create_table "file_samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
     t.bigint "item_category", null: false
     t.bigint "item_sample_id", null: false, comment: "Item Draw/Image/Sample Id\n"
-    t.string "file_link", null: false, comment: "ファイルリンク"
+    t.text "file_link", null: false, comment: "ファイルリンク"
     t.string "file_name", comment: "ファイルタイプ"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
@@ -102,12 +102,12 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
 
   create_table "file_standards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
     t.bigint "standard_category_id", null: false
-    t.string "file_link", comment: "ファイルリンク"
+    t.text "file_link", comment: "ファイルリンク"
     t.string "file_name", comment: "ファイルタイプ"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["standard_category_id"], name: "fk_file_item_standard1_idx"
   end
@@ -274,9 +274,9 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
     t.bigint "item_request_id"
     t.string "info", limit: 2000, comment: "項目基準説明情報"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
@@ -331,9 +331,9 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
     t.bigint "item_standard_id", null: false
     t.string "draw_info", limit: 2000, comment: "項目画面説明情報"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["item_standard_id"], name: "fk_standard_category_item_standard_idx"
   end
@@ -361,9 +361,9 @@ ActiveRecord::Schema.define(version: 2020_04_03_092500) do
     t.string "email_invited", limit: 45
     t.integer "notify_status", limit: 1
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["user_id"], name: "fk_buyer_invite_user1_idx"
   end
