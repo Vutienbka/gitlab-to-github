@@ -38,6 +38,10 @@ class BuyersController < UsersController
     redirect_to new_user_session_path, notice: t('devise.confirmations.confirmed')
   end
 
+  def batch_items_register
+    
+  end
+
   private
 
   def buyer_params

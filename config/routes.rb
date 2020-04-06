@@ -97,7 +97,7 @@ Rails.application.routes.draw do
         get :new
       end
     end
-    resources :quotations do
+    resources :item_quotations do
       collection do
         get :new
         get :send_mailer_quotation
@@ -121,6 +121,11 @@ Rails.application.routes.draw do
       get :search_provider
       post :sign_up
       get :confirm_email
+      get :sample_input
+      get :item_cost_down
+      get :batch_items_selector
+      get :demand_items_register
+      get :batch_items_register
     end
   end
 

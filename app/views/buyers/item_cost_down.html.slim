@@ -1,0 +1,36 @@
+= stylesheets 'users/cost_down_item'
+
+.container-user
+  .contents
+    .container-fluid
+      .mobile-process-title 情報
+      .process-head
+        = render  'buyers/shared/process_bar'
+      .main
+        .content-table-title アイテムのコストダウンを自動化してください​
+        .content-table
+          .description-zone
+            .description
+          .infos
+            .container
+              .title
+                p.p-1
+                  label for="tag" 必読​
+                  | 登録したアイテムを、選択したサプライヤー以外で、コストダウンを進める​​
+              .title
+                p.p-2
+                  | 自動化は「NEWJI」をクリックしてください​
+                  br/
+                  | NEWJI AIがコストダウン可能なベストサプライヤーと御見積を提案します​
+              .group-button
+                a href=search_provider_users_path 
+                  button#btn-1.btn.default.button
+                    | NEWJI​
+                a href=invite_unregisted_supplier_buyers_path 
+                  button#btn-2.btn.default.button
+                    | 自動化しない​
+              
+              .continue-btn
+                = link_to root_path do
+                  button type="submit"  続行​
+                  
