@@ -1,4 +1,4 @@
-class Buyers::QuotationsController < Buyers::BaseController
+class Buyers::ItemQuotationsController < Buyers::BaseController
   before_action :set_item_request, only: %i[ new send_mailer_quotation]
 
   def new
@@ -10,7 +10,7 @@ class Buyers::QuotationsController < Buyers::BaseController
     @supplier = Supplier.find_by(id: "#{@request.supplier_id}")
     email = @supplier
     buyer = current_user
-    return redirect_to root_path, flash: {success: '見積依頼メールがサプライヤーに送信しました。'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
+    return redirect_to item_cost_down_buyers_path(item_request_id: @item_request.id), flash: {success: '見積依頼メールがサプライヤーに送信しました。'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
   end
 
   private

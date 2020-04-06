@@ -1,0 +1,34 @@
+= stylesheets 'users/sample_input'
+
+.container-user
+  .contents
+    .container-fluid
+      .mobile-process-title サンプル​
+      .process-head
+        = render 'buyers/shared/process_bar'
+      .main
+        .title サンプルが必要な場合は登録してください
+        .content-table
+          .description-zone
+            .description
+          .select-template-zone
+            .title-first
+              input placeholder="必要なサンプルを入力してください" /
+            .title-second 要求するサンプルをクリックしてください
+            .templates
+              a href="#" 
+                .template style=("background-color: #fa1f6c;") 
+                  .text 類似品サンプル
+              a href="#" 
+                .template style=("background-color: #ffe699;") 
+                  .text カラーサンプル
+              a href="#" 
+                .template style=("background-color: #ffe699;") 
+                  .text 意匠サンプル
+              a href="#" 
+                .template style=("background-color: #b4c7e8;") 
+                  .text オリジナルサンプル
+        .continue-btn
+          = link_to new_buyers_item_quotation_path(item_request_id: params[:item_request_id]) do
+            button type="submit"  続行
+            

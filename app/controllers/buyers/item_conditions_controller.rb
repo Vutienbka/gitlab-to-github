@@ -10,7 +10,7 @@ class Buyers::ItemConditionsController < Buyers::BaseController
     begin
       ActiveRecord::Base.transaction do
         @item_request.update!(item_request_params)
-        return redirect_to root_path, flash: { success: I18n.t('create.success') }
+        return redirect_to sample_input_buyers_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
       rescue
         flash.now[:alert] = I18n.t('create.failed')
         render :new
