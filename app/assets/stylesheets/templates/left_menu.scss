@@ -32,9 +32,6 @@
 
 .left-menu {
   background: #252b35;
-  // margin-top: 0px;
-  // overflow: scroll;
-  height: 100%;
 }
 
 .left-menu-container {
@@ -70,7 +67,6 @@
 
 .menu {
   background:#212121;
-  height: 100%;
   // z-index: 1000;
 }
 .menu li {
@@ -243,18 +239,50 @@ nav ul,nav li {
     width: 100%;
   }
 }
+.sider-full {
+  height: calc(100vh - 821px);
+}
+@media screen and (max-width: 1450px) {
+  .sider-full {
+    height: calc(100vh - 746px);
+  }
+  .menu li {
+    padding: 7px;
+  }
 
+  .parent-of-block-btn {
+    padding: 7px;
+  }
+  .parent-of-block-btn div {
+    padding: 7px;
+  }
+  .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    width: 1.4rem;
+  }
+}
+@media screen and ( max-width: 1025px ) {
+  .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    width: 1.1rem;
+  }
+}
 @media screen and (max-width: 768px) {
+  .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    width: 1.8rem;
+  }
   .ui-datepicker-calendar td {
     padding: 7px !important;
   }
   .sidebar {
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 31;
     top: 0;
     left: 0;
     overflow-x: hidden;
     transition: 0.5s;
+    height: 100%;
+  }
+  .left-menu {
+    height: auto;
   }
 }

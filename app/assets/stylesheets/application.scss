@@ -21,16 +21,20 @@
 
 html, body {
   min-height: 100%;
-  height: 100%;
+  height: auto;
 }
 .wrapper-newji {
   height: 100%;
 }
 .sidebar {
   width: 15%;
+  height: 100%;
+  background: #212121;
+  position: fixed;
 }
 #full-content {
-  width: 85%;
+  width: 100%;
+  margin-left: 15%;
   background: #fafafa;
 }
 .wrapper-newji {
@@ -77,13 +81,13 @@ button {
     width: 20%;
   }
   #full-content {
-    width: 80%;
+    margin-left: 20%;
   }
 }
 
 @media screen and ( max-width: 768px ) {
   #full-content {
-    width: 100%;
+    margin-left: 0;
   }
   .containerss {
     padding: 95px 20px
