@@ -5,7 +5,6 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   before_action :set_item_request, only: %i[new create]
 
   def new
-    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 1
     @item_drawing = ItemDrawing.find_or_create_by(item_request_id: @item_request&.id)
 
     if @item_drawing.draw_categories.blank?
@@ -21,7 +20,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
-      @item_drawing.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
+      @item_request.update_attribute(:status, 3)
       redirect_to buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
     end

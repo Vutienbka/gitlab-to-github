@@ -5,7 +5,6 @@ class Buyers::ItemImagesController < Buyers::BaseController
   before_action :set_item_request, only: %i[new create]
 
   def new
-    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 2
     @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
 
     if @item_image.image_categories.blank?
@@ -22,7 +21,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
 
     if @item_image.update(item_image_params)
       flash[:success] = I18n.t('create.success')
-      @item_image.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:quality])
+      @item_request.update_attribute(:status, 4)
       redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
     end
