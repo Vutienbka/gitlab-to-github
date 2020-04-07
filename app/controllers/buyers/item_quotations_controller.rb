@@ -2,7 +2,6 @@ class Buyers::ItemQuotationsController < Buyers::BaseController
   before_action :set_item_request, only: %i[ new send_mailer_quotation]
 
   def new
-    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 7
   end
 
   def send_mailer_quotation
@@ -10,6 +9,7 @@ class Buyers::ItemQuotationsController < Buyers::BaseController
     @supplier = Supplier.find_by(id: "#{@request.supplier_id}")
     email = @supplier
     buyer = current_user
+    @item_request.update_attribute(:status, 9)
     return redirect_to item_cost_down_buyers_path(item_request_id: @item_request.id), flash: {success: '見積依頼メールがサプライヤーに送信しました。'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
   end
 

@@ -5,13 +5,12 @@ class Buyers::ItemQualityController < Buyers::BaseController
   before_action :set_item_request, only: %i[new create edit ]
 
   def new
-    session[:check_number_on_progress] += 1 if session[:check_number_on_progress].to_i == 3
   end
 
   def create
     ActiveRecord::Base.transaction do
       @item_quality.update(item_quality_params)
-      @item_request&.request&.update(request_status: Request::REQUEST_STATUSES[:standard])
+      @item_request.update_attribute(:status, 5)
       flash[:success] = I18n.t('create.success')
       return redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
     rescue StandardError
