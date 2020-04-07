@@ -1,6 +1,7 @@
 .content-mail style="margin: 50px 0; font-size: 14px;"
   .title style="text-align:center;padding-bottom: 35px"
-    = image_tag("logo_txt.png")
+    = link_to root_url do
+      = image_tag("logo_txt.png")
   .border-mail style="background: #ff9b9b;width: 410px;padding: 25px;margin: auto;"
     .text-mail style="padding-bottom: 30px;"
       | NEWJIヘルプデスクセンタの担当者様
@@ -21,7 +22,7 @@
     .text-mail style="padding-bottom: 20px;"
       | 引き続き、下記よりアイテム登録を完了してください。
     .submit style="margin: auto;padding: 30px 0;width: 200px;"
-        = link_to new_user_session_url do
+        = link_to register_item_buyers_url do
           button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
             | アイテム登録
   .submit-newji style="margin: auto;padding-top: 20px;width: 200px;"
