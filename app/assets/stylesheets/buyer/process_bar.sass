@@ -1,3 +1,8 @@
+.process-head
+  position: relative
+  width: 90%
+  height: 80px
+  margin: 2% auto
 .stepwizard-step p
   margin-top: 10px
   margin-left: 12px
@@ -7,9 +12,9 @@
   display: table-row
 .stepwizard
   display: table
-  width: 90%
+  width: 100%
   position: relative
-  margin: 0 5%
+  margin: 0 auto
   &-step
     display: table-cell
     text-align: center
@@ -53,20 +58,19 @@
 @media screen and ( max-width: 1650px  )
   .stepwizard-step p
     width: 80px
-    font-size: 1.2em
 @media screen and ( max-width: 1300px  )
   .proces-bar
     height: 8%
     top: 80%
   .btn-circle
-    width: 20px
-    height: 20px
+    width: 25px
+    height: 25px
+    padding: 4px
   .stepwizard-step p
-    width: 60px
     font-size: 0.9em
-    margin-left: 0
-  .stepwizard
-    margin-left: 10%
+@media screen and ( max-width: 1025px )
+  .stepwizard-step p
+    width: 65px
 @media screen and ( max-width: 770px  )
   .mobile-process-title
     display: block
