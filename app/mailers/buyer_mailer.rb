@@ -11,14 +11,13 @@ class BuyerMailer < ActionMailer::Base
     )
   end
 
-  def send_mail_inspection_request(inspection_request, supplier_profile, buyer)
+  def send_mail_inspection_request(inspection_request, buyer)
     @inspect_company_name = inspection_request.inspect_company_name
     @inspect_address = inspection_request.inspect_address
     @inspect_tel = inspection_request.inspect_tel
-    @supplier = User.find_by(id: supplier_profile.supplier_id)
     @buyer = buyer
     mail(
-      to: @supplier.email,
+      to: 'newjisystem2020@gmail.com',
       subject: "#{@buyer.profile&.company_name}社の#{@buyer.profile&.last_name}様から調達購買システム「NEWJI」の信用調査依頼メール"
     )
   end
