@@ -76,9 +76,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_images, only: %i[create] do
+    resources :item_images, only: %i[create update destroy] do
       collection do
         get :new
+        get :edit
+      end
+      resources :image_categories, only: [] do
+        resources :file_images, only: %i[create destroy]
       end
     end
 

@@ -298,7 +298,6 @@
 
   function check_dropzone_length() {
     if($('#dropzone_no_file_upload0').is(':visible') || $('#dropzone_no_file_upload3').is(':visible')) {
-      console.log(1);
       $("#btnSubmit").attr('disabled', 'disabled');
     } else {
       $("#btnSubmit").removeAttr('disabled');

@@ -6,6 +6,8 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   before_action :set_item_drawing, only: %i[create edit update destroy]
 
   def new
+    return redirect_to root_path, flash: {alert: I18n.t('messages.cannot_register_because_the_item_already_exists')} if @item_request.item_drawing.present?
+
     @item_drawing = ItemDrawing.find_or_create_by(item_request_id: @item_request&.id)
 
     if @item_drawing.draw_categories.blank?
@@ -17,8 +19,6 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def create
-    @item_drawing = ItemDrawing.find_by(item_request_id: @item_request.id)
-
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
       @item_request.update_attribute(:status, 3)
@@ -32,11 +32,10 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
   def update
     if @item_drawing.update(item_drawing_params)
-      flash[:success] = I18n.t('create.success')
+      flash[:success] = I18n.t('update.success')
       @item_drawing.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
-      redirect_to buyers_item_images_path(item_request_id: @item_request.id)
+      redirect_to edit_buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
-      # TODO:: redirect to edit next page
     end
   end
 
