@@ -20,7 +20,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
   def create
     if @item_image.update(item_image_params)
       flash[:success] = I18n.t('create.success')
-      @item_request.update_attribute(:status, 4)
+      @item_request.update_attribute(:status, 4) if ItemRequest::STATUSES[@item_request.status.to_sym] < 4
       redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
     end
@@ -32,7 +32,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
   def update
     if @item_image.update(item_image_params)
       flash[:success] = I18n.t('update.success')
-      @item_image.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:quality])
+      @item_request.update_attribute(:status, 4) if ItemRequest::STATUSES[@item_request.status.to_sym] < 4
       redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
       # TODO:: redirect to edit next page

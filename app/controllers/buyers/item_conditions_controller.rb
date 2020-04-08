@@ -8,7 +8,7 @@ class Buyers::ItemConditionsController < Buyers::BaseController
     begin
       ActiveRecord::Base.transaction do
         @item_request.update!(item_request_params)
-        @item_request.update_attribute(:status, 7)
+        @item_request.update_attribute(:status, 7) if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
         return redirect_to sample_input_buyers_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
       rescue
         flash.now[:alert] = I18n.t('create.failed')

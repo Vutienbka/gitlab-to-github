@@ -19,7 +19,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   def create
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
-      @item_request.update_attribute(:status, 3)
+      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
       redirect_to buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
     end
@@ -31,7 +31,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   def update
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('update.success')
-      @item_drawing.item_request.request&.update(request_status: Request::REQUEST_STATUSES[:image])
+      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
       redirect_to edit_buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
     end

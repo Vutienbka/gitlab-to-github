@@ -15,7 +15,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
     begin
       ActiveRecord::Base.transaction do
         @item_info.save!
-        @item_request.update_attributes(item_info_id: @item_info.id, status: 2)
+        @item_request.update_attributes(item_info_id: @item_info.id, status: 2) if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
         return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
       rescue
         flash.now[:alert] = I18n.t('create.failed')

@@ -10,7 +10,7 @@ class Buyers::ItemQualityController < Buyers::BaseController
   def create
     ActiveRecord::Base.transaction do
       @item_quality.update(item_quality_params)
-      @item_request.update_attribute(:status, 5)
+      @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
       flash[:success] = I18n.t('create.success')
       return redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
     rescue StandardError

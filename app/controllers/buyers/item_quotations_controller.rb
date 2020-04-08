@@ -9,7 +9,7 @@ class Buyers::ItemQuotationsController < Buyers::BaseController
     @supplier = Supplier.find_by(id: "#{@request.supplier_id}")
     email = @supplier
     buyer = current_user
-    @item_request.update_attribute(:status, 9)
+    @item_request.update_attribute(:status, 9) if ItemRequest::STATUSES[@item_request.status.to_sym] < 9
     return redirect_to item_cost_down_buyers_path(item_request_id: @item_request.id), flash: {success: '見積依頼メールがサプライヤーに送信しました。'} if QuotationMailer.send_maill_quotation_items(email, buyer).deliver_now
   end
 
