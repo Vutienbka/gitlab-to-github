@@ -154,8 +154,7 @@
           });
         });
         this.on("successmultiple", function(files, response) {
-          window.location.href = "/buyers/item_quality?item_request_id=" + item_request_id
-          // TODO:: redirect to edit next page
+          window.location.href = "/buyers/item_qualities/edit?item_request_id=" + item_request_id
         });
         
         switch (id) {

@@ -45,7 +45,7 @@ $('.dropzone').each(function(){
         }
       });
       this.on("successmultiple", function(files, response) {
-        window.location.href = "/buyers/item_quality?item_request_id=" + item_request_id
+        window.location.href = "/buyers/item_qualities?item_request_id=" + item_request_id
       });
     }
   });

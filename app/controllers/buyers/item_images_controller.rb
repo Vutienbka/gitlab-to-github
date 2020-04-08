@@ -12,30 +12,37 @@ class Buyers::ItemImagesController < Buyers::BaseController
       ImageCategory::TYPES.each do |name|
         @item_image.image_categories.build(name: name).build_file_image
       end
+      @item_image.save
     end
-
-    @item_image.save
   end
 
   def create
     if @item_image.update(item_image_params)
       flash[:success] = I18n.t('create.success')
       @item_request.update_attribute(:status, 4) if ItemRequest::STATUSES[@item_request.status.to_sym] < 4
-      redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
+      redirect_to buyers_item_qualities_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
+    else
+      flash[:alert] = I18n.t('create.failed')
+      render :new
     end
   end
 
   def edit
+    if @item_image.image_categories[0].file_image.file_link.blank?
+      return redirect_to buyers_item_images_path(item_request_id: @item_request.id)
+    end
   end
 
   def update
     if @item_image.update(item_image_params)
       flash[:success] = I18n.t('update.success')
       @item_request.update_attribute(:status, 4) if ItemRequest::STATUSES[@item_request.status.to_sym] < 4
-      redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
+      redirect_to edit_buyers_item_qualities_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
-      # TODO:: redirect to edit next page
+    else
+      flash[:alert] = I18n.t('update.failed')
+      render :edit
     end
   end
 

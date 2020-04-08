@@ -22,10 +22,16 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
       @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
       redirect_to buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
+    else
+      flash[:alert] = I18n.t('create.failed')
+      render :new
     end
   end
 
   def edit
+    if @item_drawing.draw_categories[0].file_draw.file_link.blank? || @item_drawing.draw_categories[3].file_draw.file_link.blank?
+      return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id)
+    end
   end
 
   def update
@@ -34,6 +40,9 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
       @item_request.update_attribute(:status, 3)
       redirect_to edit_buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
+    else
+      flash[:alert] = I18n.t('update.failed')
+      render :edit
     end
   end
 
