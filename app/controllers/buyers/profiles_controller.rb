@@ -61,11 +61,17 @@ class Buyers::ProfilesController < Buyers::BaseController
   end
 
   def buyer_params
-    return params.require(:buyer).permit(User::PARAMS_ATTRIBUTES) if current_user.buyer?
+    model = if current_user.buyer?
+              :buyer
+            elsif current_user.supplier?
+              :supplier
+            elsif current_user.is_a?(Admin)
+              :admin
+            else
+              :buyer_supplier
+            end
 
-    return params.require(:supplier).permit(User::PARAMS_ATTRIBUTES) if current_user.supplier?
-
-    params.require(:buyer_supplier).permit(User::PARAMS_ATTRIBUTES)
+    params.require(model).permit(User::PARAMS_ATTRIBUTES)
   end
 
   def convert_type(type)

@@ -20,4 +20,6 @@ unless Rails.env.production?
       connection.execute(statement)
     end
   end
+
+  Admin.create(email: 'admin@newji.com', password: '12345678')
 end

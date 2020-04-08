@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_064556) do
+ActiveRecord::Schema.define(version: 2020_04_08_102249) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -300,6 +300,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_064556) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
+    t.integer "admin_id"
   end
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "依頼テーブル", force: :cascade do |t|
@@ -358,7 +359,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_064556) do
 
   create_table "user_invites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "user_invited", limit: 1
+    t.integer "user_invited"
     t.string "email_invited", limit: 45
     t.integer "notify_status", limit: 1
     t.bigint "creator", comment: "登録者Id"

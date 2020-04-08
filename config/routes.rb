@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admins', as: 'rails_admin'
   devise_for :users, controllers: { passwords: 'users/passwords',
                                     sessions: 'users/sessions' }
   root 'buyers/home#index'
