@@ -14,6 +14,17 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
       end
       @item_drawing.save
     end
+
+    # TODO:: bugs dropzone create duplicate record when redirec to buyers_item_images_path
+    # Maybe fix later
+    @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
+
+    if @item_image.image_categories.blank?
+      ImageCategory::TYPES.each do |name|
+        @item_image.image_categories.build(name: name).build_file_image
+      end
+      @item_image.save
+    end
   end
 
   def create
@@ -29,7 +40,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def edit
-    if @item_drawing.draw_categories[0].file_draw.file_link.blank? || @item_drawing.draw_categories[3].file_draw.file_link.blank?
+    if @item_drawing.draw_categories[0].file_draw.file_link.blank? && @item_drawing.draw_categories[3].file_draw.file_link.blank?
       return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id)
     end
   end

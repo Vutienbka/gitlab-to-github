@@ -3,17 +3,11 @@
 class Buyers::ItemImagesController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit update]
-  before_action :set_item_image, only: %i[create edit update]
+  before_action :set_item_image, only: %i[new create edit update]
 
   def new
-    @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
-
-    if @item_image.image_categories.blank?
-      ImageCategory::TYPES.each do |name|
-        @item_image.image_categories.build(name: name).build_file_image
-      end
-      @item_image.save
-    end
+    # TODO:: bugs dropzone create duplicate record when redirec to buyers_item_images_path
+    # Move this code to item drawing controller
   end
 
   def create
