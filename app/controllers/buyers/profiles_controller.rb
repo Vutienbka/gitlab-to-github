@@ -10,15 +10,6 @@ class Buyers::ProfilesController < Buyers::BaseController
 
   def create
     @profile = current_user.build_profile
-    return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('create.success') } if current_user.update(buyer_params)
-
-    flash.now[:alert] = I18n.t('create.failed')
-    render :new
-  end
-
-  def edit; end
-
-  def update
     if current_user.update(buyer_params)
       invited_users = UserInvite.where(email_invited: current_user.email, notify_status: 0)
       if invited_users.present? && current_user.is_a?(Supplier)
@@ -27,8 +18,17 @@ class Buyers::ProfilesController < Buyers::BaseController
         end
         invited_users.update_all(user_invited: current_user.id, notify_status: 1)
       end
-      return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') }
+      return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('create.success') }
     end
+
+    flash.now[:alert] = I18n.t('create.failed')
+    render :new
+  end
+
+  def edit; end
+
+  def update
+    return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') } if current_user.update(buyer_params)
     
     flash.now[:alert] = I18n.t('update.failed')
     render :edit

@@ -7,7 +7,10 @@ class BuyersController < UsersController
 
   def send_email_invite
     @user = User.find_by(email: params[:invite][:email])
-    return render :invite_unregisted_supplier, alert: t('messages.email_already_exists') if @user.present?
+    if @user.present?
+      flash[:success] = t('messages.email_already_exists')
+      return render :invite_unregisted_supplier
+    end
 
     current_user.user_invites.find_or_initialize_by(email_invited: params.dig('invite', 'email'), notify_status: 0).save
     BuyerMailer.send_mail_invite_unregisted_supplier(params, current_user).deliver_now
