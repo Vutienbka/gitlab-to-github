@@ -6,17 +6,17 @@
       span
   .supplier-form
     .text-form
-      p ▲▲様
+      p #{@buyer.profile&.full_name}様
       p
-        | ●●社の■■様から、
+        | #{@supplier.profile&.company_name}社の#{@supplier.profile&.full_name}様から、
         br/
         | 調達購買システム「NEWJI」のサプライヤー登録完了通知が​
         br/
-        | ▲▲様宛に届きました。​
+        | #{@buyer.profile&.full_name}様宛に届きました。​
       p 引き続き、下記よりアイテム登録を完了してください。​
     .button-register
-      a href="#" 
+      a href="#{register_item_buyers_url}" 
         button.btn アイテム登録​
   .newJi
-    a href="#" 
+    a href="#{root_url}" 
       button.btn NEWJIとは​

@@ -29,4 +29,13 @@ class BuyerMailer < ActionMailer::Base
       subject: t('devise.mailer.confirmation_instructions.subject')
     )
   end
+
+  def send_mail_after_supplier_invited_register(buyer, supplier)
+    @buyer = buyer
+    @supplier = supplier
+    mail(
+      to: @buyer.email,
+      subject: "#{@supplier.profile&.company_name}社の#{@supplier.profile&.full_name}様から調達購買システム「NEWJI」のサプライヤー登録完了通知"
+    )
+  end
 end

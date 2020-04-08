@@ -16,9 +16,22 @@ class User < ApplicationRecord
     ]
   ]
 
+  has_many :user_invites, dependent: :destroy
+
   validates :password, confirmation: { case_sensitive: true }
   validates :password, presence: true, unless: :check_update_profile?
   validates :email, presence: true
+
+  before_create :set_token
+  after_create :send_mail_after_sign_up
+
+  def set_token
+    self.token = SecureRandom.hex
+  end
+
+  def send_mail_after_sign_up
+    BuyerMailer.send_mail_after_buyer_regiter(self).deliver_now
+  end
 
   def check_update_profile?
     update_profile.present?

@@ -19,7 +19,16 @@ class Buyers::ProfilesController < Buyers::BaseController
   def edit; end
 
   def update
-    return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') } if current_user.update(buyer_params)
+    if current_user.update(buyer_params)
+      invited_users = UserInvite.where(email_invited: current_user.email, notify_status: 0)
+      if invited_users.present? && current_user.is_a?(Supplier)
+        User.where(id: invited_users.pluck(:user_id)).each do |buyer|
+          BuyerMailer.send_mail_after_supplier_invited_register(buyer, current_user).deliver_now
+        end
+        invited_users.update_all(user_invited: current_user.id, notify_status: 1)
+      end
+      return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') }
+    end
     
     flash.now[:alert] = I18n.t('update.failed')
     render :edit
