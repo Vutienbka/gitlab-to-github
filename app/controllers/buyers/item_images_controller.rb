@@ -2,8 +2,8 @@
 
 class Buyers::ItemImagesController < Buyers::BaseController
   before_action :redirect_to_profile
-  before_action :set_item_request, only: %i[new create edit update destroy]
-  before_action :set_item_image, only: %i[create edit update destroy]
+  before_action :set_item_request, only: %i[new create edit update]
+  before_action :set_item_image, only: %i[create edit update]
 
   def new
     @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)

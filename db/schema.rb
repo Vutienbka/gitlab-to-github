@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_064556) do
+ActiveRecord::Schema.define(version: 2020_04_08_033247) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_064556) do
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "依頼テーブル", force: :cascade do |t|
     t.bigint "buyer_id", null: false, comment: "購入者Id"
     t.bigint "supplier_id", null: false, comment: "供給者Id"
-    t.integer "request_status", null: false, comment: "登録進捗Id"
+    t.integer "request_status", limit: 1, comment: "登録進捗Id"
     t.date "submitted_date"
     t.date "request_by"
     t.bigint "creator", comment: "登録者Id"

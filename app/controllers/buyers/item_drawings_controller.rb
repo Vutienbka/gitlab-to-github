@@ -2,8 +2,8 @@
 
 class Buyers::ItemDrawingsController < Buyers::BaseController
   before_action :redirect_to_profile
-  before_action :set_item_request, only: %i[new create edit update destroy]
-  before_action :set_item_drawing, only: %i[create edit update destroy]
+  before_action :set_item_request, only: %i[new create edit update]
+  before_action :set_item_drawing, only: %i[create edit update]
 
   def new
     @item_drawing = ItemDrawing.find_or_create_by(item_request_id: @item_request&.id)
@@ -31,16 +31,12 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   def update
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('update.success')
-      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
+      @item_request.update_attribute(:status, 3)
       redirect_to edit_buyers_item_images_path(item_request_id: @item_request.id)
       # Already redirect to item_images page at my_dropzone.js
     end
   end
 
-  def destroy
-    @item_drawing.destroy
-    redirect_to products_path
-  end
   private
 
   def set_item_request

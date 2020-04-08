@@ -66,7 +66,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_drawings, only: %i[create update destroy] do
+    resources :item_drawings, only: %i[create update] do
       collection do
         get :new
         get :edit
@@ -76,7 +76,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_images, only: %i[create update destroy] do
+    resources :item_images, only: %i[create update] do
       collection do
         get :new
         get :edit
@@ -86,9 +86,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_standards, only: %i[create] do
+    resources :item_standards, only: %i[create update] do
       collection do
         get :new
+        get :edit
+      end
+      resources :standard_categories, only: [] do
+        resources :file_standards, only: %i[create destroy]
       end
     end
 

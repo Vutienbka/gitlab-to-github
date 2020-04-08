@@ -4,7 +4,7 @@ class Buyers::RequestsController < Buyers::BaseController
   def create
     begin
       ActiveRecord::Base.transaction do
-        @request = current_user.requests.new(supplier_id: params[:supplier_id], request_status: Request::REQUEST_STATUSES[:information])
+        @request = current_user.requests.new(supplier_id: params[:supplier_id])
         @request.save!
         @item_request = @request.item_requests.new(status: 1)
         @item_request.save!

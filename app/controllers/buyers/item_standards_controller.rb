@@ -2,7 +2,8 @@
 
 class Buyers::ItemStandardsController < Buyers::BaseController
   before_action :redirect_to_profile
-  before_action :set_item_request, only: %i[new create]
+  before_action :set_item_request, only: %i[new create edit update]
+  before_action :set_item_standard, only: %i[create edit update]
 
   def new
     @item_standard = ItemStandard.find_or_create_by(item_request_id: @item_request&.id)
@@ -17,8 +18,6 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def create
-    @item_standard = ItemStandard.find_by(item_request_id: @item_request.id)
-
     if @item_standard.update(item_standard_params)
       flash[:success] = I18n.t('create.success')
       @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
@@ -27,11 +26,28 @@ class Buyers::ItemStandardsController < Buyers::BaseController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @item_standard.update(item_standard_params)
+      flash[:success] = I18n.t('update.success')
+      @item_request.update_attribute(:status, 6)
+      redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
+      # Already redirect to next page at my_dropzone.js
+      # TODO:: redirect to edit next page
+    end
+  end
+
   private
 
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
     return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
+  end
+
+  def set_item_standard
+    @item_standard = ItemStandard.find_by(item_request_id: @item_request.id)
   end
 
   def item_standard_params
