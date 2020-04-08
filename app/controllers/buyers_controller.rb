@@ -1,7 +1,7 @@
 class BuyersController < UsersController
   skip_before_action :authenticate_user!, only: [:sign_up, :confirm_email]
   skip_before_action :redirect_to_profile, only: [:sign_up, :confirm_email]
-  before_action :check_authentication_of_buyer # Define at concerns/profile_setting.rb
+  before_action :check_authentication_of_buyer, except: [:sign_up, :confirm_email] # Define at concerns/profile_setting.rb
 
   def invite_unregisted_supplier; end
 
@@ -39,7 +39,6 @@ class BuyersController < UsersController
   end
 
   def batch_items_register
-    
   end
 
   private

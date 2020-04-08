@@ -6,8 +6,6 @@ class Buyers::ItemImagesController < Buyers::BaseController
   before_action :set_item_image, only: %i[create edit update destroy]
 
   def new
-    return redirect_to root_path, flash: {alert: I18n.t('messages.cannot_register_because_the_item_already_exists')} if @item_request.item_image.present?
-
     @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
 
     if @item_image.image_categories.blank?

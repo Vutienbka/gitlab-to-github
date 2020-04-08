@@ -6,8 +6,6 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   before_action :set_item_drawing, only: %i[create edit update destroy]
 
   def new
-    return redirect_to root_path, flash: {alert: I18n.t('messages.cannot_register_because_the_item_already_exists')} if @item_request.item_drawing.present?
-
     @item_drawing = ItemDrawing.find_or_create_by(item_request_id: @item_request&.id)
 
     if @item_drawing.draw_categories.blank?

@@ -16,8 +16,8 @@
     .stepwizard-step
       p
         | 図面
-      .proces-bar style="#{'background-color: #1ebe17' if session[:check_number_on_progress].to_i >= 2}"
-      a href="#{ session[:check_number_on_progress].to_i >= 2 ? edit_buyers_item_drawings_path(item_request_id: params[:item_request_id]) : '#' }"
+      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 2}"
+      a href="#{ number_request.to_i >= 2 ? edit_buyers_item_drawings_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_drawings') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_drawings') && number_request.to_i >= 3 ? 'btn-circle-green' : '' }"
           | 2
