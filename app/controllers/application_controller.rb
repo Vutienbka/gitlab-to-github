@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :basic_auth
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, alert: exception.message
+  end
+
   protected 
   def configure_permitted_parameters
     added_attrs = [:email, :password, :password_confirmation, :remember_me]

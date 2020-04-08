@@ -23,10 +23,15 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   before_create :set_token
-  after_create :send_mail_after_sign_up
+  after_create :send_mail_after_sign_up, unless: :check_admin?
 
   def set_token
+    return if check_admin?
     self.token = SecureRandom.hex
+  end
+
+  def check_admin?
+    self.is_a?(Admin)
   end
 
   def send_mail_after_sign_up
