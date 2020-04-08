@@ -4,7 +4,6 @@ class Buyers::ItemInfoController < Buyers::BaseController
   before_action :set_item_info, only: %i[edit update]
 
   def new
-    return redirect_to root_path if @item_request.item_info.present?
     return redirect_to root_path, flash: {alert: I18n.t('messages.cannot_register_because_the_item_already_exists')} if @item_request.item_info.present?
 
     @item_info = ItemInfo.new()
