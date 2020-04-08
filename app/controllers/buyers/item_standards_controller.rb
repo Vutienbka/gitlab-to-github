@@ -27,13 +27,16 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def edit
+    if @item_standard.standard_categories[0].file_standard.file_link.blank?
+      return redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
+    end
   end
 
   def update
     if @item_standard.update(item_standard_params)
       flash[:success] = I18n.t('update.success')
       @item_request.update_attribute(:status, 6)
-      redirect_to buyers_item_quality_index_path(item_request_id: @item_request.id)
+      redirect_to buyers_item_conditions_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
       # TODO:: redirect to edit next page
     end

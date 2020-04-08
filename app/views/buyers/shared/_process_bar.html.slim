@@ -41,7 +41,7 @@
       p
         | 基準
       .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 5}"
-      a href="#{ number_request.to_i >= 5 ? buyers_item_standards_path(item_request_id: params[:item_request_id]) : '#' }"
+      a href="#{ number_request.to_i >= 5 ? edit_buyers_item_standards_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('standard') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('standard') && number_request.to_i >= 6 ? 'btn-circle-green' : '' }"
           | 5
