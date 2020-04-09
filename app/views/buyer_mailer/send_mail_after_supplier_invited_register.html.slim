@@ -1,22 +1,23 @@
-= stylesheet_link_tag 'users/email_register_item'
-.content
-  .title
-    span
-      | NEWJIロゴ
-      span
-  .supplier-form
-    .text-form
-      p #{@buyer.profile&.full_name}様
-      p
-        | #{@supplier.profile&.company_name}社の#{@supplier.profile&.full_name}様から、
-        br/
-        | 調達購買システム「NEWJI」のサプライヤー登録完了通知が​
-        br/
-        | #{@buyer.profile&.full_name}様宛に届きました。​
-      p 引き続き、下記よりアイテム登録を完了してください。​
-    .button-register
-      a href="#{register_item_buyers_url}" 
-        button.btn アイテム登録​
-  .newJi
-    a href="#{root_url}" 
-      button.btn NEWJIとは​
+.content-mail style="margin: 50px 0; font-size: 14px;"
+  .title style="text-align:center;padding-bottom: 35px"
+    = image_tag("logo_txt.png")
+  .border-mail style="background: #ff9b9b;width: 410px;padding: 25px;margin: auto;"
+    .text-mail style="padding-bottom: 30px;"
+      | #{@buyer.profile&.full_name} 様
+    .text-mail
+      |  #{@supplier.profile&.company_name}社の#{@supplier.profile&.full_name} 様から、
+    .text-mail
+      | 調達購買システム「NEWJI」のサプライヤー登録完了通知が
+    .text-mail style="padding-bottom: 30px;"
+      | #{@buyer.profile&.full_name}様宛に届きました。
+    .text-mail style="padding-bottom: 20px;"
+      | 引き続き、下記よりアイテム登録を完了してください。
+    .submit style="margin: auto;padding: 30px 0;width: 200px;"
+        = link_to register_item_buyers_url do
+          button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
+            | アイテム登録​
+  .submit-newji style="margin: auto;padding-top: 20px;width: 200px;"
+    = link_to root_url do
+      button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
+        | NEWJIとは
+        
