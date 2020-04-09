@@ -12,8 +12,8 @@
   border-radius: 10px;
   text-align: center;
 }
-.bor-buttom {
-  border: 1px solid;
+.border-button {
+  border: 0px solid;
   border-radius: 15px;
 }
 
@@ -101,7 +101,7 @@
   font-size:18px;
 }
 
-.menu .nav-text {
+.menu .nav-text, .nav-btn, .nav-btn-height {
   padding: 5px;
   text-align: center;
   position:relative;
@@ -111,6 +111,14 @@
   font-family: 'Titillium Web', sans-serif;
 }
 
+//TODO make gradient button
+// .menu .nav-btn, .nav-btn-height{
+//   background: linear-gradient(to bottom, #78e468, #5c8531);
+// }
+
+.menu .nav-btn-height{
+  height: 45px;
+}
 .menu>ul.logout {
   position:absolute;
   left:0;
