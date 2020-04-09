@@ -48,9 +48,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :requests, only: %i[create] do
-    end
-
     resources :item_requests, only: %i[create] do
     end
 

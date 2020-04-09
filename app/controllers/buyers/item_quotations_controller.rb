@@ -5,8 +5,7 @@ class Buyers::ItemQuotationsController < Buyers::BaseController
   end
 
   def send_mailer_quotation
-    @request = Request.find_by(id: "#{@item_request.request_id}")
-    @supplier = Supplier.find_by(id: "#{@request.supplier_id}")
+    @supplier = Supplier.find_by(id: "#{@item_request.supplier_id}")
     email = @supplier
     buyer = current_user
     @item_request.update_attribute(:status, 9) if ItemRequest::STATUSES[@item_request.status.to_sym] < 9
@@ -16,6 +15,6 @@ class Buyers::ItemQuotationsController < Buyers::BaseController
   private
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.buyer_id == current_user.id
   end
 end

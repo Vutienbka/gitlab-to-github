@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_102249) do
+ActiveRecord::Schema.define(version: 2020_04_09_083645) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -235,7 +235,9 @@ ActiveRecord::Schema.define(version: 2020_04_08_102249) do
   end
 
   create_table "item_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "依頼テーブル", force: :cascade do |t|
-    t.bigint "request_id", null: false, comment: "項目Id"
+    t.bigint "buyer_id"
+    t.bigint "buyer_supplier_id"
+    t.bigint "supplier_id"
     t.bigint "item_info_id", comment: "項目情報Id"
     t.bigint "item_draw_id"
     t.bigint "item_image_id"
@@ -257,7 +259,6 @@ ActiveRecord::Schema.define(version: 2020_04_08_102249) do
     t.index ["item_info_id"], name: "fk_request_item_info_idx"
     t.index ["item_sample_id"], name: "fk_item_request_item_sample1_idx"
     t.index ["quality_id"], name: "fk_item_quality_item_request1_idx"
-    t.index ["request_id"], name: "fk_item_request_request1_idx"
   end
 
   create_table "item_samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目サンプルテーブル", force: :cascade do |t|

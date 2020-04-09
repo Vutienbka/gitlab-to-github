@@ -5,7 +5,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
 
   def new
     return redirect_to root_path, flash: {alert: I18n.t('messages.cannot_register_because_the_item_already_exists')} if @item_request.item_info.present?
-
+    
     @item_info = ItemInfo.new()
   end
 
@@ -28,7 +28,10 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   def update
-    return redirect_to edit_buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('update.success') } if @item_info.update(item_info_params)
+    if @item_info.update(item_info_params)
+      @item_request.update_attributes(item_info_id: @item_info.id, status: 2) if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
+      return redirect_to edit_buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('update.success') } 
+    end
 
     flash.now[:alert] = I18n.t('update.failed')
     render :edit
@@ -38,7 +41,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
 
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.buyer_id == current_user.id
   end
 
   def set_item_info

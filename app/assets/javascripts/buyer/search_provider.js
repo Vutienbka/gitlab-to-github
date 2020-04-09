@@ -19,7 +19,7 @@ $(document).ready(function() {
             $('#search').val(name);
             let id = $(this).attr('id').replace('email_user_','');
             let url = window.location.origin;
-            $("#link_to_href").attr("href", url+ "/buyers/requests?supplier_id=" + id);
+            $("#link_to_href").attr("href", url+ "/buyers/item_requests?supplier_id=" + id);
           });
         }
     });

@@ -59,7 +59,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
 
-    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.request&.buyer == current_user
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.buyer_id == current_user.id
   end
 
   def set_item_drawing
