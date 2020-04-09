@@ -23,9 +23,9 @@ $('.dropzone').each(function(){
       var myDropzone = this;
 
       $(".continue-btn").on("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
         if (myDropzone.getQueuedFiles().length > 0) {
+          e.preventDefault();
+          e.stopPropagation();
           myDropzone.processQueue();
           return;
         }
@@ -36,7 +36,6 @@ $('.dropzone').each(function(){
       });
       this.on("addedfile", function(file) {
         dropzone_uploaded_file(id);
-        check_dropzone_length();
 
         // Prevent upload duplicate files
         if (this.files.length) {
@@ -53,7 +52,6 @@ $('.dropzone').each(function(){
       this.on("removedfile", function(file) {
         if (myDropzone.files.length <= 0) {
           dropzone_no_file_upload(id);
-          check_dropzone_length();
         }
       });
       this.on("successmultiple", function(files, response) {
@@ -73,15 +71,3 @@ function dropzone_uploaded_file(id) {
   $("#dropzone_no_file_upload" + id).css("display", "none");
   $("#dropzone_file_uploaded" + id).css("display", "block");
 }
-
-function check_dropzone_length() {
-  if($('#dropzone_file_uploaded0').is(':visible') || $('#dropzone_file_uploaded1').is(':visible')) {
-    $("#btnSubmit").removeAttr('disabled');
-  } else {
-    $("#btnSubmit").attr('disabled', 'disabled');
-  }
-}
-
-$(document).ready(function() {
-  $("#btnSubmit").attr('disabled', 'disabled');
-});

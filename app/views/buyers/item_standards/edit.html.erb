@@ -26,9 +26,6 @@
                   <%= fc.hidden_field :id %>
                   <% if fc.index == 0 %>
                     <div class="col-md-12 image-input-head">
-                      <div class="image-require-label">
-                        <label>必須</label>
-                      </div>
                       <div class="image-title-label">
                         <label>
                           <%= I18n.t('messages.please_upload_test_criteria_for_the_item') %>
@@ -110,7 +107,6 @@
       },
       init: function() {
         var myDropzone = this;
-        check_dropzone_length();
 
         $(".continue-btn").on("click", function(e) {
           if (myDropzone.getQueuedFiles().length > 0) {
@@ -122,7 +118,6 @@
         });
         this.on("addedfile", function(file) {
           dropzone_uploaded_file(id);
-          check_dropzone_length();
 
           // Prevent upload duplicate files
           if (this.files.length) {
@@ -139,7 +134,6 @@
         this.on("removedfile", function(file) {
           if (myDropzone.files.length <= 0) {
             dropzone_no_file_upload(id);
-            check_dropzone_length();
           }
 
           var _ref,
@@ -210,16 +204,4 @@
     $("#dropzone_no_file_upload" + id).css("display", "none");
     $("#dropzone_file_uploaded" + id).css("display", "block");
   }
-
-  function check_dropzone_length() {
-    if($('#dropzone_no_file_upload0').is(':visible')) {
-      $("#btnSubmit").attr('disabled', 'disabled');
-    } else {
-      $("#btnSubmit").removeAttr('disabled');
-    }
-  }
-
-  $(document).ready(function() {
-    $("#btnSubmit").attr('disabled', 'disabled');
-  });
 </script>
