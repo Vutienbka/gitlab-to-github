@@ -49,7 +49,7 @@
       p
         | 条件
       .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 6}"
-      a href="#{ number_request.to_i >= 6 ? buyers_item_conditions_path(item_request_id: params[:item_request_id]) : '#' }"
+      a href="#{ number_request.to_i >= 6 ? edit_buyers_item_conditions_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle.btn-red-condition class="#{check_params_controller_action('condition') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('condition') && number_request.to_i >= 7 ? 'btn-circle-green' : '' }"
           | 6

@@ -104,9 +104,11 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :item_conditions, only: %i[create] do
+    resources :item_conditions, only: %i[create update] do
       collection do
         get :new
+        get :edit
+        delete :destroy_condition
       end
     end
     resources :item_quotations do
