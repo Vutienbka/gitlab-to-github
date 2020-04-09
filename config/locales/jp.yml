@@ -87,3 +87,6 @@ ja:
     please_wait_for_supplier_registration: 'サプライヤーのご登録をお待ちください'
     email_already_exists: 'メールが既に存在しています。'
     cannot_register_because_the_item_already_exists: 'アイテムが既に存在しているために登録できません。'
+  unauthorized:
+    manage:
+      all: 'アクセス権限がありません。'

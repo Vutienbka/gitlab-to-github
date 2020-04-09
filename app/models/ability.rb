@@ -10,6 +10,10 @@ class Ability
     else
       can :manage, :all
       cannot :manage, [:rails_admin, :dashboard]
+
+      if user.is_a?(Supplier)
+        cannot :manage, [Buyer]
+      end
     end
   end
 end
