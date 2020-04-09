@@ -37,6 +37,18 @@ $('.dropzone').each(function(){
       this.on("addedfile", function(file) {
         dropzone_uploaded_file(id);
         check_dropzone_length();
+
+        // Prevent upload duplicate files
+        if (this.files.length) {
+          var i, len, pre;
+          for (i = 0, len = this.files.length; i < len - 1; i++) {
+            if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+              alert("このファイル" + file.name + "が既に存在しています。");
+              this.removeFile(file);
+              return (pre = file.previewElement) != null ? pre.parentNode.removeChild(file.previewElement) : void 0;
+            }
+          }
+        }
       });
       this.on("removedfile", function(file) {
         if (myDropzone.files.length <= 0) {
