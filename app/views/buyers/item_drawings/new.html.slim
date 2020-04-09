@@ -43,9 +43,8 @@
                                 .modal-footer
                                   button.btn.btn-secondary[type="button" data-dismiss="modal"]
                                     | Close
-                          - if ['製品仕様図（2D）', '製品仕様図（3D）'].include?(fc.object.name)
-                            .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"
-                              | ファイルをまだアップロードされていません。
+                          .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"
+                            | ファイルをまだアップロードされていません。
                           .dropzone-alert.text-success.mt-2 id="dropzone_alert#{fc.index}"
                             | ファイルアップロードが完了しました。
                 .drawings-2d-title.mt-3 アイテムに関連する3D図面を全てアップロードしてください（複数可）

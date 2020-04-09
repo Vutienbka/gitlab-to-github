@@ -3,18 +3,9 @@
 class Buyers::ItemStandardsController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit update]
-  before_action :set_item_standard, only: %i[create edit update]
+  before_action :set_item_standard, only: %i[new create edit update]
 
   def new
-    @item_standard = ItemStandard.find_or_create_by(item_request_id: @item_request&.id)
-    
-    if @item_standard.standard_categories.blank?
-      StandardCategory::TYPES.each do |name|
-        @item_standard.standard_categories.build(name: name).build_file_standard
-      end
-    end
-
-    @item_standard.save
   end
 
   def create
@@ -27,9 +18,6 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def edit
-    if @item_standard.standard_categories[0].file_standard.file_link.blank?
-      return redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
-    end
   end
 
   def update
@@ -50,7 +38,14 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def set_item_standard
-    @item_standard = ItemStandard.find_by(item_request_id: @item_request.id)
+    @item_standard = ItemStandard.find_or_create_by(item_request_id: @item_request&.id)
+    
+    if @item_standard.standard_categories.blank?
+      StandardCategory::TYPES.each do |name|
+        @item_standard.standard_categories.build(name: name).build_file_standard
+      end
+      @item_standard.save
+    end
   end
 
   def item_standard_params

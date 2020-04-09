@@ -23,9 +23,6 @@ class Buyers::ItemImagesController < Buyers::BaseController
   end
 
   def edit
-    if @item_image.image_categories[0].file_image.file_link.blank?
-      return redirect_to buyers_item_images_path(item_request_id: @item_request.id)
-    end
   end
 
   def update

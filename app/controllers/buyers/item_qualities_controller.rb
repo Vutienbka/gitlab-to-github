@@ -3,10 +3,9 @@
 class Buyers::ItemQualitiesController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit update]
-  before_action :set_item_quality, only: %i[create edit update]
+  before_action :set_item_quality, only: %i[new create edit update]
 
   def new
-    @item_quality = ItemQuality.find_or_create_by(item_request_id: @item_request&.id)
   end
 
   def create
@@ -22,17 +21,6 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
   end
 
   def edit
-    if @item_quality.quality1 == 0 && @item_quality.quality2 == 0 && 
-      @item_quality.quality3 == 0 && @item_quality.quality4 == 0 && 
-      @item_quality.quality5 == 0 && @item_quality.quality6 == 0 && 
-      @item_quality.quality7 == 0 && @item_quality.quality8 == 0 && 
-      @item_quality.quality9 == 0 && @item_quality.quality10 == 0 && 
-      @item_quality.quality11 == 0 && @item_quality.quality12 == 0 && 
-      @item_quality.quality13 == 0 && @item_quality.quality14 == 0 && 
-      @item_quality.quality15 == 0 && @item_quality.quality16 == 0
-
-      redirect_to buyers_item_qualities_path(item_request_id: @item_request.id)
-    end
   end
 
   def update
@@ -57,7 +45,7 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
   end
 
   def set_item_quality
-    @item_quality = ItemQuality.find_by(item_request_id: @item_request.id)
+    @item_quality = ItemQuality.find_or_create_by(item_request_id: @item_request.id)
   end
 
   def item_quality_params

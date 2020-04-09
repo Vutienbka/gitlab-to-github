@@ -79,7 +79,8 @@ function dropzone_uploaded_file(id) {
 }
 
 function check_dropzone_length() {
-  if($('#dropzone_alert0').is(':visible') && $('#dropzone_alert3').is(':visible')) {
+  if(($('#dropzone_alert0').is(':visible') || $('#dropzone_alert1').is(':visible') || $('#dropzone_alert2').is(':visible')) &&
+      ($('#dropzone_alert3').is(':visible') || $('#dropzone_alert4').is(':visible') || $('#dropzone_alert5').is(':visible'))) {
     $("#btnSubmit").removeAttr('disabled');
   } else {
     $("#btnSubmit").attr('disabled', 'disabled');

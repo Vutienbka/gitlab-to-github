@@ -40,9 +40,6 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def edit
-    if @item_drawing.draw_categories[0].file_draw.file_link.blank? && @item_drawing.draw_categories[3].file_draw.file_link.blank?
-      return redirect_to buyers_item_drawings_path(item_request_id: @item_request.id)
-    end
   end
 
   def update
