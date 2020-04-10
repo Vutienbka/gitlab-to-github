@@ -5,13 +5,12 @@ class Buyers::ItemInfoController < Buyers::BaseController
 
   def new
     return redirect_to root_path, flash: {alert: I18n.t('messages.cannot_register_because_the_item_already_exists')} if @item_request.item_info.present?
-    
-    @item_info = ItemInfo.new()
+
+    @item_info = @item_request.build_item_info
   end
 
   def create
-    @item_info = ItemInfo.new(item_info_params)
-    @item_info.item_request_id = params[:item_request_id]
+    @item_info = @item_request.build_item_info(item_info_params)
     begin
       ActiveRecord::Base.transaction do
         @item_info.save!
@@ -40,12 +39,13 @@ class Buyers::ItemInfoController < Buyers::BaseController
   private
 
   def set_item_request
-    @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.buyer_id == current_user.id
+    @item_request = current_user.item_requests.find_by(id: params[:item_request_id])
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} if @item_request.blank?
   end
 
   def set_item_info
-    @item_info = ItemInfo.find_by(item_request_id: params[:item_request_id])
+    @item_info = @item_request.item_info
+    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} if @item_info.blank?
   end
 
   def item_info_params

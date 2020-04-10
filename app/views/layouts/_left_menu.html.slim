@@ -22,7 +22,7 @@
       = link_to register_item_buyers_path
         span.nav-btn-height
           |  アイテム登録​
-        - if @item_requests_quantity.present?
+        - if @item_requests_quantity.present? && @item_requests_quantity > 0
           .badges-cricle
             span
               = @item_requests_quantity
