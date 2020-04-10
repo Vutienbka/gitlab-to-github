@@ -83,9 +83,9 @@ ja:
     please_register_item_criteria: 'アイテムの基準を登録してください'
     please_upload_test_criteria_for_the_item: 'アイテムの試験基準をアップロードしてください（複数可）​'
     upload_item_inspection_criteria: 'アイテムの検査基準をアップロードしてください（複数可）'
-    no_authenticated : '認証に失敗しました。'
+    no_authenticated : 'アクセスに許可していません。'
     please_wait_for_supplier_registration: 'サプライヤーのご登録をお待ちください'
-    email_already_exists: 'メールが既に存在しています。'
+    email_already_exists: 'サプライヤ―のメールが既に存在しています。'
     cannot_register_because_the_item_already_exists: 'アイテムが既に存在しているために登録できません。'
   unauthorized:
     manage:
