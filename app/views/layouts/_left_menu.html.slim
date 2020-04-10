@@ -1,0 +1,71 @@
+= stylesheet_link_tag 'templates/left_menu'
+= javascript_include_tag 'buyer/home', 'buyer/menu'
+
+.left-menu
+  nav.menu
+    ul
+      li
+        div
+          span.nav-text.lef-menu-name-app[style="text-align: left; padding-bottom: 0px;"]
+            = image_tag("logo.png", {:style=>"width: 30px; height: 30px; padding: 6px;"})
+            | NEWJI
+        div
+          a#closeNav[href="javascript:void(0)"]
+            i#btn-toggle-left-menu.fa.fa-bars
+    i.fa.fa-home.fa-2x[style="color: WHITESMOKE; padding: 0px; display: none;"]
+
+    = hidden_field_tag 'data', "#{@date}"
+
+    #datepicker-left-menu
+
+    li.has-subnav
+      = link_to register_item_buyers_path
+        span.nav-btn-height
+          |  アイテム登録​
+        - if @item_requests_quantity.present?
+          .badges-cricle
+            span
+              = @item_requests_quantity
+    li.has-subnav
+      a[href="#"]
+        span.nav-btn
+          |  受発注​
+    li.has-subnav
+      a[href="#"]
+        span.nav-btn
+          |  クレーム​
+    li
+      a[href="#"]
+        span.nav-btn
+          |  サンプル​
+    li
+      a[href="#"]
+        span.nav-btn
+          |  取引先​
+    li
+      a[href="#"]
+        span.nav-btn-height
+          |  マイカタログ​
+    .row.parent-of-block-btn
+      .col-md.mr-3.border-button
+        a[href="#"]
+          span.nav-text
+            |  品質
+      .col-md.border-button
+        a[href="#"]
+          span.nav-text
+            |  コスト
+    .row.parent-of-block-btn
+      .col-md.mr-3.border-button
+        a[href="#"]
+          span.nav-text
+            |  納期
+      .col-md.border-button
+        a[href="#"]
+          span.nav-text
+            |  書類
+    .invite-button
+      = link_to invite_unregisted_supplier_buyers_path
+        button.btn[style="background-color:black"]
+          p[style="color: white"]
+            | NEWJIに招待​

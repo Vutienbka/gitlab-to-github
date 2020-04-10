@@ -250,6 +250,22 @@ nav ul,nav li {
 .sider-full {
   height: calc(100vh - 821px);
 }
+
+.badges-cricle {
+  border: 1px solid #ff907c;
+  width: 2.3em;
+  border-radius: 50%;
+  text-align: center;
+  background: #ff907c;
+  position: absolute;
+  top: 10%;
+  right: 4%;
+  height: 2.3em;
+  span {
+    font-size: 20px;
+  }
+}
+  
 @media screen and (max-width: 1450px) {
   .sider-full {
     height: calc(100vh - 746px);
