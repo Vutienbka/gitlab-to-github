@@ -19,13 +19,4 @@
       | 電話番号：#{@inspect_tel}
     .text-mail style="padding-bottom: 30px;"
       | #{@buyer.profile&.company_name}社の調達購買先に信用調査結果をご送信してお願い致します。
-    .text-mail style="padding-bottom: 20px;"
-      | 引き続き、下記よりアイテム登録を完了してください。
-    .submit style="margin: auto;padding: 30px 0;width: 200px;"
-        = link_to register_item_buyers_url do
-          button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
-            | アイテム登録
-  .submit-newji style="margin: auto;padding-top: 20px;width: 200px;"
-    = link_to root_url do
-      button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
-        | NEWJIとは
+      
