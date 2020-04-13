@@ -1,5 +1,6 @@
 class BuyerMailer < ActionMailer::Base
   default from: 'from@example.com'
+  add_template_helper(EmailHelper)
 
   def send_mail_invite_unregisted_supplier(params, buyer)
     @supplier_email = params[:invite][:email]

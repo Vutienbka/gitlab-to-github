@@ -2,4 +2,4 @@
   - if @search_suppliers.present?
     - @search_suppliers.each do |supplier|
       .email-user id="email_user_#{supplier.id}"
-        | #{supplier.profile.code} : #{supplier.profile.company_name}
+        | #{supplier.profile.code} : #{supplier.profile.first_name}
