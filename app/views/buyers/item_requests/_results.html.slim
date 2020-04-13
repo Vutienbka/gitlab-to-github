@@ -2,7 +2,8 @@
   - @search_name.each do |item_request|
     tr
       td
-        = item_request.id
+        = link_to edit_buyers_item_info_index_path(item_request) do
+          = item_request.id
       td
         = I18n.t("activerecord.attributes.request.request_status.#{item_request.status}")
       td
@@ -22,7 +23,7 @@
       td
         = item_request.updated_at.to_date
       td
-        = link_to '#' do
+        = link_to buyers_item_request_path(item_request), method: 'delete' do
           .btn.btn-delete
             | 削除
 - else

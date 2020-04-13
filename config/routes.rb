@@ -48,7 +48,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_requests, only: %i[create] do
+    resources :item_requests, only: %i[create destroy] do
       collection do
         get :index
       end
