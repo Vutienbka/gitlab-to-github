@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
  
   def after_sign_in_path_for(resource)
     return buyers_profiles_path if current_user.profile.blank?
-    root_path
+    stored_location_for(resource) || root_path
   end
 
   def after_sign_out_path_for(resource)
