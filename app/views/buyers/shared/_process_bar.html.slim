@@ -34,8 +34,8 @@
         | 品質
       .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 4}"
       a href="#{ number_request.to_i >= 4 ? edit_buyers_item_qualities_path(item_request_id: params[:item_request_id]) : '#' }"
-        .btn-circle class="#{check_params_controller_action('quality') ? 'btn-circle-red' : ''} 
-          #{ !check_params_controller_action('quality') && number_request.to_i >= 5 ? 'btn-circle-green' : '' }"
+        .btn-circle class="#{check_params_controller_action('item_qualities') ? 'btn-circle-red' : ''} 
+          #{ !check_params_controller_action('item_qualities') && number_request.to_i >= 5 ? 'btn-circle-green' : '' }"
           | 4
     .stepwizard-step
       p

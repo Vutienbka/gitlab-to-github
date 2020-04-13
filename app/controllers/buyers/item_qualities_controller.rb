@@ -11,24 +11,26 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
   def create
     ActiveRecord::Base.transaction do
       @item_quality.update(item_quality_params)
+      @item_quality.save
       @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
       flash[:success] = I18n.t('create.success')
-      return redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
+      redirect_to edit_buyers_item_standards_path(item_request_id: @item_request.id)
     rescue StandardError
       flash[:alert] = I18n.t('create.failed')
       render :new
     end
   end
 
-  def edit
+  def edit 
   end
 
   def update
     ActiveRecord::Base.transaction do
       @item_quality.update(item_quality_params)
+      @item_quality.save
       @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
       flash[:success] = I18n.t('update.success')
-      return redirect_to edit_buyers_item_standards_path(item_request_id: @item_request.id)
+      redirect_to edit_buyers_item_standards_path(item_request_id: @item_request.id)
     rescue StandardError
       flash[:alert] = I18n.t('update.failed')
       render :new
@@ -43,7 +45,7 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
   end
 
   def set_item_quality
-    @item_quality = ItemQuality.find_or_create_by(item_request_id: @item_request.id)
+    @item_quality = ItemQuality.find_or_initialize_by(item_request_id: @item_request.id)
   end
 
   def item_quality_params
