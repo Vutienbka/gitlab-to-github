@@ -57,7 +57,7 @@
       p
         | サンプル
       .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 7}"
-      a href="#{ number_request.to_i >= 7 ? sample_input_buyers_path(item_request_id: params[:item_request_id]) : '#' }"
+      a href="#{ number_request.to_i >= 7 ? buyers_item_samples_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('sample') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('sample') && number_request.to_i >= 8 ? 'btn-circle-green' : '' }"
           | 7

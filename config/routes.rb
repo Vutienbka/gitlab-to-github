@@ -74,7 +74,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_drawings, only: %i[create update] do
+    resources :item_samples, only: %i[create] do
+      collection do
+        get :new
+      end
+    end
+
+    resources :item_drawings, only: %i[create update destroy] do
       collection do
         get :new
         get :edit
