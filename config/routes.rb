@@ -49,6 +49,9 @@ Rails.application.routes.draw do
     end
 
     resources :item_requests, only: %i[create] do
+      collection do
+        get :index
+      end
     end
 
     resources :item_info, only: %i[create update] do

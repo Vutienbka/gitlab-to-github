@@ -1,0 +1,42 @@
+= stylesheets 'buyer/list_item_request'
+= javascripts 'buyer/item_request'
+
+.container-item
+  .title-item
+    | リストアイテム
+  .content-item
+    .search-item
+      = search_form_for(@item_requests, url: buyers_item_requests_path, remote: true) do |f|
+        = text_field_tag :search, nil, placeholder:"検索​"  , autocomplete:"off"
+        i.fa.fa-search
+    .table-item-list
+      .table-responsive
+        table.table.table-bordered
+          thead
+            tr
+              th
+                | 番号
+              th
+                | 進捗状態
+              th
+                | 商品コード（SKU）
+              th
+                | アイテム名称
+              th
+                | カテゴリ１
+              th
+                | 単価
+              th
+                | 販売予測量（年間）
+              th
+                | リードタイム
+              th
+                | 最終更新者
+              th
+                | 最終更新日
+              th
+                | 削除
+              tbody#list_items           
+                = render "buyers/item_requests/results"
+    .page-item.row
+      = paginate(@search_name)

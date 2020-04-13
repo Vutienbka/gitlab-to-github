@@ -76,6 +76,20 @@ html, body {
 button {
   outline: none !important;
 }
+input {
+  outline: none !important;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.page-link {
+  color: lightgreen
+}
+.page-link:hover {
+  color: black
+}
 @media screen and ( max-width: 1300px ) {
   .sidebar {
     width: 20%;

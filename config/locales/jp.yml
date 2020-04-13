@@ -55,19 +55,35 @@ ja:
   destroy:
     success: '案件を削除しました'
     failed: '削除できませんでした。'
+  views:
+    pagination:
+      first: "最初へ"
+      last: "最後へ"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
   activerecord:
     attributes:
       request:
         request_status:
-          information: '情報'
-          draw: '図面'
-          image: '画像'
-          quality: '品質'
-          standard: '基準'
-          condition: '条件'
-          sample: 'サンプル'
-          estimate: '見積'
-          low_cost: '原低'
+          information: '情報作成中'
+          draw: '図面作成中'
+          image: '画像作成中'
+          quality: '品質作成中'
+          standard: '基準作成中'
+          condition: '条件作成中'
+          sample: 'サンプル作成中'
+          estimate: '見積作成中'
+          low_cost: '原低作成中'
       inspection_requests:
         request_type:
           ordinary: '普通'

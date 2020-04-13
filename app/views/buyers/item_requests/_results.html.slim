@@ -1,0 +1,30 @@
+- if @search_name.present?
+  - @search_name.each do |item_request|
+    tr
+      td
+        = item_request.id
+      td
+        = I18n.t("activerecord.attributes.request.request_status.#{item_request.status}")
+      td
+        = item_request.item_info&.SKU
+      td
+        = item_request.item_info&.name
+      td
+        = item_request.item_info&.category1
+      td
+        = item_request.item_info&.cost
+      td
+        = item_request.item_info&.expected_sales_volume
+      td
+        = item_request.item_info&.lead_time
+      td
+        = item_request.updater
+      td
+        = item_request.updated_at.to_date
+      td
+        = link_to '#' do
+          .btn.btn-delete
+            | 削除
+- else
+  .result-nill
+    | アイテムはありません
