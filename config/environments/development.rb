@@ -44,6 +44,8 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_controller.asset_host = 'http://localhost:3000'
+  config.action_mailer.asset_host = config.action_controller.asset_host
   # Config letter opener
   # config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
