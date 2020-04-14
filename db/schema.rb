@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_083645) do
+ActiveRecord::Schema.define(version: 2020_04_12_141538) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.bigint "buyer_id"
     t.bigint "buyer_supplier_id"
     t.bigint "supplier_id"
+    t.string "status"
     t.bigint "item_info_id", comment: "項目情報Id"
     t.bigint "item_draw_id"
     t.bigint "item_image_id"
@@ -253,7 +254,6 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.string "status"
     t.index ["item_draw_id"], name: "fk_item_drawing_item_request1_idx"
     t.index ["item_image_id"], name: "fk_item_request_item_image1_idx"
     t.index ["item_info_id"], name: "fk_request_item_info_idx"
@@ -263,8 +263,15 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
 
   create_table "item_samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目サンプルテーブル", force: :cascade do |t|
     t.bigint "item_request_id"
-    t.bigint "category_id", comment: "項目サンプルファイルId"
     t.string "info", limit: 2000, comment: "項目サンプル説明情報"
+    t.bigint "sample_category1_id"
+    t.integer "category_type1", limit: 1
+    t.bigint "sample_category2_id"
+    t.integer "category_type2", limit: 1
+    t.bigint "sample_category3_id"
+    t.integer "category_type3", limit: 1
+    t.bigint "sample_category4_id"
+    t.integer "category_type4", limit: 1
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
@@ -283,6 +290,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "プロバイダー詳細テーブル", force: :cascade do |t|
+    t.integer "admin_id"
     t.bigint "buyer_id"
     t.bigint "supplier_id"
     t.bigint "buyer_supplier_id"
@@ -301,7 +309,6 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.integer "admin_id"
   end
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "依頼テーブル", force: :cascade do |t|
@@ -342,6 +349,8 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
+    t.bigint "user_id", comment: "ユーザId"
+    t.integer "type"
     t.string "title", limit: 45
     t.datetime "occur_date", comment: "イベント日"
     t.string "content", limit: 2000, comment: "イベント内容"
@@ -352,7 +361,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.integer "user_id"
+    t.index ["user_id"], name: "fk_user_calendar_users1_idx"
   end
 
   create_table "user_invites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -375,6 +384,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.integer "accept_flg", comment: "利用規約"
     t.integer "antiforce_flg", comment: "反社会勢力"
     t.string "access_IP", limit: 45
+    t.string "token"
     t.string "reset_password_token"
     t.timestamp "reset_password_sent_at"
     t.timestamp "remember_created_at", default: -> { "CURRENT_TIMESTAMP" }
@@ -383,7 +393,6 @@ ActiveRecord::Schema.define(version: 2020_04_09_083645) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.string "token"
     t.index ["email", "reset_password_token"], name: "mail_password_reset_token_UNIQUE", unique: true
     t.index ["email"], name: "mail_idx"
   end
