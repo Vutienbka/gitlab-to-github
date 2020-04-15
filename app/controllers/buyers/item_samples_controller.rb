@@ -10,7 +10,7 @@ class Buyers::ItemSamplesController < Buyers::BaseController
   def create
     ActiveRecord::Base.transaction do
       @item_sample.update(item_sample_params)
-      @item_request.update_attribute(:status, 8)
+      @item_request.update_attribute(:status, 7) if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
       flash[:success] = I18n.t('create.success')
       return redirect_to new_buyers_item_quotation_path(item_request_id: @item_request.id)
     rescue StandardError

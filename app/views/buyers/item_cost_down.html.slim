@@ -1,36 +1,40 @@
-= stylesheets 'users/cost_down_item'
+= stylesheets 'buyer/cost_down_item'
 
 .container-user
   .contents
-    .container-fluid
+    .container-cost
       .mobile-process-title
       .process-head
         = render  'buyers/shared/process_bar'
       .main
         .content-table-title アイテムのコストダウンを自動化してください​
-        .content-table
-          .description-zone
-            .description
-          .infos
-            .container
+        .border-content
+          .content-table
+            .description-zone
+              .description
+            .infos
               .title
-                p.p-1
-                  label for="tag" 必読​
-                  | 登録したアイテムを、選択したサプライヤー以外で、コストダウンを進める​​
-              .title
-                p.p-2
+                .title-flex
+                  .input-label
+                    | 必須
+                  .text
+                    | 登録したアイテムを、選択したサプライヤー以外で、コストダウンを進める​​
+              .title-2
+                .title-2-1
                   | 自動化は「NEWJI」をクリックしてください​
-                  br/
+                .title-2-2
                   | NEWJI AIがコストダウン可能なベストサプライヤーと御見積を提案します​
-              .group-button
-                a href='#'
-                  button#btn-1.btn.default.button
-                    | NEWJI​
-                a href='#'
-                  button#btn-2.btn.default.button
-                    | 自動化しない​
+              .group-button.row
+                .sbmit-1.col
+                  = link_to "#" do
+                    button.btn.btn-red
+                      | NEWJI​
+                .sbmit-2.col
+                  = link_to "#" do
+                    button.btn.btn-warning
+                      | 自動化しない​
               
               .continue-btn
                 = link_to root_path do
-                  button type="submit"  続行​
-                  
+                  button.btn type="submit"  続行​
+                    

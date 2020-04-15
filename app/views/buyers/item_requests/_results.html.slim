@@ -2,7 +2,7 @@
   - @search_name.each do |item_request|
     tr
       td
-        = link_to edit_buyers_item_info_index_path(item_request) do
+        = link_to edit_buyers_item_info_index_path(item_request_id: item_request.id) do
           = item_request.id
       td
         = I18n.t("activerecord.attributes.request.request_status.#{item_request.status}")

@@ -274,18 +274,38 @@ nav ul,nav li {
 }
 
 .badges-cricle {
-  border: 1px solid #ff907c;
+  border: 1px solid #fa1f6c;
   width: 2.3em;
   border-radius: 50%;
   text-align: center;
-  background: #ff907c;
+  background: #fa1f6c;
   position: absolute;
   top: 10%;
   right: 4%;
   height: 2.3em;
+  color: white;
   span {
     font-size: 20px;
   }
+}
+
+.button-sidebar {
+  position: absolute;
+  right: 1px;
+}
+.logo-sidebar {
+  width: 40px;
+  height: 35px;
+}
+.name-newji {
+  color: white;
+  margin-left: 6px;
+  font-weight: 600;
+}
+.avata-newji {
+  margin-left: 3%;
+  display: flex;
+  align-items: center;
 }
   
 @media screen and (max-width: 1450px) {

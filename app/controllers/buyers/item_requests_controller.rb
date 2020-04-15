@@ -3,7 +3,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   before_action :set_item_request, only: %i[index destroy]
 
   def index
-    @item_requests = ItemRequest.includes([:item_info]).all.ransack({ item_info_name_cont: params[:search] })
+    @item_requests = current_user.item_requests.includes([:item_info]).all.ransack({ item_info_name_cont: params[:search] })
     @search_name = @item_requests.result.page(params[:page]).per(20)
   end
 

@@ -1,3 +1,5 @@
+.container-quotation
+  width: 100%
 .modal-body
   text-align: center
   .title-modal
@@ -17,11 +19,6 @@
   display: flex
   position: relative
   height: 100%
-.contents
-  display: flex
-  width: 100%
-  height: 95%
-  box-sizing: border-box
 .process-head
   position: relative
   width: 90%
@@ -33,7 +30,6 @@
 .main
   margin: auto
   width: 90%
-  height: 500px
 .mobile-process-title
   display: none
 
@@ -85,11 +81,11 @@
 .content-table
   background-color: #dae3f3
   position: relative
-  height: 95%
+  display: flex
+  height: auto
 .description-zone
-  float: left
   width: 20%
-  height: 100%
+  height: auto
   padding: 1.2%
 .description
   background-color: #8faadc
@@ -97,7 +93,6 @@
 .infos
   position: relative
   display: flex
-  float: right
   width: 80%
   height: 100%
   padding: 1.2%
@@ -205,10 +200,10 @@
   .logo-quotation
     padding-top: 20px
     width: 100%
-    height: 100%
+    height: 400px
 .submit-quotation
   text-align: center
-  margin-top: 35px
+  padding: 35px 0
 .btn-is
   width: 300px
   background: #92d050
@@ -216,12 +211,6 @@
 @media screen and ( max-width: 1280px  )
   .confirm
     width: 100%
-  .infos
-    width: 70%
-  .description-zone
-    width: 30%
-  .content-table
-    height: 80%
   .content-table-title
     font-size: 1em
   .input-label
@@ -230,7 +219,26 @@
     font-size: 1em
   .continue-btn
     font-size: 1em
+@media screen and ( max-width: 1450px )
+  .loqo-item .logo-quotation
+      height: auto
+@media screen and ( max-width: 1300px )
+  .loqo-item .logo-quotation
+    padding: 30px 0
+  
 @media screen and ( max-width: 1024px  )
+  .content-table-title
+    padding-bottom: 30px
+  .confirm
+    padding-left: 7px
+    height: 45px
+  .input-label
+    background-color: #fe0e00
+    width: 45px
+  .text
+    padding: 4px 4px 4px 7px
+  .loqo-item
+    padding-right: 0
   .process-head
     width: 70%
     margin-left: 6%

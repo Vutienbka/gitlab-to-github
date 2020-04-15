@@ -15,7 +15,8 @@ $(document).ready(function() {
           $( ".email-user" ).click(function() {
             $("#list_email").hide();
             $("#myBtn").attr('disabled', false);
-            let name = $(this).html();
+            // let name = $(this).html();
+            let name = $(this).find('.name-supplier').html()
             $('#search').val(name);
             let id = $(this).attr('id').replace('email_user_','');
             let url = window.location.origin;

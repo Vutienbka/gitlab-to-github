@@ -5,11 +5,14 @@
   nav.menu
     ul
       li
-        div
-          span.nav-text.lef-menu-name-app[style="text-align: left; padding-bottom: 0px;"]
-            = image_tag("logo.png", {:style=>"width: 30px; height: 30px; padding: 6px;"})
-            | NEWJI
-        div
+        .backg-color
+          = link_to buyers_home_index_path, style:"background-color:#212121" do
+            .avata-newji
+              .logo-newji
+                = image_tag("logo.png", class:"logo-sidebar")
+              .name-newji
+                | NEWJI
+        .button-sidebar
           a#closeNav[href="javascript:void(0)"]
             i#btn-toggle-left-menu.fa.fa-bars
     i.fa.fa-home.fa-2x[style="color: WHITESMOKE; padding: 0px; display: none;"]
@@ -34,15 +37,15 @@
       a[href="#"]
         span.nav-btn
           |  クレーム​
-    li
+    li.has-subnav
       a[href="#"]
         span.nav-btn
           |  サンプル​
-    li
+    li.has-subnav
       a[href="#"]
         span.nav-btn
           |  取引先​
-    li
+    li.has-subnav
       a[href="#"]
         span.nav-btn-height
           |  マイカタログ​
