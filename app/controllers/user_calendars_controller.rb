@@ -8,6 +8,7 @@ class UserCalendarsController < ApplicationController
       :occur_time_from,
       :occur_time_to,
       :creator, 
+      :user_id
     )
   end
 
@@ -19,23 +20,21 @@ class UserCalendarsController < ApplicationController
     @user_calendar = UserCalendar.new(user_calendar_params)
     if @user_calendar.save
       flash[:notice] = 'event added'
-      redirect_to new
+      redirect_to buyers_calendar_index_path
     else
       flash[:error] = 'failed'
-      render :new  
+      render :new
     end
   end 
 
-  def edit
+  def show
   end 
 
-  def destroy 
-  end 
 
   private
   def user_calendar_params
     params.require(:user_calendar).permit(
-      :title, :occur_date, :content, :occur_time_from, :occur_time_to, :creator
+      :title, :occur_date, :content, :occur_time_from, :occur_time_to, :creator, :user_id
       )
   end 
 end

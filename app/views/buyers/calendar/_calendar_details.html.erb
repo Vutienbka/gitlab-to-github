@@ -9,15 +9,14 @@
   </div>
   <div class="day_box">
     <div class="day_box-content-calendar">
-        <span>Always deliver more than expected.</span>
-    </div>
-    <div class="day_box-content-calendar">
-      <%= link_to "Add event", new_user_calendar_path(start_date: date) %>
+      <%= link_to "Add event", new_user_calendar_path(start_date: date, user_id: current_user) %>
     </div>
     <% if @user_calendars[date].present? %>
       <% @user_calendars[date].each do |event|%>
         <div class="day_box-content-calendar">
-          <span><%= event.title %></span>
+          <%= link_to "#{event.url}" do %>
+            <span><%= event.title %></span>
+          <% end %>
         </div>
       <% end %>
     <% end %>
