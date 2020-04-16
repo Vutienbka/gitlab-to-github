@@ -16,7 +16,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
 
   def destroy
     @item_request.destroy!
-    flash[:success] = I18n.t('create.success')
+    flash[:success] = I18n.t('destroy.success')
     redirect_to buyers_item_requests_path
   end
 
