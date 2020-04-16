@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     # redirect_to signout_path
   end
 
+  def contract_form
+    @user = current_user
+  end
+
   def input_item_standard
   end
 
