@@ -1,0 +1,3 @@
+$("#swapper_<%= @item_request.id %>").fadeOut();
+$("#flash_message").html("<%=j render partial: 'layouts/flash_messages' %>");
+removeNotification();

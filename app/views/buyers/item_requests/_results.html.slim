@@ -1,6 +1,6 @@
 - if @search_name.present?
   - @search_name.each do |item_request|
-    tr
+    tr[id="swapper_#{item_request.id}"]
       td
         = link_to edit_buyers_item_info_index_path(item_request_id: item_request.id) do
           = item_request.id
@@ -19,12 +19,15 @@
       td
         = item_request.item_info&.lead_time
       td
-        = item_request.updater
+        - if item_request.updater.present?
+          = @user_update[item_request.updater].profile.full_name
+        - elsif item_request.creator.present?
+          = @user_update[item_request.creator].profile&.full_name
       td
         = item_request.updated_at.to_date
       td
-        = link_to buyers_item_request_path(item_request), method: 'delete' do
-          .btn.btn-delete
+        = link_to buyers_item_request_path(item_request), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, remote: true do
+          .btn.btn-delete#button_destroy
             | 削除
 - else
   .result-nill
