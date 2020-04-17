@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_154602) do
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
     t.bigint "user_id", comment: "ユーザId"
     t.string "title", limit: 45
-    t.string "type", limit: 50
+    t.string "event_type", limit: 50
     t.string "url"
     t.datetime "occur_date", comment: "イベント日"
     t.string "content", limit: 2000, comment: "イベント内容"
