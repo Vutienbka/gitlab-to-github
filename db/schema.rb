@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_141538) do
+ActiveRecord::Schema.define(version: 2020_04_17_154602) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -350,12 +350,13 @@ ActiveRecord::Schema.define(version: 2020_04_12_141538) do
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
     t.bigint "user_id", comment: "ユーザId"
-    t.integer "type"
     t.string "title", limit: 45
+    t.string "type", limit: 50
+    t.string "url"
     t.datetime "occur_date", comment: "イベント日"
     t.string "content", limit: 2000, comment: "イベント内容"
     t.integer "occur_time_from"
-    t.string "occur_time_to", limit: 45
+    t.integer "occur_time_to"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
