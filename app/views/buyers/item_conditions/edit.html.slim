@@ -25,6 +25,7 @@
                       .title
                         = task.text_field :condition, placeholder: 'アイテムの条件を入力してください（複数可）', class:"input-condition", autocomplete:"off"
                         = task.hidden_field :position, class: 'hidden-field'
+                        = task.hidden_field :updater, value:"#{current_user.id}"
                         = hidden_field_tag :item_request_id, params[:item_request_id]
                         = link_to destroy_condition_buyers_item_conditions_path(task.object,item_request_id: params[:item_request_id]), method: 'delete' do
                           .btn.remove-condition.delete-condition

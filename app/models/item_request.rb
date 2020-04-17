@@ -1,5 +1,5 @@
 class ItemRequest < ApplicationRecord
-  acts_as_paranoid
+  # acts_as_paranoid
   extend Enumerize
 
   belongs_to :buyer
@@ -14,7 +14,7 @@ class ItemRequest < ApplicationRecord
 
   PARAMS_ATTRIBUTES = [
     item_conditions_attributes: [
-      :id, :item_request_id, :condition, :position
+      :id, :item_request_id, :condition, :position, :creator, :updater
     ]
   ]
 

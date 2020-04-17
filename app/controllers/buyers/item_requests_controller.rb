@@ -3,8 +3,9 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   before_action :set_item_request, only: %i[index destroy]
 
   def index
-    @item_requests = current_user.item_requests.includes([:item_info]).all.ransack({ item_info_name_cont: params[:search] })
+    @item_requests = current_user.item_requests.includes([:item_info]).ransack({ item_info_name_cont: params[:search] })
     @search_name = @item_requests.result.page(params[:page]).per(20)
+    @user_update = User.includes(:profile).index_by(&:id)
   end
 
   def create
@@ -17,10 +18,10 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   def destroy
     @item_request.destroy!
     flash[:success] = I18n.t('destroy.success')
-    redirect_to buyers_item_requests_path
+    # redirect_to buyers_item_requests_path
   end
 
   def set_item_request
-    @item_request = ItemRequest.find_by(params[:id])
+    @item_request = ItemRequest.find_by(id: params[:id])
   end
 end

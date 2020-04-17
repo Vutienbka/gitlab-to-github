@@ -24,6 +24,7 @@ class Buyers::ItemConditionsController < Buyers::BaseController
     if @item_request.update(item_request_params)
       flash[:success] = I18n.t('update.success')
       @item_request.update_attribute(:status, 7) if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
+      @item_request.update_attributes(updater: current_user.id)
       redirect_to buyers_item_samples_path(item_request_id: @item_request.id)
     else
       flash[:alert] = I18n.t('update.failed')
