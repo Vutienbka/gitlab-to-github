@@ -10,7 +10,6 @@
     = f.text_field :occur_time_from, class: 'form-control'
     = f.label :occur_time_to
     = f.text_field :occur_time_to, class: 'form-control'
-    = f.label :creator
-    = f.text_field :creator, class: 'form-control'
+    = f.hidden_field :creator, class: 'form-control', value: params[:user_id]
   = f.submit 'create event', class: 'btn btn-success'
     
