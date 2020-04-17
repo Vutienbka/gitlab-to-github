@@ -41,6 +41,9 @@ en:
   please_change_password: "Please change password by click button below."
   email_register_instruction: "You can confirm your account email through the button below:"
   logout_confirmation: "Do you want to logout?"
+  buyer: "Buyer"
+  supplier: "Supplier"
+  company_name: "Company name"
   email:
     send_quotation_supplier: "Quotation request mail is sent to supplier"
     register_instruction: "NEWJIにご登録いただきありがとうございます。まずは下のボタンをクリックしてメールアドレスの確認を行ってください。"

@@ -42,6 +42,9 @@ ja:
   please_login_notice: "パスワードが変更されました。<br>  下記URLよりログインしてください。"
   email_register_instruction: "以下のボタンをクリックし、メールアドレスの確認手続を完了させてください。"
   logout_confirmation: "ログアウトしてよろしいですか。"
+  buyer: "バイヤー"
+  supplier: "サプライヤー"
+  company_name: "会社名"
   email:
     send_quotation_supplier: "見積依頼メールがサプライヤーに送信しました。"
     register_instruction: "NEWJIにご登録いただきありがとうございます。まずは下のボタンをクリックしてメールアドレスの確認を行ってください。"
