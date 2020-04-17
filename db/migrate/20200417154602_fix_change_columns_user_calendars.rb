@@ -3,5 +3,6 @@ class FixChangeColumnsUserCalendars < ActiveRecord::Migration[5.2]
     change_column :user_calendars, :type, :string, after: :title
     change_column :user_calendars, :type, :string, limit: 50
     change_column :user_calendars, :url, :string, after: :type
+    rename_column :user_calendars, :type, :event_type
   end
 end
