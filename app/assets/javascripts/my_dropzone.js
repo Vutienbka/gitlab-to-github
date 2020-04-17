@@ -53,12 +53,14 @@ $('.dropzone').each(function(){
             }
           }
         }
+        document.getElementById('dropzone_alert'+id).innerText = myDropzone.files.length
       });
       this.on("removedfile", function(file) {
         if (myDropzone.files.length <= 0) {
           dropzone_no_file_upload(id);
           check_dropzone_length();
         }
+        document.getElementById('dropzone_alert'+id).innerText = myDropzone.files.length
       });
       this.on("successmultiple", function(files, response) {
         window.location.href = "/buyers/item_images?item_request_id=" + item_request_id
@@ -75,7 +77,7 @@ function dropzone_no_file_upload(id) {
 
 function dropzone_uploaded_file(id) {
   $("#dropzone_no_file_upload" + id).css("display", "none");
-  $("#dropzone_alert" + id).css("display", "block");
+  $("#dropzone_alert" + id).css("display", "inline-block");
 }
 
 function check_dropzone_length() {
