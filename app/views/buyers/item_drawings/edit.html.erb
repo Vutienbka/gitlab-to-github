@@ -39,6 +39,7 @@
                         <% end %>
                         <div class="drawing-title-label">
                           <label><%= fc.object&.name %></label>
+                           <div class="file-amount dropzone-alert mt-2" id="dropzone_alert<%= fc.index %>"> </div>
                         </div>
                       </div>
 
@@ -172,6 +173,7 @@
               }
             }
           }
+          document.getElementById('dropzone_alert'+id).innerText = myDropzone.files.length
         });
         this.on("removedfile", function(file) {
           if (myDropzone.files.length <= 0) {
@@ -196,6 +198,7 @@
               window.location.href = "/buyers/item_drawings/edit?item_request_id=" + item_request_id
             }
           });
+          document.getElementById('dropzone_alert'+id).innerText = myDropzone.files.length
         });
         this.on("successmultiple", function(files, response) {
           window.location.href = "/buyers/item_images/edit?item_request_id=" + item_request_id
@@ -293,6 +296,9 @@
               myDropzone.files.push(mockFile);
             <% end %>
         }
+        if (myDropzone.files.length > 0){
+          document.getElementById('dropzone_alert'+id).innerText = myDropzone.files.length
+        }
         // TODO:: Refactor code
       }
     });
@@ -305,7 +311,7 @@
 
   function dropzone_uploaded_file(id) {
     $("#dropzone_no_file_upload" + id).css("display", "none");
-    $("#dropzone_alert" + id).css("display", "block");
+    $("#dropzone_alert" + id).css("display", "inline-block");
   }
 
   function check_dropzone_length() {
