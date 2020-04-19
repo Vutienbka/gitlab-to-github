@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'socket'
+
 Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
@@ -13,6 +17,14 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+
+  # Reload setting when has changes in config files without restart server
+  Settings.reload!
+
+  # Get Server IP Address
+  Settings.ip_address = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }.ip_address
+  Settings.host = Settings.network_public_mode ? 'http://' + Settings.ip_address + ':3000' : 'http://localhost:3000'
+
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -44,24 +56,19 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_controller.asset_host = 'http://localhost:3000'
+  config.action_controller.asset_host = Settings.host
   config.action_mailer.asset_host = config.action_controller.asset_host
-  # Config letter opener
-  # config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :letter_opener_web
-  # ActionMailer::Base.smtp_settings = {
-  #   :address              => "smtp.gmail.com",
-  #   :port                 => 587,
-  #   :domain               => "gmail.com",
-  #   :user_name            => "newjisystem2020@gmail.com",
-  #   :password             => "appnewji",
-  #   :authentication       => "plain",
-  #   # :ssl                  => true,
-  #   # :tsl                  => true,
-  #   :enable_starttls_auto => true
-  # }
+  # Config letter opener
+  if Settings.mail_mode_local
+    config.action_mailer.delivery_method = :letter_opener_web
+  else
+    # Config real server mail
+    config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = Hash(Settings.mail_config)
+  end
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

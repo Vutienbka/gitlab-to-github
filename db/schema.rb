@@ -395,7 +395,6 @@ ActiveRecord::Schema.define(version: 2020_04_17_154602) do
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["email", "reset_password_token"], name: "mail_password_reset_token_UNIQUE", unique: true
-    t.index ["email"], name: "mail_idx"
   end
 
 end

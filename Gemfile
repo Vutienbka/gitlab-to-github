@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -37,40 +39,40 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Assets
-gem 'jquery-rails'
-gem "font-awesome-rails"
 gem 'adminlte_theme'
+gem 'bootstrap', '~> 4.1.0'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'slim', '~> 4.0', '>= 4.0.1'
-gem 'bootstrap', '~> 4.1.0'
 
 # Others
+gem 'devise', '~> 4.1'
 gem 'dotenv-rails'
 gem 'kaminari'
+gem 'simple_calendar', '~> 2.0'
 gem 'toastr-rails'
-gem "devise", "~> 4.1"
-gem "simple_calendar", "~> 2.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-rails', '~> 0.3.9'
-  gem 'pry'
-  gem 'foreman'
   gem 'bullet', '~> 6.1'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'foreman'
+  gem 'pry'
+  gem 'pry-rails', '~> 0.3.9'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
   gem 'letter_opener'
   gem 'letter_opener_web'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
@@ -82,20 +84,20 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'aws-ses', '~> 0.6'
-gem 'enumerize', '~> 2.3', '>= 2.3.1'
-gem 'select2-rails', '~> 4.0', '>= 4.0.3'
-gem 'ransack', '~> 2.3', '>= 2.3.2'
 gem 'activerecord-import', '~> 1.0', '>= 1.0.4'
+gem 'aws-ses', '~> 0.6'
+gem 'cancancan', '~> 3.1'
 gem 'carrierwave', '~> 2.1'
 gem 'carrierwave-base64', '~> 2.8'
-gem 'sentry-raven', '~> 3.0'
-gem 'paranoia', '~> 2.4', '>= 2.4.2'
-gem 'cancancan', '~> 3.1'
 gem 'cocoon', '~> 1.2', '>= 1.2.14'
-gem 'dropzonejs-rails', '~> 0.8.4'
-gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem 'config', '~> 2.2', '>= 2.2.1'
+gem 'dropzonejs-rails', '~> 0.8.4'
+gem 'enumerize', '~> 2.3', '>= 2.3.1'
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'rails_admin', '~> 2.0', '>= 2.0.2'
+gem 'ransack', '~> 2.3', '>= 2.3.2'
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+gem 'sentry-raven', '~> 3.0'

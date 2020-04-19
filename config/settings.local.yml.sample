@@ -1,0 +1,5 @@
+# This is local change when development or refine config.
+# You can override config in settings.yml by put the change value here
+# Enable Mail Mode letter opener 
+mail_mode_local: false
+network_public_mode: true

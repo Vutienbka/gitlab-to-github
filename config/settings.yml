@@ -1,0 +1,25 @@
+mail_config:
+  address: smtp.gmail.com
+  port: 587,
+  domain: gmail.com
+  user_name: newjisystem2020@gmail.com
+  password: appnewji
+  authentication: plain
+  # :ssl                  => true,
+  # :tsl                  => true,
+  enable_starttls_auto: true
+
+# Enable Mail Mode letter opener 
+mail_mode_local: true
+
+# Setting time zone
+time_zone: Asia/Tokyo
+
+# Set default run only in localhost
+network_public_mode: false
+
+# System Admin Email
+admin_mail: newjisystem2020@gmail.com
+
+# Default Newji email
+mail_default_from: newjisystem2020@gmail.com

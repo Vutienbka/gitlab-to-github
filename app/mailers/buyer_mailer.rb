@@ -1,5 +1,5 @@
 class BuyerMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: Settings.mail_default_from
   add_template_helper(EmailHelper)
 
   def send_mail_invite_unregisted_supplier(params, buyer)
@@ -18,7 +18,7 @@ class BuyerMailer < ActionMailer::Base
     @inspect_tel = inspection_request.inspect_tel
     @buyer = buyer
     mail(
-      to: 'newjisystem2020@gmail.com',
+      to: Settings.admin_mail,
       subject: "#{@buyer.profile&.company_name}社の#{@buyer.profile&.last_name}様から調達購買システム「NEWJI」の信用調査依頼メール"
     )
   end
