@@ -34,12 +34,18 @@
   border-radius: 10px;
   text-align: center;
 }
-.border-button {
+.menu .border-button {
   border: 0px solid;
   border-radius: 15px;
-  text-align: center;
+  text-align: center; 
 }
 
+.menu .border-button:hover, .border-button.hover {
+  border: 5px;  
+  color: #fff !important;
+  background-color: #449d44;
+  border-color: #398439;
+}
 .ui-datepicker td a {
   padding: 0px !important;
 }
@@ -124,7 +130,7 @@
   font-size:18px;
 }
 
-.menu .nav-text, .nav-btn, .nav-btn-height {
+.menu .nav-text, .nav-btn {
   padding: 5px;
   text-align: center;
   position:relative;
@@ -138,9 +144,17 @@
 //   background: linear-gradient(to bottom, #78e468, #5c8531);
 // }
 
-.menu .nav-btn-height{
+.menu .nav-btn.height{
   height: 45px;
 }
+
+.menu .nav-btn:hover, .nav-btn.hover {
+  border: 5px;
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
 .menu>ul.logout {
   position:absolute;
   left:0;
