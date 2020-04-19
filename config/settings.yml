@@ -10,13 +10,10 @@ mail_config:
   enable_starttls_auto: true
 
 # Enable Mail Mode letter opener 
-mail_mode_local: true
+mail_mode_local: false
 
 # Setting time zone
 time_zone: Asia/Tokyo
-
-# Set default run only in localhost
-network_public_mode: false
 
 # System Admin Email
 admin_mail: newjisystem2020@gmail.com

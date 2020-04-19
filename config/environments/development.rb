@@ -23,7 +23,7 @@ Rails.application.configure do
 
   # Get Server IP Address
   Settings.ip_address = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }.ip_address
-  Settings.host = Settings.network_public_mode ? 'http://' + Settings.ip_address + ':3000' : 'http://localhost:3000'
+  Settings.asset_host = 'http://' + Settings.ip_address + ':3000'
 
   config.cache_classes = false
 
@@ -56,10 +56,9 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_controller.asset_host = Settings.host
-  config.action_mailer.asset_host = config.action_controller.asset_host
+  config.action_mailer.asset_host = Settings.asset_host
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, protocol: 'https://' }
   # Config letter opener
   if Settings.mail_mode_local
     config.action_mailer.delivery_method = :letter_opener_web
