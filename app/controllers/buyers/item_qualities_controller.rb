@@ -15,7 +15,7 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
       @item_quality.save
       @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
       flash[:success] = I18n.t('create.success')
-      redirect_to edit_buyers_item_standards_path(item_request_id: @item_request.id)
+      redirect_to buyers_item_standards_path(item_request_id: @item_request.id)
     rescue StandardError
       flash[:alert] = I18n.t('create.failed')
       render :new

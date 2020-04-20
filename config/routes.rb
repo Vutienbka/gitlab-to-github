@@ -6,11 +6,11 @@ Rails.application.routes.draw do
                                     sessions: 'users/sessions' }
   root 'buyers/home#index'
 
-  resources :user_calendars do 
+  resources :user_calendars do
     collection do
-      get :new 
-    end 
-  end 
+      get :new
+    end
+  end
 
   resources :users, only: [] do
     collection do
@@ -74,9 +74,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_samples, only: %i[create] do
+    resources :item_samples, only: %i[create update] do
       collection do
         get :new
+        get :edit
       end
     end
 
@@ -115,7 +116,7 @@ Rails.application.routes.draw do
         get :new
       end
     end
-    
+
     resources :item_conditions, only: %i[create update] do
       collection do
         get :new
@@ -126,6 +127,7 @@ Rails.application.routes.draw do
     resources :item_quotations do
       collection do
         get :new
+        get :edit
         get :send_mailer_quotation
       end
     end
@@ -154,5 +156,7 @@ Rails.application.routes.draw do
     end
   end
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' unless Rails.env.production?
+  unless Rails.env.production?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
 end

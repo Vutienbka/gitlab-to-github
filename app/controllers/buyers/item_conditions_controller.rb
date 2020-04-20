@@ -1,31 +1,35 @@
+# frozen_string_literal: true
+
 class Buyers::ItemConditionsController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new edit create update destroy destroy_condition]
   def new
     @item_request.item_conditions.build
   end
+
   def create
-    begin
-      ActiveRecord::Base.transaction do
-        @item_request.update!(item_request_params)
-        @item_request.update_attribute(:status, 7) if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
-        return redirect_to buyers_item_samples_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
-      rescue
-        flash.now[:alert] = I18n.t('create.failed')
-        render :new
+    ActiveRecord::Base.transaction do
+      @item_request.update!(item_request_params)
+      if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
+        @item_request.update_attribute(:status, 7)
       end
+      return redirect_to buyers_item_samples_path(item_request_id: @item_request.id), flash: { success: I18n.t('create.success') }
+    rescue StandardError
+      flash.now[:alert] = I18n.t('create.failed')
+      render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @item_request.update(item_request_params)
       flash[:success] = I18n.t('update.success')
-      @item_request.update_attribute(:status, 7) if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
+      if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
+        @item_request.update_attribute(:status, 7)
+      end
       @item_request.update_attributes(updater: current_user.id)
-      redirect_to buyers_item_samples_path(item_request_id: @item_request.id)
+      redirect_to edit_buyers_item_samples_path(item_request_id: @item_request.id)
     else
       flash[:alert] = I18n.t('update.failed')
       render :edit
@@ -33,16 +37,20 @@ class Buyers::ItemConditionsController < Buyers::BaseController
   end
 
   def destroy_condition
-    @item_condition = ItemCondition.find_by(id: params["format"])
+    @item_condition = ItemCondition.find_by(id: params['format'])
     @item_condition.destroy
     redirect_to edit_buyers_item_conditions_path(item_request_id: @item_request.id)
   end
 
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    return redirect_to root_path, flash: {alert: I18n.t('messages.no_authenticated')} unless @item_request.present? && @item_request&.buyer_id == current_user.id
+    unless @item_request.present? && @item_request&.buyer_id == current_user.id
+      return redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
+    end
 
-    @item_condition = ItemCondition.find_or_initialize_by(item_request_id: @item_request.id) if @item_request.present?
+    if @item_request.present?
+      @item_condition = ItemCondition.find_or_initialize_by(item_request_id: @item_request.id)
+    end
   end
 
   def item_request_params

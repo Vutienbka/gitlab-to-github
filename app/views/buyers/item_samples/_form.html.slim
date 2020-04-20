@@ -1,0 +1,47 @@
+= stylesheets 'buyer/sample_input'
+= javascripts 'buyer/item_sample.js'
+= form_for @item_sample, url: url, method: method do |f|
+  = hidden_field_tag :item_request_id, params[:item_request_id]
+  .container-user
+    .contents
+      .container-fluid
+        .mobile-process-title サンプル​
+        .process-head
+          = render 'buyers/shared/process_bar'
+        .main
+          .sample-title サンプルが必要な場合は登録してください
+          .content-table
+            .description-zone
+              .description
+            .select-template-zone
+              .title-first
+                input placeholder="必要なサンプルを入力してください" /
+              .title-second 要求するサンプルをクリックしてください
+              .templates
+                .template
+                  label.js-sample for='category_type1'
+                    .btn
+                      | 類似品サンプル
+                  input#category_type1 type= 'checkbox' class= 'd-none'
+                  = f.hidden_field :category_type1, id: 'c-category_type1'
+                .template
+                  label.js-sample for='category_type2'
+                    .btn
+                      | カラーサンプル
+                  input#category_type2 type= 'checkbox' class= 'd-none'
+                  = f.hidden_field :category_type2, id: 'c-category_type2'
+                .template
+                  label.js-sample for='category_type3'
+                    .btn
+                      | 意匠サンプル
+                  input#category_type3 type= 'checkbox' class= 'd-none'
+                  = f.hidden_field :category_type3, id: 'c-category_type3'
+                .template
+                  label.js-sample for='category_type4'
+                    .btn
+                      | オリジナルサンプル
+                  input#category_type4 type= 'checkbox' class= 'd-none'
+                  = f.hidden_field :category_type4, id: 'c-category_type4'
+          .continue-btn
+            button type="submit"  続行
+              
