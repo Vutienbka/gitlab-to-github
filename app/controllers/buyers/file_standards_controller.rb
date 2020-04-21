@@ -4,11 +4,13 @@ class Buyers::FileStandardsController < Buyers::BaseController
   def create
     add_more_images(file_standard_params[:file_link])
     flash[:error] = "Failed uploading images" unless @standard_category.save
+    @item_standard.update_attributes(updater: current_user.id)
   end
 
   def destroy
     remove_image_at_index(params[:id].to_i)
     flash[:error] = "Failed deleting image" unless @standard_category.save
+    @item_standard.update_attributes(updater: current_user.id)
   end
 
   private
@@ -21,7 +23,7 @@ class Buyers::FileStandardsController < Buyers::BaseController
     if params.dig(:file_standard, :file_link)
       params[:file_standard][:file_link] = params[:file_standard][:file_link].values
     end
-    params.require(:file_standard).permit({ file_link:[] })
+    params.require(:file_standard).permit({ file_link:[] }, updater: current_user.id)
   end
   
   def remove_image_at_index(index)

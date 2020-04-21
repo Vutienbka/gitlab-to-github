@@ -9,7 +9,6 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def create
-    @item_standard.creator = current_user.id
     if @item_standard.update(item_standard_params)
       flash[:success] = I18n.t('create.success')
       @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
@@ -22,7 +21,6 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def update
-    @item_standard.updater = current_user.id
     if @item_standard.update(item_standard_params)
       flash[:success] = I18n.t('update.success')
       @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
@@ -41,8 +39,7 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   def set_item_standard
-    @item_standard = ItemStandard.find_or_create_by(item_request_id: @item_request&.id)
-    
+    @item_standard = ItemStandard.find_or_create_by(item_request_id: @item_request&.id, creator: current_user.id)
     if @item_standard.standard_categories.blank?
       StandardCategory::TYPES.each do |name|
         @item_standard.standard_categories.build(name: name).build_file_standard

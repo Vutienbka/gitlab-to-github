@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ItemStandard < ApplicationRecord
+  acts_as_paranoid
   belongs_to :item_request
 
   has_many :standard_categories

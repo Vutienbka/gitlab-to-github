@@ -1,19 +1,19 @@
-= stylesheets 'users/choose_provider'
+= stylesheets 'buyer/register_item'
 
 .container-user
   .header
   .contents
     .title
-      p#text-1.section-lead
+      p
         | 購入先のサプライヤーを選択してください​​
-    .button-group
+    .group-button
       = link_to search_provider_buyers_path
-        button.btn.default.button
+        button.btn.default.button.btn-horver
           | NEWJI登録済​
           br/
           | サプライヤー
-      a href=invite_unregisted_supplier_buyers_path 
-        button.btn.default.button
+      = link_to invite_unregisted_supplier_buyers_path 
+        button.btn.default.button.btn-horver
           | NEWJI未登録​
           br/
           | サプライヤー

@@ -1,5 +1,5 @@
 class ItemRequest < ApplicationRecord
-  # acts_as_paranoid
+  acts_as_paranoid
   extend Enumerize
 
   belongs_to :buyer

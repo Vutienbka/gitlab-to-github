@@ -17,7 +17,7 @@
       #list_email.list_name
         = render "buyers/shared/result"
       .submit
-        button#myBtn.btn.btn-pro data-toggle="modal" data-target="#myModal"
+        button#myBtn.btn.btn-pro.btn-horver data-toggle="modal" data-target="#myModal"
           | 続行​
     #myModal.modal.fade
       .modal-dialog
@@ -29,9 +29,9 @@
               | このサプライヤーで登録しますか
           .modal-footer
             .submit-modal-pro
-              button.btn.btn-modal-pro.btn-cloes[type="button" data-dismiss="modal"]
+              button.btn-horver.btn.btn-modal-pro.btn-cloes[type="button" data-dismiss="modal"]
                 | キャンセル
             .submit-modal-pro
               = link_to '#', method: :post, id: 'link_to_href' do
-                button.btn.btn-modal-pro
+                button.btn.btn-modal-pro.btn-horver
                   | 続ける
