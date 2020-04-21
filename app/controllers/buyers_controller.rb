@@ -5,6 +5,9 @@ class BuyersController < UsersController
 
   def invite_unregisted_supplier; end
 
+  def status_inspect
+  end 
+
   def send_email_invite
     @user = User.find_by(email: params[:invite][:email])
     if @user.present?

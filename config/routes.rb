@@ -25,7 +25,6 @@ Rails.application.routes.draw do
       get :order_list
       get :batch_register
       get :cost_down_item
-      get :status_inspect
       get :contract_form
     end
   end
@@ -153,6 +152,7 @@ Rails.application.routes.draw do
       get :batch_items_selector
       get :demand_items_register
       get :batch_items_register
+      get :status_inspect
     end
   end
 

@@ -3,20 +3,24 @@
 
 .sub-contents
   background-color: #dae3f2
-  text-align: center
   margin-left: 150px
   margin-right: 150px
   padding-top: 50px
+  padding-left: 100px
+  
+  p 
+    text-align: center
 .title
   text-align: center
   padding-bottom: 10px
   
-circle:hover
+circle
   height: 80px
   width: 80px
   border-radius: 50%
   display: inline-block
-  animation: mydot 5s infinite
+#c1
+  animation: mydot 5s 1
   animation-direction: alternate
 @keyframes mydot
   0%   
@@ -40,6 +44,11 @@ circle:hover
     left: 0px 
     top: 0px
 
+.responsive-1
+  display: none
+
+.responsive-2
+  display: none
 
 .list-dot 
   justify-content: space-between
@@ -70,3 +79,35 @@ circle:hover
   #btn-1
     background-color: #8bcf5a
     width: 250px
+
+@media screen and ( max-width: 1366px )
+  .responsive
+    display: none
+  .responsive-1
+    display: none
+  .responsive-2
+    display: block
+  .sub-contents
+    margin-left: 80px
+    width: 1000px
+    padding-left: 47px
+    padding-right: 30px
+    padding-top: 5px
+    height: 400px
+    margin-right: 30px
+    
+
+@media screen and ( max-width: 1280px )
+  .responsive
+    display: none
+  .responsive-2
+    display: none
+  .responsive-1
+    display: block
+  .sub-contents
+    margin-left: 35px
+    width: 950px
+    padding-left: 20px
+    padding-top: 5px
+    height: 400px
+

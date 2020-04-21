@@ -61,6 +61,4 @@ class UsersController < ApplicationController
   def cost_down_item
   end
 
-  def status_inspect
-  end 
 end
