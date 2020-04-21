@@ -3,6 +3,16 @@
   width: 10px;
 }
 
+.menu .btn-horver:hover {
+  border-color: #449d44;
+  background: #449d44;
+  color: white;
+}
+.menu .btn-horver {
+  background-color:black
+}
+
+
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
