@@ -4,8 +4,7 @@
   = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
-      .container-standards
-        .mobile-process-title 情報
+      .container-fluid
         .process-head
           = render 'buyers/shared/process_bar'
         .main
@@ -28,6 +27,8 @@
                           = I18n.t('messages.upload_item_inspection_criteria')
                   .col-md-12.image-input-content
                     .dropzone id="myDropzone#{fc.index}"
+                      .drop-drag-hint-text
+                        = I18n.t('messages.drag_and_drop_files_here')
                       .fallback
                         = fc.file_field(:file_link, multiple: true)
                     .dropzone-no-file-upload.text-danger.mt-2 id="dropzone_no_file_upload#{fc.index}"

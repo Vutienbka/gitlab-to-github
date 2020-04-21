@@ -1,13 +1,11 @@
 <%= stylesheets 'buyer/input_items_drawing' %>
+<%= stylesheets 'buyer/item_register_common' %>
 
 <%= form_for @item_drawing, url: buyers_item_drawing_path(@item_drawing), method: 'patch' do |f| %>
   <%= hidden_field_tag :item_request_id, params[:item_request_id] %>
   <div class="container-user">
     <div class="contents">
       <div class="container-fluid">
-        <div class="mobile-process-title">
-          図面
-        </div>
         <div class="process-head">
           <%= render 'buyers/shared/process_bar' %>
         </div>
@@ -20,7 +18,7 @@
               <div class="description">
               </div>
             </div>
-            <div class="drawings">
+            <div class="custom-content">
               <div class="container">
                 <div class="drawings-2d-title">
                   アイテムに関連する2D図面を全てアップロードしてください（複数可）

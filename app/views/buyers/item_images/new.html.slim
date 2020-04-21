@@ -4,12 +4,11 @@
   = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
-      .container-image
-        .mobile-process-title 画像
+      .container-fluid
         .process-head
           = render 'buyers/shared/process_bar'
         .main
-          .content-table-title 
+          .content-table-title
             = I18n.t('messages.please_register_the_image_of_the_item')
           .content-table
             .description-zone
@@ -33,6 +32,8 @@
                             = I18n.t('messages.please_upload_the_design_picture_of_the_item')
                   .col-md-12.image-input-content
                     .dropzone id="myDropzone#{fc.index}"
+                      .drop-drag-hint-text
+                        = I18n.t('messages.drag_and_drop_files_here')
                       .fallback
                         = fc.file_field(:file_link, multiple: true)
                     - if fc.index == 0

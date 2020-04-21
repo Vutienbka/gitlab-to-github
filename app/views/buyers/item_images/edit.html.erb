@@ -5,9 +5,6 @@
   <div class="container-user">
     <div class="contents">
       <div class="container-fluid">
-        <div class="mobile-process-title">
-          画像
-        </div>
         <div class="process-head">
           <%= render 'buyers/shared/process_bar' %>
         </div>
@@ -47,6 +44,9 @@
 
                   <div class="col-md-12 image-input-content">
                     <div class="dropzone" id="myDropzone<%= fc.index %>">
+                      <div class="drop-drag-hint-text">
+                        <%= I18n.t('messages.drag_and_drop_files_here') %>
+                      </div>
                       <div class="fallback">
                         <%= fc.file_field(:file_link, multiple: true) %>
                       </div>

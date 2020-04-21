@@ -12,12 +12,8 @@
 .content-table-title
   text-align: center
   font-size: 1em
-  padding-bottom: 20px
-.mobile-process-title
-  display: none
-  height: 5%
-  text-align: center
-  font-size: 1em
+  margin-bottom: 5px
+  margin-top: 30px
 .content-table
   display: flex
   background-color: #dae3f3
@@ -74,8 +70,8 @@
   text-align: center
   button
     background-color: #92cf50
-    width: 300px
-    height: 45px
+    width: 417px
+    height: 56px
     border: 0
 
 .dropzone .dz-message
@@ -111,17 +107,47 @@
   height: 45px
   padding: 12px
 
-@media screen and ( max-width: 1450px )
-  .dropzone .dz-message
-    text-align: center
-    margin: 2% auto
+.drop-drag-hint-text
+  padding-top: 15px
+  padding-bottom: 15px 
+  text-align: center
+@media screen and ( max-width: 1650px )
+  .content-table-title
+    margin-top: 20px
+  .image-input-head 
+    height: 33px
+    line-height: 2.5
+  .image-require-label
+    height: 27px
+    margin-top: 3px
+  .design-input-head
+    height: 33px
+    line-height: 2.5
+  .dropzone
+    padding: 10px 10px
   .continue-btn
-    pading-top: 30px
+    padding: 25px 0
+    button
+      width: 368px
+      height: 44px
+  .drop-drag-hint-text
+    padding-top: 5px
+    padding-bottom: 5px 
+@media screen and ( max-width: 1400px )
 
-@media screen and ( max-width: 1200px  )
-  .image-title-label
-    display: table-row-group
-    label
-      margin-left: 80px
-  .design-title-label
-    margin-left: 0
+@media screen and ( max-width: 1280px  )
+  .main
+    font-size: 14px
+  .dropzone
+    padding: 1px 1px
+  .drop-drag-hint-text
+    padding-top: 0
+    padding-bottom: 0 
+  .continue-btn
+    button
+      width: 266px
+      height: 36px
+@media screen and ( max-width: 1024px  )
+  .continue-btn
+    button
+      width: 211px

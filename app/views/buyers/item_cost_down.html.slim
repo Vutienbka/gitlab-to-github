@@ -1,21 +1,21 @@
 = stylesheets 'buyer/cost_down_item'
+= stylesheets 'buyer/item_register_common'
 
 .container-user
   .contents
-    .container-cost
-      .mobile-process-title
+    .container-fluid
       .process-head
         = render  'buyers/shared/process_bar'
       .main
         .content-table-title アイテムのコストダウンを自動化してください​
-        .border-content
-          .content-table
-            .description-zone
-              .description
-            .infos
-              .title
+        .content-table
+          .description-zone
+            .description
+          .custom-content
+            .container
+              .cost-title
                 .title-flex
-                  .input-label
+                  .cost-input-label
                     | 必須
                   .text
                     | 登録したアイテムを、選択したサプライヤー以外で、コストダウンを進める​​
@@ -33,8 +33,7 @@
                   = link_to "#" do
                     button.btn.btn-warning.btn-horver
                       | 自動化しない​
-              
-              .continue-btn
+              .continue-btn.end-btn.row
                 = link_to buyers_item_requests_path do
-                  button.btn.btn-horver type="submit"  続行​
-                    
+                  button.btn.btn-horver type="submit"  アイテム登録を完了する
+              

@@ -1,11 +1,11 @@
 = stylesheets 'buyer/input_items_drawing'
+= stylesheets 'buyer/item_register_common'
 
 = form_for @item_drawing, url: buyers_item_drawings_path, method: 'post' do |f|
   = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
       .container-fluid
-        .mobile-process-title 図面
         .process-head
           = render 'buyers/shared/process_bar'
         .main
@@ -13,7 +13,7 @@
           .content-table
             .description-zone
               .description
-            .drawings
+            .custom-content
               .container
                 .drawings-2d-title アイテムに関連する2D図面を全てアップロードしてください（複数可）
                 .drawing-inner.col-md-12.row

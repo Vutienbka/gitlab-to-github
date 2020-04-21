@@ -1,11 +1,10 @@
 = stylesheets 'buyer/input_items_info'
-
+= stylesheets 'buyer/item_register_common'
 = form_for @item_info, url: url, method: method do |f|
   = hidden_field_tag :item_request_id, params[:item_request_id]
   .container-user
     .contents
       .container-fluid
-        .mobile-process-title 情報
         .process-head
           = render 'buyers/shared/process_bar'
         .main
@@ -13,7 +12,7 @@
           .content-table
             .description-zone
               .description
-            .infos
+            .custom-content
               .container
                 .col-md-12.info
                   .input-label
