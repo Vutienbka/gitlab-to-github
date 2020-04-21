@@ -21,13 +21,13 @@
           br
           = f.text_field :company, placeholder: 'ご担当者名​', required: true
           br
-          = f.submit '招待する​', class: 'button-1'
+          = f.submit '招待する​', class: 'button-1 btn-horver'
       .text
         p
           | または
       .button-2
         = link_to buyers_inspection_requests_path do
-          button.btn 信用調査を依頼する
+          button.btn.btn-horver 信用調査を依頼する
     .button-3
     a href=root_path 
-      button.btn トップへもどる
+      button.btn.btn-horver トップへもどる

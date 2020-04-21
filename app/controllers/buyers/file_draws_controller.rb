@@ -4,11 +4,13 @@ class Buyers::FileDrawsController < Buyers::BaseController
   def create
     add_more_images(file_draw_params[:file_link])
     flash[:error] = "Failed uploading images" unless @draw_category.save
+    @item_drawing.update_attributes(updater: current_user.id)
   end
 
   def destroy
     remove_image_at_index(params[:id].to_i)
     flash[:error] = "Failed deleting image" unless @draw_category.save
+    @item_drawing.update_attributes(updater: current_user.id)
   end
 
   private

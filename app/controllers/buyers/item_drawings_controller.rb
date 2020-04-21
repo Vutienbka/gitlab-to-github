@@ -6,7 +6,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   before_action :set_item_drawing, only: %i[create edit update]
 
   def new
-    @item_drawing = ItemDrawing.find_or_create_by(item_request_id: @item_request&.id)
+    @item_drawing = ItemDrawing.find_or_create_by(item_request_id: @item_request&.id, creator: current_user.id)
 
     if @item_drawing.draw_categories.blank?
       DrawCategory::TYPES.each do |name|
@@ -17,7 +17,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
     # TODO:: bugs dropzone create duplicate record when redirec to buyers_item_images_path
     # Maybe fix later
-    @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id)
+    @item_image = ItemImage.find_or_create_by(item_request_id: @item_request&.id, creator: current_user.id)
 
     if @item_image.image_categories.blank?
       ImageCategory::TYPES.each do |name|
@@ -28,7 +28,6 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def create
-    @item_drawing.creator = current_user.id
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('create.success')
       @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
@@ -44,7 +43,6 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def update
-    @item_drawing.updater = current_user.id
     if @item_drawing.update(item_drawing_params)
       flash[:success] = I18n.t('update.success')
       @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3

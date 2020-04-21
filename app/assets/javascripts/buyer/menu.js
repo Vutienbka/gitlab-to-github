@@ -17,6 +17,7 @@ $(document).ready(function() {
         $('.sidebar').width("75%");
         $('#full-content').width("100%")
         $('.fixed-footer').width("100%")
+        $('#full-content').css({"margin-left":"0%"})
         $('.fixed-header-new').css({"width":"100%"})
       }
 

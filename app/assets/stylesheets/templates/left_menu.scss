@@ -15,11 +15,6 @@
   border-radius: 20px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #ccc; 
-}
-
 .container-user {
   margin: 0px;
 }
@@ -40,9 +35,8 @@
   text-align: center; 
 }
 
-.menu .border-button:hover, .border-button.hover {
-  border: 5px;  
-  color: #fff !important;
+.menu .border-button:hover {
+  color: white;
   background-color: #449d44;
   border-color: #398439;
 }
@@ -148,8 +142,7 @@
   height: 45px;
 }
 
-.menu .nav-btn:hover, .nav-btn.hover {
-  border: 5px;
+.menu .has-subnav a:hover {
   color: #fff;
   background-color: #449d44;
   border-color: #398439;
@@ -256,14 +249,16 @@ nav ul,nav li {
   padding: 10px;
 }
 
-.parent-of-block-btn div {
+.border-button {
   background: #92d050;
   color: black;
-  padding: 10px;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
 }
 
-.parent-of-block-btn div a {
-  color: black !important;
+.menu .col-md {
+  padding: 0;
 }
 
 .btn-left-in-parent-of-block-btn {
@@ -323,6 +318,9 @@ nav ul,nav li {
 }
   
 @media screen and (max-width: 1450px) {
+  .menu .nav-btn.height {
+    height: 40px;
+  }
   .sider-full {
     height: calc(100vh - 746px);
   }
@@ -334,7 +332,7 @@ nav ul,nav li {
     padding: 7px;
   }
   .parent-of-block-btn div {
-    padding: 7px;
+    padding: 11px;
   }
   .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
     width: 1.4rem;
@@ -355,7 +353,7 @@ nav ul,nav li {
   .sidebar {
     width: 0;
     position: fixed;
-    z-index: 31;
+    z-index: 999;
     top: 0;
     left: 0;
     overflow-x: hidden;
@@ -368,7 +366,7 @@ nav ul,nav li {
 }
 
 @media screen and (max-height: 770px) {
-  .menu .nav-btn-height {
+  .menu .nav-btn.height {
     height: 40px;
   }
 
@@ -382,6 +380,6 @@ nav ul,nav li {
     padding: 5px;
   }
   .parent-of-block-btn div {
-    padding: 5px;
+    padding: 11px;
   }
 }
