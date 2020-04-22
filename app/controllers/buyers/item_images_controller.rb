@@ -46,7 +46,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
   end
 
   def set_item_image
-    @item_image = ItemImage.find_by(item_request_id: @item_request.id)
+    @item_image = ItemImage.includes(image_categories: :file_image).find_by(item_request_id: @item_request.id)
   end
 
   def item_image_params

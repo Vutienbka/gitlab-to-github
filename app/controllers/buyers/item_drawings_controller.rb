@@ -64,7 +64,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def set_item_drawing
-    @item_drawing = ItemDrawing.find_by(item_request_id: @item_request.id)
+    @item_drawing = ItemDrawing.includes(draw_categories: :file_draw).find_by(item_request_id: @item_request.id)
   end
 
   def item_drawing_params
