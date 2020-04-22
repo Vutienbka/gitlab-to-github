@@ -65,6 +65,8 @@
 
 .left-menu {
   background: #252b35;
+  height: 100%;
+  position: relative;
 }
 
 .left-menu-container {
@@ -283,9 +285,22 @@ nav ul,nav li {
 .invite-button {
   text-align: center;
   margin-top: 10px;
+  position: absolute;
+  bottom: 7px;
+  width: 100%;
+  a{
+    color: white;
+  }
   button {
     height: 40px;
+    padding-top: 5px;
+    border-radius: 5px;
     width: 100%;
+    border: 0.5px solid;
+    border-color: rgb(70, 65, 65);
+  }
+  button:hover{
+    font-weight: bold;
   }
 }
 .sider-full {
