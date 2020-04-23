@@ -24,7 +24,7 @@ class Buyers::ItemStandardsController < Buyers::BaseController
     if @item_standard.update(item_standard_params)
       flash[:success] = I18n.t('update.success')
       @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
-      @item_request.update_attributes(updater: current_user.id)
+      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       redirect_to edit_buyers_item_conditions_path(item_request_id: @item_request.id)
       # Already redirect to next page at my_dropzone.js
       # TODO:: redirect to edit next page

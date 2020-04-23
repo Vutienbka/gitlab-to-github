@@ -27,8 +27,10 @@ class Buyers::ItemSamplesController < Buyers::BaseController
 
   def update
     ActiveRecord::Base.transaction do
+      @item_sample.updater = current_user.id
       @item_sample.update(item_sample_params)
       @item_sample.save
+      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
         @item_request.update_attribute(:status, 7)
       end
