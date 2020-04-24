@@ -15,6 +15,8 @@ class UsersController < ApplicationController
 
   def contract_form
     @user = current_user
+    @supplier = Supplier.first
+    # TODO: get supplier from previous page
   end
 
   def input_item_standard

@@ -26,12 +26,12 @@
             button.btn 中国語語Ver.​​
       .sign-form
         .input-label
-          input type="text" placeholder="サプライヤーの会社名"
+          input type="text" id="fname" name="fname" value="#{@supplier.profile.company_name}"
         .button
             a href="#"
               button.btn 締結を進める​
         .input-label
-          input type="text" id="fname" name="fname" value="#{@user.profile.company_name}"
+          input type="text" id="fname" name="fname" value="#{current_user.profile.company_name}"
     .group-button
       .button
         a href="#"
