@@ -26,9 +26,8 @@
                     .text
                       | プレビューを確認
         .continue-btn
-          button#myBtn.btn-horver data-toggle="modal" data-target="#myModal"  続行
-          / button#myBtn.btn-horver.btn.btn-is data-toggle="modal" data-target="#myModal"
-            | 続行​
+          button#myBtn.btn-horver data-toggle="modal" data-target="#myModal"  続行​
+        .loading-bar
         #myModal.modal.fade
           .modal-dialog
             .modal-content
@@ -43,5 +42,6 @@
                     | キャンセル
                 .submit-modal-pro
                   = link_to send_mailer_quotation_buyers_item_quotations_path(item_request_id: params[:item_request_id]) do
-                    button.btn.btn-modal-pro.btn-horver
+                    button.btn.btn-modal-pro.btn-horver#modal_submit_button
                       | 続ける
+                

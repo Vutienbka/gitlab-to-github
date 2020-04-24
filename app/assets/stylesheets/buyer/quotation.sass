@@ -17,6 +17,24 @@
   background: #fafafa
   padding: 7px
   padding-left: 12%
+.loading-bar
+  display: none
+  position: fixed
+  z-index: 1000
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-size: 100px 100px
+  background-image: url(asset_path("Loading.gif"))
+  background-position: 1000px 400px
+
+  background-repeat: no-repeat
+body.loading
+  overflow: hidden
+body.loading
+  .loading-bar
+    display: block
 
 .confirm
   height: 50px
