@@ -6,11 +6,11 @@ class Buyers::InspectionRequestsController < Buyers::BaseController
   def create
     @inspection_request = current_user.inspection_requests.build(suppliers_params)
     if @inspection_request.save
-      flash[:success] = I18n.t('create.success')
+      flash[:success] = I18n.t('messages.send_mail_inspection_request_success')
       BuyerMailer.send_mail_inspection_request(@inspection_request, current_user).deliver_now
       redirect_to status_inspect_buyers_path
     else
-      flash[:alert] = I18n.t('create.failed')
+      flash[:alert] = I18n.t('messages.send_mail_failed')
       render :new
     end
   end

@@ -57,6 +57,22 @@ en:
   destroy:
     success: '案件を削除しました'
     failed: '削除できませんでした。'
+  views:
+    pagination:
+      first: "最初へ"
+      last: "最後へ"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"    
   activerecord:
     attributes:
       request:
@@ -75,3 +91,23 @@ en:
           ordinary: '普通'
           limited: '特急'
           super: '超特急'
+  messages:
+    please_register_the_image_of_the_item: 'アイテムの画像を登録してください'
+    please_upload_an_image_of_the_item: 'アイテムの画像をアップロードしてください（複数可）'
+    please_upload_the_design_picture_of_the_item: 'アイテムのデザイン画をアップロードしてください（複数可）'
+    file_has_not_been_uploaded: 'ファイルをまだアップロードされていません。'
+    file_uploaded : 'ファイルアップロードが完了しました。'
+    upload_file_format_is_not_incompatible: 'アップロードファイルフォーマットが不適合ではありません。'
+    please_register_item_criteria: 'アイテムの基準を登録してください'
+    please_upload_test_criteria_for_the_item: 'アイテムの試験基準をアップロードしてください（複数可）​'
+    upload_item_inspection_criteria: 'アイテムの検査基準をアップロードしてください（複数可）'
+    no_authenticated : 'アクセスに許可していません。'
+    please_wait_for_supplier_registration: 'サプライヤーのご登録をお待ちください'
+    send_mail_inspection_request_success: 'Mail inspection supplier send succsessful.'
+    send_mail_failed: 'Mail sending failed!'
+    email_already_exists: 'サプライヤ―のメールが既に存在しています。'
+    cannot_register_because_the_item_already_exists: 'アイテムが既に存在しているために登録できません。'
+    drag_and_drop_files_here: 'こにファイルをドラッグ&ドロップまたは'
+  unauthorized:
+    manage:
+      all: 'アクセス権限がありません。'

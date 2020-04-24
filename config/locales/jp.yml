@@ -104,6 +104,8 @@ ja:
     upload_item_inspection_criteria: 'アイテムの検査基準をアップロードしてください（複数可）'
     no_authenticated : 'アクセスに許可していません。'
     please_wait_for_supplier_registration: 'サプライヤーのご登録をお待ちください'
+    send_mail_inspection_request_success: 'サプライヤー検査依頼を送信しました。'
+    send_mail_failed: 'メール送信が失敗しました。'
     email_already_exists: 'サプライヤ―のメールが既に存在しています。'
     cannot_register_because_the_item_already_exists: 'アイテムが既に存在しているために登録できません。'
     drag_and_drop_files_here: 'こにファイルをドラッグ&ドロップまたは'
