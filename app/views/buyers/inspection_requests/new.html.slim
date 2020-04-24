@@ -4,39 +4,42 @@
 = form_for @inspection_request, url: buyers_inspection_requests_path, method: 'post' do |f|
   .container-user
     .header
-    
-    .content
-      .title
-        p
-          | 信用調査を依頼してください​
-      .sub-contents
-        .sub-title
+      
+      
+      .content
+        .title
           p
-            | 信用調査先の情報を入力する​
-        .button-2
-          a href="#" 
-            button#btn-2.btn 
-              p.p-text 
-                | 名刺を登録する​ <br> 
-              p
-                | 自動登録のため、<br> 下記の情報入力は不要です​を依頼する  
-        .input
-          .input-company
-            = f.text_field :inspect_company_name, placeholder: '社名​', class: 'info-input'
-            = show_errors @inspection_request, :inspect_company_name
-          .input-address
-            = f.text_field :inspect_address, placeholder: '住所​', class: 'info-input'
-            = show_errors @inspection_request, :inspect_address
-          .input-cel
-            = f.text_field :inspect_tel, placeholder: '電話番号​', class: 'info-input'
-            = show_errors @inspection_request, :inspect_tel
-        .inspect
-          .aaa
-            | 選択
-          .group-button
-            - InspectionRequest::REQUEST_TYPES.each do |key, v|
-              label.btn-check for="#{key}" id="label_#{key}"
-                = I18n.t("activerecord.attributes.inspection_requests.request_type.#{key}")
-              = f.text_field :request_type, type:"radio", value:"#{v}", id:"#{key}",  class: 'd-none'
-      .submit
-        = f.submit '続行', class: 'button-1', id:"button_apply btn-horver"
+            | 信用調査を依頼してください​
+        .sub-contents
+          .sub-title
+            p
+              | 信用調査先の情報を入力する​
+          .button-2
+            a href="#" 
+              button#btn-2.btn 
+                p.p-text 
+                  | 名刺を登録する​ <br> 
+                p
+                  | 自動登録のため、<br> 下記の情報入力は不要です​を依頼する  
+          .input
+            .input-company
+              = f.text_field :inspect_company_name, placeholder: '社名​', class: 'info-input'
+              = show_errors @inspection_request, :inspect_company_name
+            .input-address
+              = f.text_field :inspect_address, placeholder: '住所​', class: 'info-input'
+              = show_errors @inspection_request, :inspect_address
+            .input-cel
+              = f.text_field :inspect_tel, placeholder: '電話番号​', class: 'info-input'
+              = show_errors @inspection_request, :inspect_tel
+          .inspect
+            .aaa
+              | 選択
+            .group-button
+              - InspectionRequest::REQUEST_TYPES.each do |key, v|
+                label.btn-check for="#{key}" id="label_#{key}"
+                  = I18n.t("activerecord.attributes.inspection_requests.request_type.#{key}")
+                = f.text_field :request_type, type:"radio", value:"#{v}", id:"#{key}",  class: 'd-none'
+        .submit
+          = f.submit '続行', class: 'button-1', id:"button_apply btn-horver"
+          .loading-bar
+      

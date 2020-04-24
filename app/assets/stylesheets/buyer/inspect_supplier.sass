@@ -17,6 +17,26 @@
     display: flex
 .submit
   margin: 30px
+
+.loading-bar
+  display: none
+  position: fixed
+  z-index: 1000
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-size: 100px 100px
+  background-image: url(asset_path("Loading.gif"))
+  background-position: 1000px 400px
+
+  background-repeat: no-repeat
+body.loading
+  overflow: hidden
+body.loading 
+  .loading-bar
+    display: block
+
 .button-1
   width: 30%
   background: #8bcf5a
@@ -86,10 +106,11 @@
 #btn-2 
   font-size: 9px
   height: 100px
-  width: 15%
+  width: fixed
   border-radius: 12px !important 
   background-color: #8bcf5a
   color: black
+  
 
 .sub-contents
   background-color: #dae3f2
@@ -113,6 +134,19 @@
     margin-top: 2%
 
 @media screen and (max-width: 1366px)
+  .loading-bar
+    display: none
+    position: fixed
+    z-index: 1000
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background-size: 100px 100px
+    background-image: url(asset_path("Loading.gif"))
+    background-position: 700px 400px
+
+    background-repeat: no-repeat
   #text-1
   padding-top: 10%
   text-align: center
