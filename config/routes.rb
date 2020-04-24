@@ -14,17 +14,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     collection do
-      get :choose_provider
-      get :email_register_item
-      get :register_item
-      get :search_provider
-      get :sample_input
-      get :batch_items_selector
-      get :inspect_supplier
       get :email_inspection
       get :order_list
-      get :batch_register
-      get :cost_down_item
       get :contract_form
     end
   end
@@ -134,10 +125,6 @@ Rails.application.routes.draw do
 
   namespace :suppliers do
   end
-
-  # namespace :admin do
-  #   root 'dashboard#index'
-  # end
 
   resources :buyers, only: [] do
     collection do
