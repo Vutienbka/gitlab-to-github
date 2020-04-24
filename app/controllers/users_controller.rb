@@ -37,26 +37,26 @@ class UsersController < ApplicationController
   def batch_register; end
 
   def choose_provider
-  end 
+  end
 
   def email_inspection
-  end 
+  end
 
   def email_register_item
-  end 
+  end
 
   def inspect_supplier; end
 
   def register_item; end
 
   def search_provider
-  end 
+  end
 
   def order_list
   end
 
   def input_item_quality
-  end 
+  end
 
   def cost_down_item
   end

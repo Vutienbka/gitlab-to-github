@@ -9,7 +9,7 @@
       | #{@buyer.profile&.company_name} 社の #{@buyer.profile&.last_name} 様から、
     .text-mail style="padding-bottom: 20px;"
       | 調達購買システム「NEWJI」に信用調査依頼でございます。
-    .text-mail 
+    .text-mail
       | 信用調査先の情報
     .text-mail
       | 会社：#{@inspect_company_name}
@@ -19,4 +19,3 @@
       | 電話番号：#{@inspect_tel}
     .text-mail style="padding-bottom: 30px;"
       | #{@buyer.profile&.company_name}社の調達購買先に信用調査結果をご送信してお願い致します。
-      

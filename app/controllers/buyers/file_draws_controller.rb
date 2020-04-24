@@ -25,13 +25,13 @@ class Buyers::FileDrawsController < Buyers::BaseController
     end
     params.require(:file_draw).permit({ file_link:[] })
   end
-  
+
   def remove_image_at_index(index)
     remain_images = @draw_category.file_draw.file_link # copy the array
     deleted_image = remain_images.delete_at(index) # delete the target image
     deleted_image.try(:remove!) # delete image from S3
     @draw_category.file_draw.file_link = remain_images # re-assign back
-    
+
     if remain_images.length == 0
       @draw_category.file_draw.remove_file_link = true
     end

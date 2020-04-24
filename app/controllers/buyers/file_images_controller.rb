@@ -25,13 +25,13 @@ class Buyers::FileImagesController < Buyers::BaseController
     end
     params.require(:file_image).permit({ file_link:[] })
   end
-  
+
   def remove_image_at_index(index)
     remain_images = @image_category.file_image.file_link # copy the array
     deleted_image = remain_images.delete_at(index) # delete the target image
     deleted_image.try(:remove!) # delete image from S3
     @image_category.file_image.file_link = remain_images # re-assign back
-    
+
     if remain_images.length == 0
       @image_category.file_image.remove_file_link = true
     end

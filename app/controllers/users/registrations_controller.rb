@@ -7,13 +7,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         session[:register_errors_for_new_user] = resource.errors
         return redirect_to new_user_session_path
       end
-      
+
       if request.referrer == new_user_password_url
         session[:register_errors_for_new_password] = resource.errors
         return redirect_to new_user_password_path
       end
     end
-    
+
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?

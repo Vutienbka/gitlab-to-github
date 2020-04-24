@@ -33,7 +33,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
     if @item_info.update(item_info_params)
       @item_request.update_attributes(item_info_id: @item_info.id, status: 2) if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
       @item_request.update_attributes(updater: current_user.id)
-      return redirect_to edit_buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('update.success') } 
+      return redirect_to edit_buyers_item_drawings_path(item_request_id: @item_request.id), flash: { success: I18n.t('update.success') }
     end
 
     flash.now[:alert] = I18n.t('update.failed')

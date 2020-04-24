@@ -4,8 +4,6 @@
 = form_for @inspection_request, url: buyers_inspection_requests_path, method: 'post' do |f|
   .container-user
     .header
-      
-      
       .content
         .title
           p
@@ -15,12 +13,12 @@
             p
               | 信用調査先の情報を入力する​
           .button-2
-            a href="#" 
-              button#btn-2.btn 
-                p.p-text 
-                  | 名刺を登録する​ <br> 
+            a href="#"
+              button#btn-2.btn
+                p.p-text
+                  | 名刺を登録する​ <br>
                 p
-                  | 自動登録のため、<br> 下記の情報入力は不要です​を依頼する  
+                  | 自動登録のため、<br> 下記の情報入力は不要です​を依頼する
           .input
             .input-company
               = f.text_field :inspect_company_name, placeholder: '社名​', class: 'info-input'
@@ -42,4 +40,3 @@
         .submit
           = f.submit '続行', class: 'button-1', id:"button_apply btn-horver"
           .loading-bar
-      

@@ -29,7 +29,7 @@ class Buyers::ProfilesController < Buyers::BaseController
 
   def update
     return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('update.success') } if current_user.update(buyer_params)
-    
+
     flash.now[:alert] = I18n.t('update.failed')
     render :edit
   end
@@ -52,7 +52,7 @@ class Buyers::ProfilesController < Buyers::BaseController
       end
     end
   end
-    
+
 
   private
 
@@ -88,5 +88,5 @@ class Buyers::ProfilesController < Buyers::BaseController
   def clear_session
     session.delete(:register_errors_for_new_user)
     session.delete(:register_errors_for_new_password)
-  end 
+  end
 end

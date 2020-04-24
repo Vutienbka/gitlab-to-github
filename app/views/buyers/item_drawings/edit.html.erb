@@ -23,7 +23,7 @@
                 <div class="drawings-2d-title">
                   アイテムに関連する2D図面を全てアップロードしてください（複数可）
                 </div>
-                
+
                 <div class="drawing-inner col-md-12 row">
                   <%= f.fields_for :draw_categories do |fc| %>
                     <%= fc.hidden_field :name %>
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="drawings-2d-title mt-3">
-                  アイテムに関連する3D図面を全てアップロードしてください（複数可）     
+                  アイテムに関連する3D図面を全てアップロードしてください（複数可）
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@
 <script type="text/javascript">
   Dropzone.autoDiscover = false;
 
-  $('.dropzone').each(function(){ 
+  $('.dropzone').each(function(){
     var id = $(this).attr('id').replace('myDropzone', '')
     var item_request_id = $('#item_request_id').val();
 
@@ -128,7 +128,7 @@
         var draw_category_id = <%= @item_drawing.draw_categories[5].id %>
     }
     var post_url = "/buyers/item_drawings/" + <%= @item_drawing.id %> + "/draw_categories/" + draw_category_id + "/file_draws";
-    
+
     $(this).dropzone({
       url: post_url,
       dictDefaultMessage: "PCからアップロード",
@@ -184,7 +184,7 @@
               item_drawing_id = file.item_drawing_id,
               draw_category_id = file.draw_category_id,
               url = "/buyers/item_drawings/" + item_drawing_id + "/draw_categories/" + draw_category_id + "/file_draws/" + image_index;
-          
+
           $.ajax({
             type: 'DELETE',
             url: url,
@@ -202,7 +202,7 @@
           window.location.href = "/buyers/item_images/edit?item_request_id=" + item_request_id
           // TODO:: redirect to edit next page
         });
-        
+
         switch (id) {
           case '0':
             <% @item_drawing.draw_categories[0].file_draw.file_link.each_with_index do |image, index| %>

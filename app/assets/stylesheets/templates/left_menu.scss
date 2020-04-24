@@ -15,13 +15,13 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 0;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #212121; 
+  background: #212121;
   border-radius: 20px;
 }
 
@@ -42,7 +42,7 @@
 .menu .border-button {
   border: 0px solid;
   border-radius: 15px;
-  text-align: center; 
+  text-align: center;
 }
 
 .menu .border-button:hover {
@@ -341,7 +341,7 @@ nav ul,nav li {
   display: flex;
   align-items: center;
 }
-  
+
 @media screen and (max-width: 1450px) {
   .menu .nav-btn.height {
     height: 40px;

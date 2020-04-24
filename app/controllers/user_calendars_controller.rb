@@ -1,4 +1,4 @@
-class UserCalendarsController < ApplicationController 
+class UserCalendarsController < ApplicationController
 
   def prospect_params
     params.require(:prospect).permit(
@@ -7,14 +7,14 @@ class UserCalendarsController < ApplicationController
       :content,
       :occur_time_from,
       :occur_time_to,
-      :creator, 
+      :creator,
       :user_id
     )
   end
 
-  def new 
+  def new
     @user_calendar = UserCalendar.new
-  end 
+  end
 
   def create
     @user_calendar = UserCalendar.new(user_calendar_params)
@@ -25,10 +25,10 @@ class UserCalendarsController < ApplicationController
       flash[:error] = 'failed'
       render :new
     end
-  end 
+  end
 
   def show
-  end 
+  end
 
 
   private
@@ -36,5 +36,5 @@ class UserCalendarsController < ApplicationController
     params.require(:user_calendar).permit(
       :title, :occur_date, :content, :occur_time_from, :occur_time_to, :creator, :user_id
       )
-  end 
+  end
 end

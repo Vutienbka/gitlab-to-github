@@ -25,13 +25,13 @@ class Buyers::FileStandardsController < Buyers::BaseController
     end
     params.require(:file_standard).permit({ file_link:[] }, updater: current_user.id)
   end
-  
+
   def remove_image_at_index(index)
     remain_images = @standard_category.file_standard.file_link # copy the array
     deleted_image = remain_images.delete_at(index) # delete the target image
     deleted_image.try(:remove!) # delete image from S3
     @standard_category.file_standard.file_link = remain_images # re-assign back
-    
+
     if remain_images.length == 0
       @standard_category.file_standard.remove_file_link = true
     end

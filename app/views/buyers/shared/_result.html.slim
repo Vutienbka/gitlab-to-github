@@ -4,6 +4,6 @@
       .email-user id="email_user_#{supplier.id}"
         .avata-supplier
           = image_tag(supplier.profile&.logo? ? supplier.profile&.try!(:logo) : image_url('default_user.png'), class:"logo-supplier")
-          | &nbsp &nbsp 
+          | &nbsp &nbsp
         .name-supplier
           | #{supplier.profile&.code} : #{supplier.profile&.first_name}

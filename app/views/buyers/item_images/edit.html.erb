@@ -84,7 +84,7 @@
 <script type="text/javascript">
   Dropzone.autoDiscover = false;
 
-  $('.dropzone').each(function(){ 
+  $('.dropzone').each(function(){
     var id = $(this).attr('id').replace('myDropzone', '')
     var item_request_id = $('#item_request_id').val();
 
@@ -96,7 +96,7 @@
         var image_category_id = <%= @item_image.image_categories[1].id %>
     }
     var post_url = "/buyers/item_images/" + <%= @item_image.id %> + "/image_categories/" + image_category_id + "/file_images";
-    
+
     $(this).dropzone({
       url: post_url,
       dictDefaultMessage: "PCからアップロード",
@@ -152,7 +152,7 @@
               item_image_id = file.item_image_id,
               image_category_id = file.image_category_id,
               url = "/buyers/item_images/" + item_image_id + "/image_categories/" + image_category_id + "/file_images/" + image_index;
-          
+
           $.ajax({
             type: 'DELETE',
             url: url,
@@ -168,7 +168,7 @@
         this.on("successmultiple", function(files, response) {
           window.location.href = "/buyers/item_qualities/edit?item_request_id=" + item_request_id
         });
-        
+
         switch (id) {
           case '0':
             <% @item_image.image_categories[0].file_image.file_link.each_with_index do |image, index| %>
