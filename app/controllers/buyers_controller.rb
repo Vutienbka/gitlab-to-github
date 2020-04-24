@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class BuyersController < UsersController
-  skip_before_action :authenticate_user!, only: [:sign_up, :confirm_email]
-  skip_before_action :redirect_to_profile, only: [:sign_up, :confirm_email]
+  skip_before_action :authenticate_user!, only: %i[sign_up confirm_email]
+  skip_before_action :redirect_to_profile, only: %i[sign_up confirm_email]
   load_and_authorize_resource
 
   def invite_unregisted_supplier; end
 
-  def status_inspect
-  end
+  def status_inspect; end
 
   def send_email_invite
     @user = User.find_by(email: params[:invite][:email])
@@ -24,7 +25,9 @@ class BuyersController < UsersController
   def register_item; end
 
   def search_provider
-    @search = Supplier.ransack({ profile_first_name_or_profile_code_cont: params[:search] })
+    return @search = Supplier.ransack if params[:search].blank?
+
+    @search = Supplier.ransack({ profile_first_name_or_profile_last_name_or_profile_code_cont: params[:search] })
     @search_suppliers = @search.result.includes(:profile)
   end
 
@@ -32,7 +35,10 @@ class BuyersController < UsersController
     invited_users = UserInvite.where(email_invited: buyer_params[:email], notify_status: 0)
     @user = Buyer.new(buyer_params)
     @user = Supplier.new(buyer_params) if invited_users.present?
-    return redirect_to new_user_session_path, notice: t('devise.confirmations.send_instructions') if @user.save
+    if @user.save
+      return redirect_to new_user_session_path, notice: t('devise.confirmations.send_instructions')
+    end
+
     session[:register_buyer_errors] = @user.errors
     redirect_to new_user_session_path
   end
@@ -43,8 +49,7 @@ class BuyersController < UsersController
     redirect_to new_user_session_path, notice: t('devise.confirmations.confirmed')
   end
 
-  def batch_items_register
-  end
+  def batch_items_register; end
 
   private
 

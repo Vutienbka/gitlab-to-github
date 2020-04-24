@@ -6,4 +6,4 @@
           = image_tag(supplier.profile&.logo? ? supplier.profile&.try!(:logo) : image_url('default_user.png'), class:"logo-supplier")
           | &nbsp &nbsp
         .name-supplier
-          | #{supplier.profile&.code} : #{supplier.profile&.first_name}
+          | #{supplier.profile&.code} : #{supplier.profile&.full_name}
