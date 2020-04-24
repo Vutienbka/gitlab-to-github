@@ -3,6 +3,8 @@
 = javascripts 'buyer/condition'
 
 = form_for @item_request, url: edit_buyers_item_conditions_path(@item_request), method: 'patch' do |f|
+  = hidden_field_tag :item_request_id, params[:item_request_id]
+  = f.hidden_field :buyer_id
   .container-user
     .contents
       .container-fluid
