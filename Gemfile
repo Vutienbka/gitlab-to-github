@@ -44,7 +44,6 @@ gem 'bootstrap', '~> 4.1.0'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sass-rails', '~> 5.0'
 gem 'slim', '~> 4.0', '>= 4.0.1'
 
 # Others

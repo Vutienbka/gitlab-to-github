@@ -58,7 +58,7 @@ Rails.application.configure do
 
   config.action_mailer.asset_host = Settings.asset_host
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, protocol: 'https://' }
+  config.action_mailer.default_url_options = { host: Settings.ip_address, port: 3000, protocol: 'http://' }
   # Config letter opener
   if Settings.mail_mode_local
     config.action_mailer.delivery_method = :letter_opener_web
