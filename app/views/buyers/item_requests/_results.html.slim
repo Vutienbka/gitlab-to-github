@@ -26,7 +26,7 @@
       td
         = item_request.updated_at.to_date
       td
-        = link_to buyers_item_request_path(item_request), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, remote: true do
+        = link_to buyers_item_request_path(item_request), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do
           .btn.btn-delete#button_destroy
             | 削除
 - else

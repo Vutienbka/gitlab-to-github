@@ -18,6 +18,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   def destroy
     @item_request.destroy!
     flash[:success] = "アイテム #{@item_request.id} を削除しました。"
+    redirect_back(fallback_location:"/buyers/item_requests")
   end
 
   def set_item_request
