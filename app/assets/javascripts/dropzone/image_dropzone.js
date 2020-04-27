@@ -26,6 +26,7 @@ $('.dropzone').each(function(){
         e.preventDefault();
         e.stopPropagation();
         if (myDropzone.getQueuedFiles().length > 0) {
+          $("#btnSubmit").attr('disabled', 'disabled');
           myDropzone.processQueue();
           return;
         }

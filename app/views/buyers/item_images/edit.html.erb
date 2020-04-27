@@ -121,8 +121,8 @@
           if (myDropzone.getQueuedFiles().length > 0) {
             e.preventDefault();
             e.stopPropagation();
+            $("#btnSubmit").attr('disabled', 'disabled');
             myDropzone.processQueue();
-            this.prop('disabled', true);
             return;
           }
         });
