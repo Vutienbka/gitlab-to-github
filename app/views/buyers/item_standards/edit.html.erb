@@ -89,7 +89,6 @@
         var standard_category_id = <%= @item_standard.standard_categories[1].id %>
     }
     var post_url = "/buyers/item_standards/" + <%= @item_standard.id %> + "/standard_categories/" + standard_category_id + "/file_standards";
-
     $(this).dropzone({
       url: post_url,
       dictDefaultMessage: "PCからアップロード",
@@ -113,6 +112,7 @@
             e.preventDefault();
             e.stopPropagation();
             myDropzone.processQueue();
+            this.prop('disabled', true);
             return;
           }
         });
@@ -155,7 +155,8 @@
           });
         });
         this.on("successmultiple", function(files, response) {
-          window.location.href = "/buyers/item_conditions?item_request_id=" + item_request_id
+
+          // window.location.href = "/buyers/item_conditions?item_request_id=" + item_request_id
           // TODO:: redirect to edit page
         });
 

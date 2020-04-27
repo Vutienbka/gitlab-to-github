@@ -122,6 +122,7 @@
             e.preventDefault();
             e.stopPropagation();
             myDropzone.processQueue();
+            this.prop('disabled', true);
             return;
           }
         });

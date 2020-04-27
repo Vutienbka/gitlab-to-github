@@ -12,8 +12,8 @@ $(document).ready(function() {
   set_color("#ordinary");
   set_color("#limited");
   set_color("#super");
-  
+
 })
-$(window).on('beforeunload', function(){
+$(window).submit('beforeunload', function(){
   $('body').addClass("loading");
 });
