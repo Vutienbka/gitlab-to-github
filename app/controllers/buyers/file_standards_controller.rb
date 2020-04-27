@@ -1,19 +1,29 @@
+# frozen_string_literal: true
+
 class Buyers::FileStandardsController < Buyers::BaseController
-  before_action :find_item_standard, only: [:create, :destroy]
+  before_action :find_item_standard, only: %i[create destroy]
 
   def create
+    @item_request = ItemRequest.find_by(id: params[:item_request_id])
+    unless @item_request.present? && @item_request&.buyer_id == current_user.id
+      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
+    end
+    if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
+      @item_request.update_attribute(:status, 6)
+    end
     add_more_images(file_standard_params[:file_link])
-    flash[:error] = "Failed uploading images" unless @standard_category.save
+    flash[:error] = 'Failed uploading images' unless @standard_category.save
     @item_standard.update_attributes(updater: current_user.id)
   end
 
   def destroy
     remove_image_at_index(params[:id].to_i)
-    flash[:error] = "Failed deleting image" unless @standard_category.save
+    flash[:error] = 'Failed deleting image' unless @standard_category.save
     @item_standard.update_attributes(updater: current_user.id)
   end
 
   private
+
   def find_item_standard
     @item_standard = ItemStandard.find_by(id: params[:item_standard_id])
     @standard_category = StandardCategory.find_by(id: params[:standard_category_id])
@@ -23,7 +33,7 @@ class Buyers::FileStandardsController < Buyers::BaseController
     if params.dig(:file_standard, :file_link)
       params[:file_standard][:file_link] = params[:file_standard][:file_link].values
     end
-    params.require(:file_standard).permit({ file_link:[] }, updater: current_user.id)
+    params.require(:file_standard).permit({ file_link: [] }, updater: current_user.id)
   end
 
   def remove_image_at_index(index)
@@ -32,7 +42,7 @@ class Buyers::FileStandardsController < Buyers::BaseController
     deleted_image.try(:remove!) # delete image from S3
     @standard_category.file_standard.file_link = remain_images # re-assign back
 
-    if remain_images.length == 0
+    if remain_images.empty?
       @standard_category.file_standard.remove_file_link = true
     end
   end

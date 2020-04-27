@@ -3,6 +3,7 @@
 class Buyers::ItemConditionsController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new edit create update destroy destroy_condition]
+  before_action :block_input_link, only: %i[new edit create update]
   def new
     @item_request.item_conditions.build
   end
@@ -55,5 +56,11 @@ class Buyers::ItemConditionsController < Buyers::BaseController
 
   def item_request_params
     params.require(:item_request).permit(ItemRequest::PARAMS_ATTRIBUTES)
+  end
+
+  def block_input_link
+    if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
+      redirect_to root_path
+    end
   end
 end

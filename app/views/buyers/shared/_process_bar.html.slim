@@ -2,13 +2,12 @@
 
 - request_status = ItemRequest.find_by(id: params[:item_request_id]).status.to_sym rescue nil
 - number_request = ItemRequest::STATUSES[request_status]
-
 .stepwizard
   .stepwizard-row
     .stepwizard-step
       p
         | 情報
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 1}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 2}"
       a href="#{ number_request.to_i > 1 ? edit_buyers_item_info_index_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_info') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_info') && number_request.to_i >= 2 ? 'btn-circle-green' : '' }"
@@ -16,7 +15,7 @@
     .stepwizard-step
       p
         | 図面
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 2}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 3}"
       a href="#{ number_request.to_i >= 2 ? edit_buyers_item_drawings_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_drawings') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_drawings') && number_request.to_i >= 3 ? 'btn-circle-green' : '' }"
@@ -24,7 +23,7 @@
     .stepwizard-step
       p
         | 画像
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 3}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 4}"
       a href="#{ number_request.to_i >= 3 ? edit_buyers_item_images_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_images') ? 'btn-circle-red' : ''}
           #{ !check_params_controller_action('item_images') && number_request.to_i >= 4 ? 'btn-circle-green' : '' }"
@@ -32,7 +31,7 @@
     .stepwizard-step
       p
         | 品質
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 4}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 5}"
       a href="#{ number_request.to_i >= 4 ? edit_buyers_item_qualities_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_qualities') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_qualities') && number_request.to_i >= 5 ? 'btn-circle-green' : '' }"
@@ -40,7 +39,7 @@
     .stepwizard-step
       p
         | 基準
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 5}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 6}"
       a href="#{ number_request.to_i >= 5 ? edit_buyers_item_standards_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('standard') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('standard') && number_request.to_i >= 6 ? 'btn-circle-green' : '' }"
@@ -48,7 +47,7 @@
     .stepwizard-step
       p
         | 条件
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 6}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 7}"
       a href="#{ number_request.to_i >= 6 ? edit_buyers_item_conditions_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('condition') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('condition') && number_request.to_i >= 7 ? 'btn-circle-green' : '' }"
@@ -56,7 +55,7 @@
     .stepwizard-step
       p
         | サンプル
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 7}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 8}"
       a href="#{ number_request.to_i >= 7 ? edit_buyers_item_samples_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_samples') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('item_samples') && number_request.to_i >= 8 ? 'btn-circle-green' : '' }"
@@ -64,7 +63,7 @@
     .stepwizard-step
       p
         | 見積
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 8}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 9}"
       a href="#{ number_request.to_i >= 8 ? buyers_item_quotations_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('quotations') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('quotations') && number_request.to_i >= 9 ? 'btn-circle-green' : '' }"
@@ -72,7 +71,7 @@
     .stepwizard-step
       p
         | 原低
-      .proces-bar class="#{'timeline-process-bar' if number_request.to_i >= 9}"
+      .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 10}"
       a href="#{ number_request.to_i >= 9 ? item_cost_down_buyers_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('cost_down') ? 'btn-circle-red' : ''}
           #{!check_params_controller_action('cost_down') &&  number_request.to_i >= 10 ? 'btn-circle-green' : '' }"

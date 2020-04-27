@@ -4,6 +4,7 @@ class Buyers::ItemSamplesController < Buyers::BaseController
   before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit update]
   before_action :set_item_sample, only: %i[new create edit update]
+  before_action :block_input_link, only: %i[new create edit update]
 
   def new; end
 
@@ -12,8 +13,8 @@ class Buyers::ItemSamplesController < Buyers::BaseController
       @item_sample.creator = current_user.id
       @item_sample.update(item_sample_params)
       @item_sample.save
-      if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
-        @item_request.update_attribute(:status, 7)
+      if ItemRequest::STATUSES[@item_request.status.to_sym] < 8
+        @item_request.update_attribute(:status, 8)
       end
       flash[:success] = I18n.t('create.success')
       redirect_to new_buyers_item_quotation_path(item_request_id: @item_request.id)
@@ -31,8 +32,8 @@ class Buyers::ItemSamplesController < Buyers::BaseController
       @item_sample.update(item_sample_params)
       @item_sample.save
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-      if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
-        @item_request.update_attribute(:status, 7)
+      if ItemRequest::STATUSES[@item_request.status.to_sym] < 8
+        @item_request.update_attribute(:status, 8)
       end
       flash[:success] = I18n.t('update.success')
       redirect_to new_buyers_item_quotation_path(item_request_id: @item_request.id)
@@ -65,5 +66,11 @@ class Buyers::ItemSamplesController < Buyers::BaseController
     @item_sample.sample_category2_id = 2
     @item_sample.sample_category3_id = 3
     @item_sample.sample_category4_id = 4
+  end
+
+  def block_input_link
+    if ItemRequest::STATUSES[@item_request.status.to_sym] < 7
+      redirect_to root_path
+    end
   end
 end

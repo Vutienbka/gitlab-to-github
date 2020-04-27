@@ -49,6 +49,16 @@ class BuyersController < UsersController
     redirect_to new_user_session_path, notice: t('devise.confirmations.confirmed')
   end
 
+  def item_cost_down
+    @item_request = ItemRequest.find_by(id: params[:item_request_id])
+    unless @item_request.present? && @item_request&.buyer_id == current_user.id
+      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
+    end
+    if ItemRequest::STATUSES[@item_request.status.to_sym] < 9
+      redirect_to root_path
+    end
+  end
+
   def batch_items_register; end
 
   private
