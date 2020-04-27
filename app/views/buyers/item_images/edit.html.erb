@@ -216,15 +216,10 @@
   }
 
   function check_dropzone_length() {
-    if($('#dropzone_no_file_upload0').is(':visible')) {
-      $("#btnSubmit").attr('disabled', 'disabled');
-    } else {
+    if($('#dropzone_file_uploaded0').is(':visible')) {
       $("#btnSubmit").removeAttr('disabled');
+    } else {
+      $("#btnSubmit").attr('disabled', 'disabled');
     }
   }
-
-  $(document).ready(function() {
-    $("#btnSubmit").attr('disabled', 'disabled');
-    check_dropzone_length();
-  });
 </script>

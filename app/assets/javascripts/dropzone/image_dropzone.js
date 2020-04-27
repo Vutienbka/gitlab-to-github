@@ -1,6 +1,6 @@
 Dropzone.autoDiscover = false;
 
-$('.dropzone').each(function(){ 
+$('.dropzone').each(function(){
   let id = $(this).attr('id').replace('myDropzone', '')
   let item_request_id = $('#item_request_id').val();
 
