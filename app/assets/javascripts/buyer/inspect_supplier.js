@@ -13,7 +13,15 @@ $(document).ready(function() {
   set_color("#limited");
   set_color("#super");
 
+  $(window).submit('beforeunload', function(e){
+    if ($('#inspection_request_inspect_company_name').val() === undefined || $('#inspection_request_inspect_company_name').val() === '' ||
+        $('#inspection_request_inspect_address').val() === undefined || $('#inspection_request_inspect_address').val() === '' ||
+        $('#inspection_request_inspect_tel').val() === undefined || $('#inspection_request_inspect_tel').val() === '' ||
+        !$('#ordinary').is(':checked') && !$('#limited').is(':checked') && !$('#super').is(':checked')
+      ) {
+    }
+    else {
+      $('body').addClass("loading");
+    }
+  });
 })
-$(window).submit('beforeunload', function(){
-  $('body').addClass("loading");
-});
