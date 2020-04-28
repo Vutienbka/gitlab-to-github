@@ -29,8 +29,6 @@
                           label #{fc.object&.name}
                           .file-amount.dropzone-alert.mt-2 id="dropzone_alert#{fc.index}"
                       .drawing-content
-                        .drawing-content-hint
-                          label ここにファイルをドラッグ&ドロップまたは
                         .drawing-upload-button
                           button.btn.btn-primary.modal-dropzone[type="button" data-toggle="modal" data-target="#exampleModalCenter#{fc.index}"]
                             | PCからアップロード
@@ -38,6 +36,8 @@
                             .modal-dialog.modal-dialog-centered[role="document"]
                               .modal-content
                                 .modal-body
+                                  .drawing-content-hint
+                                    | ここにファイルをドラッグ&ドロップまたは
                                   .dropzone id="myDropzone#{fc.index}"
                                     .fallback
                                       = fc.file_field(:file_link, multiple: true)

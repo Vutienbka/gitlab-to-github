@@ -42,9 +42,6 @@
                       </div>
 
                       <div class="drawing-content">
-                        <div class="drawing-content-hint">
-                          <label>ここにファイルをドラッグ&ドロップまたは</label>
-                        </div>
                         <div class="drawing-upload-button">
                           <!-- Button trigger modal -->
                           <button type="button" class="btn btn-primary modal-dropzone" data-toggle="modal" data-target="#exampleModalCenter<%= fc.index %>">
@@ -56,6 +53,9 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                               <div class="modal-content">
                                 <div class="modal-body">
+                                  <div class="drawing-content-hint">
+                                    ここにファイルをドラッグ&ドロップまたは
+                                  </div>
                                   <div class="dropzone" id="myDropzone<%= fc.index %>">
                                     <div class="fallback">
                                       <%= fc.file_field(:file_link, multiple: true) %>
