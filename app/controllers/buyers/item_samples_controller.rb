@@ -44,17 +44,11 @@ class Buyers::ItemSamplesController < Buyers::BaseController
   end
 
   private
-
-  def set_item_request
-    @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    unless @item_request.present? && @item_request&.buyer_id == current_user.id
-      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
-    end
-  end
-
   def set_item_sample
-    @item_sample = ItemSample.find_or_initialize_by(item_request_id: @item_request.id)
-    set_sample_category_id
+    if @item_request.present?
+      @item_sample = ItemSample.find_or_initialize_by(item_request_id: @item_request.id)
+      set_sample_category_id
+    end
   end
 
   def item_sample_params

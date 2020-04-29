@@ -2,7 +2,8 @@
 
 class Buyers::ItemConditionsController < Buyers::BaseController
   before_action :redirect_to_profile
-  before_action :set_item_request, only: %i[new edit create update destroy destroy_condition]
+  before_action :set_item_request, only: %i[new edit create update destroy_condition]
+  before_action :set_item_condition, only: %i[edit update destroy_condition]
   before_action :block_input_link, only: %i[new edit create update]
   def new
     @item_request.item_conditions.build
@@ -43,12 +44,8 @@ class Buyers::ItemConditionsController < Buyers::BaseController
     redirect_to edit_buyers_item_conditions_path(item_request_id: @item_request.id)
   end
 
-  def set_item_request
-    @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    unless @item_request.present? && @item_request&.buyer_id == current_user.id
-      return redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
-    end
-
+  private
+  def set_item_condition
     if @item_request.present?
       @item_condition = ItemCondition.find_or_initialize_by(item_request_id: @item_request.id)
     end

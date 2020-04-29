@@ -60,17 +60,11 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   private
-
-  def set_item_request
-    @item_request = ItemRequest.find_by(id: params[:item_request_id])
-
-    unless @item_request.present? && @item_request&.buyer_id == current_user.id
-      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
-    end
-  end
-
   def set_item_drawing
-    @item_drawing = ItemDrawing.includes(draw_categories: :file_draw).find_by(item_request_id: @item_request.id)
+    if @item_request.present?
+      @item_drawing = ItemDrawing.includes(draw_categories: :file_draw)
+                                 .find_by(item_request_id: @item_request.id)
+    end
   end
 
   def item_drawing_params

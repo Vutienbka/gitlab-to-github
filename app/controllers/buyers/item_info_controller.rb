@@ -48,16 +48,8 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   private
-
-  def set_item_request
-    @item_request = current_user.item_requests.find_by(id: params[:item_request_id])
-    if @item_request.blank?
-      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
-    end
-  end
-
   def set_item_info
-    @item_info = @item_request.item_info
+    @item_info = @item_request.item_info if @item_request.present?
     if @item_info.blank?
       redirect_to buyers_item_info_index_path(item_request_id: @item_request.id)
     end

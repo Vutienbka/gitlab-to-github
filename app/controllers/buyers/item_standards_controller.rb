@@ -35,14 +35,6 @@ class Buyers::ItemStandardsController < Buyers::BaseController
   end
 
   private
-
-  def set_item_request
-    @item_request = ItemRequest.find_by(id: params[:item_request_id])
-    unless @item_request.present? && @item_request&.buyer_id == current_user.id
-      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
-    end
-  end
-
   def set_item_standard
     @item_standard = ItemStandard.includes(standard_categories: :file_standard).find_or_create_by(item_request_id: @item_request&.id, creator: current_user.id)
     if @item_standard.standard_categories.blank?
