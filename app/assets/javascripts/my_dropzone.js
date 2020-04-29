@@ -1,6 +1,6 @@
 Dropzone.autoDiscover = false;
 
-$('.dropzone').each(function(){ 
+$('.dropzone').each(function(){
   let id = $(this).attr('id').replace('myDropzone', '')
   let item_request_id = $('#item_request_id').val();
 
@@ -30,6 +30,7 @@ $('.dropzone').each(function(){
           check_dropzone_length();
           $("#btnSubmit").attr('disabled', 'disabled');
           myDropzone.processQueue();
+          $('body').addClass("loading");
           return;
         } else {
           dropzone_no_file_upload(id);

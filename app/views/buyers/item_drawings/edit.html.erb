@@ -99,6 +99,7 @@
       </div>
     </div>
   </div>
+  <div class="loading-bar">
 <% end %>
 
 <script type="text/javascript">
@@ -155,6 +156,7 @@
             e.stopPropagation();
             $("#btnSubmit").attr('disabled', 'disabled');
             myDropzone.processQueue();
+            $('body').addClass("loading");
             return;
           }
         });
