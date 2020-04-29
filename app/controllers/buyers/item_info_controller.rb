@@ -59,7 +59,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
   def set_item_info
     @item_info = @item_request.item_info
     if @item_info.blank?
-      redirect_to root_path, flash: { alert: I18n.t('messages.no_authenticated') }
+      redirect_to buyers_item_info_index_path(item_request_id: @item_request.id)
     end
   end
 
