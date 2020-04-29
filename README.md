@@ -12,8 +12,8 @@ $ rails db:create
 
 # Init DB :
 
-$ bundle exec rails db < db/structure.sql
+$ rails db:migrate
 
 # Import Seed data DB:
 
-$ rake db:seed
+$ rails db:seed
