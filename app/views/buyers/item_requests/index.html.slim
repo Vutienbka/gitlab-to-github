@@ -3,7 +3,7 @@
 
 .container-item
   .title-item
-    | 登録されたアイテム一覧
+    | 受発注一覧
   .content-item
     .search-item
       = search_form_for(@item_requests, url: buyers_item_requests_path, remote: true) do |f|
@@ -16,6 +16,8 @@
             tr
               th
                 | 番号
+              th
+                | 取引先名
               th
                 | 進捗状態
               th

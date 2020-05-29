@@ -5,6 +5,8 @@
         = link_to edit_buyers_item_info_index_path(item_request_id: item_request.id) do
           = item_request.id
       td
+        = item_request.supplier.profile.full_name rescue nil
+      td
         = I18n.t("activerecord.attributes.request.request_status.#{item_request.status}")
       td
         = item_request.item_info&.SKU

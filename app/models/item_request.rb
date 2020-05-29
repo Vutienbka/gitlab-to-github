@@ -2,6 +2,7 @@ class ItemRequest < ApplicationRecord
   acts_as_paranoid
   extend Enumerize
 
+  belongs_to :supplier
   belongs_to :buyer
   has_one :item_info, dependent: :destroy
   has_one :item_quality, dependent: :destroy
