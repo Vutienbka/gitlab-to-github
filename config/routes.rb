@@ -49,6 +49,8 @@ Rails.application.routes.draw do
         get :index
       end
     end
+    
+    resources :list_buyer_suppliers, only: :index
 
     resources :item_info, only: %i[create update] do
       collection do

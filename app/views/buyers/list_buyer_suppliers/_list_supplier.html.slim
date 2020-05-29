@@ -1,0 +1,17 @@
+- if @suppliers.present?
+  - @search_name.each do |supplier|
+    tr[]
+      td
+        = supplier.type 
+      td
+        = supplier.profile.full_name rescue nil
+     
+      td
+        = supplier.profile.company_name rescue nil
+      td
+        = supplier.email
+      td
+        = supplier.profile.tel rescue nil
+- else
+  .result-nill
+    | アイテムはありません

@@ -1,0 +1,34 @@
+= stylesheets 'buyer/list_item_request'
+/ = javascripts 'buyers/list_buyer_suppliers'
+
+.container-item
+  .title-item
+    | 取引先一覧
+  .content-item
+    .search-item
+      = form_for(:supplier, url: buyers_list_buyer_suppliers_path, method: :get, remote: true) do |f|
+        = text_field_tag :search, nil, placeholder:"アイテム名称で検索する"  , autocomplete:"off"
+        i.fa.fa-search
+      
+    .table-item-list
+      .table-responsive
+        table.table.table-bordered
+          thead
+            tr
+              th
+                | type
+              th
+                |  name
+              
+              th
+                |  company
+              th
+                | email
+              th
+                | tel
+              
+              
+              tbody#list_items
+                = render "buyers/list_buyer_suppliers/list_supplier"
+    .page-item.row
+      = paginate(@search_name)

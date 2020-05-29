@@ -5,7 +5,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   def index
     @item_requests = current_user.item_requests.includes([:item_info]).ransack({ item_info_name_cont: params[:search] })
     @search_name = @item_requests.result.page(params[:page]).per(20)
-    @user_update = User.includes(:profile).index_by(&:id)
+    @user_update = Buyer.includes(:profile).index_by(&:id)
   end
 
   def create
