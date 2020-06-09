@@ -7,7 +7,7 @@
       p#text-1.section-lead
         | アイテム一括登録ファイルをダウンロードして、入力したファイルをアップロードしてください​
     .button-group
-      a href="#"
+      = link_to download_csv_buyers_imports_path do
         button.btn.default.button.btn-1.btn-horver
           | アイテム一括登録ファイル​
     p.sub-text
@@ -19,8 +19,11 @@
           br/
           | または​
       a href="#"
-        = form_tag imports_path, multipart: true do
-          = file_field_tag :file
-          = submit_tag "Import"
-        button.btn.default.button.btn-2.btn-horver
-          | PCからアップロード​
+        = form_tag buyers_imports_path, multipart: true do
+          label.choonss_file_upload.btn  for="custom_upload"
+            | PCからアップロード​
+            br
+            = file_field_tag :file, id:'custom_upload', class:"upload_none d-none"
+          p
+          = submit_tag "インポート", class:'submit_importan'
+        

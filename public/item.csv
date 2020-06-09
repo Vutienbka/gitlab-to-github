@@ -1,0 +1,10 @@
+id,supplier_id,status,,,condition,position,,,,SKU,name,category1,category2,category3,cost,lead_time,expected_sales_volume,,quality1,quality2,quality3,quality4,quality5,quality6,quality7,quality8,quality9,quality10,quality11,quality12,quality13,quality14,quality15,quality16,,,,,,category_type1,category_type2,category_type3,category_type4
+,2,9,,,Man aaaaaaaai,1,,,,test1,aaaaa1111,bbbbb,galaxi,iphone,33,213,323,,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,,,,,,1,1,1,1
+,2,9,,,lollol,1,,,,ham,cc,ga,bb,gna,12,21,11,,0,0,1,1,1,0,1,0,1,0,0,1,0,0,1,1,,,,,,0,0,1,1
+,,,,,iiiiiiiiii,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,2,9,,,aaaaa,1,,,,ahihi,tt,tt,cc,aa,22,12,33,,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,,,,,,1,0,1,1
+,,,,,,,,,,,,category1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,category1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,category1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,2,9,,,hahaha,1,,,,hehee,hihi,col,fake,des,12,32,12,,0,1,0,1,0,1,0,1,0,1,0,0,1,0,0,1,,,,,,1,0,1,0
+,,,,,sas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

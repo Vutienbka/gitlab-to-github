@@ -53,6 +53,9 @@ gem 'kaminari'
 gem 'simple_calendar', '~> 2.0'
 gem 'toastr-rails'
 
+# Read the file csv
+gem 'roo', '~> 2.8', '>= 2.8.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'bullet', '~> 6.1'

@@ -123,6 +123,13 @@ Rails.application.routes.draw do
         get :send_mailer_quotation
       end
     end
+
+    resources :imports do
+      collection do
+        get :download_csv
+      end
+    end
+
   end
 
   namespace :suppliers do
