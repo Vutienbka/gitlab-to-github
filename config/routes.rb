@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     resources :imports do
       collection do
         get :download_csv
+        post :suplier_id
       end
     end
 
@@ -137,6 +138,7 @@ Rails.application.routes.draw do
 
   resources :buyers, only: [] do
     collection do
+      get :search_supplier_import
       get :invite_unregisted_supplier
       post :send_email_invite
       get :register_item

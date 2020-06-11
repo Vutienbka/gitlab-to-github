@@ -24,6 +24,7 @@
             | PCからアップロード​
             br
             = file_field_tag :file, id:'custom_upload', class:"upload_none d-none"
+            = hidden_field_tag :supplier_id, params["supplier_id"]
           p
           = submit_tag "インポート", class:'submit_importan'
         

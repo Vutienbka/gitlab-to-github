@@ -36,7 +36,7 @@ class Buyers::ItemStandardsController < Buyers::BaseController
 
   private
   def set_item_standard
-    @item_standard = ItemStandard.includes(standard_categories: :file_standard).find_or_create_by(item_request_id: @item_request&.id, creator: current_user.id)
+    @item_standard = ItemStandard.includes(standard_categories: :file_standard).find_or_create_by(item_request_id: @item_request&.id)
     if @item_standard.standard_categories.blank?
       StandardCategory::TYPES.each do |name|
         @item_standard.standard_categories.build(name: name).build_file_standard

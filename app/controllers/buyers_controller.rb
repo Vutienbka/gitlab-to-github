@@ -31,6 +31,13 @@ class BuyersController < UsersController
     @search_suppliers = @search.result.includes(:profile)
   end
 
+  def search_supplier_import
+    return @search = Supplier.ransack if params[:search].blank?
+
+    @search = Supplier.ransack({ profile_first_name_or_profile_last_name_or_profile_code_cont: params[:search] })
+    @search_suppliers = @search.result.includes(:profile)
+  end
+
   def sign_up
     invited_users = UserInvite.where(email_invited: buyer_params[:email], notify_status: 0)
     @user = Buyer.new(buyer_params)
