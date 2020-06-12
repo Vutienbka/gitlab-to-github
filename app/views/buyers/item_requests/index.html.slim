@@ -6,9 +6,10 @@
     | 受発注一覧
   .content-item
     .search-item
-      = search_form_for(@item_requests, url: buyers_item_requests_path, remote: true) do |f|
-        = text_field_tag :search, nil, placeholder:"アイテム名称で検索する"  , autocomplete:"off"
-        i.fa.fa-search
+      -if @item_requests.present?
+        = search_form_for(@item_requests, url: buyers_item_requests_path, remote: true) do |f|
+          = text_field_tag :search, nil, placeholder:"アイテム名称で検索する"  , autocomplete:"off"
+          i.fa.fa-search
     .table-item-list
       .table-responsive
         table.table.table-bordered
@@ -41,4 +42,4 @@
               tbody#list_items
                 = render "buyers/item_requests/results"
     .page-item.row
-      = paginate(@search_name)
+      = paginate(@search_name) rescue nil

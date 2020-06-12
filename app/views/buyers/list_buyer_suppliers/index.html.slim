@@ -31,4 +31,4 @@
               tbody#list_items
                 = render "buyers/list_buyer_suppliers/list_supplier"
     .page-item.row
-      = paginate(@search_name)
+      = paginate(@search_name) rescue nil
