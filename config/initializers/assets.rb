@@ -20,3 +20,6 @@ Rails.application.config.assets.precompile += %w[application_admin.scss applicat
 Rails.application.config.assets.precompile += %w[home.scss home.js calendar.scss menu.js]
 Rails.application.config.assets.precompile += %w[components/* buyer/* templates/*.css dropzone.js my_dropzone.js]
 Rails.application.config.assets.precompile += %w[dropzone/*.js]
+
+# Integrate vender new front end
+Rails.application.config.assets.precompile += %w[css/* plugins/* img/*]

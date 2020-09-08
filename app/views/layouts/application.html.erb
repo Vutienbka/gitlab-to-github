@@ -1,28 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <title>NEWJI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>NEWJI | ホーム</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <%= stylesheet_link_tag 'plugins/fontawesome-free/css/all.min'%>
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <%= stylesheet_link_tag 'css/adminlte.min'%>
+    <!--NEWJI独自のスタイル-->
+    <%= stylesheet_link_tag 'css/newji'%>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- fullCalendar -->
+    <!--カレンダー
+    <link href='core/main.css' rel='stylesheet' />
+    <link href='daygrid/main.css' rel='stylesheet' />
+    <script src='core/main.js'></script>
+    <script src='daygrid/main.js'></script>
+    <script src='core/locales/ja.js'></script>
+    -->
+
     <%= yield :head %>
   </head>
+  <!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to to the body tag
+  to get the desired effect
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
 
-  <body>
+  <body class="hold-transition sidebar-mini">
     <% if current_user.present? %>
-      <div class="wrapper-newji">
-        <div class="sidebar" id="mysidebar">
-          <%= render "layouts/left_menu" %>
-        </div>
-        <div class="full-content" id="full-content">
-          <%= render 'layouts/header' %>
-          <div class="containerss">
-            <%= yield %>
+      <div class="wrapper">
+        <!-- Navbar -->
+        <%= render "layouts/navbar" %>
+
+        <!-- Main Sidebar Container -->
+        <%= render "layouts/sidebar" %>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <div class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="index3.html">ホーム</a></li>
+                    <li class="breadcrumb-item active">管理画面</li>
+                  </ol>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
           </div>
-          <%= render 'layouts/footer' %>
+          <!-- /.content-header -->
+
+          <!-- Main content -->
+          <div class="content">
+            <div class="container-fluid">
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
     <% else %>

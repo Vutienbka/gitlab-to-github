@@ -1,0 +1,155 @@
+<form>
+  <div class="input-group input-group-sm">
+    <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="何をお探しですか？" aria-label="Search" id="newji-serch">
+    <div class="input-group-append">
+      <input class="sbtn5" type="submit" value="検索" />
+    </div>
+  </div>
+</form>
+<div class="row margin-top30 content--top-only">
+  <div class="col-lg-6">
+    <div class="card card-main text-center">
+      <div class="card-content">
+        <div class="card-content-left">
+          <%= image_tag 'img/item.svg', alt: 'アイテム登録アイコン', with: '55px', height: '55px', style: "margin: 0 auto;display: block;" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
+          <a href="pages/item.html" class="card-title bold">アイテム登録</a>
+        </div>
+        <div class="card-content-right">
+          <div class="card-vertical-center">
+            <p class="card-description">ここからアイテムの新規登録を始めます</p>
+          </div>
+          <a class="card-link card-link--item" href="pages/item.html">アイテムの<span class="textbr">登録を始める</span></a>
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+
+    <div class="card card-main text-center">
+      <div class="card-content">
+        <div class="card-content-left">
+          <%= image_tag 'img/cost-down.svg', alt: 'コストダウンアイコン', with: '55px', height: '55px', style: "margin: 0 auto;display: block;" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
+          <a href="pages/item.html" class="card-title bold">コストダウン</a>
+        </div>
+        <div class="card-content-right">
+          <div class="card-vertical-center">
+            <p class="card-description">ここからアイテムを選択して、コストダウンの自動化を進めます</p>
+          </div>
+          <a class="card-link card-link--costdown" href="pages/item.html">コストダウン<span class="textbr">自動化を進める</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-main text-center">
+      <div class="card-content">
+        <div class="card-content-left">
+          <%= image_tag 'img/my-catalog.svg', alt: 'マイカタログアイコン', with: '55px', height: '55px', style: "margin: 0 auto;display: block;" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
+          <a href="pages/my-catalog.html" class="card-title bold">マイカタログ</a>
+        </div>
+        <div class="card-content-right">
+          <div class="card-vertical-center">
+            <p class="card-description">ここから仕入先別、カテゴリー別でアイテムを表示し、発注することができます</p>
+          </div>
+          <a class="card-link card-link--mycatalog" href="pages/my-catalog.html">マイカタログを<span class="textbr">見る</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.col-md-6 -->
+  <div class="col-lg-6">
+    <div class="card card--data">
+      <div class="card-header border-0">
+        <div class="d-flex justify-content-between">
+          <h3 class="card-title--data">データ</h3>
+          <a href="javascript:void(0);" class="card-link--data">データを確認する</a>
+        </div>
+      </div>
+      <div class="card-body card-body--1263">
+        <div class="d-flex">
+          <p class="d-flex flex-column">
+            <span class="text-bold text-lg">820</span>
+            <span>時間</span>
+          </p>
+          <p class="ml-auto d-flex flex-column text-right">
+            <span class="text-success">
+              <i class="fas fa-arrow-up"></i> 12.5%
+            </span>
+            <span class="text-muted">先週から</span>
+          </p>
+        </div>
+        <!-- /.d-flex -->
+
+        <div class="position-relative mb-4">
+          <canvas id="visitors-chart" height="300"></canvas>
+        </div>
+
+        <div class="d-flex flex-row justify-content-end">
+          <span class="mr-2">
+            <i class="fas fa-square text-primary"></i> 今週
+          </span>
+
+          <span>
+            <i class="fas fa-square text-gray"></i> 先週
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col-md-6 -->
+</div>
+<!-- /.row -->
+<div class="row w-100">
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="#" class="info-box text-center">
+      <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-vr-cardboard"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text n-center-vertical en">NEWJI VR</span>
+      </div>
+      <!-- /.info-box-content -->
+    </a>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="#" class="info-box mb-3 text-center">
+      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-air-freshener"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text ex-hibition-padding en">NEWJI<br>Exhibition</span>
+      </div>
+      <!-- /.info-box-content -->
+    </a>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+
+  <!-- fix for small devices only -->
+  <div class="clearfix hidden-md-up"></div>
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="#" class="info-box mb-3 text-center">
+      <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-shopping-bag"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text n-center-vertical en">NEWJI BAG</span>
+      </div>
+      <!-- /.info-box-content -->
+    </a>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="#" class="info-box mb-3 text-center">
+      <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-mobile-alt"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text n-center-vertical">アプリ</span>
+      </div>
+      <!-- /.info-box-content -->
+    </a>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
