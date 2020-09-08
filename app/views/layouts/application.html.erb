@@ -64,10 +64,7 @@
                 <div class="col-sm-6">
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                  <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="index3.html">ホーム</a></li>
-                    <li class="breadcrumb-item active">管理画面</li>
-                  </ol>
+                  <%= render "layouts/breadcrumb" %>
                 </div><!-- /.col -->
               </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -81,7 +78,59 @@
             </div>
           </div>
         </div>
+
+        <!-- カスタマイズ -->
+        <aside class="control-sidebar control-sidebar-light">
+          <div class="sidebar">
+            <h5 class="mt-3 pb-3 border-bottom">カスタマイズ</h5>
+            <!-- ここに色変更などのカスタマイズを追加 -->
+            <div class="control-sidebar-main mt-3">
+              <p><label><input type="checkbox" name="" value="1" class="">&nbsp;文字サイズを変更</label></p>
+              <p>
+                <label><input type="radio" name="color-radio" value="dark" class="">&nbsp;ダークモード</label><br>
+                <label><input type="radio" name="color-radio" value="light" class="" checked>&nbsp;ライトモード</label>
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- カスタマイズ -->
+        <aside class="control-sidebar control-sidebar-light">
+          <div class="sidebar">
+            <h5 class="mt-3 pb-3 border-bottom">カスタマイズ</h5>
+            <!-- ここに色変更などのカスタマイズを追加 -->
+            <div class="control-sidebar-main mt-3">
+              <p><label><input type="checkbox" name="" value="1" class="">&nbsp;文字サイズを変更</label></p>
+              <p>
+                <label><input type="radio" name="color-radio" value="dark" class="">&nbsp;ダークモード</label><br>
+                <label><input type="radio" name="color-radio" value="light" class="" checked>&nbsp;ライトモード</label>
+              </p>
+            </div>
+          </div>
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Main Footer -->
+        <%= render "layouts/footer" %>
       </div>
+      <!-- ./wrapper -->
+
+      <!-- REQUIRED SCRIPTS -->
+
+      <!-- jQuery -->
+      <%= javascript_include_tag 'plugins/jquery/jquery.min.js' %>
+      <!-- Bootstrap -->
+      <%= javascript_include_tag 'plugins/bootstrap/js/bootstrap.bundle.min.js' %>
+      <!-- AdminLTE -->
+      <%= javascript_include_tag 'js/adminlte.js' %>
+      <!-- AdminLTE for demo purposes -->
+      <%= javascript_include_tag 'js/demo.js' %>
+
+      <!-- OPTIONAL SCRIPTS -->
+      <%= javascript_include_tag 'plugins/chart.js/Chart.min.js' %>
+      <!--<script src="dist/js/demo.js"></script>-->
+      <%= javascript_include_tag 'js/pages/dashboard3.js' %>
+      <!--<script src="plugins/jquery/newji.js"></script>-->
     <% else %>
       <%= yield %>
     <% end %>
@@ -89,5 +138,4 @@
       <%= render 'layouts/flash_messages' %>
     </div>
   </body>
-  <%= yield :footer %>
 </html>

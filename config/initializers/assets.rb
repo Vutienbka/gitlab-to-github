@@ -22,4 +22,4 @@ Rails.application.config.assets.precompile += %w[components/* buyer/* templates/
 Rails.application.config.assets.precompile += %w[dropzone/*.js]
 
 # Integrate vender new front end
-Rails.application.config.assets.precompile += %w[css/* plugins/* img/*]
+Rails.application.config.assets.precompile += %w[css/* js/* plugins/* img/*]
