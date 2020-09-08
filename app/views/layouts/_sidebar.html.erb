@@ -27,16 +27,16 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="index3.html" class="nav-link active w-100">
+            <%= link_to buyers_home_index_path, class: "nav-link w-100 #{'active' if request.url.include?('buyers/home')}" do %>
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 ホーム
                 <i class="fas fa-angle-right right"></i>
               </p>
-            </a>
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to register_item_buyers_url, class: 'nav-link w-100' do %>
+            <%= link_to register_item_buyers_url, class: "nav-link w-100 #{'active' if request.url.include?('buyers/register_item')}" do %>
               <i class="nav-icon fas fa-gem"></i>
               <p>
                 アイテム登録
