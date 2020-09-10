@@ -1,0 +1,39 @@
+<% breadcrumb_add 'サンプル'%>
+
+<% content_for :content_header do %>
+  <div class="container-fluid">
+    <p class="login-head text-center mt-5 mb-5">購入先のサプライヤーを<span class="textbr">選択してください</span></p>
+    <div class="w-90 flex--sp-block text-center mb-5">
+      <div class="card w-40 w-100--sp">
+        <%= image_tag 'img/AdobeStock_252934044.png', alt: 'サプライヤー登録済み', class: 'sample-img--top' %>
+        <div class="px-2 py-3 ie-sample-card-body">
+          <h5 class="font-bold margin-bottom10 sample-choose--card-title">登録済み</h5>
+          <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">サプライヤーがNEWJIにご登録済みの場合は、こちらを選択してください。<br />サプライヤー検索ページに移動します。</h6>
+          <div class="w-70 w-60--sp w-100--sp450">
+            <%= link_to search_provider_buyers_path, class: "card-link card-link--sample" do %>
+              進む
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card w-40 w-100--sp mt-3 mt-md-0">
+        <%= image_tag 'img/AdobeStock_200434049.png', alt: 'サプライヤー未登録', class: 'sample-img--top' %>
+        <div class="px-2 py-3 ie-sample-card-body">
+          <h5 class="font-bold margin-bottom10 sample-choose--card-title">未登録</h5>
+          <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">サプライヤーがNEWJIに未登録の場合は、こちらを選択してください。<br />サプライヤー招待ページに移動します。</h6>
+          <div class="w-70 w-60--sp w-100--sp450">
+             <%= link_to invite_unregisted_supplier_buyers_path, class: "card-link card-link--sample" do %>
+                進む
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+  <div class="w-90 text-center margin-bottom30">
+    <%= link_to register_item_buyers_path, class: "to-top" do %>
+      前に戻る
+    <% end %>
+  </div>
+<% end %>

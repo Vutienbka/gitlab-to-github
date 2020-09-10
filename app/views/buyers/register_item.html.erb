@@ -9,7 +9,9 @@
         <h5 class="font-bold margin-bottom10 sample-choose--card-title">単品登録</h5>
         <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">単品ずつアイテム登録します。全部で6ステップあります。途中で保存して、再開することも可能です。</h6>
         <div class="w-70 w-60--sp w-100--sp450">
-          <a class="card-link card-link--sample" href="supplier.html">進む</a>
+          <%= link_to choose_provider_buyers_path, class: "card-link card-link--sample" do %>
+            進む
+          <% end %>
         </div>
       </div>
     </div>
@@ -19,7 +21,9 @@
         <h5 class="font-bold margin-bottom10 sample-choose--card-title">一括登録</h5>
         <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">一括でアイテム登録します。既存の情報をCSV形式でアップロードします。登録を代行することも可能です。</h6>
         <div class="w-70 w-60--sp w-100--sp450">
-          <a class="card-link card-link--sample" href="lump.html">進む</a>
+          <%= link_to batch_items_selector_buyers_path, class: "card-link card-link--sample" do %>
+            進む
+          <% end %>
         </div>
       </div>
     </div>

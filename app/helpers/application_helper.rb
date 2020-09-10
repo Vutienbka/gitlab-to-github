@@ -49,4 +49,11 @@ module ApplicationHelper
   def render_breadcrumb
     render partial: 'layouts/breadcrumb', locals: { ol: ensure_breadcrumb }
   end
+
+  # Active link sidebar
+  def buyer_active_link
+    params[:action] == 'register_item' || params[:action] == 'choose_provider' ||
+      params[:action] == 'search_provider' || params[:action] == 'choose_provider' ||
+      params[:action] == 'batch_items_selector' || params[:action] == 'invite_unregisted_supplier'
+  end
 end

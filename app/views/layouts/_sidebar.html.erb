@@ -36,7 +36,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to register_item_buyers_url, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && params[:action] == 'register_item'} " do %>
+            <%= link_to register_item_buyers_url, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && buyer_active_link} " do %>
               <i class="nav-icon fas fa-gem"></i>
               <p>
                 アイテム登録
