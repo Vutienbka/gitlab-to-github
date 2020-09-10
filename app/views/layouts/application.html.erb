@@ -132,6 +132,7 @@
       <!--<script src="dist/js/demo.js"></script>-->
       <%= javascript_include_tag 'js/pages/dashboard3.js' %>
       <!--<script src="plugins/jquery/newji.js"></script>-->
+      <%= yield :content_optional_scripts %>
     <% else %>
       <%= yield %>
     <% end %>
