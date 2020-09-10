@@ -1,28 +1,30 @@
 <% breadcrumb_add 'サンプル'%>
 
-<p class="login-head text-center mt-5 mb-5">どの方法で<span class="textbr">アイテム登録しますか？</span></p>
-<div class="w-90 flex--sp-block text-center mb-3">
-  <div class="card w-40 w-100--sp">
-    <%= image_tag 'img/AdobeStock_307394594.png', alt: '単品登録', class: 'sample-img--top' %>
-    <div class="px-2 py-3 ie-sample-card-body">
-      <h5 class="font-bold margin-bottom10 sample-choose--card-title">単品登録</h5>
-      <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">単品ずつアイテム登録します。全部で6ステップあります。途中で保存して、再開することも可能です。</h6>
-      <div class="w-70 w-60--sp w-100--sp450">
-        <a class="card-link card-link--sample" href="supplier.html">進む</a>
+<% content_for :content_header do %>
+  <p class="login-head text-center mt-5 mb-5">どの方法で<span class="textbr">アイテム登録しますか？</span></p>
+  <div class="w-90 flex--sp-block text-center mb-3">
+    <div class="card w-40 w-100--sp">
+      <%= image_tag 'img/AdobeStock_307394594.png', alt: '単品登録', class: 'sample-img--top' %>
+      <div class="px-2 py-3 ie-sample-card-body">
+        <h5 class="font-bold margin-bottom10 sample-choose--card-title">単品登録</h5>
+        <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">単品ずつアイテム登録します。全部で6ステップあります。途中で保存して、再開することも可能です。</h6>
+        <div class="w-70 w-60--sp w-100--sp450">
+          <a class="card-link card-link--sample" href="supplier.html">進む</a>
+        </div>
+      </div>
+    </div>
+    <div class="card w-40 w-100--sp mt-3 mt-md-0">
+      <%= image_tag 'img/AdobeStock_179008002.png', alt: '一括登録', class: 'sample-img--top' %>
+      <div class="px-2 py-3 ie-sample-card-body">
+        <h5 class="font-bold margin-bottom10 sample-choose--card-title">一括登録</h5>
+        <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">一括でアイテム登録します。既存の情報をCSV形式でアップロードします。登録を代行することも可能です。</h6>
+        <div class="w-70 w-60--sp w-100--sp450">
+          <a class="card-link card-link--sample" href="lump.html">進む</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card w-40 w-100--sp mt-3 mt-md-0">
-    <%= image_tag 'img/AdobeStock_179008002.png', alt: '一括登録', class: 'sample-img--top' %>
-    <div class="px-2 py-3 ie-sample-card-body">
-      <h5 class="font-bold margin-bottom10 sample-choose--card-title">一括登録</h5>
-      <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">一括でアイテム登録します。既存の情報をCSV形式でアップロードします。登録を代行することも可能です。</h6>
-      <div class="w-70 w-60--sp w-100--sp450">
-        <a class="card-link card-link--sample" href="lump.html">進む</a>
-      </div>
-    </div>
+  <div class="row">
+    <a href="item-choose.html" class="btn w-60 newji-btn--dark-blue mt-1 mb-3">またはアイテム登録を<span class="textbr">再開する</span></a>
   </div>
-</div>
-<div class="row">
-  <a href="item-choose.html" class="btn w-60 newji-btn--dark-blue mt-1 mb-3">またはアイテム登録を<span class="textbr">再開する</span></a>
-</div>
+<% end  %>
