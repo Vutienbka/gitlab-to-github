@@ -36,4 +36,17 @@ module ApplicationHelper
     return true if params[:controller].include?(text) || params[:action].include?(text)
     false
   end
+
+  # Breadcrumb
+  def ensure_breadcrumb(title = 'ホーム', url = root_path)
+    @breadcrumb ||= [{ title: title, url: url }]
+  end
+
+  def breadcrumb_add(title, url = '')
+    ensure_breadcrumb << { title: title.html_safe, url: url }
+  end
+
+  def render_breadcrumb
+    render partial: 'layouts/breadcrumb', locals: { ol: ensure_breadcrumb }
+  end
 end
