@@ -27,7 +27,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <%= link_to buyers_home_index_path, class: "nav-link w-100 #{'active' if request.url.include?('buyers/home')}" do %>
+            <%= link_to buyers_home_index_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/home' && params[:action] == 'index'} " do %>
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 ホーム
@@ -36,7 +36,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to register_item_buyers_url, class: "nav-link w-100 #{'active' if request.url.include?('buyers/register_item')}" do %>
+            <%= link_to register_item_buyers_url, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && params[:action] == 'register_item'} " do %>
               <i class="nav-icon fas fa-gem"></i>
               <p>
                 アイテム登録
