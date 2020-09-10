@@ -1,0 +1,137 @@
+<% breadcrumb_add 'マイカタログ'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login card--login--only-vertical">
+    <div class="card-body">
+      <p class="login-head text-center pb-3">アイテムを検索してください</p>
+      <h5 class="w-90 w-100--tab text-left my-catalog-head mb-3">
+        キーワードで検索
+      </h5>
+      <form action="my-catalog-search-result.html">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+          <div class="input-group-append">
+            <input class="sbtn5" type="submit" value="検索" />
+          </div>
+        </div>
+      </form>
+      <div class="w-90 w-100--tab">
+        <div class="row mt-5 mb-3">
+          <div class="col-md-9 col-7 h-100">
+            <h5 class="text-left my-catalog-head mt-2">
+              カテゴリーを選択
+            </h5>
+          </div>
+          <div class="col-md-3 col-5 align-items-end d-none d-sm-block h-100">
+            <button type="button" class="btn w-100 newji-btn--gray text-center btn-right-top" role="button" data-target="#modal-default" data-toggle="modal">カテゴリーを追加</button>
+          </div>
+        </div>
+      </div>
+      <div class="w-90 w-100--tab">
+        <div class="row">
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">家具</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">庭</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">車</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">風呂場</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">テキスト</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">キッチン</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">小物</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">家電</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">トイレ</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+          <div class="col-md-3 col-12 mb-1">
+            <a href="my-catalog2.html" class="card shadow-none border text-left category-item-content">
+              <h6 class="category-name">その他</h6>
+              <h6 class="category-name--code"><small>サブカテゴリー数：10</small></h6>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="w-100 text-center d-block d-sm-none">
+        <button type="button" class="btn w-30 newji-btn--gray w-60--sp w-90--sp--450" role="button" data-target="#modal-default" data-toggle="modal">カテゴリーを追加する</button>
+      </div>
+      <!--
+      <div class="row">
+        <button type="submit" class="btn w-30 newji-btn--gray w-60--sp w-90--sp--450">カテゴリーを<span class="textbr">もっと表示</span></button>
+      </div>
+      -->
+    <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+  <!-- モーダル -->
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-default">
+      <div class="modal-content">
+        <form action="#">
+          <div class="modal-header modal-header--ordering">
+            <h6 class="modal-title"></h6>
+            <button type="reset" class="close" role="button" data-target="#modal-default" data-toggle="modal">
+              <span class="align-middle" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center pt-3">以下を入力してください</h5>
+            <div class="input-group input-group--modal mt-4 mb-4">
+              <label for="form-modal-category">
+                <span>カテゴリー</span>
+              </label>
+              <input id="form-modal-category" type="text" class="form-control form-control--ie" placeholder="例）カテゴリー名" name="item-category" required>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between modal-footer--ordering">
+            <button type="reset" class="btn btn-default" role="button" data-target="#modal-default" data-toggle="modal">閉じる</button>
+            <button type="submit" class="btn newji-btn--pink">追加する</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div><!-- /.container-fluid -->
+<% end %>

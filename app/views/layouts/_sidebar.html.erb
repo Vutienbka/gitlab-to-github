@@ -2,11 +2,11 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <%= link_to buyers_home_index_path, class: "brand-link" do %>
         <div class="d-flex w-100">
           <%= image_tag 'img/NEWJI_002_haikei.png', class: 'brand-image border-wite', alt: 'NEWJIロゴ' %>
         </div>
-      </a>
+      <% end %>
       <!-- Sidebar user panel (optional) -->
       <!--
         <div class="user-panel mt-3 pb-3 d-flex border-bottom">
@@ -36,7 +36,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to register_item_buyers_url, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && buyer_active_link} " do %>
+            <%= link_to register_item_buyers_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && buyer_active_link} " do %>
               <i class="nav-icon fas fa-gem"></i>
               <p>
                 アイテム登録
@@ -45,14 +45,14 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <a href="pages/my-catalog.html" class="nav-link w-100">
+            <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/catalogs' } " do %>
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
                 マイカタログ
                 <i class="fas fa-angle-right right"></i>
                 <span class="badge badge-info right">6</span>
               </p>
-            </a>
+            <% end %>
           </li>
           <li class="nav-item has-treeview">
             <a href="pages/ordering.html" class="nav-link w-100">

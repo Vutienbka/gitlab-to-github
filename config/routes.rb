@@ -131,6 +131,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :catalogs, only: %i[index] do
+    end
   end
 
   namespace :suppliers do
