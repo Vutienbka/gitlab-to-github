@@ -6,7 +6,7 @@
       .title-mail
         = t 'email.register_instruction'
       .submit style="margin: auto; padding-top: 30px;"
-        a href= confirm_email_buyers_url(token: @buyer.token)
+        a href= confirmation_url(@resource, confirmation_token: @token, locale: 'en')
           button.btn style="width:100%; background-color: #92d066; border: none; height: 40px"
             = t 'email.confirm'
   .footer-mail style="padding-top: 50px"

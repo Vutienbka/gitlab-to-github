@@ -9,8 +9,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def create
-    @user = User.find_by(email: params.dig('user', 'email'))
-    return redirect_to new_user_session_path, alert: t('devise.failure.unconfirmed') if @user&.token.present?
     super
   end
 
