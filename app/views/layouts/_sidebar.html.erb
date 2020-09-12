@@ -101,6 +101,15 @@
               </p>
             </a>
           </li>
+          <!--Logout-->
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete, class:"nav-link w-100", data: {confirm: t('logout_confirmation')} do %>
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            <% end %>
+          </li>
           <!--
           <li class="nav-item">
             <a href="#" class="nav-link w-100">
