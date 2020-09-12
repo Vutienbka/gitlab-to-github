@@ -1,0 +1,321 @@
+<% breadcrumb_add 'クレーム'%>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body card-body--ordering">
+        <div class="text-center mt-4">
+          <h4 class="login-head text-center font-bold">商品コード：00000</h4>
+          <h6 class="login-head--small font-normal">名称：マックフルーリー</h6>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <!-- select -->
+            <div class="form-group narrow-down-sp-select--ordering">
+              <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+              <div class="flex">
+                <select class="form-control form-control--select narrow-down-sp-select">
+                  <option>全て</option>
+                  <option>最新</option>
+                  <option>今日</option>
+                  <option>今月</option>
+                </select>
+                <input class="sbtn5 sbtn5--select ml-2" type="submit" value="絞り込み" />
+              </div>
+            </div>
+          </div>
+          <div class="col-6 text-right">
+          </div>
+        </div>
+        <table id="example1" class="table table-bordered table-striped table--ordering table--claim">
+          <thead>
+            <tr>
+              <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
+              <th class="text-center">登録日</th>
+              <th class="text-center">ロット<span class="textbr">ナンバー</span></th>
+              <th class="text-center">カテゴリー</th>
+              <th class="text-center">クレーム<span class="textbr">内容</span></th>
+              <th class="text-center">原因</th>
+              <th class="text-center">対策</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center" title="クレームナンバー">1</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">2</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">色違い</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">3</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">付属品不足</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">4</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">5</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">6</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">7</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">8</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">9</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">10</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">11</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">12</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">13</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">14</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">15</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">16</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">17</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">18</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">19</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+            <tr>
+              <td class="text-center" title="クレームナンバー">20</td>
+              <td class="text-center" title="登録日">7/11</td>
+              <td class="text-center" title="ロットナンバー">0120</td>
+              <td class="text-center" title="カテゴリー">異物混入</td>
+              <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip">テキストテキストテキ...</td>
+              <td class="text-center" title="原因"><%= link_to '回答済み', buyers_claim_info_path, class: 'to-top'%></td>
+              <td class="text-center" title="対策">未回答</td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
+              <th class="text-center">登録日</th>
+              <th class="text-center">ロット<span class="textbr">ナンバー</span></th>
+              <th class="text-center">カテゴリー</th>
+              <th class="text-center">クレーム<span class="textbr">内容</span></th>
+              <th class="text-center">原因</th>
+              <th class="text-center">対策</th>
+            </tr>
+          </tfoot>
+        </table>
+
+        <!-- クレームが登録されていないとき -->
+        <h6 class="pl-1 d-none">クレームが登録されていません。</h6>
+      </div>
+    </div>
+  </div>
+  <!-- /.login-box -->
+</div>
+
+<div class="w-90 text-center mt-4 margin-bottom30">
+  <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top" %>
+</div>
+
+<%= content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'plugins/datatables/jquery.dataTables.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %>
+  <script>
+    $(function () {
+      // デフォルトの設定を変更
+      $.extend( $.fn.dataTable.defaults, {
+          language: {
+              url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+          }
+      });
+
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": false,
+        "info": false,
+        "pageLength": 12,
+      });
+
+      $('tr').not('.modal-kakuninn-table tr').click(function(){
+        //$(this).attr('data-target','#modal-default');
+        if($(this).hasClass('select--click')){
+          return;
+        } else {
+          $(this).addClass("select--click");
+        }
+      });
+
+      // セルをマウスオーバー
+      $("td").hover(function(){
+        // 親要素（tr要素）にtargetクラスを追加
+        $(this).parent().addClass("target").addClass('select');
+        //クリックしたときの浮き出を解除
+        $('tr').removeClass("select--click");
+
+        // 親要素から見て、自分が何番目の子要素なのか調べる
+        var myIndex = $(this).index();
+
+        // myIndexに1プラス
+        myIndex ++;
+
+        // 各行の「myIndex番目の子要素」にtargetクラスを追加する
+        $("td:nth-child(" + myIndex + ")").addClass("target");
+      }, function(){
+        // マウスアウト時にtargetクラスを削除
+        $(".target").removeClass("target").removeClass("select");
+
+      });
+
+      /*ページ遷移*/
+      $("tr").click(function() {
+        window.location.href = '/buyers/claims/1/info';
+        // TODO:: Fix href late
+      });
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+    });
+    </script>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $('.content').find('.container-fluid').removeClass('container-fluid')
+  });
+</script>

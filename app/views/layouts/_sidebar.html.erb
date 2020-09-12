@@ -64,13 +64,13 @@
             <% end %>
           </li>
           <li class="nav-item has-treeview">
-            <a href="pages/claim-top.html" class="nav-link w-100">
+            <%= link_to buyers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/claims' } " do %>
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
                 クレーム/不適合
                 <i class="fas fa-angle-right right"></i>
               </p>
-            </a>
+            <% end %>
           </li>
           <li class="nav-item has-treeview">
             <a href="pages/sample-choose.html" class="nav-link w-100">

@@ -1,0 +1,75 @@
+<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone' %>
+<% breadcrumb_add 'クレーム'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body">
+      <div class="text-center">
+        <h4 class="login-head text-center font-bold">商品コード：00000</h4>
+        <h6 class="login-head--small font-normal">名称：マックフルーリー</h6>
+      </div>
+      <p class="login-head text-center mt-5">クレーム内容を<span class="textbr">登録してください</span></p>
+    <!-- /.login-card-body -->
+      <div>
+        <form action="#" method="post">
+          <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
+            <label for="form-nolabel-claim-category">
+              <span>カテゴリー</span>
+            </label>
+            <input id="form-nolabel-claim-category" type="text" class="form-control form-control--ie" name="claim-category" placeholder="例）形崩れ" required>
+          </div>
+          <div class="input-group input-group--short input-group--has-uploader">
+            <div class="input-group__add">
+              <i class="fas fa-plus input-plus"></i>
+              <a href="#" class="input-add">カテゴリーを追加</a>
+            </div>
+            <input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie mt-3 d-none" name="claim-category2" placeholder="例）3" required>
+          </div>
+          <div class="input-group input-group--short input-group--has-uploader mt-5 mb-4">
+            <label for="form-nolabel-claim-detail">
+              <span>クレーム内容</span>
+            </label>
+            <textarea id="form-nolabel-claim-detail" type="text" class="form-control form-control--textarea form-control--ie" placeholder="例）テキストテキストテキストテキストテキストテキストテキストテキストテキスト" name="claim-detail" required></textarea>
+          </div>
+          <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
+            <label for="form-nolabel-claim-lot-umber">
+              <span>ロットナンバー</span>
+            </label>
+            <input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie" name="claim-rot-number2" placeholder="例）3" required>
+          </div>
+          <div class="input-group input-group--short input-group--has-uploader">
+            <div class="input-group__add">
+              <i class="fas fa-plus input-plus"></i>
+              <a href="#" class="input-add">ロットナンバーを追加</a>
+            </div>
+            <input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie mt-3 d-none" name="claim-rot-number" placeholder="例）3" required>
+          </div>
+        </form>
+        <div class="file-uploader--with-input w-80--sp w-100--sp--450 mt-5 mt-md-4 mb-4">
+          <label class="w-100 file-label-wrap file-label-wrap--left">
+            <span class="file-label file-label--left">クレーム画像</span>
+          </label>
+          <form action="/file-upload" class="dropzone">
+            <!--dropzone.jsの443行目に記述-->
+          </form>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="btn w-30 newji-btn--pink mt-4 w-60--sp">送信</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.login-box -->
+<% end %>
+
+<div class="w-90 text-center margin-bottom30">
+  <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top" %>
+</div>
+
+<%= content_for :content_optional_scripts do %>
+  <!--dropzone.js-->
+  <%= javascript_include_tag 'plugins/dropzone-5.7.0/dist/dropzone.js' %>
+  <!--dropzone IEのための関数読み込み-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.7/polyfill.min.js"></script>
+<% end%>

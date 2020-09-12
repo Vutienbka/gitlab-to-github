@@ -135,6 +135,11 @@ Rails.application.routes.draw do
     end
     resources :orders, only: %i[index] do
     end
+    resources :claims, only: %i[index] do
+      post :input
+      get :table
+      get :info
+    end
   end
 
   namespace :suppliers do

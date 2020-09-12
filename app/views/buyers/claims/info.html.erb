@@ -1,0 +1,93 @@
+
+<%= content_for :head do %>
+  <%= javascript_include_tag 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %>
+<% end %>
+
+<% breadcrumb_add 'クレーム'%>
+
+<!-- Default box -->
+<div class="card card-solid card--login--only-vertical">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 calim-info__header-parent">
+        <div class="text-center mt-5 mt-md-4 mb-5 calim-info__header-item-name">
+          <h4 class="login-head font-bold">商品コード：00000</h4>
+          <h6 class="login-head--small font-normal">名称：マックフルーリー</h6>
+        </div>
+        <div class="text-right calim-info__header-child">
+          <h6 class="claim-info__right-info">登録日：2020年7月11日</h6>
+          <h6 class="claim-info__right-info">クレームナンバー：1</h6>
+          <h6 class="claim-info__right-info">ロットナンバー：0120</h6>
+        </div>
+      </div>
+    </div>
+    <div class="row border-top pt-5">
+      <div class="col-12 col-md-6">
+        <div class="col-12">
+          <%= image_tag 'img/2inone0I9A7535_TP_V4.jpg', alt: 'クレーム画像', class: 'product-image' %>
+        </div>
+        <div class="col-12 product-image-thumbs">
+          <div class="product-image-thumb active"><%= image_tag 'img/2inone0I9A7535_TP_V4.jpg', alt: 'クレーム画像' %></div>
+          <div class="product-image-thumb"><%= image_tag 'img/gori0I9A3064072102745_TP_V4.jpg', alt: 'クレーム画像' %></div>
+          <div class="product-image-thumb"><%= image_tag 'img/gori0I9A3105072103338_TP_V4.jpg', alt: 'クレーム画像' %></div>
+          <div class="product-image-thumb"><%= image_tag 'img/iPhoneFTHG8887_TP_V4.jpg', alt: 'クレーム画像' %></div>
+          <div class="product-image-thumb"><%= image_tag 'img/loudepedeckFTHG6200_TP_V4.jpg', alt: 'クレーム画像' %></div>
+          <div class="product-image-thumb"><%= image_tag 'img/iPhoneFTHG8887_TP_V4.jpg', alt: 'クレーム画像' %></div>
+          <div class="product-image-thumb"><%= image_tag 'img/loudepedeckFTHG6200_TP_V4.jpg', alt: 'クレーム画像' %></div>
+        </div>
+        <!-- 画像が７個以上の時プラスボタンを表示 -->
+        <div class="col-12 col-md-1 text-center mt-2">
+          <a href="#" class="plus-image"><i class="fas fa-plus"></i></a>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mt-5 mt-md-0">
+        <div class="d-flex">
+          <h5 class="info-head font-bold">カテゴリー：</h5>
+          <h5 class="info-head text-normal">異物混入</h5>
+        </div>
+        <h5 class="info-head font-bold mt-3">クレーム内容：</h5>
+        <div class="info-description claim-description">
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+          </p>
+          <br />
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+          </p>
+        </div>
+        <div class="dashed my-4">
+
+        </div>
+        <h5 class="info-head font-bold">原因：</h5>
+        <div class="info-description claim-description">
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+          </p>
+          <br />
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+          </p>
+        </div>
+        <h5 class="info-head font-bold mt-3">今後の対策：</h5>
+        <div class="info-description claim-description">
+          <p>
+            まだ回答されていません。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->
+<div class="w-90 text-center mt-5 margin-bottom30">
+  <%= link_to 'クレーム一覧に戻る', buyers_claim_table_path(claim_id: 1), class: 'to-top' %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.content').find('.container-fluid').removeClass('container-fluid')
+  });
+</script>
