@@ -133,6 +133,8 @@ Rails.application.routes.draw do
 
     resources :catalogs, only: %i[index] do
     end
+    resources :orders, only: %i[index] do
+    end
   end
 
   namespace :suppliers do

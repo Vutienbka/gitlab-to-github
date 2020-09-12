@@ -1,0 +1,2184 @@
+<% breadcrumb_add '受発注'%>
+
+<% content_for :content_header do %>
+  <div class="mt-4">
+    <form>
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+        <div class="input-group-append">
+          <input class="sbtn5" type="submit" value="検索" />
+        </div>
+      </div>
+    </form>
+  </div>
+<% end %>
+
+<!-- Default box -->
+<div class="row">
+  <div class="col-12 mt-4">
+    <div class="card card-primary card-tabs card--login--only-vertical">
+      <div class="card-header card-header--dark-blue p-0 pt-1">
+        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active nav-link--tab-newji" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">発注</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link--tab-newji" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">受注</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link--tab-newji" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">履歴</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body card-body--ordering">
+        <div class="row">
+          <div class="col-6">
+            <!-- select -->
+            <div class="form-group narrow-down-sp-select--ordering">
+              <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+              <div class="flex">
+                <select class="form-control form-control--select narrow-down-sp-select">
+                  <option>全て</option>
+                  <option>本日</option>
+                  <option>今月</option>
+                  <option>アイテム</option>
+                  <option>発注番号</option>
+                  <option>促進</option>
+                  <option>遅延</option>
+                  <option>仕入先</option>
+                  <option>出荷日</option>
+                  <option>納品場所</option>
+                </select>
+                <input class="sbtn5 sbtn5--select ml-2" type="submit" value="絞り込み" />
+              </div>
+            </div>
+          </div>
+          <div class="col-6 text-right">
+            <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--blue" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
+            <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--pink" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
+          </div>
+        </div>
+        <div class="tab-content" id="custom-tabs-one-tabContent">
+          <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+            <table id="example1" class="table table-bordered table-striped table--ordering">
+              <thead>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <th class="text-left text-md-center">オーダー<span class="textbr">番号</span></th>
+                  <th class="text-left text-md-center">アイテム名</th>
+                  <th class="text-left text-md-center">商品<span class="textbr">コード</span></th>
+                  <th class="text-center">発注日</th>
+                  <th class="text-center">出荷<span class="textbr">希望日</span></th>
+                  <th class="text-center">通常<span class="textbr">納期</span></th>
+                  <th class="text-center">回答<span class="textbr">納期</span></th>
+                  <th class="text-center">単価</th>
+                  <th class="text-center">数</th>
+                  <th class="text-center">合計<span class="textbr">金額</span></th>
+                  <th class="text-center">納品<span class="textbr">場所</span></th>
+                  <th class="text-center">出荷<span class="textbr">形態</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center chien" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center chien sokusin" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">100,000</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">100,000</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center chien" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
+                  <td class="text-left text-md-center" title="アイテム名">ふさかけオウルA ホワイト</td>
+                  <td class="text-left text-md-center" style="word-break: break-all;" title="商品コード">80001580</td>
+                  <td class="text-center" title="発注日">9/5</td>
+                  <td class="text-center" title="出荷希望日">10/8</td>
+                  <td class="text-center" title="通常納期">11/10</td>
+                  <td class="text-center" title="回答納期">11/10</td>
+                  <td class="text-center" title="単価">¥10,000</td>
+                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="合計金額">¥50,000</td>
+                  <td class="text-center" title="納品場所">テキスト</td>
+                  <td class="text-center" title="出荷形態">テキスト</td>
+                </tr>
+
+              </tbody>
+              <tfoot>
+                <tr role="button" data-target="" data-toggle="modal">
+                  <th class="text-left text-md-center">オーダー<span class="textbr">番号</span></th>
+                  <th class="text-left text-md-center">アイテム名</th>
+                  <th class="text-left text-md-center">商品<span class="textbr">コード</span></th>
+                  <th class="text-center">発注日</th>
+                  <th class="text-center">出荷<span class="textbr">希望日</span></th>
+                  <th class="text-center">通常<span class="textbr">納期</span></th>
+                  <th class="text-center">回答<span class="textbr">納期</span></th>
+                  <th class="text-center">単価</th>
+                  <th class="text-center">数</th>
+                  <th class="text-center">合計<span class="textbr">金額</span></th>
+                  <th class="text-center">納品<span class="textbr">場所</span></th>
+                  <th class="text-center">出荷<span class="textbr">形態</span></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr role="button" data-target="" data-toggle="modal">
+                <th>Rendering engine</th>
+                <th>Browser</th>
+                <th>Platform(s)</th>
+                <th>Engine version</th>
+                <th>CSS grade</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 4.0
+                </td>
+                <td>Win 95+</td>
+                <td> 4</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 5.0
+                </td>
+                <td>Win 95+</td>
+                <td>5</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 5.5
+                </td>
+                <td>Win 95+</td>
+                <td>5.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 6
+                </td>
+                <td>Win 98+</td>
+                <td>6</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet Explorer 7</td>
+                <td>Win XP SP2+</td>
+                <td>7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>AOL browser (AOL desktop)</td>
+                <td>Win XP</td>
+                <td>6</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 1.0</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 1.5</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 2.0</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 3.0</td>
+                <td>Win 2k+ / OSX.3+</td>
+                <td>1.9</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Camino 1.0</td>
+                <td>OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Camino 1.5</td>
+                <td>OSX.3+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Netscape 7.2</td>
+                <td>Win 95+ / Mac OS 8.6-9.2</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Netscape Browser 8</td>
+                <td>Win 98SE+</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Netscape Navigator 9</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.0</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.1</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.2</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.2</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.3</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.3</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.4</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.4</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.5</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.6</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.6</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.7</td>
+                <td>Win 98+ / OSX.1+</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.8</td>
+                <td>Win 98+ / OSX.1+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Seamonkey 1.1</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Epiphany 2.20</td>
+                <td>Gnome</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 1.2</td>
+                <td>OSX.3</td>
+                <td>125.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 1.3</td>
+                <td>OSX.3</td>
+                <td>312.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 2.0</td>
+                <td>OSX.4+</td>
+                <td>419.3</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 3.0</td>
+                <td>OSX.4+</td>
+                <td>522.1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>OmniWeb 5.5</td>
+                <td>OSX.4+</td>
+                <td>420</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>iPod Touch / iPhone</td>
+                <td>iPod</td>
+                <td>420.1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>S60</td>
+                <td>S60</td>
+                <td>413</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 7.0</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 7.5</td>
+                <td>Win 95+ / OSX.2+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 8.0</td>
+                <td>Win 95+ / OSX.2+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 8.5</td>
+                <td>Win 95+ / OSX.2+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 9.0</td>
+                <td>Win 95+ / OSX.3+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 9.2</td>
+                <td>Win 88+ / OSX.3+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 9.5</td>
+                <td>Win 88+ / OSX.3+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera for Wii</td>
+                <td>Wii</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Nokia N800</td>
+                <td>N800</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Nintendo DS browser</td>
+                <td>Nintendo DS</td>
+                <td>8.5</td>
+                <td>C/A<sup>1</sup></td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>KHTML</td>
+                <td>Konqureror 3.1</td>
+                <td>KDE 3.1</td>
+                <td>3.1</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>KHTML</td>
+                <td>Konqureror 3.3</td>
+                <td>KDE 3.3</td>
+                <td>3.3</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>KHTML</td>
+                <td>Konqureror 3.5</td>
+                <td>KDE 3.5</td>
+                <td>3.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Tasman</td>
+                <td>Internet Explorer 4.5</td>
+                <td>Mac OS 8-9</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Tasman</td>
+                <td>Internet Explorer 5.1</td>
+                <td>Mac OS 7.6-9</td>
+                <td>1</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Tasman</td>
+                <td>Internet Explorer 5.2</td>
+                <td>Mac OS 8-X</td>
+                <td>1</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>NetFront 3.1</td>
+                <td>Embedded devices</td>
+                <td>-</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>NetFront 3.4</td>
+                <td>Embedded devices</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>Dillo 0.8</td>
+                <td>Embedded devices</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>Links</td>
+                <td>Text only</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>Lynx</td>
+                <td>Text only</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>IE Mobile</td>
+                <td>Windows Mobile 6</td>
+                <td>-</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>PSP browser</td>
+                <td>PSP</td>
+                <td>-</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Other browsers</td>
+                <td>All others</td>
+                <td>-</td>
+                <td>-</td>
+                <td>U</td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr role="button" data-target="" data-toggle="modal">
+                <th>Rendering engine</th>
+                <th>Browser</th>
+                <th>Platform(s)</th>
+                <th>Engine version</th>
+                <th>CSS grade</th>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr role="button" data-target="" data-toggle="modal">
+                <th>Rendering engine</th>
+                <th>Browser</th>
+                <th>Platform(s)</th>
+                <th>Engine version</th>
+                <th>CSS grade</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 4.0
+                </td>
+                <td>Win 95+</td>
+                <td> 4</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 5.0
+                </td>
+                <td>Win 95+</td>
+                <td>5</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 5.5
+                </td>
+                <td>Win 95+</td>
+                <td>5.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet
+                  Explorer 6
+                </td>
+                <td>Win 98+</td>
+                <td>6</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>Internet Explorer 7</td>
+                <td>Win XP SP2+</td>
+                <td>7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Trident</td>
+                <td>AOL browser (AOL desktop)</td>
+                <td>Win XP</td>
+                <td>6</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 1.0</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 1.5</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 2.0</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Firefox 3.0</td>
+                <td>Win 2k+ / OSX.3+</td>
+                <td>1.9</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Camino 1.0</td>
+                <td>OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Camino 1.5</td>
+                <td>OSX.3+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Netscape 7.2</td>
+                <td>Win 95+ / Mac OS 8.6-9.2</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Netscape Browser 8</td>
+                <td>Win 98SE+</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Netscape Navigator 9</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.0</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.1</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.2</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.2</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.3</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.3</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.4</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.4</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.5</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.6</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>1.6</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.7</td>
+                <td>Win 98+ / OSX.1+</td>
+                <td>1.7</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Mozilla 1.8</td>
+                <td>Win 98+ / OSX.1+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Seamonkey 1.1</td>
+                <td>Win 98+ / OSX.2+</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Gecko</td>
+                <td>Epiphany 2.20</td>
+                <td>Gnome</td>
+                <td>1.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 1.2</td>
+                <td>OSX.3</td>
+                <td>125.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 1.3</td>
+                <td>OSX.3</td>
+                <td>312.8</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 2.0</td>
+                <td>OSX.4+</td>
+                <td>419.3</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>Safari 3.0</td>
+                <td>OSX.4+</td>
+                <td>522.1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>OmniWeb 5.5</td>
+                <td>OSX.4+</td>
+                <td>420</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>iPod Touch / iPhone</td>
+                <td>iPod</td>
+                <td>420.1</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Webkit</td>
+                <td>S60</td>
+                <td>S60</td>
+                <td>413</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 7.0</td>
+                <td>Win 95+ / OSX.1+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 7.5</td>
+                <td>Win 95+ / OSX.2+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 8.0</td>
+                <td>Win 95+ / OSX.2+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 8.5</td>
+                <td>Win 95+ / OSX.2+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 9.0</td>
+                <td>Win 95+ / OSX.3+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 9.2</td>
+                <td>Win 88+ / OSX.3+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera 9.5</td>
+                <td>Win 88+ / OSX.3+</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Opera for Wii</td>
+                <td>Wii</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Nokia N800</td>
+                <td>N800</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Presto</td>
+                <td>Nintendo DS browser</td>
+                <td>Nintendo DS</td>
+                <td>8.5</td>
+                <td>C/A<sup>1</sup></td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>KHTML</td>
+                <td>Konqureror 3.1</td>
+                <td>KDE 3.1</td>
+                <td>3.1</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>KHTML</td>
+                <td>Konqureror 3.3</td>
+                <td>KDE 3.3</td>
+                <td>3.3</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>KHTML</td>
+                <td>Konqureror 3.5</td>
+                <td>KDE 3.5</td>
+                <td>3.5</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Tasman</td>
+                <td>Internet Explorer 4.5</td>
+                <td>Mac OS 8-9</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Tasman</td>
+                <td>Internet Explorer 5.1</td>
+                <td>Mac OS 7.6-9</td>
+                <td>1</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Tasman</td>
+                <td>Internet Explorer 5.2</td>
+                <td>Mac OS 8-X</td>
+                <td>1</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>NetFront 3.1</td>
+                <td>Embedded devices</td>
+                <td>-</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>NetFront 3.4</td>
+                <td>Embedded devices</td>
+                <td>-</td>
+                <td>A</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>Dillo 0.8</td>
+                <td>Embedded devices</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>Links</td>
+                <td>Text only</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>Lynx</td>
+                <td>Text only</td>
+                <td>-</td>
+                <td>X</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>IE Mobile</td>
+                <td>Windows Mobile 6</td>
+                <td>-</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Misc</td>
+                <td>PSP browser</td>
+                <td>PSP</td>
+                <td>-</td>
+                <td>C</td>
+              </tr>
+              <tr role="button" data-target="" data-toggle="modal">
+                <td>Other browsers</td>
+                <td>All others</td>
+                <td>-</td>
+                <td>-</td>
+                <td>U</td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr role="button" data-target="" data-toggle="modal">
+                <th>Rendering engine</th>
+                <th>Browser</th>
+                <th>Platform(s)</th>
+                <th>Engine version</th>
+                <th>CSS grade</th>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- モーダル -->
+        <div class="modal fade" id="modal-default">
+          <div class="modal-dialog modal-default">
+            <div class="modal-content">
+              <div class="modal-header modal-header--ordering">
+                <h6 class="modal-title">GD2020N00<br />ふさかけオウルA ホワイト</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span class="align-middle" aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-center pt-3">何をしますか？</h5>
+                <div class="w-100 flex text-center mt-3">
+                  <button type="button" class="btn w-30 newji-btn--blue w-45--sp--450" role="button" data-target="#modal-default--sokusin" data-toggle="modal">促進依頼</button>
+                  <button type="button" class="btn w-30 newji-btn--pink w-45--sp--450" role="button" data-target="#modal-default--tsuikahacchu" data-toggle="modal">追加発注</button>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between modal-footer--ordering">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <!-- モーダル -->
+        <div class="modal fade" id="modal-default--sokusin">
+          <div class="modal-dialog modal-default">
+            <div class="modal-content">
+              <form action="#" method="post">
+                <div class="modal-header modal-header--ordering">
+                  <h6 class="modal-title">GD2020N00<br />ふさかけオウルA ホワイト</h6>
+                  <button type="reset" class="close" role="button" data-target="#modal-default--sokusin" data-toggle="modal">
+                    <span class="align-middle" aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5 class="text-center pt-3 pb-3">以下を入力してください</h5>
+                  <span class="required-txt">確認</span>
+                  <table class="mt-2 modal-kakuninn-table">
+                    <tbody>
+                      <tr>
+                        <th>
+                          リードタイム：
+                        </th>
+                        <td>
+                          ●●日
+                        </td>
+                        <th class="modal-kakuninn-table__right">
+                          予想納期：
+                        </th>
+                        <td>
+                          ●月●日頃
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          通常納期<span class="modal-kakuninn-table__th-tsuujounouki">：</span>
+                        </th>
+                        <td>
+                          ●月●日
+                        </td>
+                        <th class="modal-kakuninn-table__right">
+                          回答納期：
+                        </th>
+                        <td>
+                          ●月●日
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="input-group input-group--modal mt-4 mb-4">
+                    <label for="form-modal-nouki">
+                      <span class="required-txt required-txt--any">任意</span>
+                      <span>促進希望日</span>
+                    </label>
+                    <input type="text" class="form-control form-control--ie form-control--readonly" id="form-modal-nouki" placeholder="希望日付を選択してください。" name="ordering-promotion" readonly="readonly">
+                  </div>
+                </div>
+                <div class="modal-footer justify-content-between modal-footer--ordering">
+                  <button type="reset" class="btn btn-default" role="button" data-target="#modal-default--sokusin" data-toggle="modal">閉じる</button>
+                  <button type="submit" class="btn newji-btn--pink">促進依頼</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <!-- モーダル -->
+        <div class="modal fade" id="modal-default--tsuikahacchu">
+          <div class="modal-dialog modal-default">
+            <div class="modal-content">
+              <form action="#" method="post">
+                <div class="modal-header modal-header--ordering">
+                  <h6 class="modal-title">GD2020N00<br />ふさかけオウルA ホワイト</h6>
+                  <button type="reset" class="close" role="button" data-target="#modal-default--tsuikahacchu" data-toggle="modal">
+                    <span class="align-middle" aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5 class="text-center pt-3 pb-3">以下を入力<span class="textbr">または選択してください</span></h5>
+                  <span class="required-txt">確認</span>
+                  <table class="mt-2 modal-kakuninn-table">
+                    <tbody>
+                      <tr>
+                        <th>
+                          単価<span class="modal-kakuninn-table__th-tsuikahacchu-short2">：</span>
+                        </th>
+                        <td>
+                          ●●●円
+                        </td>
+                        <th class="modal-kakuninn-table__right">
+                          単価<span class="modal-kakuninn-table__th-tsuikahacchu-short2">：</span>
+                        </th>
+                        <td>
+                          ●●ドル
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          単位<span class="modal-kakuninn-table__th-tsuikahacchu-short2">：</span>
+                        </th>
+                        <td>
+                          個
+                        </td>
+                        <th class="modal-kakuninn-table__right">
+                          ロット<span class="modal-kakuninn-table__th-tsuikahacchu-short3">：</span>
+                        </th>
+                        <td>
+                          2,000
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          内装数<span class="modal-kakuninn-table__th-tsuikahacchu-short3">：</span>
+                        </th>
+                        <td>
+                          100
+                        </td>
+                        <th class="modal-kakuninn-table__right">
+                          外装数<span class="modal-kakuninn-table__th-tsuikahacchu-short3">：</span>
+                        </th>
+                        <td>
+                          500
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          リードタイム<span class="modal-kakuninn-table__th-tsuikahacchu-short6">：</span>
+                        </th>
+                        <td>
+                          ●●日
+                        </td>
+                        <th class="modal-kakuninn-table__right">
+                          予想納期<span class="modal-kakuninn-table__th-tsuikahacchu-short4">：</span>
+                        </th>
+                        <td>
+                          ●月●日頃
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="input-group input-group--modal mt-4 mb-4">
+                    <label for="form-modal-amount">
+                      <span class="required-txt required-txt--any">任意</span>
+                      <span>追加発注</span>
+                    </label>
+                    <input id="form-modal-amount" type="number" class="form-control form-control--ie" placeholder="半角数字で記入" name="ordering-add-item">
+                    <span class="text-right w-10 ml-2 mt-4">個</span>
+                  </div>
+                  <div class="input-group input-group--modal mt-4 mb-4">
+                    <label for="form-modal-amount-easy">
+                      <span class="required-txt required-txt--any">任意</span>
+                      <span>簡単追加発注</span>
+                    </label>
+                    <!-- select -->
+                    <div class="flex w-100 mt-3">
+                      <label for="rot" class="modal-select-label">ロット発注</label>
+                      <select class="form-control form-control--select" id="rot">
+                        <option>なし</option>
+                        <option>1ロット</option>
+                        <option>2ロット</option>
+                        <option>3ロット</option>
+                        <option>4ロット</option>
+                        <option>5ロット</option>
+                        <option>6ロット</option>
+                        <option>7ロット</option>
+                        <option>8ロット</option>
+                        <option>9ロット</option>
+                      </select>
+                    </div>
+                    <!-- select -->
+                    <div class="flex w-100 mt-3">
+                      <label for="gaisou" class="modal-select-label">外装発注</label>
+                      <select class="form-control form-control--select" id="gaisou">
+                        <option>なし</option>
+                        <option>1外装</option>
+                        <option>2外装</option>
+                        <option>3外装</option>
+                        <option>4外装</option>
+                        <option>5外装</option>
+                        <option>6外装</option>
+                        <option>7外装</option>
+                        <option>8外装</option>
+                        <option>9外装</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer justify-content-between modal-footer--ordering">
+                  <button type="reset" class="btn btn-default" role="button" data-target="#modal-default--tsuikahacchu" data-toggle="modal">閉じる</button>
+                  <button type="submit" class="btn newji-btn--pink">承認依頼</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <!-- モーダル -->
+        <div class="modal fade" id="modal-description1">
+          <div class="modal-dialog modal-default">
+            <div class="modal-content">
+              <div class="modal-header modal-header--ordering">
+                <h6 class="modal-title"></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span class="align-middle" aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-center pt-3 mb-3">アイテムを選択して<span class="textbr">促進依頼を進めてください</span></h5>
+              </div>
+              <div class="modal-footer justify-content-between modal-footer--ordering">
+                <button type="reset" class="btn btn-default w-30" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <!-- モーダル -->
+        <div class="modal fade" id="modal-description2">
+          <div class="modal-dialog modal-default">
+            <div class="modal-content">
+              <div class="modal-header modal-header--ordering">
+                <h6 class="modal-title"></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span class="align-middle" aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-center pt-3 mb-3">アイテムを選択して<span class="textbr">追加発注を進めてください</span></h5>
+                <div class="w-100">
+                  <%= video_tag "img/追加発注.mov", width: '100%', controls: true, type: 'video/mp4' %>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between modal-footer--ordering">
+                <button type="reset" class="btn btn-default w-30" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+      <!-- /.card -->
+      <div class="w-100 text-center mt-4 margin-bottom30">
+        <button type="button" class="btn w-30 newji-btn--blue w-60--sp" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 text-center mt-4 margin-bottom30">
+    <button type="button" class="btn w-30 newji-btn--pink w-60--sp" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
+  </div>
+
+</div>
+
+<%= content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'plugins/datatables/jquery.dataTables.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $('.content').find('.container-fluid').removeClass('container-fluid')
+  });
+</script>
+
+<script>
+
+$(function () {
+
+  // デフォルトの設定を変更
+  $.extend( $.fn.dataTable.defaults, {
+      language: {
+          url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+      }
+  });
+
+  $("#example1").DataTable({
+    "responsive": true,
+    "autoWidth": false,
+    "paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": false,
+    "info": false,
+    "pageLength": 50,
+  });
+
+  /*モーダル*/
+  $('tr').not('.modal-kakuninn-table tr').click(function(){
+    $(this).attr('data-target','#modal-default');
+    if($(this).hasClass('select--click')){
+      return;
+    } else {
+      $(this).addClass("select--click");
+    }
+  });
+
+  // セルをマウスオーバー
+  $("td").not('.modal-kakuninn-table td').hover(function(){
+    // 親要素（tr要素）にtargetクラスを追加
+    $(this).parent().addClass("target").addClass('select');
+    //クリックしたときの浮き出を解除
+    $('tr').removeClass("select--click");
+
+    // 親要素から見て、自分が何番目の子要素なのか調べる
+    var myIndex = $(this).index();
+
+    // myIndexに1プラス
+    myIndex ++;
+
+    // 各行の「myIndex番目の子要素」にtargetクラスを追加する
+    $("td:nth-child(" + myIndex + ")").addClass("target");
+  }, function(){
+    // マウスアウト時にtargetクラスを削除
+    $(".target").removeClass("target").removeClass("select");
+
+  });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  $.datepicker._gotoToday = function(id) {
+    var target = $(id);
+    var inst = this._getInst(target[0]);
+    var date = new Date();
+    this._setDate(inst,date);
+    this._hideDatepicker();
+  }
+
+  $('#form-modal-nouki').datepicker({
+    autoclose: true,
+    showButtonPanel: true,
+  });
+
+  // IOSか判定
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+    // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+    $('#form-modal-nouki').on('focus', function() {
+      $('input, textarea').not(this).attr("readonly", "readonly");
+    });
+
+    // フォーカスが外れるときにreadonlyを外す
+    $('#form-modal-nouki').on('blur', function() {
+      $('input, textarea').not(this).removeAttr("readonly");
+    });
+  }
+});
+</script>
