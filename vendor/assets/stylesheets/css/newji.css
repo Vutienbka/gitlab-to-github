@@ -160,9 +160,10 @@ a[data-toggle="dropdown"] > i {
 }
 /*入力欄とファイルアップローダーまたは選択式ボタンが同じにあるとき、
 入力部分をまんなかにする*/
+
 .input-group--has-uploader {
   width: 50%;
-  max-width: 420px;
+  max-width: 470px;/*.file-uploader--with-inputのmax-widthも変更する*/
   position: relative;
 }
 /*入力欄とファイルアップローダーが同じにあるとき、
@@ -183,7 +184,7 @@ a[data-toggle="dropdown"] > i {
 .input-group--has-checkbox {
   position: relative;
   width: 50%;
-  max-width: 420px;
+  max-width: 470px;
 }
 
 /*入力欄と選択式ボタンが同じにあるとき、
@@ -240,10 +241,11 @@ a[data-toggle="dropdown"] > i {
   }
 }
 /*検索ボックス input*/
+
 .form-control {
   border-radius: 10px!important;
   padding: 5px 20px!important;
-  height: 50px!important;
+  height: 50px;
   border-right: 1px solid #DEE2E6;
   box-shadow: 0 0 3px gray;
   display: block;
@@ -255,10 +257,10 @@ a[data-toggle="dropdown"] > i {
   }
 }
 
-.form-control--textarea {
-  height: 150px!important;
+textarea.form-control--textarea {
+  height: 300px;
   padding: 10px!important;
-  resize: none;
+  resize: vertical;
 }
 
 .form-control:focus {
@@ -278,7 +280,7 @@ a[data-toggle="dropdown"] > i {
 /* セレクトボックス*/
 .form-control.form-control--select {
   padding: 0!important;
-  height: 30px!important;
+  height: 30px;
   border-radius: .25rem!important;
 }
 
@@ -287,6 +289,36 @@ a[data-toggle="dropdown"] > i {
   -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+/* select2 */
+.select2-container--default .select2-selection--multiple {
+  min-height: 50px;
+  border-radius: 10px;
+  padding: 7px 15px;
+  border: 1px solid #DEE2E6;
+  box-shadow: 0 0 3px gray;
+}
+
+/* フォーカスしたとき*/
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: #FA1F6C 1px solid;
+}
+
+/*検索バーのwidth: 100%;を解除して一行に変更*/
+.select2-container--default .select2-search--inline .select2-search__field {
+  width: auto!important;
+}
+
+/* 選択したあとのボタン */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  color: #312E2E;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  margin-top: 0;
 }
 
 /*ie11ハック*/
@@ -321,7 +353,6 @@ a[data-toggle="dropdown"] > i {
 
 .sbtn5--select {
   font-size: 12px;
-  line-height: 30px;
   font-weight: bold;
   color: #fff;
   width: 60px;
@@ -756,6 +787,12 @@ a[data-toggle="dropdown"] > i {
   margin: 0 auto;
 }
 
+@media screen and (min-width: 992px) {
+  .w-100--only-pc {
+    width: 100%;
+  }
+}
+
 .w-95 {
   width: 100%!important;
   margin: 0 auto;
@@ -1131,6 +1168,10 @@ a[data-toggle="dropdown"] > i {
   object-fit: contain;
 }
 
+.object-fit-none {
+  object-fit: none;
+}
+
 /*ボタン*/
 
 /*safariのデフォルトスタイルを解除*/
@@ -1150,8 +1191,8 @@ input[type=submit], button {
 
 /*IEハック*/
 _:-ms-fullscreen, :root .btn {
-    padding-top: 10px!important;
-  }
+  padding-top: 10px!important;
+}
 
 .newji-btn--blue {
   background-color: #96B6DD;
@@ -1185,6 +1226,11 @@ _:-ms-fullscreen, :root .btn {
   background-color: #D5D5D5;
 }
 
+.newji-btn--white {
+  background-color: #fff;
+  color: #2863A3;
+}
+
 .btn-right-top {
   font-size: 16px;
 }
@@ -1205,6 +1251,12 @@ _:-ms-fullscreen, :root .btn {
   .btn-right-top {
     font-size: 12px;
   }
+}
+
+/* tableのセルの中にあるとき */
+table td .btn-in-table {
+  color: #fff!important;
+  text-align: center!important;
 }
 
 /*プラスボタン*/
@@ -1374,6 +1426,7 @@ _:-ms-fullscreen, :root .btn {
   position: absolute;
   left: -9999px; /* ラジオボタンを非表示にする */
 }
+
 .label {
   display: block; /* ブロックレベル要素化する */
   margin: 5px; /* ボックス外側の余白を指定する */
@@ -1389,6 +1442,7 @@ _:-ms-fullscreen, :root .btn {
   transition: 0.3s;
   border-radius: 5px;
 }
+
 
 @media screen and (max-width: 767px) {
   .label {
@@ -1507,7 +1561,7 @@ label[for="file_upload"] {
 
 .file-uploader--with-input {
   width: 50%;
-  max-width: 420px;
+  max-width: 470px;
   margin: auto;
 }
 
@@ -1632,6 +1686,11 @@ label[for="file_upload"] {
   width: 100px;
   margin-left: 0;
   margin-right: 0px;
+}
+
+/* エラー時のメッセージ*/
+.invalid-feedback {
+  color: #FA1F6C;
 }
 
 /* モーダル */
@@ -1906,7 +1965,8 @@ label[for="file_upload"] {
 
 .search-candidates img {
   object-fit: cover;/*トリミングする*/
-
+/*
+}
 /*
 .search-candidates--title {
   width: 90%;
@@ -1983,7 +2043,6 @@ label[for="file_upload"] {
   }
 }
 
-
 /*秘密保持契約ページ。nda.html*/
 .nda-box {
   width: 400px;
@@ -1992,14 +2051,16 @@ label[for="file_upload"] {
   color: #312E2E;
   margin: 0 auto;
 }
+
 /*ie11ハック*/
-@media all and (-ms-high-contrast:none){
+@media all and (-ms-high-contrast:none) {
   *::-ms-backdrop, .nda-box {
-    width: 400px;
-    padding-top: 5px;
-    margin: 0 auto;
-    border: 1px solid #707070;
+    padding-top: 10px;
   }
+}
+
+.nda-yajirusi {
+  font-size: 30px;
 }
 
 @media screen and (max-width: 767px) {
@@ -2018,10 +2079,6 @@ label[for="file_upload"] {
     width: 100%;
     font-size: 14px;
   }
-}
-
-.nda-yajirusi {
-  font-size: 30px;
 }
 
 /*ここからアイテム登録一覧ページ*/
@@ -2224,15 +2281,10 @@ class名「.done」をつけることで、完了したもののテキストを�
 }
 
 /*パンクズリスト*/
-.card--has-breadcrumb {
-  position: relative;
-}
-
 .breadcrumb-on-card {
-  position: absolute;
   font-size: .9rem;
-  left: 10px;
-  top: 5px;
+  margin-top: .3rem;
+  margin-left: .7rem;
   display: inline;
   vertical-align: middle;
 }
@@ -2261,6 +2313,20 @@ class名「.done」をつけることで、完了したもののテキストを�
 
 .product-image-thumb img {
   width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  .product-image-thumbs {
+    flex-wrap: wrap;
+  }
+
+  .product-image-thumb {
+    margin-top: 10px;
+  }
+
+  .product-image-thumb img {
+    max-width: 25px;
+  }
 }
 
 .item-info__table-wrap {
@@ -2367,14 +2433,16 @@ class名「.done」をつけることで、完了したもののテキストを�
   position: sticky;
   top: 0;
   background-color: #fff;
-  z-index: 3;
+  z-index: 999;
+  pointer-events: none;
 }
 
 .table--ordering tfoot th {
   position: sticky;
   bottom: 0;
   background-color: #fff;
-  z-index: 3;
+  z-index: 999;
+  pointer-events: none;
 }
 
 _::-webkit-full-page-media, _:future, :root .table--ordering tfoot {
@@ -2383,7 +2451,6 @@ _::-webkit-full-page-media, _:future, :root .table--ordering tfoot {
   background-color: #fff;
   z-index: 3;
 }
-
 
 .table--ordering th, .table--ordering td {
   vertical-align: middle!important;
@@ -2753,6 +2820,29 @@ _::-webkit-full-page-media, _:future, :root .table--ordering tbody .select td.ch
   }
 }
 
+/* サンプル台帳の「詳細を見る」 */
+
+
+.card-link--sample-archive {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.sample-card-title-name {
+  height: 38px;
+}
+
+@media screen and (max-width: 575px) {
+  .sample-card-title-name {
+    height: auto;
+  }
+}
+
+/*****************************************
+ここから取引先
+*******************************************/
+
 .company-table.sample-info-table {
   width: 100%;
   min-width: 100%;
@@ -2762,15 +2852,15 @@ _::-webkit-full-page-media, _:future, :root .table--ordering tbody .select td.ch
 .ui-datepicker-current {
   display: none;
 }
-/*****************************************
-ここから取引先
-*******************************************/
 
 /* 目次 */
 .page-scroll-link {
   border-bottom: 0px solid transparent;
   margin-top: 40px;
+  position: sticky;
+  top: 30px;
 }
+
 @media screen and (max-width: 767px) {
   .page-scroll-link {
     margin-top: 0px;
@@ -2819,6 +2909,7 @@ _::-webkit-full-page-media, _:future, :root .table--ordering tbody .select td.ch
 
 .page-scroll-link__list > li > a {
   color: #312E2E;
+  padding: 10px 0;
 }
 
 /*js*/
@@ -3023,12 +3114,24 @@ _::-webkit-full-page-media, _:future, :root .table--ordering tbody .select td.ch
   position: relative;
 }
 
-.newji-btn--vr {
+/* .newji-btn--vr {
   position: absolute;
   top: 850px;
   right: 0;
   color: #fff!important;
+} */
+
+/*jsでスクロールに応じて目次のリンクテキスト色が変わる*/
+.js-page-scroll-link__list li a.current {
+  color: #2863A3;
 }
+
+@media screen and (max-width: 767px) {
+  .js-page-scroll-link__list li a.current {
+    color: inherit;
+  }
+}
+
 /*IEハック*/
 @media all and (-ms-high-contrast: none) {
   *::-ms-backdrop, .btn.newji-btn--vr {
