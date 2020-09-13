@@ -140,6 +140,8 @@ Rails.application.routes.draw do
       get :table
       get :info
     end
+    resources :samples, only: %i[index] do
+    end
   end
 
   namespace :suppliers do

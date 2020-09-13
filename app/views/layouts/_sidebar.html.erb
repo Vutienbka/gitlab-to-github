@@ -73,13 +73,13 @@
             <% end %>
           </li>
           <li class="nav-item has-treeview">
-            <a href="pages/sample-choose.html" class="nav-link w-100">
+            <%= link_to buyers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/samples' } " do %>
               <i class="nav-icon fas fa-book"></i>
               <p>
                 サンプル/見本
                 <i class="fas fa-angle-right right"></i>
               </p>
-            </a>
+            <% end %>
           </li>
           <li class="nav-item has-treeview">
             <a href="pages/company-top.html" class="nav-link w-100">
