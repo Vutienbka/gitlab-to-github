@@ -1,9 +1,21 @@
+<% content_for :title, 'NEWJI | 受発注' %>
 <% breadcrumb_add '受発注'%>
+
+<% content_for :head do %>
+  <!-- date picker -->
+  <%= stylesheet_link_tag 'plugins/jquery-ui-1.12.1/jquery-ui' %>
+  <%= stylesheet_link_tag 'plugins/jquery-ui-1.12.1/jquery-ui.structure' %>
+  <%= stylesheet_link_tag 'plugins/jquery-ui-1.12.1/jquery-ui.theme.css' %>
+
+  <!-- DataTables -->
+  <%= stylesheet_link_tag 'plugins/datatables-bs4/css/dataTables.bootstrap4.min' %>
+  <%= stylesheet_link_tag 'plugins/datatables-responsive/css/responsive.bootstrap4.min' %>
+<% end %>
 
 <% content_for :content_header do %>
   <div class="mt-4">
     <form>
-      <div class="input-group input-group-sm">
+      <div class="input-group">
         <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
         <div class="input-group-append">
           <input class="sbtn5" type="submit" value="検索" />
@@ -25,44 +37,71 @@
           <li class="nav-item">
             <a class="nav-link nav-link--tab-newji" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">受注</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link--tab-newji" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">履歴</a>
-          </li>
         </ul>
       </div>
       <div class="card-body card-body--ordering">
-        <div class="row">
-          <div class="col-6">
-            <!-- select -->
-            <div class="form-group narrow-down-sp-select--ordering">
-              <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
-              <div class="flex">
-                <select class="form-control form-control--select narrow-down-sp-select">
-                  <option>全て</option>
-                  <option>本日</option>
-                  <option>今月</option>
-                  <option>アイテム</option>
-                  <option>発注番号</option>
-                  <option>促進</option>
-                  <option>遅延</option>
-                  <option>仕入先</option>
-                  <option>出荷日</option>
-                  <option>納品場所</option>
-                </select>
-                <input class="sbtn5 sbtn5--select ml-2" type="submit" value="絞り込み" />
-              </div>
-            </div>
-          </div>
-          <div class="col-6 text-right">
-            <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--blue" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
-            <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--pink" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
-          </div>
-        </div>
         <div class="tab-content" id="custom-tabs-one-tabContent">
           <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+            <div class="row">
+              <div class="col-12">
+                <form action="ordering.html">
+                  <!-- select -->
+                  <div class="form-group narrow-down-sp-select--ordering">
+                    <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+                    <div class="d-block d-sm-flex">
+                      <div class="select-wrapper">
+                        <label class="narrow-down-sp-title mb-0" for="select-period-from">期間</label>
+                        <div class="flex">
+                          <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select mr-1" id="select-period-from" placeholder="日付を選択" name="select-period-from" readonly="readonly">
+                          <label class="narrow-down-sp-title d-flex align-items-center m-0">
+                            〜
+                          </label>
+                          <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select ml-1" id="select-period-to" placeholder="日付を選択" name="select-period-to" readonly="readonly">
+                        </div>
+                      </div>
+                      <div class="select-wrapper ml-0 ml-sm-3">
+                        <label class="narrow-down-sp-title mb-0" for="option1">オプション1</label>
+                        <select class="form-control form-control--select narrow-down-sp-select" id="option1">
+                          <option>全て</option>
+                          <option>本日</option>
+                          <option>今月</option>
+                          <option>アイテム</option>
+                          <option>発注番号</option>
+                          <option>促進</option>
+                          <option>遅延</option>
+                          <option>仕入先</option>
+                          <option>出荷日</option>
+                          <option>納品場所</option>
+                        </select>
+                      </div>
+                      <div class="select-wrapper ml-0 ml-sm-3">
+                        <label class="narrow-down-sp-title mb-0" for="option2">オプション2</label>
+                        <select class="form-control form-control--select narrow-down-sp-select" id="option2">
+                          <option>全て</option>
+                          <option>本日</option>
+                          <option>今月</option>
+                          <option>アイテム</option>
+                          <option>発注番号</option>
+                          <option>促進</option>
+                          <option>遅延</option>
+                          <option>仕入先</option>
+                          <option>出荷日</option>
+                          <option>納品場所</option>
+                        </select>
+                      </div>
+                      <input class="sbtn5 sbtn5--select ml-0 ml-sm-3 mt-2 mt-sm-auto" type="submit" value="絞り込み" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- <div class="col-6 text-right">
+                <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--blue" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
+                <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--pink" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
+              </div> -->
+            </div>
             <table id="example1" class="table table-bordered table-striped table--ordering">
               <thead>
-                <tr role="button" data-target="" data-toggle="modal">
+                <tr>
                   <th class="text-left text-md-center">オーダー<span class="textbr">番号</span></th>
                   <th class="text-left text-md-center">アイテム名</th>
                   <th class="text-left text-md-center">商品<span class="textbr">コード</span></th>
@@ -71,10 +110,10 @@
                   <th class="text-center">通常<span class="textbr">納期</span></th>
                   <th class="text-center">回答<span class="textbr">納期</span></th>
                   <th class="text-center">単価</th>
-                  <th class="text-center">数</th>
+                  <th class="text-center">発注数</th>
                   <th class="text-center">合計<span class="textbr">金額</span></th>
                   <th class="text-center">納品<span class="textbr">場所</span></th>
-                  <th class="text-center">出荷<span class="textbr">形態</span></th>
+                  <th class="text-center">配送<span class="textbr">形態</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -87,10 +126,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center chien" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -101,10 +140,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -115,10 +154,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -129,10 +168,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -143,10 +182,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">100,000</td>
+                  <td class="text-center" title="発注数">100,000</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -157,10 +196,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">100,000</td>
+                  <td class="text-center" title="発注数">100,000</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -171,10 +210,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -185,10 +224,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -199,10 +238,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -213,10 +252,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -227,10 +266,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -241,10 +280,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -255,10 +294,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -269,10 +308,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -283,10 +322,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -297,10 +336,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center chien" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -311,10 +350,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -325,10 +364,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -339,10 +378,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -353,10 +392,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -367,10 +406,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -381,10 +420,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -395,10 +434,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -409,10 +448,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -423,10 +462,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -437,10 +476,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -451,10 +490,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -465,10 +504,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -479,10 +518,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -493,10 +532,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -507,10 +546,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -521,10 +560,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -535,10 +574,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -549,10 +588,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -563,10 +602,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -577,10 +616,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -591,10 +630,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -605,10 +644,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -619,10 +658,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -633,10 +672,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -647,10 +686,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -661,10 +700,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -675,10 +714,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -689,10 +728,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -703,10 +742,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -717,10 +756,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -731,10 +770,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -745,10 +784,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -759,10 +798,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -773,10 +812,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -787,10 +826,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -801,10 +840,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -815,10 +854,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -829,10 +868,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -843,10 +882,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -857,10 +896,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -871,10 +910,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -885,10 +924,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -899,10 +938,10 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
                 <tr role="button" data-target="" data-toggle="modal">
                   <td class="text-left text-md-center" style="word-break: break-all;" title="オーダー番号">GD2020N00</td>
@@ -913,15 +952,15 @@
                   <td class="text-center" title="通常納期">11/10</td>
                   <td class="text-center" title="回答納期">11/10</td>
                   <td class="text-center" title="単価">¥10,000</td>
-                  <td class="text-center" title="数">5</td>
+                  <td class="text-center" title="発注数">5</td>
                   <td class="text-center" title="合計金額">¥50,000</td>
                   <td class="text-center" title="納品場所">テキスト</td>
-                  <td class="text-center" title="出荷形態">テキスト</td>
+                  <td class="text-center" title="配送形態">テキスト</td>
                 </tr>
 
               </tbody>
               <tfoot>
-                <tr role="button" data-target="" data-toggle="modal">
+                <tr>
                   <th class="text-left text-md-center">オーダー<span class="textbr">番号</span></th>
                   <th class="text-left text-md-center">アイテム名</th>
                   <th class="text-left text-md-center">商品<span class="textbr">コード</span></th>
@@ -930,18 +969,75 @@
                   <th class="text-center">通常<span class="textbr">納期</span></th>
                   <th class="text-center">回答<span class="textbr">納期</span></th>
                   <th class="text-center">単価</th>
-                  <th class="text-center">数</th>
+                  <th class="text-center">発注数</th>
                   <th class="text-center">合計<span class="textbr">金額</span></th>
                   <th class="text-center">納品<span class="textbr">場所</span></th>
-                  <th class="text-center">出荷<span class="textbr">形態</span></th>
+                  <th class="text-center">配送<span class="textbr">形態</span></th>
                 </tr>
               </tfoot>
             </table>
           </div>
           <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+            <div class="row">
+              <div class="col-12">
+                <form action="ordering.html">
+                  <!-- select -->
+                  <div class="form-group narrow-down-sp-select--ordering">
+                    <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+                    <div class="d-block d-sm-flex">
+                      <div class="select-wrapper">
+                        <label class="narrow-down-sp-title mb-0" for="select-period-from">期間</label>
+                        <div class="flex">
+                          <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select mr-1" id="select-period-from" placeholder="日付を選択" name="select-period-from" readonly="readonly">
+                          <label class="narrow-down-sp-title d-flex align-items-center m-0">
+                            〜
+                          </label>
+                          <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select ml-1" id="select-period-to" placeholder="日付を選択" name="select-period-to" readonly="readonly">
+                        </div>
+                      </div>
+                      <div class="select-wrapper ml-0 ml-sm-3">
+                        <label class="narrow-down-sp-title mb-0" for="option3">オプション1</label>
+                        <select class="form-control form-control--select narrow-down-sp-select" id="option3">
+                          <option>全て</option>
+                          <option>本日</option>
+                          <option>今月</option>
+                          <option>アイテム</option>
+                          <option>発注番号</option>
+                          <option>促進</option>
+                          <option>遅延</option>
+                          <option>仕入先</option>
+                          <option>出荷日</option>
+                          <option>納品場所</option>
+                        </select>
+                      </div>
+                      <div class="select-wrapper ml-0 ml-sm-3">
+                        <label class="narrow-down-sp-title mb-0" for="option4">オプション2</label>
+                        <select class="form-control form-control--select narrow-down-sp-select" id="option4">
+                          <option>全て</option>
+                          <option>本日</option>
+                          <option>今月</option>
+                          <option>アイテム</option>
+                          <option>発注番号</option>
+                          <option>促進</option>
+                          <option>遅延</option>
+                          <option>仕入先</option>
+                          <option>出荷日</option>
+                          <option>納品場所</option>
+                        </select>
+                      </div>
+                      <input class="sbtn5 sbtn5--select ml-0 ml-sm-3 mt-2 mt-sm-auto" type="submit" value="絞り込み" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- <div class="col-6 text-right">
+                <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--blue" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
+                <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--pink" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
+              </div> -->
+            </div>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
-              <tr role="button" data-target="" data-toggle="modal">
+              <tr>
                 <th>Rendering engine</th>
                 <th>Browser</th>
                 <th>Platform(s)</th>
@@ -1359,438 +1455,7 @@
               </tr>
               </tbody>
               <tfoot>
-              <tr role="button" data-target="" data-toggle="modal">
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
-              </tfoot>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
-            <table id="example1" class="table table-bordered table-striped">
-              <thead>
-              <tr role="button" data-target="" data-toggle="modal">
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 4.0
-                </td>
-                <td>Win 95+</td>
-                <td> 4</td>
-                <td>X</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.0
-                </td>
-                <td>Win 95+</td>
-                <td>5</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.5
-                </td>
-                <td>Win 95+</td>
-                <td>5.5</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 6
-                </td>
-                <td>Win 98+</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Trident</td>
-                <td>Internet Explorer 7</td>
-                <td>Win XP SP2+</td>
-                <td>7</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Trident</td>
-                <td>AOL browser (AOL desktop)</td>
-                <td>Win XP</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Firefox 1.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Firefox 1.5</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Firefox 2.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Firefox 3.0</td>
-                <td>Win 2k+ / OSX.3+</td>
-                <td>1.9</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Camino 1.0</td>
-                <td>OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Camino 1.5</td>
-                <td>OSX.3+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Netscape 7.2</td>
-                <td>Win 95+ / Mac OS 8.6-9.2</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Netscape Browser 8</td>
-                <td>Win 98SE+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Netscape Navigator 9</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.0</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.1</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.1</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.2</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.2</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.3</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.3</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.4</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.4</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.5</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.5</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.6</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.6</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.7</td>
-                <td>Win 98+ / OSX.1+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Mozilla 1.8</td>
-                <td>Win 98+ / OSX.1+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Seamonkey 1.1</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Gecko</td>
-                <td>Epiphany 2.20</td>
-                <td>Gnome</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>Safari 1.2</td>
-                <td>OSX.3</td>
-                <td>125.5</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>Safari 1.3</td>
-                <td>OSX.3</td>
-                <td>312.8</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>Safari 2.0</td>
-                <td>OSX.4+</td>
-                <td>419.3</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>Safari 3.0</td>
-                <td>OSX.4+</td>
-                <td>522.1</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>OmniWeb 5.5</td>
-                <td>OSX.4+</td>
-                <td>420</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>iPod Touch / iPhone</td>
-                <td>iPod</td>
-                <td>420.1</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Webkit</td>
-                <td>S60</td>
-                <td>S60</td>
-                <td>413</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 7.0</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 7.5</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 8.0</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 8.5</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 9.0</td>
-                <td>Win 95+ / OSX.3+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 9.2</td>
-                <td>Win 88+ / OSX.3+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera 9.5</td>
-                <td>Win 88+ / OSX.3+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Opera for Wii</td>
-                <td>Wii</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Nokia N800</td>
-                <td>N800</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Presto</td>
-                <td>Nintendo DS browser</td>
-                <td>Nintendo DS</td>
-                <td>8.5</td>
-                <td>C/A<sup>1</sup></td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>KHTML</td>
-                <td>Konqureror 3.1</td>
-                <td>KDE 3.1</td>
-                <td>3.1</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>KHTML</td>
-                <td>Konqureror 3.3</td>
-                <td>KDE 3.3</td>
-                <td>3.3</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>KHTML</td>
-                <td>Konqureror 3.5</td>
-                <td>KDE 3.5</td>
-                <td>3.5</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Tasman</td>
-                <td>Internet Explorer 4.5</td>
-                <td>Mac OS 8-9</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Tasman</td>
-                <td>Internet Explorer 5.1</td>
-                <td>Mac OS 7.6-9</td>
-                <td>1</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Tasman</td>
-                <td>Internet Explorer 5.2</td>
-                <td>Mac OS 8-X</td>
-                <td>1</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>NetFront 3.1</td>
-                <td>Embedded devices</td>
-                <td>-</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>NetFront 3.4</td>
-                <td>Embedded devices</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>Dillo 0.8</td>
-                <td>Embedded devices</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>Links</td>
-                <td>Text only</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>Lynx</td>
-                <td>Text only</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>IE Mobile</td>
-                <td>Windows Mobile 6</td>
-                <td>-</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Misc</td>
-                <td>PSP browser</td>
-                <td>PSP</td>
-                <td>-</td>
-                <td>C</td>
-              </tr>
-              <tr role="button" data-target="" data-toggle="modal">
-                <td>Other browsers</td>
-                <td>All others</td>
-                <td>-</td>
-                <td>-</td>
-                <td>U</td>
-              </tr>
-              </tbody>
-              <tfoot>
-              <tr role="button" data-target="" data-toggle="modal">
+              <tr>
                 <th>Rendering engine</th>
                 <th>Browser</th>
                 <th>Platform(s)</th>
@@ -1972,7 +1637,7 @@
                       <span class="required-txt required-txt--any">任意</span>
                       <span>追加発注</span>
                     </label>
-                    <input id="form-modal-amount" type="number" class="form-control form-control--ie" placeholder="半角数字で記入" name="ordering-add-item">
+                    <input id="form-modal-amount" type="number" class="form-control form-control--ie" placeholder="半角発注数字で記入" name="ordering-add-item">
                     <span class="text-right w-10 ml-2 mt-4">個</span>
                   </div>
                   <div class="input-group input-group--modal mt-4 mb-4">
@@ -2072,30 +1737,28 @@
           <!-- /.modal-dialog -->
         </div>
       <!-- /.card -->
-      <div class="w-100 text-center mt-4 margin-bottom30">
+      <!-- <div class="w-100 text-center mt-4 margin-bottom30">
         <button type="button" class="btn w-30 newji-btn--blue w-60--sp" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
-      </div>
+      </div> -->
     </div>
   </div>
 
-  <div class="w-100 text-center mt-4 margin-bottom30">
-    <button type="button" class="btn w-30 newji-btn--pink w-60--sp" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
-  </div>
+  <!-- <div class="w-100 text-center margin-bottom30">
+    <button type="button" class="btn w-30 newji-btn--pink w-60--sp mt-5" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
+  </div> -->
 
 </div>
 
 <%= content_for :content_optional_scripts do %>
-  <%= javascript_include_tag 'plugins/datatables/jquery.dataTables.min.js' %>
-  <%= javascript_include_tag 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %>
-  <%= javascript_include_tag 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %>
-  <%= javascript_include_tag 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %>
+  <%= javascript_include_tag 'plugins/datatables/jquery.dataTables.min' %>
+  <%= javascript_include_tag 'plugins/datatables-bs4/js/dataTables.bootstrap4.min' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/dataTables.responsive.min' %>
+  <%= javascript_include_tag 'plugins/datatables-responsive/js/responsive.bootstrap4.min' %>
+  <!-- 日付選択プラグイン -->
+  <%= javascript_include_tag 'plugins/jquery-ui-1.12.1/jquery-ui' %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 <% end %>
 
-<script>
-  $(document).ready(function() {
-    $('.content').find('.container-fluid').removeClass('container-fluid')
-  });
-</script>
 
 <script>
 
@@ -2177,6 +1840,46 @@ $(document).ready(function() {
 
     // フォーカスが外れるときにreadonlyを外す
     $('#form-modal-nouki').on('blur', function() {
+      $('input, textarea').not(this).removeAttr("readonly");
+    });
+  }
+
+  $('#select-period-from').datepicker({
+    autoclose: false,
+    showButtonPanel: true,
+    changeYear: true,  // 年選択をプルダウン化
+  });
+
+  // IOSか判定
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+    // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+    $('#select-period-from').on('focus', function() {
+      $('input, textarea').not(this).attr("readonly", "readonly");
+    });
+
+    // フォーカスが外れるときにreadonlyを外す
+    $('#select-period-from').on('blur', function() {
+      $('input, textarea').not(this).removeAttr("readonly");
+    });
+  }
+
+  $('#select-period-to').datepicker({
+    autoclose: false,
+    showButtonPanel: true,
+    changeYear: true,  // 年選択をプルダウン化
+  });
+
+  // IOSか判定
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+    // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+    $('#select-period-to').on('focus', function() {
+      $('input, textarea').not(this).attr("readonly", "readonly");
+    });
+
+    // フォーカスが外れるときにreadonlyを外す
+    $('#select-period-to').on('blur', function() {
       $('input, textarea').not(this).removeAttr("readonly");
     });
   }

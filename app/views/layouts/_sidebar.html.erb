@@ -1,155 +1,102 @@
 <aside class="main-sidebar sidebar-blue-primary elevation-4">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Brand Logo -->
-      <%= link_to buyers_home_index_path, class: "brand-link" do %>
-        <div class="d-flex w-100">
-          <%= image_tag 'img/NEWJI_002_haikei.png', class: 'brand-image border-wite', alt: 'NEWJIロゴ' %>
-        </div>
-      <% end %>
-      <!-- Sidebar user panel (optional) -->
-      <!--
-        <div class="user-panel mt-3 pb-3 d-flex border-bottom">
-          <div class="center js-center"></div>
-          <div class="image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block">山本　順貴</a>
-          </div>
-        </div>
-      -->
-      <!--ここにカレンダー挿入-->
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Brand Logo -->
+    <%= link_to buyers_home_index_path, class: "brand-link" do %>
+      <div class="d-flex w-100">
+        <%= image_tag 'img/NEWJI_002_haikei.png', class: 'brand-image border-wite', alt: 'NEWJIロゴ' %>
+      </div>
+    <% end %>
 
-       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <%= link_to buyers_home_index_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/home' && params[:action] == 'index'} " do %>
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                ホーム
-                <i class="fas fa-angle-right right"></i>
-              </p>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to register_item_buyers_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && buyer_active_link} " do %>
-              <i class="nav-icon fas fa-gem"></i>
-              <p>
-                アイテム登録
-                <i class="fas fa-angle-right right" ></i>
-              </p>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/catalogs' } " do %>
-              <i class="nav-icon fas fa-list-alt"></i>
-              <p>
-                マイカタログ
-                <i class="fas fa-angle-right right"></i>
-                <span class="badge badge-info right">6</span>
-              </p>
-            <% end %>
-          </li>
-          <li class="nav-item has-treeview">
-            <%= link_to buyers_orders_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/orders' } " do %>
-              <i class="nav-icon fas fa-truck-moving"></i>
-              <p>
-                受発注
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            <% end %>
-          </li>
-          <li class="nav-item has-treeview">
-            <%= link_to buyers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/claims' } " do %>
-              <i class="nav-icon fas fa-bullhorn"></i>
-              <p>
-                クレーム/不適合
-                <i class="fas fa-angle-right right"></i>
-              </p>
-            <% end %>
-          </li>
-          <li class="nav-item has-treeview">
-            <%= link_to buyers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/samples' } " do %>
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                サンプル/見本
-                <i class="fas fa-angle-right right"></i>
-              </p>
-            <% end %>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="pages/company-top.html" class="nav-link w-100">
-              <i class="nav-icon fas fa-handshake"></i>
-              <p>
-                取引先
-                <i class="fas fa-angle-right right"></i>
-              </p>
-            </a>
-          </li>
-          <!--カレンダーリンク-->
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link w-100">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                カレンダー
-                <i class="fas fa-angle-right right"></i>
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <!--Logout-->
-          <li class="nav-item">
-            <%= link_to destroy_user_session_path, method: :delete, class:"nav-link w-100", data: {confirm: t('logout_confirmation')} do %>
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Logout
-              </p>
-            <% end %>
-          </li>
-          <!--
-          <li class="nav-item">
-            <a href="#" class="nav-link w-100">
-              <i class="nav-icon fas fa-book"></i>
-              <p class="en">
-                QCDS
-              </p>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+              with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <%= link_to buyers_home_index_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/home' && params[:action] == 'index'} " do %>
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              ホーム
               <i class="fas fa-angle-right right"></i>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/quarity-top.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>品質</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/cost-top.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>コスト</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/delivery-date-top.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>納期</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/support-top.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>サポート</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        -->
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to register_item_buyers_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && buyer_active_link} " do %>
+            <i class="nav-icon fas fa-gem"></i>
+            <p>
+              アイテム登録
+              <i class="fas fa-angle-right right" ></i>
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/catalogs' } " do %>
+            <i class="nav-icon fas fa-list-alt"></i>
+            <p>
+              マイカタログ
+              <i class="fas fa-angle-right right"></i>
+              <span class="badge badge-info right">6</span>
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item has-treeview">
+          <%= link_to buyers_orders_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/orders' } " do %>
+            <i class="nav-icon fas fa-truck-moving"></i>
+            <p>
+              受発注
+              <i class="right fas fa-angle-right"></i>
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item has-treeview">
+          <%= link_to buyers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/claims' } " do %>
+            <i class="nav-icon fas fa-bullhorn"></i>
+            <p>
+              クレーム/不適合
+              <i class="fas fa-angle-right right"></i>
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item has-treeview">
+          <%= link_to buyers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/samples' } " do %>
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              サンプル/見本
+              <i class="fas fa-angle-right right"></i>
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="pages/company-top.html" class="nav-link w-100">
+            <i class="nav-icon fas fa-handshake"></i>
+            <p>
+              取引先
+              <i class="fas fa-angle-right right"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="pages/calendar.html" class="nav-link w-100">
+            <i class="nav-icon fas fa-calendar-alt"></i>
+            <p>
+              カレンダー
+              <i class="fas fa-angle-right right"></i>
+              <span class="badge badge-info right">2</span>
+            </p>
+          </a>
+        </li>
+        <!-- Logout do not have in design -->
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class:"nav-link w-100", data: {confirm: t('logout_confirmation')} do %>
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>
+              Logout
+            </p>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

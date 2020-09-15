@@ -1,169 +1,177 @@
+<% content_for :title, 'NEWJI | ホーム' %>
 <% breadcrumb_add '管理画面'%>
 
-<form>
-  <div class="input-group input-group-sm">
-    <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="何をお探しですか？" aria-label="Search" id="newji-serch">
-    <div class="input-group-append">
-      <input class="sbtn5" type="submit" value="検索" />
-    </div>
-  </div>
-</form>
-<div class="row margin-top30 content--top-only">
-  <div class="col-lg-6">
-    <div class="card card-main text-center">
-      <div class="card-content">
-        <div class="card-content-left">
-          <%= image_tag 'img/item.svg', alt: 'アイテム登録アイコン', style: "margin: 0 auto; display: block; width:55px ; height:55px" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
-          <%= link_to register_item_buyers_path, class: "card-title bold" do %>
-            アイテム登録
-          <% end %>
-        </div>
-        <div class="card-content-right">
-          <div class="card-vertical-center">
-            <p class="card-description">ここからアイテムの新規登録を始めます</p>
-          </div>
-          <%= link_to register_item_buyers_path, class: "card-link card-link--item" do %>
-            アイテムの<span class="textbr">登録を始める</span>
-          <% end %>
-        </div>
+<div class="container-fluid"
+  <form>
+    <div class="input-group">
+      <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="何をお探しですか？" aria-label="Search" id="newji-serch">
+      <div class="input-group-append">
+        <input class="sbtn5" type="submit" value="検索" />
       </div>
     </div>
-    <!-- /.card -->
+  </form>
+  <div class="row margin-top30 content--top-only">
+    <div class="col-lg-6">
+      <div class="card card-main text-center">
+        <div class="card-content">
+          <div class="card-content-left">
+            <%= image_tag 'img/item.svg', alt: 'アイテム登録アイコン', style: "margin: 0 auto; display: block; width:55px ; height:55px" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
+            <%= link_to register_item_buyers_path, class: "card-title bold" do %>
+              アイテム登録
+            <% end %>
+          </div>
+          <div class="card-content-right">
+            <div class="card-vertical-center">
+              <p class="card-description">ここからアイテムの新規登録を始めます</p>
+            </div>
+            <%= link_to register_item_buyers_path, class: "card-link card-link--item" do %>
+              アイテムの<span class="textbr">登録を始める</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
 
-    <div class="card card-main text-center">
-      <div class="card-content">
-        <div class="card-content-left">
-          <%= image_tag 'img/cost-down.svg', alt: 'コストダウンアイコン', style: "margin: 0 auto; display: block; width:55px ; height:55px" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
-          <%= link_to register_item_buyers_path, class: "card-title bold" do %>
-            コストダウン
-          <% end %>
-        </div>
-        <div class="card-content-right">
-          <div class="card-vertical-center">
-            <p class="card-description">ここからアイテムを選択して、コストダウンの自動化を進めます</p>
+      <div class="card card-main text-center">
+        <div class="card-content">
+          <div class="card-content-left">
+            <%= image_tag 'img/cost-down.svg', alt: 'コストダウンアイコン', style: "margin: 0 auto; display: block; width:55px ; height:55px" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
+            <%= link_to register_item_buyers_path, class: "card-title bold" do %>
+              コストダウン
+            <% end %>
           </div>
-          <%= link_to register_item_buyers_path, class: "card-link card-link--item" do %>
-            コストダウン<span class="textbr">自動化を進める</span>
-          <% end %>
+          <div class="card-content-right">
+            <div class="card-vertical-center">
+              <p class="card-description">ここからアイテムを選択して、コストダウンの自動化を進めます</p>
+            </div>
+            <%= link_to register_item_buyers_path, class: "card-link card-link--item" do %>
+              コストダウン<span class="textbr">自動化を進める</span>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="card card-main text-center">
-      <div class="card-content">
-        <div class="card-content-left">
-          <%= image_tag 'img/my-catalog.svg', alt: 'マイカタログアイコン', style: "margin: 0 auto; display: block; width:55px ; height:55px" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
-          <%= link_to buyers_catalogs_path, class: "card-title bold" do %>
-            マイカタログ
-          <% end %>
-        </div>
-        <div class="card-content-right">
-          <div class="card-vertical-center">
-            <p class="card-description">ここから仕入先別、カテゴリー別でアイテムを表示し、発注することができます</p>
+      <div class="card card-main text-center">
+        <div class="card-content">
+          <div class="card-content-left">
+            <%= image_tag 'img/my-catalog.svg', alt: 'マイカタログアイコン', style: "margin: 0 auto; display: block; width:55px ; height:55px" %><!--ieで崩れるため、スタイル属性でスタイル定義-->
+            <%= link_to buyers_catalogs_path, class: "card-title bold" do %>
+              マイカタログ
+            <% end %>
           </div>
-          <%= link_to buyers_catalogs_path, class: "card-link card-link--item" do %>
-            マイカタログを<span class="textbr">見る</span>
-          <% end %>
+          <div class="card-content-right">
+            <div class="card-vertical-center">
+              <p class="card-description">ここから仕入先別、カテゴリー別でアイテムを表示し、発注することができます</p>
+            </div>
+            <%= link_to buyers_catalogs_path, class: "card-link card-link--item" do %>
+              マイカタログを<span class="textbr">見る</span>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- /.col-md-6 -->
-  <div class="col-lg-6">
-    <div class="card card--data">
-      <div class="card-header border-0">
-        <div class="d-flex justify-content-between">
-          <h3 class="card-title--data">データ</h3>
-          <a href="javascript:void(0);" class="card-link--data">データを確認する</a>
+    <!-- /.col-md-6 -->
+    <div class="col-lg-6">
+      <div class="card card--data">
+        <div class="card-header border-0">
+          <div class="d-flex justify-content-between">
+            <h3 class="card-title--data">データ</h3>
+            <a href="javascript:void(0);" class="card-link--data">データを確認する</a>
+          </div>
         </div>
-      </div>
-      <div class="card-body card-body--1263">
-        <div class="d-flex">
-          <p class="d-flex flex-column">
-            <span class="text-bold text-lg">820</span>
-            <span>時間</span>
-          </p>
-          <p class="ml-auto d-flex flex-column text-right">
-            <span class="text-success">
-              <i class="fas fa-arrow-up"></i> 12.5%
+        <div class="card-body card-body--1263">
+          <div class="d-flex">
+            <p class="d-flex flex-column">
+              <span class="text-bold text-lg">820</span>
+              <span>時間</span>
+            </p>
+            <p class="ml-auto d-flex flex-column text-right">
+              <span class="text-success">
+                <i class="fas fa-arrow-up"></i> 12.5%
+              </span>
+              <span class="text-muted">先週から</span>
+            </p>
+          </div>
+          <!-- /.d-flex -->
+
+          <div class="position-relative mb-4">
+            <canvas id="visitors-chart" height="300"></canvas>
+          </div>
+
+          <div class="d-flex flex-row justify-content-end">
+            <span class="mr-2">
+              <i class="fas fa-square text-primary"></i> 今週
             </span>
-            <span class="text-muted">先週から</span>
-          </p>
-        </div>
-        <!-- /.d-flex -->
 
-        <div class="position-relative mb-4">
-          <canvas id="visitors-chart" height="300"></canvas>
-        </div>
-
-        <div class="d-flex flex-row justify-content-end">
-          <span class="mr-2">
-            <i class="fas fa-square text-primary"></i> 今週
-          </span>
-
-          <span>
-            <i class="fas fa-square text-gray"></i> 先週
-          </span>
+            <span>
+              <i class="fas fa-square text-gray"></i> 先週
+            </span>
+          </div>
         </div>
       </div>
+      <!-- /.card -->
     </div>
-    <!-- /.card -->
+    <!-- /.col-md-6 -->
   </div>
-  <!-- /.col-md-6 -->
+  <!-- /.row -->
+  <div class="row w-100">
+    <div class="col-12 col-sm-6 col-md-3">
+      <a href="#" class="info-box text-center">
+        <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-vr-cardboard"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text n-center-vertical en">NEWJI VR</span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <a href="#" class="info-box mb-3 text-center">
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-air-freshener"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text ex-hibition-padding en">NEWJI<br>Exhibition</span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+    <div class="clearfix hidden-md-up"></div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <a href="#" class="info-box mb-3 text-center">
+        <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-shopping-bag"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text n-center-vertical en">NEWJI BAG</span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <a href="#" class="info-box mb-3 text-center">
+        <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-mobile-alt"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text n-center-vertical">アプリ</span>
+        </div>
+        <!-- /.info-box-content -->
+      </a>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
 </div>
-<!-- /.row -->
-<div class="row w-100">
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="#" class="info-box text-center">
-      <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-vr-cardboard"></i></span>
 
-      <div class="info-box-content">
-        <span class="info-box-text n-center-vertical en">NEWJI VR</span>
-      </div>
-      <!-- /.info-box-content -->
-    </a>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="#" class="info-box mb-3 text-center">
-      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-air-freshener"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text ex-hibition-padding en">NEWJI<br>Exhibition</span>
-      </div>
-      <!-- /.info-box-content -->
-    </a>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-
-  <!-- fix for small devices only -->
-  <div class="clearfix hidden-md-up"></div>
-
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="#" class="info-box mb-3 text-center">
-      <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-shopping-bag"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text n-center-vertical en">NEWJI BAG</span>
-      </div>
-      <!-- /.info-box-content -->
-    </a>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="#" class="info-box mb-3 text-center">
-      <span class="info-box-icon info-box-icon--ie bg-info elevation-1"><i class="fas fa-mobile-alt"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text n-center-vertical">アプリ</span>
-      </div>
-      <!-- /.info-box-content -->
-    </a>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-</div>
-<!-- /.row -->
+<%= content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'plugins/chart.js/Chart.min' %>
+  <%= javascript_include_tag 'js/pages/dashboard3' %>
+<% end %>
