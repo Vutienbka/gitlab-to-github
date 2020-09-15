@@ -19,6 +19,7 @@
 //= require components/notification
 //= require cocoon
 //= require dropzone
+//= require select2
 
 $(document).ready(function() {
   removeNotification();
