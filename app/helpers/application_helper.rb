@@ -56,4 +56,17 @@ module ApplicationHelper
       params[:action] == 'search_provider' || params[:action] == 'choose_provider' ||
       params[:action] == 'batch_items_selector' || params[:action] == 'invite_unregisted_supplier'
   end
+
+  def fetch_item_request_quantity
+    if current_user.buyer?
+      return @item_request_quantity if defined?(@item_request_quantity)
+
+      quantity = current_user.item_requests.count
+      @item_request_quantity = quantity if quantity.positive?
+    end
+  end
+
+  def fetch_item_request_progress(value)
+    ((value.to_f/6)*100).to_s + '%'
+  end
 end

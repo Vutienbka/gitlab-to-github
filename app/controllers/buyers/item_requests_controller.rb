@@ -3,9 +3,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   before_action :set_item_request, only: %i[index destroy]
 
   def index
-    @item_requests = current_user.item_requests.includes([:item_info]).ransack({ item_info_name_cont: params[:search] })
-    @search_name = @item_requests.result.page(params[:page]).per(20)
-    @user_update = Buyer.includes(:profile).index_by(&:id)
+    @item_requests = current_user.item_requests.includes([:item_info]) if current_user.buyer?
   end
 
   def create

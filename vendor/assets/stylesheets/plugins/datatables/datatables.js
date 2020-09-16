@@ -49,6 +49,7 @@ $(function () {
 
   /*ページ遷移*/
   $("tr").click(function() {
-    window.location.href = 'item-top.html';
+    // TODO:: change href to edit item request
+    window.location.href = '#';
   });
 });

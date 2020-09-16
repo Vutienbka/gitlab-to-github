@@ -25,6 +25,9 @@
         <li class="nav-item">
           <%= link_to register_item_buyers_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers' && buyer_active_link} " do %>
             <i class="nav-icon fas fa-gem"></i>
+            <% if fetch_item_request_quantity.present? %>
+              <span class="badge badge-info right"><%= fetch_item_request_quantity %></span>
+            <% end %>
             <p>
               アイテム登録
               <i class="fas fa-angle-right right" ></i>
@@ -37,7 +40,6 @@
             <p>
               マイカタログ
               <i class="fas fa-angle-right right"></i>
-              <span class="badge badge-info right">6</span>
             </p>
           <% end %>
         </li>
@@ -83,7 +85,6 @@
             <p>
               カレンダー
               <i class="fas fa-angle-right right"></i>
-              <span class="badge badge-info right">2</span>
             </p>
           </a>
         </li>
