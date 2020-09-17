@@ -1,5 +1,4 @@
 class Buyers::ItemRequestsController < Buyers::BaseController
-  before_action :redirect_to_profile
   before_action :set_item_request, only: %i[index destroy progress]
 
   def index

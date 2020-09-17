@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Buyers::ItemInfoController < Buyers::BaseController
-  before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit update]
   before_action :set_item_info, only: %i[edit update]
 

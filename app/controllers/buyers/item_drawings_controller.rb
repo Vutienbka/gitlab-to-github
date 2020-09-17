@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Buyers::ItemDrawingsController < Buyers::BaseController
-  before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new create edit update]
   before_action :set_item_drawing, only: %i[create edit update]
   before_action :block_input_link, only: %i[new create edit update]

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Buyers::ItemConditionsController < Buyers::BaseController
-  before_action :redirect_to_profile
   before_action :set_item_request, only: %i[new edit create update destroy_condition]
   before_action :set_item_condition, only: %i[edit update destroy_condition]
   before_action :block_input_link, only: %i[new edit create update]
