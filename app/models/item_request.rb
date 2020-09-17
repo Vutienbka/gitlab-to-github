@@ -1,11 +1,10 @@
 class ItemRequest < ApplicationRecord
-  acts_as_paranoid
   extend Enumerize
   require 'rubygems'
   require 'zip'
 
   belongs_to :supplier
-  
+
   belongs_to :buyer
   has_one :item_info, dependent: :destroy
   has_one :item_quality, dependent: :destroy
@@ -119,7 +118,7 @@ class ItemRequest < ApplicationRecord
             row = Hash[[header, spreadsheet.row(i)].transpose].compact
 
             itemRequest = find_by_id(row["id"]) || ItemRequest.new
-            
+
             itemRequest.attributes = row.to_hash.slice(*itemRequest_h)
 
             itemRequest.buyer_id = current_user.id
@@ -127,7 +126,7 @@ class ItemRequest < ApplicationRecord
             itemRequest.status = 9
             if itemRequest.valid?
               itemRequest.save!
-              
+
               # create item drawing
               item_drawing = ItemDrawing.find_or_initialize_by(item_request_id: itemRequest.id)
               item_drawing.save!
@@ -215,12 +214,12 @@ class ItemRequest < ApplicationRecord
 
               file_standard1.save!
               file_standard2.save!
-              
+
 
 
               info = ItemInfo.find_or_initialize_by(item_request_id: itemRequest.id)
               info.attributes = row.to_hash.slice(*info_request)
-              
+
               condition = ItemCondition.find_or_initialize_by(item_request_id: itemRequest.id)
               condition.attributes = row.to_hash.slice(*condition_request)
               condition.position = 1

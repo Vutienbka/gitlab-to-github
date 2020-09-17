@@ -57,6 +57,17 @@ Rails.application.routes.draw do
         get '/item_info/edit', to: 'item_info#edit', as: :item_info_edit
         post '/item_info/create', to: 'item_info#create', as: :item_info_create
         patch '/item_info/update', to: 'item_info#update', as: :item_info_update
+
+        get '/item_drawings/new', to: 'item_drawings#new', as: :item_drawings_new
+        get '/item_drawings/edit', to: 'item_drawings#edit', as: :item_drawings_edit
+        post '/item_drawings/create', to: 'item_drawings#create', as: :item_drawings_create
+        post '/item_drawings/update', to: 'item_drawings#update', as: :item_drawings_update
+        delete '/item_drawings/remove_file', to: 'item_drawings#remove_file', as: :item_drawings_remove_file
+
+        get '/item_images/new', to: 'item_images#new', as: :item_images_new
+        get '/item_images/edit', to: 'item_images#edit', as: :item_images_edit
+        post '/item_images/create', to: 'item_images#create', as: :item_images_create
+        post '/item_images/update', to: 'item_images#update', as: :item_images_update
       end
     end
 
@@ -73,26 +84,6 @@ Rails.application.routes.draw do
       collection do
         get :new
         get :edit
-      end
-    end
-
-    resources :item_drawings, only: %i[create update destroy] do
-      collection do
-        get :new
-        get :edit
-      end
-      resources :draw_categories, only: [] do
-        resources :file_draws, only: %i[create destroy]
-      end
-    end
-
-    resources :item_images, only: %i[create update] do
-      collection do
-        get :new
-        get :edit
-      end
-      resources :image_categories, only: [] do
-        resources :file_images, only: %i[create destroy]
       end
     end
 

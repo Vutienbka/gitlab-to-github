@@ -1,0 +1,60 @@
+<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone' %>
+<% content_for :title, 'NEWJI | ②図面' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body">
+      <p class="login-head text-center">アイテムの図面<span class="textbr">（2Dまたは3D）</span><span class="textbr">を登録してください</span>(複数可)</p>
+      <%= form_for @item_drawing, url: url, method: method do |f| %>
+        <div class="mb-3 flex--file3" data-item-drawing="<%= f.object.item_request_id %>">
+          <div class="w-30 text-center w-100--sp mt-5 flex--file3__child">
+            <label class="w-100 file-label-wrap">
+              <span class="required-txt file-label">必須</span>
+              <span class="file-label-detail">製品仕様図</span>
+            </label>
+            <div class="dropzone" id="myDropzone0">
+              <div class="fallback">
+                <%= f.file_field(:file_specifications, multiple: true) %>
+              </div>
+            </div>
+          </div>
+          <div class="w-30 text-center w-100--sp mt-5 flex--file3__child">
+            <label class="w-100 file-label-wrap">
+              <span class="required-txt required-txt--any file-label">任意</span>
+              <span class="file-label-detail">組立仕様図</span>
+            </label>
+            <div class="dropzone" id="myDropzone1">
+              <div class="fallback">
+                <%= f.file_field(:file_assembly_specifications, multiple: true) %>
+              </div>
+            </div>
+          </div>
+          <div class="w-30 text-center w-100--sp mt-5 flex--file3__child">
+            <label class="w-100 file-label-wrap">
+              <span class="required-txt required-txt--any file-label">任意</span>
+              <span class="file-label-detail">梱包仕様図</span>
+            </label>
+            <div class="dropzone" id="myDropzone2">
+              <div class="fallback">
+                <%= f.file_field(:file_packing_specifications, multiple: true) %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row continue-btn">
+          <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp" id="btnSubmit">登録</button>
+        </div>
+      <% end %>
+    <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+  <div class="w-90 text-center margin-bottom30">
+    <%= link_to 'アイテム登録に戻る', progress_buyers_item_request_path(@item_request), class: 'to-top' %>
+  </div>
+<% end %>
+
+<%= content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'js/pages/dashboard3' %>
+<% end %>

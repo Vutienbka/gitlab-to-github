@@ -1,6 +1,6 @@
 <%= stylesheets 'buyer/input_items_image' %>
 
-<%= form_for @item_image, url: buyers_item_image_path(@item_image), method: 'patch' do |f| %>
+<%= form_for @item_image, url: item_images_edit_buyers_item_request_path(@item_image), method: 'patch' do |f| %>
   <%= hidden_field_tag :item_request_id, params[:item_request_id] %>
   <div class="container-user">
     <div class="contents">

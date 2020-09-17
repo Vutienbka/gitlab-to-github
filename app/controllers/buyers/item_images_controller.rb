@@ -6,8 +6,9 @@ class Buyers::ItemImagesController < Buyers::BaseController
   before_action :block_input_link, only: %i[new create edit update]
 
   def new
-    # TODO: : bugs dropzone create duplicate record when redirec to buyers_item_images_path
-    # Move this code to item drawing controller
+    return redirect_to item_images_edit_buyers_item_request_path(@item_request) if @item_drawing.present?
+
+    @item_image = @item_request.build_item_image
   end
 
   def create
@@ -24,7 +25,9 @@ class Buyers::ItemImagesController < Buyers::BaseController
     end
   end
 
-  def edit; end
+  def edit
+    redirect_to item_images_new_buyers_item_request_path(@item_request) if @item_image.blank?
+  end
 
   def update
     if @item_image.update(item_image_params)

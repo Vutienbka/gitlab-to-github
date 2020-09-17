@@ -59,6 +59,8 @@ module ApplicationHelper
     (params[:controller] == 'buyers/item_requests' &&
       (params[:action] == 'index' || params[:action] == 'progress')) ||
     (params[:controller] == 'buyers/item_info' &&
+      (params[:action] == 'new' || params[:action] == 'edit')) ||
+    (params[:controller] == 'buyers/item_drawings' &&
       (params[:action] == 'new' || params[:action] == 'edit'))
   end
 
