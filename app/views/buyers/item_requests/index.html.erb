@@ -15,6 +15,7 @@
                 <th>登録状況</th>
                 <th>完了項目数</th>
                 <th>登録再開リンク</th>
+                <th>削除</th>
               </tr>
             </thead>
             <tbody>
@@ -35,7 +36,10 @@
                     <%= item_request.status.value %>/6
                   </td>
                   <td title="登録再開リンク">
-                    <%= link_to '登録を再開する', progress_buyers_item_requests_path(item_request), class: 'to-top' %>
+                    <%= link_to '登録を再開する', progress_buyers_item_request_path(item_request), class: 'to-top' %>
+                  </td>
+                  <td title="削除">
+                    <%= link_to '削除', buyers_item_request_path(item_request), class: 'to-top', method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
                   </td>
                 </tr>
               <% end %>
@@ -47,6 +51,7 @@
                 <th>登録状況</th>
                 <th>完了項目数</th>
                 <th>登録再開リンク</th>
+                <th>削除</th>
               </tr>
             </tfoot>
           </table>

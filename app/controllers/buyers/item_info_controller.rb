@@ -55,7 +55,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
   def set_item_info
     @item_info = @item_request.item_info if @item_request.present?
     if @item_info.blank?
-      redirect_to new_buyers_item_requests_path(@item_request)
+      redirect_to item_info_new_buyers_item_request_path(@item_request)
     end
   end
 

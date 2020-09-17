@@ -45,19 +45,22 @@ Rails.application.routes.draw do
     end
 
     resources :item_requests, only: %i[create destroy] do
+      # collection not required id from resources
       collection do
         get :index
-        get '/:id/progress', to: 'item_requests#progress', as: :progress
-        get '/:id/item_info/new', to: 'item_info#new', as: :new
-        get '/:id/item_info/edit', to: 'item_info#edit', as: :edit
-        post '/:id/item_info/create', to: 'item_info#create', as: :create
+      end
+
+      # member required id from resources
+      member do
+        get :progress, to: 'item_requests#progress', as: :progress
+        get '/item_info/new', to: 'item_info#new', as: :item_info_new
+        get '/item_info/edit', to: 'item_info#edit', as: :item_info_edit
+        post '/item_info/create', to: 'item_info#create', as: :item_info_create
+        patch '/item_info/update', to: 'item_info#update', as: :item_info_update
       end
     end
 
     resources :list_buyer_suppliers, only: :index
-
-    resources :item_info, only: %i[create update] do
-    end
 
     resources :item_qualities, only: %i[create update] do
       collection do
