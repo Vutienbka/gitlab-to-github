@@ -35,7 +35,7 @@
                     <%= item_request.status.value %>/6
                   </td>
                   <td title="登録再開リンク">
-                    <%= link_to '登録を再開する', edit_buyers_item_info_index_path(item_request_id: item_request.id), class: 'to-top' %>
+                    <%= link_to '登録を再開する', progress_buyers_item_requests_path(item_request), class: 'to-top' %>
                   </td>
                 </tr>
               <% end %>

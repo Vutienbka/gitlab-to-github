@@ -69,4 +69,8 @@ module ApplicationHelper
   def fetch_item_request_progress(value)
     ((value.to_f/6)*100).to_s + '%'
   end
+
+  def fetch_item_request_completed_progress(item_request, value)
+    item_request.status.value > value ? 'done': ''
+  end
 end

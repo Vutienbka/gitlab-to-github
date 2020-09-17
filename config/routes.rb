@@ -47,9 +47,10 @@ Rails.application.routes.draw do
     resources :item_requests, only: %i[create destroy] do
       collection do
         get :index
+        get '/:id/progress', to: 'item_requests#progress', as: :progress
       end
     end
-    
+
     resources :list_buyer_suppliers, only: :index
 
     resources :item_info, only: %i[create update] do

@@ -1,0 +1,114 @@
+<% content_for :title, 'NEWJI | アイテム登録一覧' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<div class="container-fluid">
+  <p class="login-head text-center">ここはアイテムを<span class="textbr">登録するページです</span></p>
+  <p class="login-head text-center"><small>アイテム名称：<strong><%= @item_request.item_info&.name %></strong></small></p>
+  <div class="row margin-top30 content--top-only">
+    <div class="col-12">
+      <div class="card progress-width">
+        <div class="w-50">
+          <div class="progress-group">
+            現在の進歩度
+            <span class="float-right"><b><%= @item_request.status.value %></b>/6</span>
+            <div class="progress progress-sm">
+              <div class="progress-bar bg-primary" style="width: <%= fetch_item_request_progress(@item_request.status.value) %>"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card item-card text-center <%= fetch_item_request_completed_progress(@item_request, 1) %>">
+        <div class="w-80">
+          <h4 class="item-card__head"><span class="en">①</span>情報</h4>
+          <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
+          <div class="w-45 margin-top15">
+            <a class="card-link card-link--item" href="information.html">進む</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-lg-6">
+      <div class="card item-card text-center <%= fetch_item_request_completed_progress(@item_request, 2) %>">
+        <div class="w-80">
+          <h4 class="item-card__head"><span class="en">②</span>図面</h4>
+          <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
+          <div class="w-45 margin-top15">
+            <a class="card-link card-link--item" href="drawing.html">進む</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-lg-6">
+      <div class="card item-card text-center <%= fetch_item_request_completed_progress(@item_request, 3) %>">
+        <div class="w-80">
+          <h4 class="item-card__head"><span class="en">③</span>画像</h4>
+          <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
+          <div class="w-45 margin-top15">
+            <a class="card-link card-link--item" href="image.html">進む</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-lg-6">
+      <div class="card item-card text-center <%= fetch_item_request_completed_progress(@item_request, 4) %>">
+        <div class="w-80">
+          <h4 class="item-card__head"><span class="en">④</span>品質</h4>
+          <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
+          <div class="w-45 margin-top15">
+            <a class="card-link card-link--item" href="quality.html">進む</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-lg-6">
+      <div class="card item-card text-center <%= fetch_item_request_completed_progress(@item_request, 5) %>">
+        <div class="w-80">
+          <h4 class="item-card__head"><span class="en">⑤</span>基準</h4>
+          <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
+          <div class="w-45 margin-top15">
+            <a class="card-link card-link--item" href="standard.html">進む</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <div class="col-lg-6">
+      <div class="card item-card text-center <%= fetch_item_request_completed_progress(@item_request, 6) %>">
+        <div class="w-80">
+          <h4 class="item-card__head"><span class="en">⑥</span>条件</h4>
+          <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
+          <div class="w-45 margin-top15">
+            <a class="card-link card-link--item" href="conditions.html">進む</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+<div class="w-100 text-center mt-4 margin-bottom30">
+  <%= link_to '一時保存', buyers_item_requests_path, class: "btn newji-btn--dark-blue w-60" %>
+  <h6 class="h6 mt-3">※途中まで入力した内容を保存し、<br />一時保存リストから再開する</h6>
+</div>
+
+<% content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'js/pages/dashboard3' %>
+  <script>
+    $(function() {
+      $('.done').find('.card-link').text('編集する');
+    });
+  </script>
+<% end %>
+
+<style>
+  .done:before {
+    content: url("/assets/img/check.svg") !important;
+  }
+</style>
