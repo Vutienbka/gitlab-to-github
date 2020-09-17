@@ -8,7 +8,7 @@
       p
         | 情報
       .proces-bar style="#{'background: #0eb20e !important' if number_request.to_i >= 2}"
-      a href="#{ number_request.to_i > 1 ? edit_buyers_item_info_index_path(item_request_id: params[:item_request_id]) : '#' }"
+      a href="#{ number_request.to_i > 1 ? edit_buyers_item_requests_path(item_request_id: params[:item_request_id]) : '#' }"
         .btn-circle class="#{check_params_controller_action('item_info') ? 'btn-circle-red' : ''} 
           #{ !check_params_controller_action('item_info') && number_request.to_i >= 2 ? 'btn-circle-green' : '' }"
           | 1

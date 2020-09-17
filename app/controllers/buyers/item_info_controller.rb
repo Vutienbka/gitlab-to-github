@@ -48,10 +48,14 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   private
+  def set_item_request
+    @item_request = ItemRequest.find_by(id: params[:id])
+  end
+
   def set_item_info
     @item_info = @item_request.item_info if @item_request.present?
     if @item_info.blank?
-      redirect_to buyers_item_info_index_path(item_request_id: @item_request.id)
+      redirect_to new_buyers_item_requests_path(@item_request)
     end
   end
 

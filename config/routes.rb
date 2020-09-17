@@ -48,16 +48,15 @@ Rails.application.routes.draw do
       collection do
         get :index
         get '/:id/progress', to: 'item_requests#progress', as: :progress
+        get '/:id/item_info/new', to: 'item_info#new', as: :new
+        get '/:id/item_info/edit', to: 'item_info#edit', as: :edit
+        post '/:id/item_info/create', to: 'item_info#create', as: :create
       end
     end
 
     resources :list_buyer_suppliers, only: :index
 
     resources :item_info, only: %i[create update] do
-      collection do
-        get :new
-        get :edit
-      end
     end
 
     resources :item_qualities, only: %i[create update] do

@@ -52,9 +52,14 @@ module ApplicationHelper
 
   # Active link sidebar
   def buyer_active_link
-    params[:action] == 'register_item' || params[:action] == 'choose_provider' ||
-      params[:action] == 'search_provider' || params[:action] == 'choose_provider' ||
-      params[:action] == 'batch_items_selector' || params[:action] == 'invite_unregisted_supplier'
+    (params[:controller] == 'buyers' &&
+      (params[:action] == 'register_item' || params[:action] == 'choose_provider' ||
+      params[:action] == 'search_provider' || params[:action] == 'batch_items_selector' ||
+      params[:action] == 'invite_unregisted_supplier')) ||
+    (params[:controller] == 'buyers/item_requests' &&
+      (params[:action] == 'index' || params[:action] == 'progress')) ||
+    (params[:controller] == 'buyers/item_info' &&
+      (params[:action] == 'new' || params[:action] == 'edit'))
   end
 
   def fetch_item_request_quantity
