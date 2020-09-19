@@ -67,6 +67,9 @@
               break;
           }
 
+          // Prevent action when uploading
+          prevent_action_when_uploading();
+
           $.ajax({
             url: url,
             type: "DELETE",
@@ -141,6 +144,9 @@
     e.preventDefault();
     e.stopPropagation();
 
+    // Prevent action when uploading
+    prevent_action_when_uploading();
+
     $.ajax({
       url: "/buyers/item_requests/" + id + "/item_drawings/update",
       type: "POST",
@@ -163,4 +169,10 @@
       }
     });
   });
+
+  function prevent_action_when_uploading() {
+    $('.flex--file3').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+    $("#btnSubmit").attr('disabled', 'disabled');
+    $(".dz-remove").addClass('d-none');
+  }
 </script>
