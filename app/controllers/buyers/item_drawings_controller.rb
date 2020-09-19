@@ -30,65 +30,43 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
   end
 
   def update
-    file_specifications = @item_drawing.file_specifications
-    file_specifications += params[:item_drawing][:file_specifications].values if params.dig(:item_drawing, :file_specifications)
-    @item_drawing.file_specifications = file_specifications
+    @item_drawing.file_specifications = add_files('file_specifications', @item_drawing.file_specifications, params)
+    @item_drawing.file_assembly_specifications = add_files('file_assembly_specifications', @item_drawing.file_assembly_specifications, params)
+    @item_drawing.file_packing_specifications = add_files('file_packing_specifications', @item_drawing.file_packing_specifications, params)
 
-    file_assembly_specifications = @item_drawing.file_assembly_specifications
-    file_assembly_specifications += params[:item_drawing][:file_assembly_specifications].values if params.dig(:item_drawing, :file_assembly_specifications)
-    @item_drawing.file_assembly_specifications = file_assembly_specifications
-
-    file_packing_specifications = @item_drawing.file_packing_specifications
-    file_packing_specifications += params[:item_drawing][:file_packing_specifications].values if params.dig(:item_drawing, :file_packing_specifications)
-    @item_drawing.file_packing_specifications = file_packing_specifications
-
-    @item_drawing.save
-
-    # if @item_drawing.update(item_drawing_params)
-    #   @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
-    #   @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-    #   respond_to do |format|
-    #     format.html { redirect_to item_images_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
-    #     format.json { render json: @item_drawing }
-    #   end
-    # else
-    #   flash[:alert] = I18n.t('update.failed')
-    #   render :edit
-    # end
+    if @item_drawing.save
+      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
+      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
+      respond_to do |format|
+        format.html { redirect_to item_images_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
+        format.json { render json: @item_drawing }
+      end
+    else
+      flash[:alert] = I18n.t('update.failed')
+      render :edit
+    end
   end
 
   def remove_file
     if params[:index_of_file_specifications].present?
-      index = params[:index_of_file_specifications].to_i
-      remain_files = @item_drawing.file_specifications # copy the array
-      deleted_file = remain_files.delete_at(index) # delete the target image
-      deleted_file.try(:remove!) # delete image from S3
-      @item_drawing.file_specifications = remain_files # re-assign back
-
-      @item_drawing.remove_file_specifications = true if remain_files.empty?
+      specifications_remain_files = remove(params[:index_of_file_specifications], @item_drawing.file_specifications)
+      @item_drawing.file_specifications = specifications_remain_files
+      @item_drawing.remove_file_specifications = true if specifications_remain_files.empty?
     end
 
     if params[:index_of_file_assembly_specifications].present?
-      index = params[:index_of_file_assembly_specifications].to_i
-      remain_files = @item_drawing.file_assembly_specifications # copy the array
-      deleted_file = remain_files.delete_at(index) # delete the target image
-      deleted_file.try(:remove!) # delete image from S3
-      @item_drawing.file_assembly_specifications = remain_files # re-assign back
-
-      @item_drawing.remove_file_assembly_specifications = true if remain_files.empty?
+      assembly_specifications_remain_files = remove(params[:index_of_file_assembly_specifications], @item_drawing.file_assembly_specifications)
+      @item_drawing.file_assembly_specifications = assembly_specifications_remain_files
+      @item_drawing.remove_file_assembly_specifications = true if assembly_specifications_remain_files.empty?
     end
 
     if params[:index_of_file_packing_specifications].present?
-      index = params[:index_of_file_packing_specifications].to_i
-      remain_files = @item_drawing.file_packing_specifications # copy the array
-      deleted_file = remain_files.delete_at(index) # delete the target image
-      deleted_file.try(:remove!) # delete image from S3
-      @item_drawing.file_packing_specifications = remain_files # re-assign back
-
-      @item_drawing.remove_file_packing_specifications = true if remain_files.empty?
+      packing_specifications_remain_files = remove(params[:index_of_file_packing_specifications], @item_drawing.file_packing_specifications)
+      @item_drawing.file_packing_specifications = packing_specifications_remain_files
+      @item_drawing.remove_file_packing_specifications = true if packing_specifications_remain_files.empty?
     end
 
-    @item_drawing.save
+    @item_request.update_attributes(updater: current_user.id, updated_at: Time.current) if @item_drawing.save
   end
 
   private
@@ -101,5 +79,19 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
     params[:item_drawing][:file_assembly_specifications] = params[:item_drawing][:file_assembly_specifications].values if params.dig(:item_drawing, :file_assembly_specifications)
     params[:item_drawing][:file_packing_specifications] = params[:item_drawing][:file_packing_specifications].values if params.dig(:item_drawing, :file_packing_specifications)
     params.require(:item_drawing).permit(ItemDrawing::PARAMS_ATTRIBUTES)
+  end
+
+  def add_files(string, remain_files, params)
+    added_files = remain_files
+    added_files += params[:item_drawing][string.to_sym].values if params.dig(:item_drawing, string.to_sym)
+    remain_files = added_files
+  end
+
+  def remove(index_of, remain_files)
+    index = index_of.to_i
+    current_files = remain_files # copy the array
+    deleted_file = current_files.delete_at(index) # delete the target image
+    deleted_file.try(:remove!) # delete image from S3
+    remain_files = current_files # re-assign back
   end
 end
