@@ -80,4 +80,8 @@ module ApplicationHelper
   def fetch_item_request_completed_progress(item_request, value)
     item_request.status.value > value ? 'done': ''
   end
+
+  def disabled_progress(item_request, value)
+    item_request.status.value < value ? 'disabled-progress' : ''
+  end
 end
