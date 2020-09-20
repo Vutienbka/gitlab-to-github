@@ -1,0 +1,38 @@
+<%= javascripts 'buyer/condition' %>
+<% content_for :title, 'NEWJI | ⑥条件' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body login-card-body">
+      <p class="login-head text-center">
+        アイテムの条件がある場合は<span class="textbr">登録してください</span><br />
+        <small>
+          基本条件は、<span class="textbr"><%= link_to '「取引基本契約書」', item_conditions_company_info_buyers_item_request_path, target: '_blank', class: "to-top" %>および</span><span class="textbr"><%= link_to '「品質協定書」', item_conditions_company_info_buyers_item_request_path, target: '_blank', class: "to-top" %>に基づきます</span>
+        </small>
+      </p>
+      <%= form_for @item_request, url: url, method: method do |f| %>
+        <div id="condition">
+          <%= f.fields_for :item_conditions do |task| %>
+            <%= render 'item_condition_fields', f: task %>
+          <% end %>
+          <div class="input-group mb-4">
+            <label for="form-label-">
+            </label>
+            <i class="fas fa-plus input-plus"></i>
+            <%= link_to_add_association '条件を追加', f, :item_conditions, partial: 'item_condition_fields', class:"input-add" %>
+          </div>
+
+          <div class="row">
+            <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp">登録</button>
+          </div>
+        </div>
+      <% end %>
+    <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+  <div class="w-90 text-center margin-bottom30">
+    <%= link_to 'アイテム登録に戻る', progress_buyers_item_request_path(@item_request), class: 'to-top' %>
+  </div>
+<% end %>

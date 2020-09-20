@@ -14,11 +14,11 @@ class ItemRequest < ApplicationRecord
   has_one :item_standard, dependent: :destroy
   has_many :item_conditions, dependent: :destroy
 
-  accepts_nested_attributes_for :item_conditions, :item_info, :item_quality, :item_sample, allow_destroy: true
+  accepts_nested_attributes_for :item_conditions, allow_destroy: true
 
   PARAMS_ATTRIBUTES = [
     item_conditions_attributes: [
-      :id, :item_request_id, :condition, :position, :creator, :updater
+      :id, :item_request_id, :condition, :position, :creator, :updater, :_destroy
     ]
   ]
 

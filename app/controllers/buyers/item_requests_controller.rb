@@ -1,12 +1,13 @@
 class Buyers::ItemRequestsController < Buyers::BaseController
-  before_action :set_item_request, only: %i[index destroy progress]
+  before_action :set_item_request
 
   def index
     @item_requests = current_user.item_requests.includes([:item_info]) if current_user.buyer?
   end
 
-  def progress
-  end
+  def progress; end
+
+  def complete; end
 
   def create
     @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status: 1)

@@ -1,0 +1,18 @@
+<% content_for :title, 'NEWJI | アイテム登録完了' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body">
+      <p class="login-head text-center">登録が完了しました！</p>
+      <div class="row">
+        <%= link_to '引き続き登録', register_item_buyers_path, class: 'btn w-30 newji-btn--blue mt-4 w-60--sp' %>
+      </div>
+    <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+  <div class="w-90 text-center margin-bottom30">
+    <%= link_to 'トップに戻る', buyers_home_index_path, class: 'to-top' %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="input-group mt-4 mb-4">
+    <label for="form-label-condition">
+      <span class="required-txt required-txt--any">任意</span>
+      <span class="number-of-fields">条件<%= f.options[:child_index].to_i + 1 %></span>
+    </label>
+    <%= f.text_field :condition, placeholder: 'アイテムの条件を入力してください（複数可）', class:"form-control form-control--ie", autocomplete:"off", id: 'form-label-condition' %>
+    <%= f.hidden_field :position, class: 'hidden-field' %>
+    <%= f.hidden_field :creator, value:"#{current_user.id}" %>
+    <%= link_to_remove_association '', f, class: 'fa fa-times', data: { confirm: '本当に削除しますか。' } %>
+  </div>
+</div>

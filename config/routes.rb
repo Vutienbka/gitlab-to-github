@@ -83,6 +83,11 @@ Rails.application.routes.draw do
 
         get '/item_conditions/new', to: 'item_conditions#new', as: :item_conditions_new
         get '/item_conditions/edit', to: 'item_conditions#edit', as: :item_conditions_edit
+        post '/item_conditions/create', to: 'item_conditions#create', as: :item_conditions_create
+        post '/item_conditions/update', to: 'item_conditions#update', as: :item_conditions_update
+        get '/item_conditions/company_info', to: 'item_conditions#company_info', as: :item_conditions_company_info
+
+        get '/complete', to: 'item_requests#complete', as: :complete
       end
     end
 
@@ -101,13 +106,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_conditions, only: %i[create update] do
-      collection do
-        get :new
-        get :edit
-        delete :destroy_condition
-      end
-    end
     resources :item_quotations do
       collection do
         get :new

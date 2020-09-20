@@ -67,6 +67,8 @@ module ApplicationHelper
     (params[:controller] == 'buyers/item_qualities' &&
       (params[:action] == 'new' || params[:action] == 'edit')) ||
     (params[:controller] == 'buyers/item_standards' &&
+      (params[:action] == 'new' || params[:action] == 'edit')) ||
+    (params[:controller] == 'buyers/item_conditions' &&
       (params[:action] == 'new' || params[:action] == 'edit'))
   end
 

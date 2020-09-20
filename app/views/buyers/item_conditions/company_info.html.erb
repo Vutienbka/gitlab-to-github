@@ -1,0 +1,1274 @@
+<%= stylesheets 'plugins/datatables-bs4/css/dataTables.bootstrap4.min', 'plugins/datatables-responsive/css/responsive.bootstrap4.min' %>
+
+<% content_for :title, 'NEWJI | 取引先' %>
+<% breadcrumb_add '取引先'%>
+
+
+<section class="content">
+  <!-- Default box -->
+  <div class="card card-solid card--login--only-vertical">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 calim-info__header-parent">
+          <div class="text-center mt-5 mt-md-4 mb-5 calim-info__header-item-name">
+            <h4 class="login-head font-bold">株式会社〇〇〇〇</h4>
+          </div>
+          <div class="text-right calim-info__header-child">
+            <h6 class="claim-info__right-info">更新日：2020年7月11日</h6>
+            <h6 class="claim-info__right-info">作成日：2020年6月11日</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row border-top pt-5 flex-wrap-reverse">
+        <div class="col-12 col-md-9">
+          <div class="company-table-wrap" id="company">
+            <h5 class="text-left my-catalog-head mb-3">
+              企業概要
+            </h5>
+            <table class="company-table company-table--yoko">
+              <tbody>
+                <tr>
+                  <th>
+                    会社名
+                  </th>
+                  <td>
+                    株式会社〇〇〇〇
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    国名
+                  </th>
+                  <td>
+                    中国
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    代表取締役
+                  </th>
+                  <td>
+                    山田裕司
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    本社所在地
+                  </th>
+                  <td class="has-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280303848283!2d139.7649307506623!3d35.68123618009709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1597026973354!5m2!1sja!2sjp" width="600" height="450" frameborder="0" style="border:1px solid #ccc;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    本社<span class="textbr">電話番号</span>
+                  </th>
+                  <td>
+                    <a href="tel:0000000">XXX-XXXX</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    WEBサイト
+                  </th>
+                  <td>
+                    <a href="https://goheymochikun.com">https://goheymochikun.com</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    工場所在地<br />
+                    <!-- <a href="https://newji.jp/vr-factory" target="_blank" class="btn w-100 newji-btn--white w-60--sp mt-3">NEWJI VRで<span class="textbr">この工場を視察する</span></a> -->
+                  </th>
+                  <td class="has-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280303848283!2d139.7649307506623!3d35.68123618009709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1597026973354!5m2!1sja!2sjp" frameborder="0" style="border:1px solid #ccc;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    <a href="https://newji.jp/vr-factory" target="_blank" class="btn w-100 newji-btn--pink my-2 btn-in-table">NEWJI VRで<span class="textbr">↑の工場を視察する</span></a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    工場<span class="textbr">電話番号</span>
+                  </th>
+                  <td>
+                    <a href="tel:0000000">XXX-XXXX</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    ワーカー平均<span class="textbr">賃金</span>
+                  </th>
+                  <td>
+                    ¥300,000 / 月<span class="ml-1 ml-md-5">$3,00 / 月</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    従業員数
+                  </th>
+                  <td>
+                    300人
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    設立
+                  </th>
+                  <td>
+                    1984年11月12日
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    資本金
+                  </th>
+                  <td>
+                    1,000万円
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    年商
+                  </th>
+                  <td>
+                    10,000,000円<span class="tetxbr">(決算期:2019年1月1日~12月31日)</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    担当者
+                  </th>
+                  <td>
+                    山田浩二
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    担当者メール<span class="textbr">アドレス</span>
+                  </th>
+                  <td>
+                    <a href="mailto:sample@sample.com">sample@sample.com</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    担当者<span class="textbr">電話番号</span>
+                  </th>
+                  <td>
+                    <a href="tel:0000000">XXXX-XXX-XXXX</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    企業情報<span class="textbr">入手手段</span>
+                  </th>
+                  <td>
+                    展示会
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="company-table-wrap" id="policy">
+            <h5 class="text-left my-catalog-head mb-3">
+              企業方針・企業政策
+            </h5>
+            <h6 class="company-table__description">
+              <p>
+                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+              </p>
+              <br />
+              <p>
+                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+              </p>
+            </h6>
+          </div>
+          <div class="company-table-wrap" id="authentication">
+            <h5 class="text-left my-catalog-head mb-3">
+              認証状況
+            </h5>
+            <table class="company-table company-table--yoko">
+              <tbody>
+                <tr>
+                  <th>
+                    ISO9000
+                  </th>
+                  <td>
+                    取得済み
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    ISO14000
+                  </th>
+                  <td>
+                    取得済み
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="company-table-wrap" id="product">
+            <h5 class="text-left my-catalog-head mb-3">
+              主要生産品目・主要販売品目
+            </h5>
+            <h6 class="company-table__description company-table__description--with-table">
+              <p>
+                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+              </p>
+              <br />
+              <p>
+                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+              </p>
+            </h6>
+            <table class="company-table company-table--yoko">
+              <tbody>
+                <tr>
+                  <th>
+                    固有技術<span class="textbr">(強みの技術)</span>
+                  </th>
+                  <td>
+                    テキストテキストテキスト
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="company-table-wrap mb-5" id="client">
+            <h5 class="text-left my-catalog-head mb-3">
+              主要販売先
+            </h5>
+            <div class="chart">
+              <canvas id="pieChart" style="min-height: 320px; height: 400px; max-height: 500px;  max-width: 100%;"></canvas>
+            </div>
+            <div class="country-table-wrap">
+              <h6 class="country-name"><strong>・ヨーロッパ(構成比:33%)</strong></h6>
+              <table class="company-table country-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      会社名
+                    </th>
+                    <th>
+                      国名
+                    </th>
+                    <th>
+                      構成比
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      ドイツ
+                    </td>
+                    <td>
+                      60%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      イタリア
+                    </td>
+                    <td>
+                      40%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="country-table-wrap">
+              <h6 class="country-name"><strong>・アメリカ・カナダ (構成比:53%)</strong></h6>
+              <table class="company-table country-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      会社名
+                    </th>
+                    <th>
+                      国名
+                    </th>
+                    <th>
+                      構成比
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      アメリカ
+                    </td>
+                    <td>
+                      60%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      カナダ
+                    </td>
+                    <td>
+                      40%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="country-table-wrap">
+              <h6 class="country-name"><strong>・日本（構成比:10%）</strong></h6>
+              <table class="company-table country-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      会社名
+                    </th>
+                    <th>
+                      国名
+                    </th>
+                    <th>
+                      構成比
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      日本
+                    </td>
+                    <td>
+                      60%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      日本
+                    </td>
+                    <td>
+                      40%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="country-table-wrap">
+              <h6 class="country-name"><strong>・その他(構成比:7%)</strong></h6>
+              <table class="company-table country-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      会社名
+                    </th>
+                    <th>
+                      国名
+                    </th>
+                    <th>
+                      構成比
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      インド
+                    </td>
+                    <td>
+                      60%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      中国
+                    </td>
+                    <td>
+                      40%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="company-table-wrap" id="risk">
+              <h5 class="text-left my-catalog-head mb-3">
+                リスク評価<span class="textbr">(カントリーリスク・BCP他)</span>
+              </h5>
+              <h6 class="company-table__description">
+                <p>
+                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                </p>
+                <br />
+                <p>
+                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                </p>
+              </h6>
+            </div>
+            <div class="company-table-wrap" id="primary-evaluation">
+              <h5 class="text-left my-catalog-head mb-3">
+                １次評価<a href="" class="font-color company-edit" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>１次評価を追加</a>
+              </h5>
+              <table class="company-table company-table--yoko">
+                <tbody>
+                  <tr>
+                    <th>
+                      評価日
+                    </th>
+                    <td>
+                      2020年1月1日
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      評価者
+                    </th>
+                    <td>
+                      山田裕司
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      評価
+                    </th>
+                    <td>
+                      C
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      活用区分
+                    </th>
+                    <td>
+                      B
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      所見
+                    </th>
+                    <td>
+                      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。<br />
+                      <br />
+                      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--
+              <div class="row">
+                <div class="col-6 text-left">
+                  <button type="button" class="company-button">&lt;&lt;前へ</button>
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" class="company-button">次へ&gt;&gt;</button>
+                </div>
+              </div>
+              -->
+              <div class="row">
+                <a href="#" class="btn w-30 newji-btn--gray w-60--sp mt-3">もっと見る</a>
+              </div>
+            </div>
+            <div class="company-table-wrap" id="production">
+              <h5 class="text-left my-catalog-head mb-3">
+                生産量・生産能力
+              </h5>
+              <table class="company-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      品目
+                    </th>
+                    <th class="white-space-nowrap">
+                      生産量
+                    </th>
+                    <th>
+                      生産能力
+                    </th>
+                    <th>
+                      備考
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      10t
+                    </td>
+                    <td>
+                      テキストテキストテキ
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      15t
+                    </td>
+                    <td>
+                      テキストテキストテキ
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      11t
+                    </td>
+                    <td>
+                      テキストテキストテキ
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      10t
+                    </td>
+                    <td>
+                      テキストテキストテキ
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      10t
+                    </td>
+                    <td>
+                      テキストテキストテキ
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="company-table-wrap" id="material-procurement">
+              <h5 class="text-left my-catalog-head mb-3">
+                主要材料調達力
+              </h5>
+              <table class="company-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      材料品目
+                    </th>
+                    <th class="white-space-nowrap">
+                      生産量
+                    </th>
+                    <th>
+                      調達先<span class="textbr small">(国又は企業)</span>
+                    </th>
+                    <th>
+                      備考
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      10t
+                    </td>
+                    <td>
+                      インド
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      11t
+                    </td>
+                    <td>
+                      インド
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      12t
+                    </td>
+                    <td>
+                      インド
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      8t
+                    </td>
+                    <td>
+                      インド
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      10t
+                    </td>
+                    <td>
+                      インド
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="company-table-wrap" id="facility">
+              <h5 class="text-left my-catalog-head mb-3">
+                社内設備状況
+              </h5>
+              <table class="company-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      設備名
+                    </th>
+                    <th>
+                      台数
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      12台
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキストテキスト
+                    </td>
+                    <td>
+                      50台
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="company-table-wrap" id="human-resource">
+              <h5 class="text-left my-catalog-head mb-3">
+                ヒューマンリソース関連
+              </h5>
+              <table class="company-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      重要<span class="textbr">要素</span>
+                    </th>
+                    <th>
+                      具体的<span class="textbr">内容</span>
+                    </th>
+                    <th>
+                      責任者・<span class="textbr">キーパーソン</span>
+                    </th>
+                    <th>
+                      役職
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>
+                      開発・<span class="textbr">提案力</span>
+                    </th>
+                    <td class="text-left">
+                      テキストテキスト
+                    </td>
+                    <td>
+                      山田裕司
+                    </td>
+                    <td>
+                      開発部長
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      要素<span class="textbr">技術</span>
+                    </th>
+                    <td class="text-left">
+                      テキストテキストテキ
+                    </td>
+                    <td>
+                      山田裕司
+                    </td>
+                    <td>
+                      技術部長
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      品質<span class="textbr">管理</span>
+                    </th>
+                    <td class="text-left">
+                      テキストテキストテキ
+                    </td>
+                    <td>
+                      山田裕司
+                    </td>
+                    <td>
+                      人事部長
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="company-table-wrap" id="contract">
+              <div class="row">
+                <div class="col-6">
+                  <h5 class="text-left my-catalog-head mb-3">
+                    契約書締結
+                  </h5>
+                </div>
+                <div class="col-6">
+                  <!--
+                  <div class="text-right company-link">
+                    <a href="nda.html" class="to-top to-top--link-in-table">契約を進める</a>
+                  </div>
+                -->
+                </div>
+              </div>
+              <table class="company-table">
+                <tbody>
+                  <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                      締結<span class="textbr">有無</span>
+                    </th>
+                    <th>
+                      内容
+                    </th>
+                    <th>
+                      締結<span class="textbr">日</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>
+                      取引基本<span class="textbr">契約書</span>
+                    </th>
+                    <td>
+                      ○
+                    </td>
+                    <td class="white-space-nowrap">
+                      <a href="#" class="to-top to-top--black"><i class="fas fa-download mr-1"></i>取引基本契約書</a>
+                    </td>
+                    <td>
+                      2020年<span class="textbr">1月1日</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      品質<span class="textbr">協定書</span>
+                    </th>
+                    <td>
+                      ×
+                    </td>
+                    <td class="white-space-nowrap">
+                      <a href="contract.html" class="btn newji-btn--pink btn-in-td">契約を進める</a>
+                    </td>
+                    <td>
+                      ー
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--
+              <div class="row">
+                <a href="nda.html" class="btn w-30 newji-btn--pink w-60--sp mt-3">契約を進める</a>
+              </div>
+              -->
+            </div>
+            <div class="company-table-wrap" id="credit-survey">
+              <div class="row">
+                <div class="col-6">
+                  <h5 class="text-left my-catalog-head mb-3">
+                    与信調査
+                  </h5>
+                </div>
+                <!--
+                <div class="col-6">
+                  <div class="text-right company-link">
+                    <a href="credit-registration.html" class="to-top to-top--link-in-table">信用調査を進める</a>
+                  </div>
+                </div>
+              -->
+              </div>
+              <table class="company-table company-table--yoko">
+                <tbody>
+                  <tr>
+                    <th>
+                      与信実施日
+                    </th>
+                    <td>
+                      <div class="row">
+                        <div class="col-6">
+                          2020年1月1日
+                        </div>
+                        <div class="col-12 col-md-6 text-left text-md-right">
+                          <a href="#" class="to-top to-top--black"><i class="fas fa-download mr-1"></i>調査結果</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <a href="credit-registration.html" class="btn w-30 newji-btn--pink w-60--sp mt-3">信用調査を進める</a>
+              </div>
+            </div>
+            <div class="company-table-wrap" id="record">
+              <h5 class="text-left my-catalog-head mb-3 align-middle">
+                当社間活動記録<a href="" class="font-color company-edit" role="button" data-target="#modal-default2" data-toggle="modal"><i class="fas fa-edit ml-2"></i>活動記録を追加</a>
+              </h5>
+              <table class="company-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      年月日
+                    </th>
+                    <th>
+                      記入者
+                    </th>
+                    <th>
+                      主な事柄、所見
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      2020年<span class="textbr">1月2日</span>
+                    </td>
+                    <td>
+                      山田<span class="textbr">裕司</span>
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      2020年<span class="textbr">1月2日</span>
+                    </td>
+                    <td>
+                      山田<span class="textbr">裕司</span>
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      2020年<span class="textbr">1月2日</span>
+                    </td>
+                    <td>
+                      山田<span class="textbr">裕司</span>
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      2020年<span class="textbr">1月2日</span>
+                    </td>
+                    <td>
+                      山田<span class="textbr">裕司</span>
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキスト
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      2020年<span class="textbr">1月2日</span>
+                    </td>
+                    <td>
+                      山田裕司
+                    </td>
+                    <td class="text-left">
+                      テキストテキストテキストテキスト
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <a href="#" class="btn w-30 newji-btn--gray w-60--sp mt-3">もっと見る</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-5 col-md-3 mb-5 side">
+          <div class="page-scroll-link js-page-scroll-link">
+            <h6 class="page-scroll-link__mokuji js-page-scroll-link__mokuji js-open" unselectable="on"><a>目次<i class="fas fa-angle-up mokuji-icon js-mokuji-icon"></i></a></h6>
+            <ul class="page-scroll-link__list js-page-scroll-link__list h6">
+              <li>
+                <a href="#company">企業概要</a>
+              </li>
+              <li>
+                <a href="#policy">企業方針・<span class="textbr">企業政策</span></a>
+              </li>
+              <li>
+                <a href="#authentication">認証状況</a>
+              </li>
+              <li>
+                <a href="#product">主要生産品目</a>
+              </li>
+              <li>
+                <a href="#client">主要販売先</a>
+              </li>
+              <li>
+                <a href="#risk">リスク管理</a>
+              </li>
+              <li>
+                <a href="#primary-evaluation">１次評価</a>
+              </li>
+              <li>
+                <a href="#production">生産量・生産能力</a>
+              </li>
+              <li>
+                <a href="#material-procurement">主要材料調達力</a>
+              </li>
+              <li>
+                <a href="#facility">社内設備状況</a>
+              </li>
+              <li>
+                <a href="#human-resource">ヒューマン<span class="textbr">リソース関連</span></a>
+              </li>
+              <li>
+                <a href="#contract">契約書締結</a>
+              </li>
+              <li>
+                <a href="#credit-survey">与信調査</a>
+              </li>
+              <li>
+                <a href="#record">当社間活動記録</a>
+              </li>
+            </ul>
+          </div>
+          <!-- <a href="https://newji.jp/vr-factory" target="_blank" class="btn w-100 newji-btn--pink w-60--sp py-3 newji-btn--vr d-none d-md-block">NEWJI VRで<span class="textbr">この工場を視察する</span></a> -->
+          <!-- トップに戻るボタン IEのみ -->
+          <p class="page-top"><a href="#wrap">TOPに戻る</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+  <div class="w-100 text-center mt-5 margin-bottom30">
+    <a href="company-top.html" class="to-top">取引先検索に戻る</a>
+  </div>
+
+  <!-- モーダル -->
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-default">
+      <div class="modal-content">
+        <form action="#" method="post">
+          <div class="modal-header modal-header--ordering">
+            <h6 class="modal-title"></h6>
+            <button type="reset" class="close" role="button" data-target="#modal-default" data-toggle="modal">
+              <span class="align-middle" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center pt-3">以下を入力してください</h5>
+            <div class="input-group input-group--modal mt-4 mb-4">
+              <label for="form-modal-hyouka">
+                <span class="required-txt">必須</span>
+                <span>評価</span>
+              </label>
+              <input id="form-modal-hyouka" type="number" class="form-control form-control--ie" name="company-evaluation" placeholder="半角数字で記入" required>
+            </div>
+            <div class="input-group input-group--modal mt-5 mb-4">
+              <label for="form-modal-kubun">
+                <span class="required-txt">必須</span>
+                <span>活用区分</span>
+              </label>
+              <input type="text" class="form-control form-control--ie" id="form-modal-kubun" placeholder="希望日付を選択してください。" name="company-utilization-category" required>
+            </div>
+            <div class="input-group input-group--modal mt-5 mb-4">
+              <label for="form-modal-kubun">
+                <span class="required-txt required-txt--any">任意</span>
+                <span>所見</span>
+              </label>
+              <textarea type="text" class="form-control form-control--ie form-control--textarea" id="form-modal-kubun" placeholder="例)テキストテキストテキスト" name="company-findings"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between modal-footer--ordering">
+            <button type="reset" class="btn btn-default" role="button" data-target="#modal-default" data-toggle="modal">閉じる</button>
+            <button type="submit" class="btn newji-btn--pink">登録</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- モーダル -->
+  <div class="modal fade" id="modal-default2">
+    <div class="modal-dialog modal-default">
+      <div class="modal-content">
+        <form action="#" method="post">
+          <div class="modal-header modal-header--ordering">
+            <h6 class="modal-title"></h6>
+            <button type="reset" class="close" role="button" data-target="#modal-default2" data-toggle="modal">
+              <span class="align-middle" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center pt-3">以下を入力してください</h5>
+            <div class="input-group input-group--modal mt-5 mb-4">
+              <label for="form-modal-record">
+                <span class="required-txt">必須</span>
+                <span>年月日</span>
+              </label>
+              <input type="text" class="form-control form-control--ie form-control--readonly" id="form-modal-record" placeholder="希望日付を選択してください。" name="company-activity-date" readonly="readonly">
+            </div>
+            <div class="input-group input-group--modal mt-5 mb-4">
+              <label for="form-modal-kubun">
+                <span class="required-txt">必須</span>
+                <span>主な事柄、所見</span>
+              </label>
+              <textarea type="text" class="form-control form-control--ie form-control--textarea" id="form-modal-kubun" placeholder="例)テキストテキストテキスト" name="company-activity-findings"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between modal-footer--ordering">
+            <button type="reset" class="btn btn-default" role="button" data-target="#modal-default2" data-toggle="modal">閉じる</button>
+            <button type="submit" class="btn newji-btn--pink">登録</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</section>
+
+
+<% content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'js/pages/dashboard3' %>
+  <%= javascript_include_tag 'plugins/chart.js/Chart.min' %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+  <!-- page script -->
+  <script>
+    $(function () {
+      var ctx = document.getElementById("pieChart");
+      var mpieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ["ヨーロッパ", "アメリカ・カナダ", "日本", "その他"],
+          datasets: [{
+              backgroundColor: [
+                  "#FA1F6C",
+                  "#2863A3",
+                  "#a36828",
+                  "#888888"
+              ],
+              data: [33, 53, 10, 7]
+          }]
+        },
+        options: {
+          title: {
+            display: false,
+            text: '血液型 割合'
+          },
+          responsive: true,
+          maintainAspectRatio: false
+
+        }
+      });
+
+    })
+  </script>
+
+  <script>
+  $(function(){
+
+    // 変数navPosに、nav要素の初期位置を代入
+    var navPos = $(".js-page-scroll-link").offset().top;
+
+    // ブラウザをスクロール
+    //$(window).scroll(function(){
+      // スクロール量とnav要素の初期位置を比較
+      //if($(window).scrollTop() > navPos){
+        // 条件を満たした場合：nav要素をブラウザ上部に固定
+        //$(".js-page-scroll-link").css("position", "fixed").addClass('js-page-scroll-link--fixed');
+      //}else{
+        // 満たさない場合：nav要素を通常の配置にする
+        //$(".js-page-scroll-link").css("position", "static").removeClass('js-page-scroll-link--fixed');
+      //}
+    //});
+
+    var topBtn = $('.page-top');
+    topBtn.hide();
+    $(window).scroll(function () {
+      const ua = navigator.userAgent;
+      if(ua.indexOf('Trident') !== -1) {
+        //IE 11のときの挙動をここに書く
+        if ($(this).scrollTop() > 500) {
+            topBtn.fadeIn();
+        } else {
+            topBtn.fadeOut();
+        }
+      }
+    });
+
+    topBtn.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+
+    //目次開閉
+    //$('.js-page-scroll-link__mokuji').next().hide();
+
+    $('.js-page-scroll-link__mokuji').click(function(){
+      if($(this).hasClass('js-open')){
+        $(this).removeClass('js-open');
+        $(this).next().slideUp();
+        $(this).find('.js-mokuji-icon').removeClass('fa-angle-up').addClass('fa-angle-down');
+      } else {
+        $(this).addClass('js-open');
+        $(this).next().slideDown();
+        $(this).find('.js-mokuji-icon').removeClass('fa-angle-down').addClass('fa-angle-up');
+      }
+    });
+
+    // ナビゲーションのリンクを指定
+    var navLink = $('.js-page-scroll-link__list li a');
+
+    // 各コンテンツのページ上部からの開始位置と終了位置を配列に格納しておく
+    var contentsArr = new Array();
+    for (var i = 0; i < navLink.length; i++) {
+      // コンテンツのIDを取得
+      var targetContents = navLink.eq(i).attr('href');
+      // ページ内リンクでないナビゲーションが含まれている場合は除外する
+      if(targetContents.charAt(0) == '#') {
+        // ページ上部からコンテンツの開始位置までの距離を取得
+        var targetContentsTop = $(targetContents).offset().top - 215;
+        // ページ上部からコンテンツの終了位置までの距離を取得
+        var targetContentsBottom = targetContentsTop + $(targetContents).outerHeight(true) - 1;
+        // 配列に格納
+        contentsArr[i] = [targetContentsTop, targetContentsBottom]
+      }
+    };
+
+    // 現在地をチェックする
+    function currentCheck() {
+      // 現在のスクロール位置を取得
+      var windowScrolltop = $(window).scrollTop();
+      for (var i = 0; i < contentsArr.length; i++) {
+        // 現在のスクロール位置が、配列に格納した開始位置と終了位置の間にあるものを調べる
+        if(contentsArr[i][0] <= windowScrolltop && contentsArr[i][1] >= windowScrolltop) {
+          // 開始位置と終了位置の間にある場合、ナビゲーションにclass="current"をつける
+          navLink.removeClass('current');
+          navLink.eq(i).addClass('current');
+          i == contentsArr.length;
+        }
+      };
+    }
+
+    // ページ読み込み時とスクロール時に、現在地をチェックする
+    $(window).on('load scroll', function() {
+      currentCheck();
+    });
+
+    // #で始まるアンカーをクリックした場合に処理
+    navLink.click(function() {
+        var speed = 500;
+        // アンカーの値取得
+        var href= $(this).attr("href");
+        // 移動先を取得
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        // 移動先を数値で取得
+        var position = target.offset().top;
+        // スムーススクロール
+        $('body,html').animate({scrollTop:position - 150}, speed, "swing");
+        return false;
+    });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    $.datepicker._gotoToday = function(id) {
+      var target = $(id);
+      var inst = this._getInst(target[0]);
+      var date = new Date();
+      this._setDate(inst,date);
+      this._hideDatepicker();
+    }
+
+    $('#form-modal-record').datepicker({
+      autoclose: false,
+      showButtonPanel: true,
+      changeYear: true,  // 年選択をプルダウン化
+    });
+
+    // IOSか判定
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+      // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+      $('#form-modal-record').on('focus', function() {
+        $('input, textarea').not(this).attr("readonly", "readonly");
+      });
+
+      // フォーカスが外れるときにreadonlyを外す
+      $('#form-modal-record').on('blur', function() {
+        $('input, textarea').not(this).removeAttr("readonly");
+      });
+    }
+  });
+  </script>
+<% end %>
