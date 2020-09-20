@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
 class ItemStandard < ApplicationRecord
-  acts_as_paranoid
-  belongs_to :item_request
+  mount_uploaders :file_inspection_criteria, DrawUploader
+  serialize :file_inspection_criteria, JSON # If you use SQLite, add this line.
+  mount_uploaders :file_test_criteria, DrawUploader
+  serialize :file_test_criteria, JSON # If you use SQLite, add this line.
 
-  has_many :standard_categories
-  accepts_nested_attributes_for :standard_categories, allow_destroy: true
+  belongs_to :item_request
 
   PARAMS_ATTRIBUTES = [
     :item_request_id, :info, :creator, :updater,
-    standard_categories_attributes: [
-      :id, :name, :item_standard_id, :draw_info, :creator, :updater,
-      file_standard_attributes: [:id, :standard_category_id, { file_link:[] }]
-    ]
-  ]
+    { file_inspection_criteria: [] }, { file_test_criteria: [] }
+  ].freeze
 end

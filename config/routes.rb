@@ -80,6 +80,9 @@ Rails.application.routes.draw do
         post '/item_standards/create', to: 'item_standards#create', as: :item_standards_create
         post '/item_standards/update', to: 'item_standards#update', as: :item_standards_update
         delete '/item_standards/remove_file', to: 'item_standards#remove_file', as: :item_standards_remove_file
+
+        get '/item_conditions/new', to: 'item_conditions#new', as: :item_conditions_new
+        get '/item_conditions/edit', to: 'item_conditions#edit', as: :item_conditions_edit
       end
     end
 
@@ -89,16 +92,6 @@ Rails.application.routes.draw do
       collection do
         get :new
         get :edit
-      end
-    end
-
-    resources :item_standards, only: %i[create update] do
-      collection do
-        get :new
-        get :edit
-      end
-      resources :standard_categories, only: [] do
-        resources :file_standards, only: %i[create destroy]
       end
     end
 

@@ -1,102 +1,14 @@
-<%= stylesheets 'buyer/input_items_image' %>
-
-<%= form_for @item_standard, url: buyers_item_standard_path(@item_standard), method: 'patch' do |f| %>
-  <%= hidden_field_tag :item_request_id, params[:item_request_id] %>
-  <div class="container-user">
-    <div class="contents">
-      <div class="container-fluid">
-        <div class="process-head">
-          <%= render 'buyers/shared/process_bar' %>
-        </div>
-        <div class="main">
-          <div class="content-table-title">
-            <%= I18n.t('messages.please_register_item_criteria') %>
-          </div>
-          <div class="content-table">
-            <div class="description-zone">
-              <div class="description"></div>
-            </div>
-            <div class="images">
-              <div class="container">
-                <%= f.fields_for :standard_categories do |fc| %>
-                  <%= fc.hidden_field :name %>
-                  <%= fc.hidden_field :id %>
-                  <% if fc.index == 0 %>
-                    <div class="col-md-12 image-input-head">
-                      <div class="image-title-label">
-                        <label>
-                          <%= I18n.t('messages.please_upload_test_criteria_for_the_item') %>
-                        </label>
-                      </div>
-                    </div>
-                  <% else %>
-                    <div class="col-md-12 design-input-head">
-                      <div class="design-title-label">
-                        <label>
-                          <%= I18n.t('messages.upload_item_inspection_criteria') %>
-                        </label>
-                      </div>
-                    </div>
-                  <% end %>
-
-                  <div class="col-md-12 image-input-content">
-                    <div class="dropzone" id="myDropzone<%= fc.index %>">
-                      <div class="drop-drag-hint-text">
-                        <%= I18n.t('messages.drag_and_drop_files_here') %>
-                      </div>
-                      <div class="fallback">
-                        <%= fc.file_field(:file_link, multiple: true) %>
-                      </div>
-                    </div>
-
-                    <% if fc.index == 0 %>
-                      <% if @item_standard.standard_categories[0].file_standard.file_link.blank? %>
-                        <div class="dropzone-no-file-upload text-danger mt-2" id="dropzone_no_file_upload<%= fc.index %>">
-                          <%= I18n.t('messages.file_has_not_been_uploaded') %>
-                        </div>
-                      <% end %>
-                    <% end %>
-
-                    <div class="dropzone-file-uploaded text-success mt-2" id="dropzone_file_uploaded<%= fc.index %>">
-                      <%= I18n.t('messages.file_uploaded') %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="continue-btn">
-          <button type="submit" id="btnSubmit" class="btn-horver">続行</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render 'form', url: item_standards_update_buyers_item_request_path, method: 'post' %>
 
 <script type="text/javascript">
   Dropzone.autoDiscover = false;
+  let id = $('.flex--file2').data('item-standard');
+  let formData = new FormData();
 
   $('.dropzone').each(function(){
-    var id = $(this).attr('id').replace('myDropzone', '')
-    var item_request_id = $('#item_request_id').val();
-
-    switch (id) {
-      case '0':
-        var standard_category_id = <%= @item_standard.standard_categories[0].id %>
-        break;
-      default:
-        var standard_category_id = <%= @item_standard.standard_categories[1].id %>
-    }
-    var post_url = "/buyers/item_standards/" + <%= @item_standard.id %> + "/standard_categories/" + standard_category_id + "/file_standards";
     $(this).dropzone({
-      url: post_url,
-      dictDefaultMessage: "PCからアップロード",
-      params: {
-        "standard_category_id": standard_category_id,
-        "item_request_id": item_request_id
-      },
-      paramName: "[file_standard][file_link]",
+      url: "/buyers/item_requests/" + id + "/item_standards/update",
+      dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
       uploadMultiple: true,
       addRemoveLinks: true,
       autoProcessQueue: false,
@@ -107,69 +19,94 @@
       },
       init: function() {
         var myDropzone = this;
+        if (myDropzone.files.length <= 0 && myDropzone.element.id == 'itemStandardDropzone0') {
+          $("#btnSubmit").attr('disabled', 'disabled');
+        }
 
-        $(".continue-btn").on("click", function(e) {
-          if (myDropzone.getQueuedFiles().length > 0) {
-            e.preventDefault();
-            e.stopPropagation();
-            $("#btnSubmit").attr('disabled', 'disabled');
-            myDropzone.processQueue();
-            return;
-          }
-        });
         this.on("addedfile", function(file) {
-          dropzone_uploaded_file(id);
-
+          switch (myDropzone.element.id) {
+            case 'itemStandardDropzone0':
+              $("#btnSubmit").removeAttr('disabled');
+              formData.append("item_standard[file_inspection_criteria][" + this.files.length + "]", file);
+              break;
+            case 'itemStandardDropzone1':
+              formData.append("item_standard[file_test_criteria][" + this.files.length + "]", file);
+              break;
+            default:
+              break;
+          }
           // Prevent upload duplicate files
           if (this.files.length) {
-            var i, len, pre;
+            var i, len;
             for (i = 0, len = this.files.length; i < len - 1; i++) {
               if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
                 alert("このファイル" + file.name + "が既に存在しています。");
                 this.removeFile(file);
-                return (pre = file.previewElement) != null ? pre.parentNode.removeChild(file.previewElement) : void 0;
               }
             }
           }
         });
         this.on("removedfile", function(file) {
-          if (myDropzone.files.length <= 0) {
-            dropzone_no_file_upload(id);
+          var _ref,
+              url = "/buyers/item_requests/" + id + "/item_standards/remove_file";
+
+          switch (myDropzone.element.id) {
+            case 'itemStandardDropzone0':
+              var index_of_file_inspection_criteria = file.index
+              break;
+            case 'itemStandardDropzone1':
+              var index_of_file_test_criteria = file.index
+              break;
+            default:
+              break;
           }
 
-          var _ref,
-              image_index = file.index,
-              item_standard_id = file.item_standard_id,
-              standard_category_id = file.standard_category_id,
-              url = "/buyers/item_standards/" + item_standard_id + "/standard_categories/" + standard_category_id + "/file_standards/" + image_index;
+          // Prevent action when uploading
+          prevent_action_when_uploading();
 
           $.ajax({
-            type: 'DELETE',
             url: url,
+            type: "DELETE",
+            data: {
+              index_of_file_inspection_criteria: index_of_file_inspection_criteria,
+              index_of_file_test_criteria: index_of_file_test_criteria,
+            },
             headers: {
               'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function (data) {
-              $("#exampleModalCenter" + id).fadeOut();
-              window.location.href = "/buyers/item_standards/edit?item_request_id=" + item_request_id
+            success: function(data) {
+              console.log('AJAX success.');
+              location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('AJAX call failed.');
+              console.log(textStatus + ': ' + errorThrown);
+            },
+            complete: function() {
+              console.log('AJAX call completed');
             }
           });
         });
-        this.on("successmultiple", function(files, response) {
-
-          window.location.href = "/buyers/item_conditions?item_request_id=" + item_request_id
-          // TODO:: redirect to edit page
-        });
-
-        switch (id) {
-          case '0':
-            <% @item_standard.standard_categories[0].file_standard.file_link.each_with_index do |image, index| %>
+        switch (myDropzone.element.id) {
+          case 'itemStandardDropzone0':
+            <% @item_standard.file_inspection_criteria.each_with_index do |image, index| %>
               var mockFile = {
                 name: "<%= image.file.filename %>",
                 size: <%= image.size %>,
                 index: <%= index %>,
-                item_standard_id: <%= @item_standard.id %>,
-                standard_category_id: <%= image.model.standard_category_id %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case 'itemStandardDropzone1':
+            <% @item_standard.file_test_criteria.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
               }
               myDropzone.emit("addedfile", mockFile);
               myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
@@ -178,32 +115,45 @@
             <% end %>
             break;
           default:
-            <% @item_standard.standard_categories[1].file_standard.file_link.each_with_index do |image, index| %>
-              var mockFile = {
-                name: "<%= image.file.filename %>",
-                size: <%= image.size %>,
-                index: <%= index %>,
-                item_standard_id: <%= @item_standard.id %>,
-                standard_category_id: <%= image.model.standard_category_id %>,
-              }
-              myDropzone.emit("addedfile", mockFile);
-              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
-              myDropzone.emit("complete", mockFile);
-              myDropzone.files.push(mockFile);
-            <% end %>
+            break;
         }
-        // TODO:: Refactor code
       }
     });
   });
 
-  function dropzone_no_file_upload(id) {
-    $("#dropzone_no_file_upload" + id).css("display", "block");
-    $("#dropzone_file_uploaded" + id).css("display", "none");
-  }
+  $(".continue-btn").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-  function dropzone_uploaded_file(id) {
-    $("#dropzone_no_file_upload" + id).css("display", "none");
-    $("#dropzone_file_uploaded" + id).css("display", "block");
+    // Prevent action when uploading
+    prevent_action_when_uploading();
+
+    $.ajax({
+      url: "/buyers/item_requests/" + id + "/item_standards/update",
+      type: "POST",
+      data:  formData,
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function(data) {
+        window.location.href = "/buyers/item_requests/" + id + "/item_conditions/edit"
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('AJAX call failed.');
+        console.log(textStatus + ': ' + errorThrown);
+      },
+      complete: function() {
+        console.log('AJAX call completed');
+      }
+    });
+  });
+
+  function prevent_action_when_uploading() {
+    $('.flex--file2').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+    $("#btnSubmit").attr('disabled', 'disabled');
+    $(".dz-remove").addClass('d-none');
   }
 </script>
