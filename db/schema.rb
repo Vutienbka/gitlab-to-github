@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_151905) do
+ActiveRecord::Schema.define(version: 2020_09_20_121637) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -51,18 +51,6 @@ ActiveRecord::Schema.define(version: 2020_09_18_151905) do
     t.index ["request_id"], name: "fk_estimations_requests1_idx"
   end
 
-  create_table "file_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
-    t.bigint "image_category_id", null: false
-    t.text "file_link", comment: "ファイルリンク"
-    t.string "file_name", comment: "ファイルタイプ"
-    t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
-    t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
-    t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["image_category_id"], name: "fk_file_item_image1_idx"
-  end
-
   create_table "file_samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ファイルテーブル", force: :cascade do |t|
     t.bigint "item_category", null: false
     t.bigint "item_sample_id", null: false, comment: "Item Draw/Image/Sample Id\n"
@@ -86,18 +74,6 @@ ActiveRecord::Schema.define(version: 2020_09_18_151905) do
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["standard_category_id"], name: "fk_file_item_standard1_idx"
-  end
-
-  create_table "image_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目画面テーブル", force: :cascade do |t|
-    t.string "name"
-    t.bigint "item_image_id", null: false
-    t.string "image_info", limit: 2000, comment: "項目画面説明情報"
-    t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
-    t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
-    t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["item_image_id"], name: "fk_image_category_item_image1_idx"
   end
 
   create_table "inspection_requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -140,7 +116,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_151905) do
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目画面テーブル", force: :cascade do |t|
     t.bigint "item_request_id"
-    t.string "info", limit: 2000, comment: "項目画面説明情報"
+    t.text "file_images"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"

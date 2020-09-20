@@ -68,17 +68,16 @@ Rails.application.routes.draw do
         get '/item_images/edit', to: 'item_images#edit', as: :item_images_edit
         post '/item_images/create', to: 'item_images#create', as: :item_images_create
         post '/item_images/update', to: 'item_images#update', as: :item_images_update
+        delete '/item_images/remove_file', to: 'item_images#remove_file', as: :item_images_remove_file
+
+        get '/item_qualities/new', to: 'item_qualities#new', as: :item_qualities_new
+        get '/item_qualities/edit', to: 'item_qualities#edit', as: :item_qualities_edit
+        post '/item_qualities/create', to: 'item_qualities#create', as: :item_qualities_create
+        post '/item_qualities/update', to: 'item_qualities#update', as: :item_qualities_update
       end
     end
 
     resources :list_buyer_suppliers, only: :index
-
-    resources :item_qualities, only: %i[create update] do
-      collection do
-        get :new
-        get :edit
-      end
-    end
 
     resources :item_samples, only: %i[create update] do
       collection do

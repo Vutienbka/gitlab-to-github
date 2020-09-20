@@ -2,10 +2,10 @@
 
 class Buyers::ItemInfoController < Buyers::BaseController
   before_action :set_item_request
-  before_action :set_item_info, only: %i[edit update]
+  before_action :set_item_info, except: %i[create]
 
   def new
-    return redirect_to root_path, flash: { alert: I18n.t('messages.cannot_register_because_the_item_already_exists') } if @item_request.item_info.present?
+    return redirect_to item_info_edit_buyers_item_request_path(@item_request) if @item_info.present?
 
     @item_info = @item_request.build_item_info
   end
@@ -28,7 +28,9 @@ class Buyers::ItemInfoController < Buyers::BaseController
     end
   end
 
-  def edit; end
+  def edit
+    redirect_to item_info_new_buyers_item_request_path(@item_request) if @item_info.blank?
+  end
 
   def update
     @item_info.updater = current_user.id
@@ -47,7 +49,6 @@ class Buyers::ItemInfoController < Buyers::BaseController
   private
   def set_item_info
     @item_info = @item_request.item_info if @item_request.present?
-    redirect_to item_info_new_buyers_item_request_path(@item_request) if @item_info.blank?
   end
 
   def item_info_params

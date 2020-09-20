@@ -71,7 +71,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
   private
   def set_item_drawing
-    @item_drawing = ItemDrawing.find_by(item_request_id: @item_request.id) if @item_request.present?
+    @item_drawing = @item_request.item_drawing if @item_request.present?
   end
 
   def item_drawing_params

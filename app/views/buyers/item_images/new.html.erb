@@ -1,0 +1,65 @@
+<%= render 'form', url: item_images_create_buyers_item_request_path, method: 'post' %>
+
+<script>
+  Dropzone.autoDiscover = false;
+  let id = $('.mb-3').data('item-image');
+  let url = "/buyers/item_requests/" + id + "/item_images/create";
+
+  $('#itemImageDropzone').dropzone({
+    url: url,
+    dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
+    paramName: "item_image[file_images]",
+    uploadMultiple: true,
+    addRemoveLinks: true,
+    autoProcessQueue: false,
+    parallelUploads: 100,
+    maxFiles: 100,
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: function() {
+      var myDropzone = this;
+
+      $("#btnSubmit").on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Prevent action when uploading
+        $('.mb-3').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+        $("#btnSubmit").attr('disabled', 'disabled');
+        $(".dz-remove").addClass('d-none');
+
+        if (myDropzone.getQueuedFiles().length > 0) {
+          myDropzone.processQueue();
+          return;
+        }
+      });
+      this.on("addedfile", function(file) {
+        $("#btnSubmit").removeAttr('disabled');
+
+        // Prevent upload duplicate files
+        if (this.files.length) {
+          var i, len;
+          for (i = 0, len = this.files.length; i < len - 1; i++) {
+            if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+              alert("このファイル" + file.name + "が既に存在しています。");
+              this.removeFile(file);
+            }
+          }
+        }
+      });
+      this.on("removedfile", function(file) {
+        if (myDropzone.files.length <= 0) {
+          $("#btnSubmit").attr('disabled', 'disabled');
+        }
+      });
+      this.on("successmultiple", function(files, response) {
+        window.location.href = "/buyers/item_requests/" + id + "/item_qualities/new"
+      });
+    }
+  });
+
+  $(document).ready(function() {
+    $("#btnSubmit").attr('disabled', 'disabled');
+  });
+</script>
