@@ -46,7 +46,6 @@ ja:
   supplier: "サプライヤー"
   company_name: "会社名"
   email:
-    send_quotation_supplier: "見積依頼メールがサプライヤーに送信しました。"
     register_instruction: "NEWJIにご登録いただきありがとうございます。まずは下のボタンをクリックしてメールアドレスの確認を行ってください。"
     confirm: "確認"
   create:

@@ -45,7 +45,6 @@ en:
   supplier: "Supplier"
   company_name: "Company name"
   email:
-    send_quotation_supplier: "Quotation request mail is sent to supplier"
     register_instruction: "NEWJIにご登録いただきありがとうございます。まずは下のボタンをクリックしてメールアドレスの確認を行ってください。"
     confirm: "Confirm"
   create:

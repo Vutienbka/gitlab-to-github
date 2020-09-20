@@ -99,14 +99,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_quotations do
-      collection do
-        get :new
-        get :edit
-        get :send_mailer_quotation
-      end
-    end
-
     resources :imports do
       collection do
         get :download_csv
