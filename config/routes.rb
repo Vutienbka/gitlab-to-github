@@ -73,7 +73,13 @@ Rails.application.routes.draw do
         get '/item_qualities/new', to: 'item_qualities#new', as: :item_qualities_new
         get '/item_qualities/edit', to: 'item_qualities#edit', as: :item_qualities_edit
         post '/item_qualities/create', to: 'item_qualities#create', as: :item_qualities_create
-        post '/item_qualities/update', to: 'item_qualities#update', as: :item_qualities_update
+        patch '/item_qualities/update', to: 'item_qualities#update', as: :item_qualities_update
+
+        get '/item_standards/new', to: 'item_standards#new', as: :item_standards_new
+        get '/item_standards/edit', to: 'item_standards#edit', as: :item_standards_edit
+        post '/item_standards/create', to: 'item_standards#create', as: :item_standards_create
+        post '/item_standards/update', to: 'item_standards#update', as: :item_standards_update
+        delete '/item_standards/remove_file', to: 'item_standards#remove_file', as: :item_standards_remove_file
       end
     end
 
