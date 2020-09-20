@@ -57,7 +57,7 @@ module ApplicationHelper
       params[:action] == 'search_provider' || params[:action] == 'batch_items_selector' ||
       params[:action] == 'invite_unregisted_supplier')) ||
     (params[:controller] == 'buyers/item_requests' &&
-      (params[:action] == 'index' || params[:action] == 'progress')) ||
+      (params[:action] == 'index' || params[:action] == 'progress'|| params[:action] == 'complete')) ||
     (params[:controller] == 'buyers/item_info' &&
       (params[:action] == 'new' || params[:action] == 'edit')) ||
     (params[:controller] == 'buyers/item_drawings' &&
@@ -86,7 +86,7 @@ module ApplicationHelper
   end
 
   def fetch_item_request_completed_progress(item_request, value)
-    item_request.status.value > value ? 'done': ''
+    item_request.status.value >= value ? 'done': ''
   end
 
   def disabled_progress(item_request, value)
