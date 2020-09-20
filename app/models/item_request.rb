@@ -9,7 +9,6 @@ class ItemRequest < ApplicationRecord
   has_one :item_info, dependent: :destroy
   has_one :item_quality, dependent: :destroy
   has_one :item_drawing, dependent: :destroy
-  has_one :item_sample, dependent: :destroy
   has_one :item_image, dependent: :destroy
   has_one :item_standard, dependent: :destroy
   has_many :item_conditions, dependent: :destroy
@@ -52,7 +51,6 @@ class ItemRequest < ApplicationRecord
     itemRequest_h = ["id"]
     condition_request = ["condition", "position"]
     item_quality  = ["quality1", "quality2", "quality3", "quality4", "quality5", "quality6", "quality7", "quality8", "quality9", "quality10", "quality11", "quality12", "quality13", "quality14", "quality15", "quality16"]
-    item_sample = ["category_type1", "category_type2", "category_type3", "category_type4"]
 
     file_nil = true
     file_false = true
@@ -227,14 +225,6 @@ class ItemRequest < ApplicationRecord
 
               quality = ItemQuality.find_or_initialize_by(item_request_id: itemRequest.id)
               quality.attributes = row.to_hash.slice(*item_quality)
-
-              sample = ItemSample.find_or_initialize_by(item_request_id: itemRequest.id)
-              sample.attributes = row.to_hash.slice(*item_sample)
-
-              sample.sample_category1_id = 1
-              sample.sample_category2_id = 2
-              sample.sample_category3_id = 3
-              sample.sample_category4_id = 4
 
               if info.valid? && sample.valid? && quality.valid? && condition.valid?
                 info.save!

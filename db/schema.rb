@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_162255) do
+ActiveRecord::Schema.define(version: 2020_09_20_192147) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -203,24 +203,6 @@ ActiveRecord::Schema.define(version: 2020_09_20_162255) do
     t.index ["quality_id"], name: "fk_item_quality_item_request1_idx"
   end
 
-  create_table "item_samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目サンプルテーブル", force: :cascade do |t|
-    t.bigint "item_request_id"
-    t.string "info", limit: 2000, comment: "項目サンプル説明情報"
-    t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
-    t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
-    t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.bigint "sample_category1_id"
-    t.integer "category_type1", limit: 1
-    t.bigint "sample_category2_id"
-    t.integer "category_type2", limit: 1
-    t.bigint "sample_category3_id"
-    t.integer "category_type3", limit: 1
-    t.bigint "sample_category4_id"
-    t.integer "category_type4", limit: 1
-  end
-
   create_table "item_standards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目基準テーブル", force: :cascade do |t|
     t.bigint "item_request_id"
     t.text "file_inspection_criteria"
@@ -266,17 +248,6 @@ ActiveRecord::Schema.define(version: 2020_09_20_162255) do
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["buyer_id"], name: "fk_request_users1_idx"
-  end
-
-  create_table "sample_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目画面テーブル", force: :cascade do |t|
-    t.bigint "item_sample_id", null: false
-    t.string "sample_info", limit: 2000, comment: "項目画面説明情報"
-    t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
-    t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
-    t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["item_sample_id"], name: "fk_sample_category_item_sample_idx"
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|

@@ -93,13 +93,6 @@ Rails.application.routes.draw do
 
     resources :list_buyer_suppliers, only: :index
 
-    resources :item_samples, only: %i[create update] do
-      collection do
-        get :new
-        get :edit
-      end
-    end
-
     resources :inspection_requests, only: %i[create] do
       collection do
         get :new
