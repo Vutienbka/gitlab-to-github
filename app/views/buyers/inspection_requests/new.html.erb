@@ -1,0 +1,54 @@
+<%= javascripts 'buyer/inspect_supplier' %>
+<% content_for :title, 'NEWJI | 信用調査依頼' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body login-card-body">
+      <p class="login-head text-center mb-5">以下を入力してください
+        <!--<br />または、名刺を登録することで<span class="textbr">自動入力が可能です。</span>-->
+      </p>
+      <!--<a href="#" class="text-center block m-30"><i class="far fa-address-card" title="名刺を登録する"></i></a>-->
+      <%= form_for @inspection_request, url: buyers_inspection_requests_path, method: 'post' do |f| %>
+        <div class="input-group mb-4">
+          <label for="form-label-company">
+            <span class="required-txt">必須</span>
+            <span>社名</span>
+          </label>
+          <%= f.text_field :inspect_company_name, placeholder: '例）株式会社〇〇​', class: 'form-control form-control--ie', id: 'form-label-company', required: true %>
+        </div>
+        <div class="input-group mb-4">
+          <label for="form-label-address">
+            <span class="required-txt">必須</span>
+            <span>住所</span>
+          </label>
+          <%= f.text_field :inspect_address, placeholder: '例）〇〇県〇〇市1-89', class: 'form-control form-control--ie', id: 'form-label-address', required: true %>
+        </div>
+        <div class="input-group mb-4">
+          <label for="form-label-number">
+            <span class="required-txt">必須</span>
+            <span>電話番号</span>
+          </label>
+          <%= f.text_field :inspect_tel, placeholder: '例）09077777777', class: 'form-control form-control--ie', id: 'form-label-number', required: true %>
+        </div>
+        <label class="label-block">
+          <span class="required-txt required-txt--any">任意</span>
+          <span>審査のスピード</span>
+        </label>
+        <div class="w-70 flex--sp-block mt-2 mb-5 w-100--sp--450">
+          <!--type="checkbox"に変更しても同じデザイン-->
+          <% InspectionRequest::REQUEST_TYPES.each do |key, v| %>
+            <label for="<%= key %>" class="label" id="label_<%= key %>">
+              <%= I18n.t("activerecord.attributes.inspection_requests.request_type.#{key}") %>
+            </label>
+            <%= f.text_field :request_type, type:"radio", value:"#{v}", id:"#{key}",  class: 'choose' %>
+          <% end %>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn w-30 newji-btn--blue w-60--sp" id="btnSubmit">登録</button>
+        </div>
+      <% end %>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+<% end %>

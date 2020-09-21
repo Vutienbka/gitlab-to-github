@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     resources :inspection_requests, only: %i[create] do
       collection do
         get :new
+        get :complete_credit_registration
       end
     end
 

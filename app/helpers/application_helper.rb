@@ -69,7 +69,9 @@ module ApplicationHelper
     (params[:controller] == 'buyers/item_standards' &&
       (params[:action] == 'new' || params[:action] == 'edit')) ||
     (params[:controller] == 'buyers/item_conditions' &&
-      (params[:action] == 'new' || params[:action] == 'edit'))
+      (params[:action] == 'new' || params[:action] == 'edit')) ||
+    (params[:controller] == 'buyers/inspection_requests' &&
+      (params[:action] == 'new' || params[:action] == 'complete_credit_registration'))
   end
 
   def fetch_item_request_quantity
