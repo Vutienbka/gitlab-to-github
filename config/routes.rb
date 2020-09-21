@@ -126,6 +126,7 @@ Rails.application.routes.draw do
     collection do
       get :search_supplier_import
       get :invite_unregisted_supplier
+      get :complete_introduce
       post :send_email_invite
       get :register_item
       get :choose_provider

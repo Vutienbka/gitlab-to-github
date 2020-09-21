@@ -1,0 +1,36 @@
+<% content_for :title, 'NEWJI | 招待' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body login-card-body">
+      <p class="login-head text-center">以下を入力してください</p>
+      <%= form_for :invite, url: send_email_invite_buyers_path, method: 'post' do |f| %>
+        <div class="input-group mt-5 mb-4">
+          <label for="form-label-mail">
+            <span class="required-txt">必須</span>
+            <span>メールアドレス</span>
+          </label>
+          <%= f.email_field :email, placeholder: '例）example@example.co.jp', required: true, class: 'form-control form-control--ie', id: 'form-label-mail' %>
+        </div>
+        <div class="input-group mb-4">
+          <label for="form-label-name">
+            <span class="required-txt">必須</span>
+            <span>ご担当者名</span>
+          </label>
+          <%= f.text_field :company, placeholder: '例）山田隆弘', required: true, class: 'form-control form-control--ie', id: 'form-label-mail' %>
+          <span class="ml-3 mt-4">様</span>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp">招待する</button>
+        </div>
+      <% end %>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+  <div class="w-90 text-center margin-bottom30">
+    <%= link_to 'または信用調査を', buyers_inspection_requests_path, class: 'btn w-30 newji-btn--dark-blue w-60--sp' %>
+  </div>
+<% end %>

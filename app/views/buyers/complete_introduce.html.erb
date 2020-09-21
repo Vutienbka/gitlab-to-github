@@ -1,0 +1,15 @@
+<% content_for :title, 'NEWJI | 招待完了' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body">
+      <p class="login-head text-center">招待メール送信が<span class="textbr">完了しました！</span><br />サプライヤーの<span class="textbr">ご登録をお待ちください</span></p>
+    <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+  <div class="w-90 text-center margin-bottom30">
+    <%= link_to 'トップに戻る', buyers_home_index_path, class: 'to-top' %>
+  </div>
+<% end %>
