@@ -16,7 +16,7 @@ class Buyers::ProfilesController < Buyers::BaseController
         User.where(id: invited_users.pluck(:user_id)).each do |buyer|
           BuyerMailer.send_mail_after_supplier_invited_register(buyer, current_user).deliver_now
         end
-        invited_users.update_all(user_invited: current_user.id, notify_status: 1)
+        invited_users.update_all(notify_status: 1)
       end
       return redirect_to set_account_buyers_profiles_path, flash: { success: I18n.t('create.success') }
     end
