@@ -1,0 +1,68 @@
+<% content_for :title, 'NEWJI | プロバイダー検索' %>
+<% breadcrumb_add('アイテム登録') %>
+<%= javascripts 'buyer/search_provider' %>
+<%= stylesheets "buyer/search_provider" %>
+
+<div class="content">
+  <div class="container-fluid">
+    <p class="login-head text-center">
+      サプライヤーコード、<span class="textbr">または名称で検索してください</span>
+    </p>
+    <%=search_form_for(@search, url: search_provider_buyers_path, class: "mt-5", remote: false) do |f| %>
+      <div class="input-group">
+        <input class="form-control form-control--ie" type="search" placeholder="NEWJI登録済みサプライヤーの会社名及び会社コードで検索可" aria-label="Search" id="newji-serch" name="search" autocomplete="off" list="search-candidates">
+        <div class="input-group-append">
+          <!--PC,tabでこの検索ボタンを表示-->
+            <input class="sbtn5" type="submit" value="検索" />
+          </div>
+      </div>
+    <% end %>
+      <div class="input-group" disabled='disabled'>
+        <div id="list_email" class="list_name"></div>
+      </div>
+
+    <% if @search_suppliers.present? %>
+      <div class="card mt-5">
+        <p class="breadcrumb-on-card">
+          ヒット件数:<%= @search_suppliers.size %>件
+        </p>
+        <div class="card-body">
+          <ul class="text-left">
+            <% @search_suppliers.each do |supplier| %>
+              <li class="py-3">
+                <a href="#"  role="button" data-target="#modal-default" data-toggle="modal" class="h5 to-top to-top--black pass_data_to_modal" id='pass_data_to_modal_<%= supplier.id%>'>
+                  <%= supplier.profile.company_name %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- モーダル -->
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog modal-default">
+    <div class="modal-content">
+      <div class="modal-header modal-header--ordering">
+        <h6 class="modal-title">NEWJI株式会社</h6>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center pt-3">秘密保持契約を結びますか？</h5>
+        <div class="w-100 flex text-center mt-3 mb-3">
+
+          <input type="hidden" name='modal_id' id='modal_id'>
+          <%= link_to  "結ぶ", private_contract_buyers_item_requests_path, method: 'post', id: 'create_item_request_private_contract', class: 'btn w-30 newji-btn--blue w-45--sp--450' %>
+          <%= link_to '結ばずに登録', private_contract_buyers_item_requests_path, method: 'post', id: 'create_item_request', class:'btn w-30 newji-btn--gray w-45--sp--450' %>
+        </div>
+
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->

@@ -9,10 +9,17 @@ class Buyers::ItemRequestsController < Buyers::BaseController
 
   def complete; end
 
+  def private_contract_progress; end
+
   def create
     @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status: 1)
     return redirect_to progress_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } if @item_request.save
+    redirect_to search_provider_buyers_path, flash: { alert: I18n.t('create.failed') }
+  end
 
+  def private_contract
+    @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status: 1)
+    return redirect_to private_contract_progress_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } if @item_request.save
     redirect_to search_provider_buyers_path, flash: { alert: I18n.t('create.failed') }
   end
 
@@ -25,4 +32,5 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:id])
   end
+
 end

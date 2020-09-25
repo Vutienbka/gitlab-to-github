@@ -1,8 +1,6 @@
 $(document).ready(function() {
   $("#list_email").hide();
-  $("#myBtn").attr('disabled', true);
-
-  $("#search").on("keyup", function() {
+  $("#newji-serch").on("keyup", function() {
     var data = $(this).val();
     $.ajax({
         url: '/buyers/search_provider',
@@ -12,16 +10,6 @@ $(document).ready(function() {
           "search": data
         },
         success: function(data){
-          $( ".email-user" ).click(function() {
-            $("#list_email").hide();
-            $("#myBtn").attr('disabled', false);
-            // let name = $(this).html();
-            let name = $(this).find('.name-supplier').html()
-            $('#search').val(name);
-            let id = $(this).attr('id').replace('email_user_','');
-            let url = window.location.origin;
-            $("#link_to_href").attr("href", url+ "/buyers/item_requests?supplier_id=" + id);
-          });
         }
     });
 
@@ -30,5 +18,12 @@ $(document).ready(function() {
     } else {
       $("#list_email").show()
     }
+  });
+
+  $(document).on('click','.pass_data_to_modal', function(){
+    let base_url = window.location.origin
+    let id = $(this).attr('id').replace('pass_data_to_modal_','')
+    $('#create_item_request').attr('href', base_url + '/buyers/item_requests?supplier_id=' + id)
+    $('#create_item_request_private_contract').attr('href', base_url + '/buyers/item_requests/private_contract?supplier_id=' + id)
   });
 });

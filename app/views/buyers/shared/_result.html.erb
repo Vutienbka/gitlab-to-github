@@ -1,0 +1,15 @@
+ <% if @search_suppliers.present? %>
+    <% @search_suppliers.each do |supplier| %>
+      <div class="users">
+        <div class ="email-user" id="email_user_<%=supplier.id%>">
+          <div class="avata-supplier">
+            <%= image_tag(supplier.profile&.logo? ? supplier.profile&.try!(:logo) : image_url('default_user.png'), class:"logo-supplier")%>
+            &nbsp &nbsp
+          </div>
+           <div class="name-supplier">
+              会社コード: <%= supplier.profile&.code %> | 会社名: <%= supplier.profile&.company_name%>
+           </div>
+        </div>
+      </div>  
+    <% end %>
+  <% end %> 

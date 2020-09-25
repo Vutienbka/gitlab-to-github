@@ -48,10 +48,12 @@ Rails.application.routes.draw do
       # collection not required id from resources
       collection do
         get :index
+        post :private_contract
       end
 
       # member required id from resources
       member do
+        get :private_contract_progress, to: 'item_requests#private_contract_progress', as: :private_contract_progress
         get :progress, to: 'item_requests#progress', as: :progress
         get '/item_info/new', to: 'item_info#new', as: :item_info_new
         get '/item_info/edit', to: 'item_info#edit', as: :item_info_edit

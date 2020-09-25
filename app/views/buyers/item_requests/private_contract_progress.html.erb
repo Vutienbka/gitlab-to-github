@@ -1,0 +1,78 @@
+
+<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone'%>
+<% content_for :title, 'NEWJI | 秘密保持契'%>
+<% breadcrumb_add('アイテム登録')%>
+
+
+  <% content_for :content_header do %>
+    <div class="card card--login">
+      <div class="card-body login-card-body">
+        <p class="login-head text-center">秘密保持契約書を<span class="textbr">アップロードし、</span><span class="textbr">メールで送信してください</span></p>
+        <%= form_with do |f| %>
+          <!--ファイルアップローダーデザイン-->
+          <div class="w-80 text-center w-100--sp mt-5">
+            <label class="w-100 file-label-wrap">
+              <span class="required-txt file-label">必須</span>
+              <span class="file-label-detail">秘密保持契約書</span>
+            </label>
+            <div action="/file-upload" class="dropzone">
+              <!--dropzone.jsの443行目に記述-->
+              <div class="dz-default dz-message">
+                <button class="dz-button" type="button">
+                  <p>ここにファイルを<br>
+                  ドラッグアンドドロップ</p>
+                  <p>または</p>
+                  <label for="file_upload">
+                    PCから
+                    <span class="textbr">アップロード</span>
+                  </label>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="w-80 flex--sp-block mt-3 w-90--sp">
+            <button type="button" class="btn newji-btn--blue w-30 w-90--sp block mt-2">
+              <i class="fas fa-download"></i> 日本語Ver.<span class="textbr">雛形</span>
+            </button>
+            <button type="button" class="btn newji-btn--blue w-30 w-90--sp block mt-2">
+              <i class="fas fa-download"></i> 英語Ver.<span class="textbr">雛形</span>
+            </button>
+            <button type="button" class="btn newji-btn--blue w-30 w-90--sp block mt-2">
+              <i class="fas fa-download"></i> 中国語Ver.<span class="textbr">雛形</span>
+            </button>
+          </div>
+          <div class="mt-5 text-center">
+            <p class="nda-box">
+              NEWJI Inc.
+            </p>
+            <div class="nda-yajirusi">
+              &#8595;
+            </div>
+            <p class="nda-box">
+              TFM., LTD
+            </p>
+            <div class="row">
+              <button type="submit" class="btn w-100 newji-btn--pink mt-5">メールで送信</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- /.login-card-body -->
+  <% end %>
+  
+  <!-- カスタマイズ -->
+  <aside class="control-sidebar control-sidebar-light">
+    <div class="sidebar">
+      <h5 class="mt-3 pb-3 border-bottom">カスタマイズ</h5>
+      <!-- ここに色変更などのカスタマイズを追加 -->
+      <div class="control-sidebar-main mt-3">
+        <p><label><input type="checkbox" name="" value="1" class="">&nbsp;文字サイズを変更</label></p>
+        <p>
+          <label><input type="radio" name="color-radio" value="dark" class="">&nbsp;ダークモード</label><br>
+          <label><input type="radio" name="color-radio" value="light" class="" checked>&nbsp;ライトモード</label>
+        </p>
+      </div>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->

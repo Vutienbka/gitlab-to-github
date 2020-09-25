@@ -1,0 +1,28 @@
+.logo-supplier {
+  height: 22px;
+  width: 22px;
+}
+
+div.list_name {
+  z-index: 1;
+  background-color: #fff;
+  position: absolute;
+  width: 55%;
+  border-radius: 10px;
+}
+
+.list_name:hover {
+    background-color: #f2f2f2;
+}
+
+.email-user {
+    border-top: 1px solid #f5e2d6;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.email-user:hover {
+  background: #f5e2d6;
+  border-radius: 10px;
+}

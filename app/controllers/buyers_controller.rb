@@ -28,15 +28,12 @@ class BuyersController < UsersController
 
   def search_provider
     return @search = Supplier.ransack if params[:search].blank?
-
-    @search = Supplier.ransack({ profile_first_name_or_profile_last_name_or_profile_code_cont: params[:search] })
+    @search = Supplier.ransack({ profile_first_name_or_profile_last_name_or_profile_company_name_or_profile_code_cont: params[:search] })
     @search_suppliers = @search.result.includes(:profile)
   end
-
   def search_supplier_import
     return @search = Supplier.ransack if params[:search].blank?
-
-    @search = Supplier.ransack({ profile_first_name_or_profile_last_name_or_profile_code_cont: params[:search] })
+    @search = Supplier.ransack({ profile_company_name_or_profile_code_cont: params[:search]})
     @search_suppliers = @search.result.includes(:profile)
   end
 
@@ -69,7 +66,6 @@ class BuyersController < UsersController
   end
 
   def batch_items_register; end
-
   private
 
   def buyer_params

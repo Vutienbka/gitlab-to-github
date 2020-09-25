@@ -57,7 +57,8 @@ module ApplicationHelper
       params[:action] == 'search_provider' || params[:action] == 'batch_items_selector' ||
       params[:action] == 'invite_unregisted_supplier' || params[:action] == 'complete_introduce')) ||
     (params[:controller] == 'buyers/item_requests' &&
-      (params[:action] == 'index' || params[:action] == 'progress'|| params[:action] == 'complete')) ||
+      (params[:action] == 'index' || params[:action] == 'progress'|| params[:action] == 'complete' ||
+       params[:action] == 'private_contract_progress')) ||
     (params[:controller] == 'buyers/item_info' &&
       (params[:action] == 'new' || params[:action] == 'edit')) ||
     (params[:controller] == 'buyers/item_drawings' &&
