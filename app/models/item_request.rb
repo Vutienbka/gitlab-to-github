@@ -28,11 +28,13 @@ class ItemRequest < ApplicationRecord
     'image': 3,
     'quality': 4,
     'standard': 5,
-    'condition': 6
+    'condition': 6,
+    'submitted': 7,
   }
 
   enumerize :status, in: STATUSES, predicates: { prefix: true }
 
+  scope :unsubmitted, -> { where 'status < 7' }
 
   def self.extract_zip(file)
     Zip::File.open(file) do |zip_file|

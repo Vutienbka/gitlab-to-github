@@ -95,4 +95,8 @@ module ApplicationHelper
   def disabled_progress(item_request, value)
     item_request.status.value < value ? 'disabled-progress' : ''
   end
+
+  def fetch_item_request_submitted_status(item_request)
+    item_request.status == 7 ? 'disabled-progress' : ''
+  end
 end

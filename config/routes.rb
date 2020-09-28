@@ -90,6 +90,7 @@ Rails.application.routes.draw do
         get '/item_conditions/company_info', to: 'item_conditions#company_info', as: :item_conditions_company_info
 
         get '/complete', to: 'item_requests#complete', as: :complete
+        post :submitted
       end
     end
 

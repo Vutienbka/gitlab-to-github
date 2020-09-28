@@ -10,7 +10,7 @@
         <div class="w-50">
           <div class="progress-group">
             現在の進歩度
-            <span class="float-right"><b><%= @item_request.status.value %></b>/6</span>
+            <span class="float-right"><b><%= @item_request.status.value < 7 ? @item_request.status.value : '6' %></b>/6</span>
             <div class="progress progress-sm">
               <div class="progress-bar bg-primary" style="width: <%= fetch_item_request_progress(@item_request.status.value) %>"></div>
             </div>
@@ -24,7 +24,7 @@
           <h4 class="item-card__head"><span class="en">①</span>情報</h4>
           <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
           <div class="w-45 margin-top15">
-            <%= link_to '進む', item_info_edit_buyers_item_request_path(@item_request) , class: 'card-link card-link--item' %>
+            <%= link_to '進む', item_info_edit_buyers_item_request_path(@item_request) , class: "card-link card-link--item #{fetch_item_request_submitted_status(@item_request)}" %>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
           <h4 class="item-card__head"><span class="en">②</span>図面</h4>
           <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
           <div class="w-45 margin-top15">
-            <%= link_to '進む', item_drawings_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 1)}" %>
+            <%= link_to '進む', item_drawings_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 1)} #{fetch_item_request_submitted_status(@item_request)}" %>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
           <h4 class="item-card__head"><span class="en">③</span>画像</h4>
           <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
           <div class="w-45 margin-top15">
-            <%= link_to '進む', item_images_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 2)}" %>
+            <%= link_to '進む', item_images_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 2)} #{fetch_item_request_submitted_status(@item_request)}" %>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <h4 class="item-card__head"><span class="en">④</span>品質</h4>
           <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
           <div class="w-45 margin-top15">
-            <%= link_to '進む', item_qualities_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 3)}" %>
+            <%= link_to '進む', item_qualities_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 3)} #{fetch_item_request_submitted_status(@item_request)}" %>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
           <h4 class="item-card__head"><span class="en">⑤</span>基準</h4>
           <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
           <div class="w-45 margin-top15">
-            <%= link_to '進む', item_standards_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 4)}" %>
+            <%= link_to '進む', item_standards_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 4)} #{fetch_item_request_submitted_status(@item_request)}" %>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
           <h4 class="item-card__head"><span class="en">⑥</span>条件</h4>
           <h6 class="font-normal text-left">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h6>
           <div class="w-45 margin-top15">
-            <%= link_to '進む', item_conditions_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 5)}" %>
+            <%= link_to '進む', item_conditions_edit_buyers_item_request_path(@item_request), class: "card-link card-link--item #{disabled_progress(@item_request, 5)} #{fetch_item_request_submitted_status(@item_request)}" %>
           </div>
         </div>
       </div>
@@ -94,8 +94,13 @@
 </div>
 <!-- /.container-fluid -->
 <div class="w-100 text-center mt-4 margin-bottom30">
-  <%= link_to '一時保存', buyers_item_requests_path, class: "btn newji-btn--dark-blue w-60" %>
-  <h6 class="h6 mt-3">※途中まで入力した内容を保存し、<br />一時保存リストから再開する</h6>
+  <% unless @item_request.status == 7 %>
+    <%= link_to '一時保存', buyers_item_requests_path, class: "btn newji-btn--dark-blue w-60" %>
+    <% if @item_request.status == 6 %>
+      <%= link_to '提出済', submitted_buyers_item_request_path(@item_request), method: 'post', class: "btn newji-btn--pink w-60" %>
+    <% end %>
+    <h6 class="h6 mt-3">※途中まで入力した内容を保存し、<br />一時保存リストから再開する</h6>
+  <% end %>
 </div>
 
 <% content_for :content_optional_scripts do %>

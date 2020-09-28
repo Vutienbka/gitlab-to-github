@@ -3,6 +3,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
 
   def index
     @item_requests = current_user.item_requests.includes([:item_info]) if current_user.buyer?
+    @item_requests = @item_requests.unsubmitted
   end
 
   def progress; end
@@ -29,8 +30,12 @@ class Buyers::ItemRequestsController < Buyers::BaseController
     redirect_back(fallback_location:"/buyers/item_requests")
   end
 
+  def submitted
+    @item_request.update_attribute(:status, 7) if ItemRequest::STATUSES[@item_request.status.to_sym] == 6
+    redirect_to buyers_catalogs_path, flash: { success: I18n.t('create.success') }
+  end
+
   def set_item_request
     @item_request = ItemRequest.find_by(id: params[:id])
   end
-
 end

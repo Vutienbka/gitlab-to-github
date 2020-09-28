@@ -33,7 +33,7 @@
                     </div>
                   </td>
                   <td title="完了項目数">
-                    <%= item_request.status.value %>/6
+                    <%= item_request.status.value < 7 ? item_request.status.value : '6' %>/6
                   </td>
                   <td title="登録再開リンク">
                     <%= link_to '登録を再開する', progress_buyers_item_request_path(item_request), class: 'to-top' %>
