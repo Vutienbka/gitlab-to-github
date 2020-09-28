@@ -59,7 +59,7 @@
             <span class="required-txt">必須</span>
             <span>年間物量</span>
           </label>
-          <%= f.number_field :expected_sales_volume, placeholder: 'アイテムの販売予測量（年間）を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-cost', id: 'form-label-amount' %>
+          <%= f.number_field :expected_sales_volume, placeholder: 'アイテムの販売予測量（年間）を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-amount' %>
           <%= show_errors @item_info, :expected_sales_volume %>
         </div>
         <div class="input-group mb-4">
@@ -67,18 +67,7 @@
             <span class="required-txt">必須</span>
             <span>単位</span>
           </label>
-          <select class="form-control form-control--select--long" id="form-label-tani" name="item-unit">
-            <option>選択してください</option>
-            <option>コ</option>
-            <option>ホン</option>
-            <option>マイ</option>
-            <option>メートル</option>
-            <option>タン</option>
-            <option>ソク</option>
-            <option>タバ</option>
-            <option>クミ</option>
-            <option>セット</option>
-          </select>
+          <%= f.select(:item_unit, ItemInfo.item_units.options, { include_blank: '選択してください' }, selected: @item_info.item_unit, required: true, class: "form-control form-control--select--long", id: "form-label-tani") %>
         </div>
         <div class="input-group mb-4">
           <label for="form-label-leadtime">

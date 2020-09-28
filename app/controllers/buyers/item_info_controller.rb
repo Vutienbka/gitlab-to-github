@@ -17,9 +17,8 @@ class Buyers::ItemInfoController < Buyers::BaseController
         @item_info.creator = current_user.id
         @item_info.save!
         if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
-          @item_request.update_attributes(item_info_id: @item_info.id, status: 2)
+          @item_request.update_attributes(item_info_id: @item_info.id, status: 2, creator: current_user.id)
         end
-        @item_request.update_attributes(creator: current_user.id)
         return redirect_to item_drawings_new_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
       rescue StandardError
         flash.now[:alert] = I18n.t('create.failed')
@@ -33,17 +32,19 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   def update
-    @item_info.updater = current_user.id
-    if @item_info.update(item_info_params)
-      if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
-        @item_request.update_attributes(item_info_id: @item_info.id, status: 2)
+    begin
+      ActiveRecord::Base.transaction do
+        @item_info.updater = current_user.id
+        @item_info.update(item_info_params)
+        if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
+          @item_request.update_attributes(item_info_id: @item_info.id, status: 2, updater: current_user.id, updated_at: Time.current)
+        end
+        return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
+      rescue StandardError
+        flash.now[:alert] = I18n.t('update.failed')
+        render :new
       end
-      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-      return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
     end
-
-    flash.now[:alert] = I18n.t('update.failed')
-    render :edit
   end
 
   private

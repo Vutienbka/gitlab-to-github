@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_151737) do
+ActiveRecord::Schema.define(version: 2020_09_28_023839) do
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_151737) do
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
+    t.string "item_unit"
   end
 
   create_table "item_qualities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目品質テーブル", force: :cascade do |t|
