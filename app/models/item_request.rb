@@ -22,6 +22,7 @@ class ItemRequest < ApplicationRecord
   ]
 
   STATUSES = {
+    'init': 0,
     'information': 1,
     'draw': 2,
     'image': 3,

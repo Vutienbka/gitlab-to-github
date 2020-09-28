@@ -14,7 +14,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
     @item_drawing = @item_request.build_item_drawing(item_drawing_params)
 
     if @item_drawing.save
-      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
+      @item_request.update_attribute(:status, 2) if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
       respond_to do |format|
         format.html { redirect_to item_images_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
         format.json { render json: @item_drawing }
@@ -35,7 +35,7 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
     @item_drawing.file_packing_specifications = add_files('file_packing_specifications', @item_drawing.file_packing_specifications, params)
 
     if @item_drawing.save
-      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
+      @item_request.update_attribute(:status, 2) if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       respond_to do |format|
         format.html { redirect_to item_images_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }

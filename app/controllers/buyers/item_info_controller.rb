@@ -16,8 +16,8 @@ class Buyers::ItemInfoController < Buyers::BaseController
       ActiveRecord::Base.transaction do
         @item_info.creator = current_user.id
         @item_info.save!
-        if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
-          @item_request.update_attributes(item_info_id: @item_info.id, status: 2, creator: current_user.id)
+        if ItemRequest::STATUSES[@item_request.status.to_sym] < 1
+          @item_request.update_attributes(item_info_id: @item_info.id, status: 1, creator: current_user.id)
         end
         return redirect_to item_drawings_new_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
       rescue StandardError
@@ -36,8 +36,8 @@ class Buyers::ItemInfoController < Buyers::BaseController
       ActiveRecord::Base.transaction do
         @item_info.updater = current_user.id
         @item_info.update(item_info_params)
-        if ItemRequest::STATUSES[@item_request.status.to_sym] < 2
-          @item_request.update_attributes(item_info_id: @item_info.id, status: 2, updater: current_user.id, updated_at: Time.current)
+        if ItemRequest::STATUSES[@item_request.status.to_sym] < 1
+          @item_request.update_attributes(item_info_id: @item_info.id, status: 1, updater: current_user.id, updated_at: Time.current)
         end
         return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
       rescue StandardError

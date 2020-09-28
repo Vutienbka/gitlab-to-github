@@ -12,7 +12,7 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   def private_contract_progress; end
 
   def create
-    @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status: 1)
+    @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status: 0)
     return redirect_to progress_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } if @item_request.save
     redirect_to search_provider_buyers_path, flash: { alert: I18n.t('create.failed') }
   end

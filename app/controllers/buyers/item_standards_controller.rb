@@ -14,7 +14,7 @@ class Buyers::ItemStandardsController < Buyers::BaseController
     @item_standard = @item_request.build_item_standard(item_standard_params)
 
     if @item_standard.save
-      @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
+      @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
       respond_to do |format|
         format.html { redirect_to item_conditions_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
         format.json { render json: @item_standard }
@@ -34,7 +34,7 @@ class Buyers::ItemStandardsController < Buyers::BaseController
     @item_standard.file_test_criteria = add_files('file_test_criteria', @item_standard.file_test_criteria, params)
 
     if @item_standard.save
-      @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
+      @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       respond_to do |format|
         format.html { redirect_to item_conditions_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }

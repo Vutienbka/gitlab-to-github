@@ -13,7 +13,7 @@ class Buyers::ItemConditionsController < Buyers::BaseController
   def create
     ActiveRecord::Base.transaction do
       @item_request.update!(item_request_params)
-
+      @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
       return redirect_to complete_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
     rescue StandardError
       flash.now[:alert] = I18n.t('create.failed')
@@ -29,6 +29,8 @@ class Buyers::ItemConditionsController < Buyers::BaseController
     ActiveRecord::Base.transaction do
       @item_request.update(item_request_params)
       flash[:success] = I18n.t('update.success')
+      @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
+
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       redirect_to complete_buyers_item_request_path(@item_request)
     rescue StandardError

@@ -16,7 +16,7 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
     ActiveRecord::Base.transaction do
       @item_quality.creator = current_user.id
       @item_quality.save
-      @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
+      @item_request.update_attribute(:status, 4) if ItemRequest::STATUSES[@item_request.status.to_sym] < 4
       flash[:success] = I18n.t('create.success')
       redirect_to item_standards_new_buyers_item_request_path(@item_request)
     rescue StandardError
@@ -33,7 +33,7 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
     ActiveRecord::Base.transaction do
       @item_quality.updater = current_user.id
       @item_quality.update(item_quality_params)
-      @item_request.update_attribute(:status, 5) if ItemRequest::STATUSES[@item_request.status.to_sym] < 5
+      @item_request.update_attribute(:status, 4) if ItemRequest::STATUSES[@item_request.status.to_sym] < 4
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       flash[:success] = I18n.t('update.success')
       redirect_to item_standards_edit_buyers_item_request_path(@item_request)
