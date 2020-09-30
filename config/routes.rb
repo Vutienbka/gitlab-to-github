@@ -139,9 +139,11 @@ Rails.application.routes.draw do
       get :confirm_email
       get :item_cost_down
       get :batch_items_selector
+      get :batch_items_selector_csv
       get :demand_items_register
       get :batch_items_register
       get :status_inspect
+      get :round_throw
     end
   end
 

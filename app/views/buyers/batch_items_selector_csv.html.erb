@@ -1,0 +1,70 @@
+<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone'%>
+<% content_for :title, 'NEWJI | アイテム登録(一括登録)' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+<!-- Content Header (Page header) -->
+<div>
+  <div class="container-fluid">
+    <div class="card card--login">
+      <div class="card-body login-card-body">
+        <p class="login-head text-center font-bold">アイテム一括登録<span class="textbr">(CSV＋各種ファイル)</span></p>
+        <div class="lump-width mt-5 pb-5 border-bottom">
+          <div class="w-100 d-block d-md-flex">
+            <div class="step-txt mr-auto mr-md-2 text-center en h4">
+              STEP1
+            </div>
+            <h5 class="step-description text-center text-md-left">アイテム一括登録ファイルを<span class="textbr">ダウンロード</span></h5>
+          </div>
+          <button type="button" class="btn newji-btn--blue w-100 w-90--sp block mt-4">
+            <i class="fas fa-download"></i>アイテム一括<span class="textbr">登録ファイル</span>
+          </button>
+        </div>
+        <div class="lump-width mt-5 pb-5 border-bottom">
+          <div class="w-100 d-block d-md-flex">
+            <div class="step-txt mr-auto mr-md-2 text-center en h4">
+              STEP2
+            </div>
+            <h5 class="step-description text-center text-md-left">アイテム一括登録ファイルに<span class="textbr">必要項目を記入</span></h5>
+          </div>
+        </div>
+        <form action="complete-lump-csv.html">
+          <!--ファイルアップローダーデザイン-->
+          <div class="lump-width text-center mt-5">
+            <div class="w-100 d-block d-md-flex">
+              <div class="step-txt mr-auto mr-md-2 text-center en h4">
+                STEP3
+              </div>
+              <h5 class="step-description text-center text-md-left">記入した<span class="textbr">アイテム一括登録ファイルを</span><span class="textbr">アップロード</span></h5>
+            </div>
+            <div action="/file-upload" class="dropzone mt-4">
+              <!--dropzone.jsの443行目に記述-->
+              <div class="dz-default dz-message">
+                <button class="dz-button" type="button">
+                  <p>ここにファイルを<br>
+                    ドラッグアンドドロップ</p>
+                  <p>または</p>
+                  <label for="file_upload">
+                    PCから
+                    <span class="textbr">アップロード</span>
+                  </label>
+                </button>
+              </div>
+
+
+            </div>
+            <button type="submit" class="btn w-100 newji-btn--pink w-90--sp mt-5">送信</button>
+        </form>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+</div>
+<!-- /.container-fluid -->
+<div class="w-90 text-center margin-bottom30">
+  <a href="lump.html" class="to-top">前に戻る</a>
+</div>
+<!-- /.content-header -->
+</div>
+<%end%>

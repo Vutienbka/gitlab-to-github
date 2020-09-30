@@ -1,0 +1,38 @@
+<% content_for :title, 'NEWJI | アイテム登録(一括登録)' %>
+<% breadcrumb_add 'アイテム登録'%>
+
+<% content_for :content_header do %>
+<!-- Content Header (Page header) -->
+<div>
+  <div class="container-fluid">
+    <div class="card card--login">
+      <div class="card-body">
+        <p class="login-head text-center">マニュアルを確認後、<span class="textbr">「代行依頼」ボタンを</span><span class="textbr">クリックしてください</span></p>
+        <form action="complete-round-throw.html" method="post">
+          <div class="row">
+            <div class="lump-width mt-3 mb-3 text-center">
+              <%= image_tag "img/manual.svg", alt:"一括登録マニュアル", class:"rfq-img mr-0" %>
+              <h6 class="h6 mt-1"><strong>代行マニュアル</strong></h6>
+            </div>
+          </div>
+          <div class="row">
+            <a href="#" class="btn newji-btn--blue w-70"><i class="fas fa-search-plus mr-1"></i>代行マニュアル<span class="textbr">を確認</span></a>
+          </div>
+          <div class="row my-5">
+            <div class="lump-width border-top"></div>
+          </div>
+          <div class="row text-center">
+            <button type="submit" class="btn newji-btn--pink w-70">代行依頼</button>
+          </div>
+        </form>
+        <!-- /.login-card-body -->
+      </div>
+    </div>
+    <!-- /.login-box -->
+    <div class="w-90 text-center margin-bottom30">
+      <a href="lump.html" class="to-top">前に戻る</a>
+    </div>
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<%end%>

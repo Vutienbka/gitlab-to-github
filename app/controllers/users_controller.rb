@@ -25,13 +25,16 @@ class UsersController < ApplicationController
   def sample_input
   end
 
-  def batch_items_selector; end
+  def batch_items_selector_csv; end
 
   def input_items_info; end
 
   def input_items_drawing; end
 
 	def batch_items_selector
+  end
+
+  def round_throw
   end
 
   def input_items_image; end

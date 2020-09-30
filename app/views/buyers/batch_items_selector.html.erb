@@ -1,0 +1,38 @@
+<% content_for :title, 'NEWJI | アイテム登録(一括登録)' %>
+<% breadcrumb_add 'サンプル'%>
+
+<% content_for :content_header do %>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <p class="login-head text-center mt-5 mb-5">どの方法でアイテムを<span class="textbr">一括登録しますか？</span></p>
+    <div class="w-90 flex--sp-block text-center mb-5">
+      <div class="card w-40 w-100--sp">
+        <%= image_tag "img/AdobeStock_331433400.png", alt:"CSV＋各種ファイル", class:"sample-img--top" %>
+        <div class="px-2 py-3 ie-sample-card-body">
+          <h5 class="font-bold margin-bottom10 sample-choose--card-title">CSV＋各種ファイル</h5>
+          <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description js-card-title-name">アイテム一括ファイル(CSV)をダウンロードしていただきファイルに必要項目をご記入後、アップロードしていただきます。</h6>
+          <div class="w-70 w-60--sp w-100--sp450">
+            <a class="card-link card-link--sample" href=<%=batch_items_selector_csv_buyers_path%>>進む</a>
+          </div>
+        </div>
+      </div>
+      <div class="card w-40 w-100--sp mt-3 mt-md-0">
+        <%= image_tag "img/AdobeStock_250536671.png", alt:"登録代行サービス(有料)", class:"sample-img--top" %>
+        <div class="px-2 py-3 ie-sample-card-body">
+          <h5 class="font-bold margin-bottom10 sample-choose--card-title">登録代行サービス(有料)</h5>
+          <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description js-card-title-name">登録の代行マニュアルを確認し、代行を依頼することができます。代行依頼があった場合、当社担当者より内容の確認をさせていただきます。</h6>
+          <div class="w-70 w-60--sp w-100--sp450">
+            <a class="card-link card-link--sample" href="<%=round_throw_buyers_path%>">進む</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+  <div class="w-90 text-center margin-bottom30">
+    <a href="item.html" class="to-top">前に戻る</a>
+  </div>
+</div>
+<!-- /.content-header -->
+<%end%>
