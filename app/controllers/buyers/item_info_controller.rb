@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Buyers::ItemInfoController < Buyers::BaseController
+
   before_action :set_item_request
   before_action :set_item_info, except: %i[create]
 

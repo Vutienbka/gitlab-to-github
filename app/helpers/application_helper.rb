@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include CatalogHelper
+  
   def custom_bootstrap_flash
     flash_messages = []
     flash.each do |type, message|

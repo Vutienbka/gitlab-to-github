@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admins', as: 'rails_admin'
-  devise_for :users, controllers: { passwords: 'users/passwords',
-                                    sessions: 'users/sessions' }
-  root 'buyers/home#index'
+  mount RailsAdmin::Engine => "/admins", as: "rails_admin"
+  devise_for :users, controllers: { passwords: "users/passwords",
+                                    sessions: "users/sessions" }
+  root "buyers/home#index"
 
   resources :user_calendars do
     collection do
@@ -26,6 +26,19 @@ Rails.application.routes.draw do
         get :index
       end
     end
+
+    resources :catalogs, only: [:edit, :update, :show, :create] do
+      collection do
+        get :index
+      end
+      
+      member do
+      get :sub_catalog_index, to: 'catalogs#sub_catalog_index', as: :get_sub_catalog_index
+      post '/sub_catalog', to: 'catalogs#create_sub_catalog', as: :create_sub_catalog
+      end
+    end
+    get '/sub_catalog/:id/grandchild_catalog_index', to: 'catalogs#grandchild_catalog_index', as: :get_grandchild_catalog_index
+    post '/sub_catalog/:id/create_grandchild_catalog', to: 'catalogs#create_grandchild_catalog', as: :create_grandchild_catalog
 
     resources :calendar do
       collection do
@@ -53,43 +66,43 @@ Rails.application.routes.draw do
 
       # member required id from resources
       member do
-        get :private_contract_progress, to: 'item_requests#private_contract_progress', as: :private_contract_progress
-        get :progress, to: 'item_requests#progress', as: :progress
-        get '/item_info/new', to: 'item_info#new', as: :item_info_new
-        get '/item_info/edit', to: 'item_info#edit', as: :item_info_edit
-        post '/item_info/create', to: 'item_info#create', as: :item_info_create
-        patch '/item_info/update', to: 'item_info#update', as: :item_info_update
+        get :private_contract_progress, to: "item_requests#private_contract_progress", as: :private_contract_progress
+        get :progress, to: "item_requests#progress", as: :progress
+        get "/item_info/new", to: "item_info#new", as: :item_info_new
+        get "/item_info/edit", to: "item_info#edit", as: :item_info_edit
+        post "/item_info/create", to: "item_info#create", as: :item_info_create
+        patch "/item_info/update", to: "item_info#update", as: :item_info_update
 
-        get '/item_drawings/new', to: 'item_drawings#new', as: :item_drawings_new
-        get '/item_drawings/edit', to: 'item_drawings#edit', as: :item_drawings_edit
-        post '/item_drawings/create', to: 'item_drawings#create', as: :item_drawings_create
-        post '/item_drawings/update', to: 'item_drawings#update', as: :item_drawings_update
-        delete '/item_drawings/remove_file', to: 'item_drawings#remove_file', as: :item_drawings_remove_file
+        get "/item_drawings/new", to: "item_drawings#new", as: :item_drawings_new
+        get "/item_drawings/edit", to: "item_drawings#edit", as: :item_drawings_edit
+        post "/item_drawings/create", to: "item_drawings#create", as: :item_drawings_create
+        post "/item_drawings/update", to: "item_drawings#update", as: :item_drawings_update
+        delete "/item_drawings/remove_file", to: "item_drawings#remove_file", as: :item_drawings_remove_file
 
-        get '/item_images/new', to: 'item_images#new', as: :item_images_new
-        get '/item_images/edit', to: 'item_images#edit', as: :item_images_edit
-        post '/item_images/create', to: 'item_images#create', as: :item_images_create
-        post '/item_images/update', to: 'item_images#update', as: :item_images_update
-        delete '/item_images/remove_file', to: 'item_images#remove_file', as: :item_images_remove_file
+        get "/item_images/new", to: "item_images#new", as: :item_images_new
+        get "/item_images/edit", to: "item_images#edit", as: :item_images_edit
+        post "/item_images/create", to: "item_images#create", as: :item_images_create
+        post "/item_images/update", to: "item_images#update", as: :item_images_update
+        delete "/item_images/remove_file", to: "item_images#remove_file", as: :item_images_remove_file
 
-        get '/item_qualities/new', to: 'item_qualities#new', as: :item_qualities_new
-        get '/item_qualities/edit', to: 'item_qualities#edit', as: :item_qualities_edit
-        post '/item_qualities/create', to: 'item_qualities#create', as: :item_qualities_create
-        patch '/item_qualities/update', to: 'item_qualities#update', as: :item_qualities_update
+        get "/item_qualities/new", to: "item_qualities#new", as: :item_qualities_new
+        get "/item_qualities/edit", to: "item_qualities#edit", as: :item_qualities_edit
+        post "/item_qualities/create", to: "item_qualities#create", as: :item_qualities_create
+        patch "/item_qualities/update", to: "item_qualities#update", as: :item_qualities_update
 
-        get '/item_standards/new', to: 'item_standards#new', as: :item_standards_new
-        get '/item_standards/edit', to: 'item_standards#edit', as: :item_standards_edit
-        post '/item_standards/create', to: 'item_standards#create', as: :item_standards_create
-        post '/item_standards/update', to: 'item_standards#update', as: :item_standards_update
-        delete '/item_standards/remove_file', to: 'item_standards#remove_file', as: :item_standards_remove_file
+        get "/item_standards/new", to: "item_standards#new", as: :item_standards_new
+        get "/item_standards/edit", to: "item_standards#edit", as: :item_standards_edit
+        post "/item_standards/create", to: "item_standards#create", as: :item_standards_create
+        post "/item_standards/update", to: "item_standards#update", as: :item_standards_update
+        delete "/item_standards/remove_file", to: "item_standards#remove_file", as: :item_standards_remove_file
 
-        get '/item_conditions/new', to: 'item_conditions#new', as: :item_conditions_new
-        get '/item_conditions/edit', to: 'item_conditions#edit', as: :item_conditions_edit
-        post '/item_conditions/create', to: 'item_conditions#create', as: :item_conditions_create
-        post '/item_conditions/update', to: 'item_conditions#update', as: :item_conditions_update
-        get '/item_conditions/company_info', to: 'item_conditions#company_info', as: :item_conditions_company_info
+        get "/item_conditions/new", to: "item_conditions#new", as: :item_conditions_new
+        get "/item_conditions/edit", to: "item_conditions#edit", as: :item_conditions_edit
+        post "/item_conditions/create", to: "item_conditions#create", as: :item_conditions_create
+        post "/item_conditions/update", to: "item_conditions#update", as: :item_conditions_update
+        get "/item_conditions/company_info", to: "item_conditions#company_info", as: :item_conditions_company_info
 
-        get '/complete', to: 'item_requests#complete', as: :complete
+        get "/complete", to: "item_requests#complete", as: :complete
         post :submitted
       end
     end
@@ -148,6 +161,6 @@ Rails.application.routes.draw do
   end
 
   unless Rails.env.production?
-    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 end
