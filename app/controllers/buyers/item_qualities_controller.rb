@@ -12,11 +12,11 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
 
   def create
     @item_quality = @item_request.build_item_quality(item_quality_params)
-    @item_quality.save
+
     ActiveRecord::Base.transaction do
       @item_quality.creator = current_user.id
       @item_quality.save
-      @item_request.update_attribute(:status, get_count)
+      @item_request.update_attributes(status: get_count, updater: current_user.id)
       redirect_to item_standards_new_buyers_item_request_path(@item_request),  flash: { success: I18n.t('create.success') }
     rescue StandardError
       flash[:alert] = I18n.t('create.failed')
@@ -32,8 +32,7 @@ class Buyers::ItemQualitiesController < Buyers::BaseController
     ActiveRecord::Base.transaction do
       @item_quality.updater = current_user.id
       @item_quality.update(item_quality_params)
-      @item_request.update_attribute(:status, get_count)
-      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
+      @item_request.update_attributes(status: get_count, updater: current_user.id)
       redirect_to item_standards_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
     rescue StandardError
       flash[:alert] = I18n.t('update.failed')

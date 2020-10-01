@@ -12,16 +12,19 @@ class Buyers::ItemImagesController < Buyers::BaseController
 
   def create
     @item_image = @item_request.build_item_image(item_image_params)
-
-    if @item_image.save
-      @item_request.update_attribute(:status, get_count)
-      respond_to do |format|
-        format.html { redirect_to item_qualities_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
-        format.json { render json: @item_image }
+    begin
+      ActiveRecord::Base.transaction do
+        @item_image.creator = current_user.id
+        @item_image.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
+        respond_to do |format|
+          format.html { redirect_to item_qualities_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
+          format.json { render json: @item_image }
+        end
+      rescue StandardError
+        flash[:alert] = I18n.t('create.failed')
+        render :new
       end
-    else
-      flash[:alert] = I18n.t('create.failed')
-      render :new
     end
   end
 
@@ -32,16 +35,19 @@ class Buyers::ItemImagesController < Buyers::BaseController
   def update
     @item_image.file_images = add_files('file_images', @item_image.file_images, params)
 
-    if @item_image.save
-      @item_request.update_attribute(:status, get_count)
-      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-      respond_to do |format|
-        format.html { redirect_to item_qualities_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
-        format.json { render json: @item_image }
+    begin
+      ActiveRecord::Base.transaction do
+        @item_image.updater = current_user.id
+        @item_image.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
+        respond_to do |format|
+          format.html { redirect_to item_qualities_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
+          format.json { render json: @item_image }
+        end
+      rescue StandardError
+        flash[:alert] = I18n.t('update.failed')
+        render :edit
       end
-    else
-      flash[:alert] = I18n.t('update.failed')
-      render :edit
     end
   end
 
@@ -52,10 +58,12 @@ class Buyers::ItemImagesController < Buyers::BaseController
       @item_image.remove_file_images = true if images_remain_files.empty?
     end
 
-    @item_request.update_attributes(updater: current_user.id, updated_at: Time.current) if @item_image.save
+    @item_image.update_attributes(updater: current_user.id) if @item_image.save
+    @item_request.update_attributes(status: get_count, updater: current_user.id) if @item_image.save
   end
 
   private
+
   def set_item_image
     @item_image = @item_request.item_image if @item_request.present?
   end

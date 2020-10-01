@@ -9,8 +9,13 @@ module BuyerItemRequest
   end
 
   def get_count
-    ItemRequest.left_outer_joins(:item_info, :item_quality, :item_drawing, :item_image, :item_standard, :item_conditions)
-    .where(id: @item_request.id).group(:id).pluck("count(item_info.id) + count(item_qualities.id) + count(item_drawings.id)
-     + count(item_images.id) + count(item_standards.id) + count(item_conditions.id)").first
+    count = 0
+    count += 1 if @item_request.item_info.present?
+    count += 1 if @item_request.item_drawing.present? && @item_request.item_drawing&.file_specifications.present?
+    count += 1 if @item_request.item_image.present? && @item_request.item_image&.file_images.present?
+    count += 1 if @item_request.item_quality.present?
+    count += 1 if @item_request.item_standard.present? && @item_request.item_standard&.file_inspection_criteria.present?
+    count += 1 if @item_request.item_conditions.present?
+    count
   end
 end

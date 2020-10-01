@@ -1,11 +1,12 @@
 # frozen_string_literal: true
-class Buyers::ItemInfoController < Buyers::BaseController
 
+class Buyers::ItemInfoController < Buyers::BaseController
   before_action :set_item_request
   before_action :set_item_info, except: %i[create]
 
   def new
     return redirect_to item_info_edit_buyers_item_request_path(@item_request) if @item_info.present?
+
     @item_info = @item_request.build_item_info
   end
 
@@ -14,8 +15,8 @@ class Buyers::ItemInfoController < Buyers::BaseController
     begin
       ActiveRecord::Base.transaction do
         @item_info.creator = current_user.id
-        @item_info.save!
-        @item_request.update_attributes(item_info_id: @item_info.id, status: get_count, creator: current_user.id)
+        @item_info.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
         return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
       rescue StandardError
         flash.now[:alert] = I18n.t('create.failed')
@@ -29,20 +30,19 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   def update
-    begin
-      ActiveRecord::Base.transaction do
-        @item_info.updater = current_user.id
-        @item_info.update(item_info_params)
-        @item_request.update_attributes(item_info_id: @item_info.id, status: 1, updater: current_user.id, updated_at: Time.current)
-        return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
-      rescue StandardError
-        flash.now[:alert] = I18n.t('update.failed')
-        render :new
-      end
+    ActiveRecord::Base.transaction do
+      @item_info.updater = current_user.id
+      @item_info.update(item_info_params)
+      @item_request.update_attributes(status: get_count, updater: current_user.id)
+      return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
+    rescue StandardError
+      flash.now[:alert] = I18n.t('update.failed')
+      render :new
     end
   end
 
   private
+
   def set_item_info
     @item_info = @item_request.item_info if @item_request.present?
   end

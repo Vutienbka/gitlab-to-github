@@ -7,6 +7,7 @@
     <%= f.text_field :condition, placeholder: 'アイテムの条件を入力してください（複数可）', class:"form-control form-control--ie", autocomplete:"off", id: 'form-label-condition' %>
     <%= f.hidden_field :position, class: 'hidden-field' %>
     <%= f.hidden_field :creator, value:"#{current_user.id}" %>
+    <%= f.hidden_field :updater, value:"#{current_user.id}" %>
     <%= link_to_remove_association '', f, class: 'fa fa-times', data: { confirm: '本当に削除しますか。' } %>
   </div>
 </div>

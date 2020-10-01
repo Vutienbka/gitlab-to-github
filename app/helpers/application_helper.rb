@@ -91,10 +91,14 @@ module ApplicationHelper
   end
 
   def fetch_item_request_completed_progress(object)
-    object.present? ? 'done': ''
-  end
-
-  def fetch_item_request_submitted_status(item_request)
-    item_request.status == 7 ? 'disabled-progress' : ''
+    if object.is_a?(ItemDrawing)
+      object.file_specifications.present? ? 'done' : ''
+    elsif object.is_a?(ItemImage)
+      object.file_images.present? ? 'done' : ''
+    elsif object.is_a?(ItemStandard)
+      object.file_inspection_criteria.present? ? 'done' : ''
+    else
+      object.present? ? 'done' : ''
+    end
   end
 end

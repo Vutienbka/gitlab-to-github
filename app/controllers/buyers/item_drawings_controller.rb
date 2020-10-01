@@ -6,20 +6,25 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
 
   def new
     return redirect_to item_drawings_edit_buyers_item_request_path(@item_request) if @item_drawing.present?
+
     @item_drawing = @item_request.build_item_drawing
   end
 
   def create
     @item_drawing = @item_request.build_item_drawing(item_drawing_params)
-    if @item_drawing.save
-      @item_request.update_attribute(:status, get_count)
-      respond_to do |format|
-        format.html { redirect_to item_images_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
-        format.json { render json: @item_drawing }
+    begin
+      ActiveRecord::Base.transaction do
+        @item_drawing.creator = current_user.id
+        @item_drawing.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
+        respond_to do |format|
+          format.html { redirect_to item_images_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
+          format.json { render json: @item_drawing }
+        end
+      rescue StandardError
+        flash[:alert] = I18n.t('create.failed')
+        render :new
       end
-    else
-      flash[:alert] = I18n.t('create.failed')
-      render :new
     end
   end
 
@@ -32,16 +37,19 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
     @item_drawing.file_assembly_specifications = add_files('file_assembly_specifications', @item_drawing.file_assembly_specifications, params)
     @item_drawing.file_packing_specifications = add_files('file_packing_specifications', @item_drawing.file_packing_specifications, params)
 
-    if @item_drawing.save
-      @item_request.update_attribute(:status, get_count)
-      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-      respond_to do |format|
-        format.html { redirect_to item_images_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
-        format.json { render json: @item_drawing }
+    begin
+      ActiveRecord::Base.transaction do
+        @item_drawing.updater = current_user.id
+        @item_drawing.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
+        respond_to do |format|
+          format.html { redirect_to item_images_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
+          format.json { render json: @item_drawing }
+        end
+      rescue StandardError
+        flash[:alert] = I18n.t('update.failed')
+        render :edit
       end
-    else
-      flash[:alert] = I18n.t('update.failed')
-      render :edit
     end
   end
 
@@ -64,10 +72,12 @@ class Buyers::ItemDrawingsController < Buyers::BaseController
       @item_drawing.remove_file_packing_specifications = true if packing_specifications_remain_files.empty?
     end
 
-    @item_request.update_attributes(updater: current_user.id, updated_at: Time.current) if @item_drawing.save
+    @item_drawing.update_attributes(updater: current_user.id) if @item_drawing.save
+    @item_request.update_attributes(status: get_count, updater: current_user.id) if @item_drawing.save
   end
 
   private
+
   def set_item_drawing
     @item_drawing = @item_request.item_drawing if @item_request.present?
   end

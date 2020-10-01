@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_164618) do
+ActiveRecord::Schema.define(version: 2020_10_01_160242) do
 
   create_table "catalogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "parent_catalog_id"
@@ -191,26 +191,11 @@ ActiveRecord::Schema.define(version: 2020_09_29_164618) do
     t.bigint "buyer_supplier_id"
     t.bigint "supplier_id"
     t.string "status"
-    t.bigint "item_info_id", comment: "項目情報Id"
-    t.bigint "item_draw_id"
-    t.bigint "item_image_id"
-    t.bigint "quality_id", comment: "項目品質Id"
-    t.string "quality_info", limit: 2000, comment: "項目品質説明情報"
-    t.bigint "standard_id", comment: "項目基準Id"
-    t.string "standard_info", limit: 2000, comment: "項目基準説明情報"
-    t.bigint "condition_id", comment: "項目条件Id"
-    t.bigint "item_sample_id", comment: "項目金型Id"
-    t.bigint "quotation_id", comment: "項目見積Id"
     t.bigint "creator", comment: "登録者Id"
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
-    t.index ["item_draw_id"], name: "fk_item_drawing_item_request1_idx"
-    t.index ["item_image_id"], name: "fk_item_request_item_image1_idx"
-    t.index ["item_info_id"], name: "fk_request_item_info_idx"
-    t.index ["item_sample_id"], name: "fk_item_request_item_sample1_idx"
-    t.index ["quality_id"], name: "fk_item_quality_item_request1_idx"
   end
 
   create_table "item_standards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目基準テーブル", force: :cascade do |t|

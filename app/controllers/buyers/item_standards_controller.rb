@@ -12,16 +12,20 @@ class Buyers::ItemStandardsController < Buyers::BaseController
 
   def create
     @item_standard = @item_request.build_item_standard(item_standard_params)
-    
-    if @item_standard.save
-      @item_request.update_attribute(:status, get_count)
-      respond_to do |format|
-        format.html { redirect_to item_conditions_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
-        format.json { render json: @item_standard }
+
+    begin
+      ActiveRecord::Base.transaction do
+        @item_standard.creator = current_user.id
+        @item_standard.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
+        respond_to do |format|
+          format.html { redirect_to item_conditions_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
+          format.json { render json: @item_standard }
+        end
+      rescue StandardError
+        flash[:alert] = I18n.t('create.failed')
+        render :new
       end
-    else
-      flash[:alert] = I18n.t('create.failed')
-      render :new
     end
   end
 
@@ -33,16 +37,19 @@ class Buyers::ItemStandardsController < Buyers::BaseController
     @item_standard.file_inspection_criteria = add_files('file_inspection_criteria', @item_standard.file_inspection_criteria, params)
     @item_standard.file_test_criteria = add_files('file_test_criteria', @item_standard.file_test_criteria, params)
 
-    if @item_standard.save
-      @item_request.update_attribute(:status, get_count)
-      @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-      respond_to do |format|
-        format.html { redirect_to item_conditions_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
-        format.json { render json: @item_standard }
+    begin
+      ActiveRecord::Base.transaction do
+        @item_standard.updater = current_user.id
+        @item_standard.save
+        @item_request.update_attributes(status: get_count, updater: current_user.id)
+        respond_to do |format|
+          format.html { redirect_to item_conditions_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
+          format.json { render json: @item_standard }
+        end
+      rescue StandardError
+        flash[:alert] = I18n.t('update.failed')
+        render :edit
       end
-    else
-      flash[:alert] = I18n.t('update.failed')
-      render :edit
     end
   end
 
@@ -59,7 +66,8 @@ class Buyers::ItemStandardsController < Buyers::BaseController
       @item_standard.remove_file_test_criteria = true if test_criteria_remain_files.empty?
     end
 
-    @item_request.update_attributes(updater: current_user.id, updated_at: Time.current) if @item_standard.save
+    @item_standard.update_attributes(updater: current_user.id) if @item_standard.save
+    @item_request.update_attributes(status: get_count, updater: current_user.id) if @item_standard.save
   end
 
   private
