@@ -79,7 +79,7 @@ module ApplicationHelper
     if current_user.buyer?
       return @item_request_quantity if defined?(@item_request_quantity)
 
-      quantity = current_user.item_requests.count
+      quantity = current_user.item_requests.where('status < 7').count
       @item_request_quantity = quantity if quantity.positive?
     end
   end
