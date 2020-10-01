@@ -90,12 +90,8 @@ module ApplicationHelper
     ((value.to_f/6)*100).to_s + '%'
   end
 
-  def fetch_item_request_completed_progress(item_request, value)
-    item_request.status.value >= value ? 'done': ''
-  end
-
-  def disabled_progress(item_request, value)
-    item_request.status.value < value ? 'disabled-progress' : ''
+  def fetch_item_request_completed_progress(object)
+    object.present? ? 'done': ''
   end
 
   def fetch_item_request_submitted_status(item_request)

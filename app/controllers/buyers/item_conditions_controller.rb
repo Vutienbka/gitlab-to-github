@@ -12,9 +12,11 @@ class Buyers::ItemConditionsController < Buyers::BaseController
 
   def create
     ActiveRecord::Base.transaction do
+      count = get_count
       @item_request.update!(item_request_params)
-      @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
-      return redirect_to complete_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
+      @item_request.update_attribute(:status, count)
+      return redirect_to complete_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } if count == 6
+      redirect_to progress_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } 
     rescue StandardError
       flash.now[:alert] = I18n.t('create.failed')
       render :new
@@ -27,12 +29,12 @@ class Buyers::ItemConditionsController < Buyers::BaseController
 
   def update
     ActiveRecord::Base.transaction do
+      count = get_count
       @item_request.update(item_request_params)
-      flash[:success] = I18n.t('update.success')
-      @item_request.update_attribute(:status, 6) if ItemRequest::STATUSES[@item_request.status.to_sym] < 6
-
+      @item_request.update_attribute(:status, count)
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
-      redirect_to complete_buyers_item_request_path(@item_request)
+      return redirect_to complete_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } if count == 6
+      redirect_to progress_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
     rescue StandardError
       flash[:alert] = I18n.t('update.failed')
       render :edit
@@ -40,6 +42,7 @@ class Buyers::ItemConditionsController < Buyers::BaseController
   end
 
   private
+
   def set_item_condition
     @item_conditions = @item_request.item_conditions if @item_request.present?
   end

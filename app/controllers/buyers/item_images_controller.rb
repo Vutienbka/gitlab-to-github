@@ -14,7 +14,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
     @item_image = @item_request.build_item_image(item_image_params)
 
     if @item_image.save
-      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
+      @item_request.update_attribute(:status, get_count)
       respond_to do |format|
         format.html { redirect_to item_qualities_new_buyers_item_request_path(@item_request), success: I18n.t('create.success') }
         format.json { render json: @item_image }
@@ -33,7 +33,7 @@ class Buyers::ItemImagesController < Buyers::BaseController
     @item_image.file_images = add_files('file_images', @item_image.file_images, params)
 
     if @item_image.save
-      @item_request.update_attribute(:status, 3) if ItemRequest::STATUSES[@item_request.status.to_sym] < 3
+      @item_request.update_attribute(:status, get_count)
       @item_request.update_attributes(updater: current_user.id, updated_at: Time.current)
       respond_to do |format|
         format.html { redirect_to item_qualities_edit_buyers_item_request_path(@item_request), success: I18n.t('update.success') }
