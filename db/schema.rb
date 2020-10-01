@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_023839) do
+ActiveRecord::Schema.define(version: 2020_09_29_164618) do
+
+  create_table "catalogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "parent_catalog_id"
+    t.string "name"
+    t.string "level_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -134,6 +142,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_023839) do
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.string "item_unit"
+    t.bigint "catalog_id"
   end
 
   create_table "item_qualities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目品質テーブル", force: :cascade do |t|
@@ -284,6 +293,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_023839) do
     t.string "email", limit: 100, default: "", null: false, comment: "ログインメールアドレス"
     t.string "encrypted_password", default: "", null: false, comment: "ログインパスワード"
     t.string "type", limit: 45
+    t.integer "roles", default: 0
     t.integer "accept_flg", comment: "利用規約"
     t.integer "antiforce_flg", comment: "反社会勢力"
     t.string "access_IP", limit: 45
