@@ -8,6 +8,19 @@ class Buyers::ItemInfoController < Buyers::BaseController
     return redirect_to item_info_edit_buyers_item_request_path(@item_request) if @item_info.present?
 
     @item_info = @item_request.build_item_info
+    @catalogs = Catalog.where(level_type: 'parent')
+    @sub_catalogs = Catalog.where(level_type: 'sub_catal')
+    @child_catalogs = Catalog.where(level_type: 'granchild_catal')
+  end
+
+  def sub_category
+    @sub_catalogs = Catalog.where(parent_catalog_id: params[:catalog_id])
+    render json: @sub_catalogs
+  end
+
+  def child_category
+    @child_catalogs = Catalog.where(parent_catalog_id: params[:catalog_id])
+    render json: @child_catalogs
   end
 
   def create
@@ -27,6 +40,10 @@ class Buyers::ItemInfoController < Buyers::BaseController
 
   def edit
     redirect_to item_info_new_buyers_item_request_path(@item_request) if @item_info.blank?
+    @item_info = @item_request.item_info
+    @catalogs = Catalog.where(level_type: 'parent')
+    @sub_catalogs = Catalog.where(level_type: 'sub_catalog')
+    @child_catalogs = Catalog.where(level_type: 'granchild_catalog')
   end
 
   def update

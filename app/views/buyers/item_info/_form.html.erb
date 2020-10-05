@@ -1,92 +1,95 @@
+<%= javascripts 'buyer/category' %>
+
 <% content_for :title, 'NEWJI | ①情報' %>
 <% breadcrumb_add 'アイテム登録'%>
 
 <% content_for :content_header do %>
-  <div class="card card--login">
-    <div class="card-body">
-      <p class="login-head text-center">アイテムの情報を<span class="textbr">登録してください</span></p>
-      <%= form_for @item_info, url: url, method: method do |f| %>
-        <div class="input-group mt-5 mb-4">
-          <label for="form-label-code">
-            <span class="required-txt">必須</span>
-            <span>商品コード</span>
-          </label>
-          <%= f.text_field :SKU, placeholder: 'アイテムの商品コード（SKU）を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-code' %>
-          <%= show_errors @item_info, :SKU %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-category">
-            <span class="required-txt">必須</span>
-            <span>カテゴリー</span>
-          </label>
-          <%= f.text_field :category1, placeholder: 'アイテムのカテゴリー１を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-category' %>
-          <%= show_errors @item_info, :category1 %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-category2">
-            <span class="required-txt required-txt--any">任意</span>
-            <span>サブカテゴリー</span>
-          </label>
-          <%= f.text_field :category2, placeholder: 'アイテムのカテゴリー２を入力してください', class: 'form-control form-control--ie', id: 'form-label-category2' %>
-          <%= show_errors @item_info, :category2 %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-category3">
-            <span class="required-txt required-txt--any">任意</span>
-            <span>孫カテゴリー</span>
-          </label>
-          <%= f.text_field :category3, placeholder: 'アイテムのカテゴリー3を入力してください', class: 'form-control form-control--ie', id: 'form-label-category3' %>
-          <%= show_errors @item_info, :category3 %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-item-name">
-            <span class="required-txt">必須</span>
-            <span>アイテム名称</span>
-          </label>
-          <%= f.text_field :name, placeholder: 'アイテムの名称を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-item-name' %>
-          <%= show_errors @item_info, :name %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-cost">
-            <span class="required-txt">必須</span>
-            <span>単価</span>
-          </label>
-          <%= f.number_field :cost, placeholder: 'アイテムの単価を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-cost' %>
-          <%= show_errors @item_info, :cost %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-amount">
-            <span class="required-txt">必須</span>
-            <span>年間物量</span>
-          </label>
-          <%= f.number_field :expected_sales_volume, placeholder: 'アイテムの販売予測量（年間）を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-amount' %>
-          <%= show_errors @item_info, :expected_sales_volume %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-tani">
-            <span class="required-txt">必須</span>
-            <span>単位</span>
-          </label>
-          <%= f.select(:item_unit, ItemInfo.item_units.options, { include_blank: '選択してください' }, selected: @item_info.item_unit, required: true, class: "form-control form-control--select--long", id: "form-label-tani") %>
-        </div>
-        <div class="input-group mb-4">
-          <label for="form-label-leadtime">
-            <span class="required-txt">必須</span>
-            <span>リードタイム</span>
-          </label>
-          <%= f.text_field :lead_time, placeholder: '例）40日', required: true, class: 'form-control form-control--ie', id: 'form-label-leadtime' %>
-          <%= show_errors @item_info, :lead_time %>
-        </div>
-
-        <div class="row">
-          <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp">登録</button>
-        </div>
-      <% end %>
-    <!-- /.login-card-body -->
+<div class="card card--login">
+  <div class="card-body">
+    <p class="login-head text-center">アイテムの情報を<span class="textbr">登録してください</span></p>
+    <%= form_for @item_info, url: url, method: method do |f| %>
+    <input type='hidden' value="<%= @item_request.id %>" id='item_request_id'>
+    <div class="input-group mt-5 mb-4">
+      <label for="form-label-code">
+        <span class="required-txt">必須</span>
+        <span>商品コード</span>
+      </label>
+      <%= f.text_field :SKU, placeholder: 'アイテムの商品コード（SKU）を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-code' %>
+      <%= show_errors @item_info, :SKU %>
     </div>
+    <div class="input-group mb-4">
+      <label for="form-label-category">
+        <span class="required-txt">必須</span>
+        <span>カテゴリー</span>
+      </label>
+      <%= f.select(:category1, @catalogs.pluck(:name, :id), { prompt: "未分類" }, selected: @item_info.category1, class: 'form-control form-control--ie', id: 'form-label-category', required: true) %>
+      <%= show_errors @item_info, :category1 %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-category2">
+        <span class="required-txt required-txt--any">任意</span>
+        <span>サブカテゴリー</span>
+      </label>
+      <%= f.select(:category2, @sub_catalogs.pluck(:name, :id) , { prompt: '未分類' }, selected: @item_info.category2 , class: 'form-control form-control--ie', id: 'form-label-category2', required: true) %>
+      <%= show_errors @item_info, :category2 %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-category3">
+        <span class="required-txt required-txt--any">任意</span>
+        <span>孫カテゴリー</span>
+      </label>
+      <%= f.select(:category3,  @child_catalogs.pluck(:name, :id) , { prompt: '未分類' }, selected: @item_info.category3, class: 'form-control form-control--ie', id: 'form-label-category3', required: true) %>
+      <%= show_errors @item_info, :category3 %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-item-name">
+        <span class="required-txt">必須</span>
+        <span>アイテム名称</span>
+      </label>
+      <%= f.text_field :name, placeholder: 'アイテムの名称を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-item-name' %>
+      <%= show_errors @item_info, :name %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-cost">
+        <span class="required-txt">必須</span>
+        <span>単価</span>
+      </label>
+      <%= f.number_field :cost, placeholder: 'アイテムの単価を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-cost' %>
+      <%= show_errors @item_info, :cost %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-amount">
+        <span class="required-txt">必須</span>
+        <span>年間物量</span>
+      </label>
+      <%= f.number_field :expected_sales_volume, placeholder: 'アイテムの販売予測量（年間）を入力してください', required: true, class: 'form-control form-control--ie', id: 'form-label-amount' %>
+      <%= show_errors @item_info, :expected_sales_volume %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-tani">
+        <span class="required-txt">必須</span>
+        <span>単位</span>
+      </label>
+      <%= f.select(:item_unit, ItemInfo.item_units.options, { include_blank: '選択してください' }, selected: @item_info.item_unit, required: true, class: "form-control form-control--select--long", id: "form-label-tani") %>
+    </div>
+    <div class="input-group mb-4">
+      <label for="form-label-leadtime">
+        <span class="required-txt">必須</span>
+        <span>リードタイム</span>
+      </label>
+      <%= f.text_field :lead_time, placeholder: '例）40日', required: true, class: 'form-control form-control--ie', id: 'form-label-leadtime' %>
+      <%= show_errors @item_info, :lead_time %>
+    </div>
+
+    <div class="row">
+      <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp">登録</button>
+    </div>
+    <% end %>
+    <!-- /.login-card-body -->
   </div>
-  <!-- /.login-box -->
-  <div class="w-90 text-center margin-bottom30">
-    <%= link_to 'アイテム登録に戻る', progress_buyers_item_request_path(@item_request), class: 'to-top' %>
-  </div>
+</div>
+<!-- /.login-box -->
+<div class="w-90 text-center margin-bottom30">
+  <%= link_to 'アイテム登録に戻る', progress_buyers_item_request_path(@item_request), class: 'to-top' %>
+</div>
 <% end %>

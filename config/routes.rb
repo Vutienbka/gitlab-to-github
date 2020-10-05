@@ -59,6 +59,8 @@ Rails.application.routes.draw do
         get '/item_info/edit', to: 'item_info#edit', as: :item_info_edit
         post '/item_info/create', to: 'item_info#create', as: :item_info_create
         patch '/item_info/update', to: 'item_info#update', as: :item_info_update
+        get '/item_info/sub_category/:catalog_id', to: 'item_info#sub_category', as: :item_info_sub_category
+        get '/item_info/child_category/:catalog_id', to: 'item_info#child_category', as: :item_info_child_category
 
         get '/item_drawings/new', to: 'item_drawings#new', as: :item_drawings_new
         get '/item_drawings/edit', to: 'item_drawings#edit', as: :item_drawings_edit
@@ -151,7 +153,5 @@ Rails.application.routes.draw do
     end
   end
 
-  unless Rails.env.production?
-    mount LetterOpenerWeb::Engine, at: '/letter_opener'
-  end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' unless Rails.env.production?
 end
