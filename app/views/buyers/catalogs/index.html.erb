@@ -36,10 +36,22 @@
         <% if @catalogs.present? %>
           <% @catalogs.each do |catalog| %>
             <div class="col-md-3 col-12 mb-1">
-              <a href= "<%= buyers_catalog_sub_catalogs_path(catalog) %>" class="card shadow-none border text-left category-item-content">
-                <h6 class="category-name"><%= catalog.name %></h6>
-                <h6 class="category-name--code"><small>サブカテゴリー数：<%= get_size_catalog(catalog) %></small></h6>
-              </a>
+              <%= link_to buyers_catalog_sub_catalogs_path(catalog), class: 'card shadow-none border text-left category-item-content' do %>
+                <%= content_tag :h6, catalog.name, class: "category-name" %>
+                <% if get_size_catalog(catalog) > 0%>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'サブカテゴリー数：' + get_size_catalog(catalog).to_s %>
+                <% end %>
+                <% elsif get_size_item(catalog) > 0 %>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'アイテム数：' + get_size_item(catalog).to_s %>
+                <% end %>
+                <% else %>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'サブカテゴリー数：' + get_size_catalog(catalog).to_s %>
+                <% end %>
+                <% end %>
+              <% end %>
             </div>
           <% end %>
         <% end %>

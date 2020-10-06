@@ -1,7 +1,11 @@
 class Buyers::SubCatalogsController < Buyers::BaseController
   before_action :set_catalog, :set_sub_catalogs
 
-  def index; end
+  def index
+    if check_exist_of_items(@catalog).present?
+      redirect_to buyers_catalog_catalog_items_path(@catalog.id)
+    end
+  end
 
   def create
     @sub_catalog = Catalog.new(sub_catalog_params)
@@ -9,6 +13,10 @@ class Buyers::SubCatalogsController < Buyers::BaseController
 
     flash[:alert] = I18n.t('create.failed')
     redirect_to buyers_catalog_sub_catalogs_path(@catalog.id)
+  end
+
+  def check_exist_of_items(catalog)
+    ItemRequest.where(catalog_id: catalog.id)
   end
 
   private

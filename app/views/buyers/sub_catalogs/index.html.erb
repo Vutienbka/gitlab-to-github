@@ -34,10 +34,22 @@
         <% if @sub_catalogs.present? %>
           <% @sub_catalogs.each do |sub_catalog| %>
           <div class="col-md-3 col-12 mb-1">
-            <a href="<%= buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, sub_catalog) %>" class="card shadow-none border text-left category-item-content">
-              <h6 class="category-name"><%= sub_catalog.name %></h6>
-              <h6 class="category-name--code"><small>孫カテゴリー数：<%= get_size_catalog(sub_catalog) %></small></h6>
-            </a>
+            <%= link_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, sub_catalog),  class: "card shadow-none border text-left category-item-content" do %>
+              <%= content_tag :h6, sub_catalog.name, class: "category-name" %>
+              <% if get_size_catalog(sub_catalog) > 0 %>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, '孫カテゴリー数：' + get_size_catalog(sub_catalog).to_s %>
+                <% end %>
+              <% elsif get_size_item(sub_catalog) > 0 %>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'アイテム数：' +  get_size_item(sub_catalog).to_s %>
+                <% end %>
+              <% else %>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, '孫カテゴリー数：' + get_size_catalog(sub_catalog).to_s %>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
           <% end %>
         <% end %>

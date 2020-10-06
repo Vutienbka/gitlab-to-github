@@ -113,9 +113,13 @@ Rails.application.routes.draw do
     end
 
     resources :catalogs, only: %i[index new create] do
-      resources :sub_catalogs, only: %i[index new create] do
+      collection do
+        get :index
+      end
+        resources :sub_catalogs, only: %i[index new create] do
         resources :grandchild_catalogs, only: %i[index new create]
       end
+      resources :catalog_items, only: %i[index]
     end
 
     resources :orders, only: %i[index] do

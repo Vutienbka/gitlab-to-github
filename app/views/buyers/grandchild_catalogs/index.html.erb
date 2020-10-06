@@ -14,7 +14,8 @@
   </div>
   <div class="card my-5">
     <p class="breadcrumb-on-card">
-      <a href="/buyers/catalogs">カテゴリー選択</a>&nbsp;<span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<a href="<%= buyers_catalog_sub_catalogs_path(@catalog)%>"><%= @catalog.name %></a></span>
+      <%= link_to 'カテゴリー選択', buyers_catalogs_path %>&nbsp;
+      <span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<%= link_to @catalog.name, buyers_catalog_sub_catalogs_path(@catalog)%></span>
       <span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<%= @sub_catalog.name %></span>
     </p>
     <div class="card-body">
@@ -35,10 +36,12 @@
         <% if @grandchild_catalogs.present? %>
           <% @grandchild_catalogs.each do |grandchild_catalog| %>
           <div class="col-md-3 col-12 mb-1">
-            <a href="#" class="card shadow-none border text-left category-item-content">
-              <h6 class="category-name"><%= grandchild_catalog.name %></h6>
-              <h6 class="category-name--code"><small>アイテム数：<%= get_size_catalog(grandchild_catalog) %></small></h6>
-            </a>
+          <%= link_to buyers_catalog_catalog_items_path(grandchild_catalog), class: 'card shadow-none border text-left category-item-content' do %>
+            <%= content_tag :h6, grandchild_catalog.name, class: 'category-name' %>
+             <%= content_tag :h6, class: 'category-name--code' do %>
+              <%= content_tag :small, 'アイテム数：' + get_size_catalog(grandchild_catalog).to_s  %>
+             <% end %>
+           <% end %>
           </div>
           <% end %>
         <% end %>
