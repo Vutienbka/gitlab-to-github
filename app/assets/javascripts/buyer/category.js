@@ -1,7 +1,8 @@
 $(document).ready(function () {
-  $("#form-label-category").select2()
-  $("#form-label-category2").select2()
-  $("#form-label-category3").select2()
+  // TODO: FIXME change select2 css
+  // $("#form-label-category").select2()
+  // $("#form-label-category2").select2()
+  // $("#form-label-category3").select2()
   let item_request_id = $('#item_request_id').val();
 
   $("#form-label-category").change(function () {

@@ -4,16 +4,15 @@ class ItemRequest < ApplicationRecord
   require 'zip'
 
   belongs_to :supplier
-
   belongs_to :buyer
+  belongs_to :catalog, class_name: 'Catalog', dependent: :destroy, foreign_key: 'catalog_id', optional: true
+
   has_one :item_info, dependent: :destroy
   has_one :item_quality, dependent: :destroy
   has_one :item_drawing, dependent: :destroy
   has_one :item_image, dependent: :destroy
   has_one :item_standard, dependent: :destroy
   has_many :item_conditions, dependent: :destroy
-
-  belongs_to :catalog, class_name: 'Catalog', dependent: :destroy, foreign_key: 'catalog_id'
 
   accepts_nested_attributes_for :item_conditions, allow_destroy: true
 
