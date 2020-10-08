@@ -1,5 +1,6 @@
 <% content_for :title, 'NEWJI | マイカタログ' %>
 <% breadcrumb_add 'マイカタログ' %>
+<%= javascripts 'buyer/catalog' %>
 
 <% content_for :content_header do %>
   <div class="mt-4">
@@ -35,13 +36,24 @@
         <div class="row">
         <% if @grandchild_catalogs.present? %>
           <% @grandchild_catalogs.each do |grandchild_catalog| %>
-          <div class="col-md-3 col-12 mb-1">
-          <%= link_to buyers_catalog_catalog_items_path(grandchild_catalog), class: 'card shadow-none border text-left category-item-content' do %>
-            <%= content_tag :h6, grandchild_catalog.name, class: 'category-name' %>
-             <%= content_tag :h6, class: 'category-name--code' do %>
-              <%= content_tag :small, 'アイテム数：' + get_size_catalog(grandchild_catalog).to_s  %>
-             <% end %>
-           <% end %>
+          <input type='hidden' name = 'grandchild_id' class = 'grandchild' value="<%= grandchild_catalog.id %>">
+          <div class="col-md-3 col-12 mb-1 text-center style-border">
+            <%= link_to buyers_catalog_catalog_items_path(grandchild_catalog), class: 'card shadow-none border text-left category-item-content' do %>
+              <div class="d-flex align-items-center justify-content-between">
+                  <%= content_tag :h6, grandchild_catalog.name, class: 'category-name' %>
+                  <i class="fas fa-ellipsis-v mr-2 font-color pass_data_to_modal" id="pass_data_to_modal_<%= grandchild_catalog.id %>" role="button" data-target="#modal-default2" data-toggle="modal" onclick="return false"></i>
+              </div   
+              <h6></h6>          
+              <%= content_tag :h6, class: 'category-name--code' do %>
+                <%= content_tag :small, 'アイテム数：' + get_size_item(grandchild_catalog).to_s  %>
+              <% end %>
+              <% end %>
+            <input type="hidden" id="catalog_id" value="<%= @catalog.id %>">
+            <input type="hidden" id="sub_catalog_id" value="<%= @sub_catalog.id %>">
+            <%= render partial: 'grandchild_catalog_choose_modal', locals: { grandchild_catalog: grandchild_catalog } %>
+            <%= render 'buyers/shared/edit_modal', catalog: grandchild_catalog, url: buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog),
+             method: :patch, locals: { catalog: grandchild_catalog } %>
+            <%= render 'buyers/shared/delete_modal', catalog: grandchild_catalog, url: buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog), method: :delete, ocals: { catalog: grandchild_catalog }  %>
           </div>
           <% end %>
         <% end %>

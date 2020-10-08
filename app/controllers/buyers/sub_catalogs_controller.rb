@@ -15,10 +15,31 @@ class Buyers::SubCatalogsController < Buyers::BaseController
     redirect_to buyers_catalog_sub_catalogs_path(@catalog.id)
   end
 
+  def update
+    @sub_catalog = @sub_catalogs.find_by(id: params[:id])
+    return redirect_to buyers_catalog_sub_catalogs_path(@catalog), flash: { success: I18n.t("update.success") } if @sub_catalog.update(name: params[:catalog][:name])
+    flash[:alert] = I18n.t('update.failed')
+    redirect_to buyers_catalog_sub_catalogs_path(@catalog)
+  end
+
+  def destroy
+    @sub_catalog = @sub_catalogs.find_by(id: params[:id])
+    return redirect_to buyers_catalog_sub_catalogs_path(@catalog), flash: { success: I18n.t("destroy.success") } if @sub_catalog.destroy
+    flash[:alert] = I18n.t('destroy.failed')
+    redirect_to buyers_catalog_sub_catalogs_path(@catalog)
+  end
+
   def check_exist_of_items(catalog)
     ItemRequest.where(catalog_id: catalog.id)
   end
 
+  def get_selected_sub_catalog
+    @sub_catalog = @sub_catalogs.find_by(id: params[:sub_catalog_id])
+    respond_to do |format|
+      format.json { render json: @sub_catalog }
+    end
+  end
+  
   private
 
   def set_catalog

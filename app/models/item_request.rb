@@ -14,6 +14,8 @@ class ItemRequest < ApplicationRecord
   has_one :item_standard, dependent: :destroy
   has_many :item_conditions, dependent: :destroy
 
+  belongs_to :catalog, class_name: 'Catalog', dependent: :destroy, foreign_key: 'catalog_id', optional: true
+
   accepts_nested_attributes_for :item_conditions, allow_destroy: true
 
   PARAMS_ATTRIBUTES = [

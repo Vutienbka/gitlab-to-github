@@ -50,7 +50,6 @@ Rails.application.routes.draw do
         get :index
         post :private_contract
       end
-
       # member required id from resources
       member do
         get :private_contract_progress, to: 'item_requests#private_contract_progress', as: :private_contract_progress
@@ -112,12 +111,20 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :catalogs, only: %i[index new create] do
+    resources :catalogs, only: %i[index new create update destroy] do
       collection do
         get :index
+        get :get_selected_catalog
       end
-        resources :sub_catalogs, only: %i[index new create] do
-        resources :grandchild_catalogs, only: %i[index new create]
+        resources :sub_catalogs, only: %i[index new create update destroy] do
+          collection do
+            get :get_selected_sub_catalog
+          end
+          resources :grandchild_catalogs, only: %i[index new create update destroy] do
+            collection do
+              get :get_selected_grandchild_catalog
+            end
+          end
       end
       resources :catalog_items, only: %i[index]
     end

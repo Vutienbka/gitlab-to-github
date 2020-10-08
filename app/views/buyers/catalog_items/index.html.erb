@@ -32,8 +32,8 @@
         <div class="col-md-3 col-sm-6 col-12 mb-1">
           <a href="item-info.html" class="card shadow-none border text-center category-item-content">
             <img src="/assets/img/3490284_s.jpg" class="bd-placeholder-img card-img-top object-fit-cover" width="100%" height="200" alt="アイテム画像" />
-            <h6 class="category-content__name"><%= catalog_item.item_info.name %></h6>
-            <h6 class="category-content__name--code"><small>商品コード：<%= catalog_item.item_info.SKU %></small></h6>
+            <h6 class="category-content__name"><%= catalog_item&.item_info&.name %></h6>
+            <h6 class="category-content__name--code"><small>商品コード：<%= catalog_item&.item_info&.SKU %></small></h6>
           </a>
         </div>
         <% end %>
@@ -66,5 +66,5 @@
   </div>
 <% end %>
 <div class="w-90 text-center margin-bottom30">
-  <a href="item-top.html" class="to-top">アイテムを追加する</a>
+  <%= link_to 'アイテムを追加する', search_provider_buyers_path, class: 'to-top' %>
 </div>

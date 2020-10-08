@@ -15,8 +15,31 @@ class Buyers::GrandchildCatalogsController < Buyers::BaseController
     redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog)
   end
 
+  def update
+    @grandchild_catalog = @grandchild_catalogs.find_by(id: params[:id])
+    return redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog),
+    flash: { success: I18n.t('update.success') } if @grandchild_catalog.update(name: params[:catalog][:name])
+    flash[:alert] = I18n.t('update.failed')
+    redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog)
+  end
+
+  def destroy
+    @grandchild_catalog = @grandchild_catalogs.find_by(id: params[:id])
+    return redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog),
+    flash: { success: I18n.t('destroy.success') } if @grandchild_catalog.destroy
+    flash[:alert] = I18n.t('destroy.failed')
+    redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog)
+  end
+
   def check_exist_of_items(catalog)
     ItemRequest.where(catalog_id: catalog.id)
+  end
+
+  def get_selected_grandchild_catalog
+    @grandchild_catalog = @grandchild_catalogs.find_by(id: params[:grandchild_catalog_id])
+    respond_to do |format|
+      format.json { render json: @grandchild_catalog }
+    end
   end
 
   private
