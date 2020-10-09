@@ -130,6 +130,13 @@ Rails.application.routes.draw do
       resources :catalog_items, only: %i[index]
     end
 
+    resources :searchs do
+      collection do
+      get :search
+      post :list_auto
+      end
+    end
+
     resources :orders, only: %i[index] do
     end
     resources :claims, only: %i[index] do
