@@ -5,13 +5,13 @@
             <%= form_for :catalog, url: url, html: { id:'catalog_form_delete' }, method:method do |f| %>
                 <div class="modal-header align-items-center modal-header--ordering">
                   <% if catalog&.level_type.eql? 'parent' %>
-                  <h6 class="modal-title">カテゴリー名: <%= catalog&.name %></h6>
+                  <h6 class="modal-title delete-modal-title-catalog">カテゴリー名: <%= catalog&.name %></h6>
                   <% end %>
                   <% if catalog&.level_type.eql? 'sub_catalog' %>
-                    <h6 class="modal-title">サブカテゴリー名: <%= catalog&.name %></h6>
+                    <h6 class="modal-title delete-modal-title-sub-catalog">サブカテゴリー名: <%= catalog&.name %></h6>
                   <% end %>
                   <% if catalog&.level_type.eql? 'grandchild_catalog' %>
-                    <h6 class="modal-title">孫カテゴリー名: <%= catalog&.name %></h6>
+                    <h6 class="modal-title delete-modal-title-grandchild-catalog">孫カテゴリー名: <%= catalog&.name %></h6>
                   <% end %>
                   <button type="reset" class="close" role="button" data-target="#modal-default2--category-delete" data-toggle="modal">
                     <span class="align-middle" aria-hidden="true">&times;</span>

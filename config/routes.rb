@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       collection do
         get :index
         get :get_selected_catalog
+        get :get_catalog_after_click
       end
         resources :sub_catalogs, only: %i[index new create update destroy] do
           collection do

@@ -33,7 +33,12 @@ class Buyers::CatalogsController < Buyers::BaseController
       format.json { render json: @catalog }
     end
   end
-
+  def get_catalog_after_click
+    @catalog = Catalog.find_by(id: params[:id])
+    respond_to do |format|
+      format.json { render json: @catalog }
+    end
+  end
   private
 
   def get_parent_catalogs
