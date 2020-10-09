@@ -35,7 +35,8 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/catalogs' } " do %>
+          <% params_catalog_controller = ['buyers/catalogs', 'buyers/sub_catalogs', 'buyers/grandchild_catalogs', 'buyers/catalog_items'] %>
+          <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params_catalog_controller.include? params[:controller] } " do %>
             <i class="nav-icon fas fa-list-alt"></i>
             <p>
               マイカタログ
