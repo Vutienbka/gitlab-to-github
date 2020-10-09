@@ -30,7 +30,7 @@
         <span class="required-txt required-txt--any">任意</span>
         <span>サブカテゴリー</span>
       </label>
-      <%= f.select(:category2, @sub_catalogs.pluck(:name, :id) , { prompt: '未分類' }, selected: @item_info.category2 , class: 'form-control form-control--ie', id: 'form-label-category2', required: true) %>
+      <%= f.select(:category2, @sub_catalogs.pluck(:name, :id) , { include_blank: '未分類' }, selected: @item_info.category2 , class: 'form-control form-control--ie', id: 'form-label-category2', required: true) %>
       <%= show_errors @item_info, :category2 %>
     </div>
     <div class="input-group mb-4">
@@ -38,7 +38,7 @@
         <span class="required-txt required-txt--any">任意</span>
         <span>孫カテゴリー</span>
       </label>
-      <%= f.select(:category3,  @child_catalogs.pluck(:name, :id) , { prompt: '未分類' }, selected: @item_info.category3, class: 'form-control form-control--ie', id: 'form-label-category3', required: true) %>
+      <%= f.select(:category3,  @child_catalogs.pluck(:name, :id) , { include_blank: '未分類' }, selected: @item_info.category3, class: 'form-control form-control--ie', id: 'form-label-category3', required: true) %>
       <%= show_errors @item_info, :category3 %>
     </div>
     <div class="input-group mb-4">

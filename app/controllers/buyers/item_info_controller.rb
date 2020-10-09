@@ -8,9 +8,9 @@ class Buyers::ItemInfoController < Buyers::BaseController
     return redirect_to item_info_edit_buyers_item_request_path(@item_request) if @item_info.present?
 
     @item_info = @item_request.build_item_info
-    @catalogs = Catalog.where(level_type: 'parent')
-    @sub_catalogs = Catalog.where(level_type: 'sub_catal')
-    @child_catalogs = Catalog.where(level_type: 'granchild_catal')
+    @catalogs = Catalog.where(buyer_id: current_user.id, level_type: 'parent')
+    @sub_catalogs = Catalog.where(parent_catalog_id: @catalogs.ids, level_type: 'sub_catalog')
+    @child_catalogs = Catalog.where(parent_catalog_id: @sub_catalogs.ids, level_type: 'grandchild_catalog')
   end
 
   def sub_category
@@ -39,11 +39,12 @@ class Buyers::ItemInfoController < Buyers::BaseController
   end
 
   def edit
-    redirect_to item_info_new_buyers_item_request_path(@item_request) if @item_info.blank?
+    return redirect_to item_info_new_buyers_item_request_path(@item_request) if @item_info.blank?
+
     @item_info = @item_request.item_info
-    @catalogs = Catalog.where(level_type: 'parent')
-    @sub_catalogs = Catalog.where(level_type: 'sub_catalog')
-    @child_catalogs = Catalog.where(level_type: 'granchild_catalog')
+    @catalogs = Catalog.where(buyer_id: current_user.id, level_type: 'parent')
+    @sub_catalogs = Catalog.where(parent_catalog_id: @item_info.category1, level_type: 'sub_catalog')
+    @child_catalogs = Catalog.where(parent_catalog_id: @item_info.category2, level_type: 'grandchild_catalog')
   end
 
   def update
