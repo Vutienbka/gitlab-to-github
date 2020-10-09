@@ -17,7 +17,7 @@ class User < ApplicationRecord
   ]
 
   has_many :user_invites, dependent: :destroy
-
+  has_many :catalogs, dependent: :destroy
   validates :password, confirmation: { case_sensitive: true }
   validates :password, presence: true, unless: :check_update_profile?
   validates :email, presence: true

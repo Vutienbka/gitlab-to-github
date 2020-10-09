@@ -42,10 +42,11 @@ class Buyers::CatalogsController < Buyers::BaseController
   private
 
   def get_parent_catalogs
-    @catalogs = Catalog.where(level_type: 'parent')
+    @catalogs = Catalog.where(level_type: 'parent', buyer_id: current_user.id)
   end
 
   def catalog_params
-    params.require(:catalog).permit(:name, :parent_catalog_id, :level_type)
+    buyer_id = current_user.id
+    params.require(:catalog).permit(:name, :parent_catalog_id, :level_type).merge!(buyer_id: buyer_id)
   end
 end
