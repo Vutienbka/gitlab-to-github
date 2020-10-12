@@ -38,7 +38,14 @@ class Buyers::SubCatalogsController < Buyers::BaseController
 
   def destroy
     @sub_catalog = @sub_catalogs.find_by(id: params[:id])
-    return redirect_to buyers_catalog_sub_catalogs_path(@catalog), flash: { success: I18n.t("destroy.success") } if @sub_catalog.destroy
+    item_request_size_of_sub_catalog = ItemRequest.where(catalog_id: @sub_catalog.id).size
+    grandchild_catalog_ids = Catalog.where(parent_catalog_id: @sub_catalog.id).ids
+    item_request_size_of_grandchild_catalog = ItemRequest.where(catalog_id: grandchild_catalog_ids).size
+    if item_request_size_of_sub_catalog > 0 || item_request_size_of_grandchild_catalog > 0
+      return redirect_to buyers_catalog_sub_catalogs_path(@catalog), flash: { success: I18n.t('destroy.success') } if @sub_catalog.destroy
+    else
+      return redirect_to buyers_catalog_sub_catalogs_path(@catalog), flash: { success: I18n.t('destroy.success') } if @sub_catalog.really_destroy!
+    end
     flash[:alert] = I18n.t('destroy.failed')
     redirect_to buyers_catalog_sub_catalogs_path(@catalog)
   end
@@ -53,7 +60,7 @@ class Buyers::SubCatalogsController < Buyers::BaseController
       format.json { render json: @sub_catalog }
     end
   end
-  
+
   private
 
   def set_catalog
@@ -61,7 +68,7 @@ class Buyers::SubCatalogsController < Buyers::BaseController
   end
 
   def set_sub_catalogs
-    @sub_catalogs = @catalog.catalogs.where(level_type: 'sub_catalog')
+    @sub_catalogs = @catalog&.catalogs&.where(level_type: 'sub_catalog')
   end
 
   def sub_catalog_params

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Catalog < ApplicationRecord
+  acts_as_paranoid
+  
   has_many :catalogs, class_name: 'Catalog', foreign_key: 'parent_catalog_id', dependent: :destroy
   belongs_to :catalog, class_name: 'Catalog', optional: true, foreign_key: 'parent_catalog_id'
 

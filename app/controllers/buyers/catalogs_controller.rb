@@ -37,7 +37,17 @@ class Buyers::CatalogsController < Buyers::BaseController
 
   def destroy
     @catalog = @catalogs.find_by(id: params[:id])
+    item_requests_size_of_catalog = ItemRequest.where(catalog_id: @catalog.id).size
+    sub_catalog_ids = Catalog.where(parent_catalog_id: @catalog.id, level_type: "sub_catalog").ids
+    item_request_size_of_sub_catalog = ItemRequest.where(catalog_id: sub_catalog_ids).size
+    grandchild_catalog_ids = Catalog.where(parent_catalog_id: sub_catalog_ids, level_type: "grandchild_catalog").ids
+    item_request_size_of_grandchild_catalog = ItemRequest.where(catalog_id: grandchild_catalog_ids).size
+
+    if item_requests_size_of_catalog > 0 || item_request_size_of_sub_catalog > 0 || item_request_size_of_grandchild_catalog > 0
     return redirect_to buyers_catalogs_path, flash: { success: I18n.t('destroy.success') } if @catalog.destroy
+    else
+      return redirect_to buyers_catalogs_path, flash: { success: I18n.t('destroy.success') } if @catalog.really_destroy!
+    end
     flash[:alert] = I18n.t('destroy.failed')
     redirect_to buyers_catalogs_path
   end

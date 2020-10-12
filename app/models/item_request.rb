@@ -1,4 +1,5 @@
 class ItemRequest < ApplicationRecord
+  acts_as_paranoid
   extend Enumerize
   require 'rubygems'
   require 'zip'

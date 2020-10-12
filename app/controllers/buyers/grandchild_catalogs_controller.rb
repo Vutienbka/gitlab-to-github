@@ -39,8 +39,16 @@ class Buyers::GrandchildCatalogsController < Buyers::BaseController
 
   def destroy
     @grandchild_catalog = @grandchild_catalogs.find_by(id: params[:id])
-    return redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog),
-    flash: { success: I18n.t('destroy.success') } if @grandchild_catalog.destroy
+    item_request_size_of_grandchild_catalog = ItemRequest.where(catalog_id: @grandchild_catalog.id).size
+
+    if item_request_size_of_grandchild_catalog > 0
+      return redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog),
+      flash: { success: I18n.t('destroy.success') } if @grandchild_catalog.destroy
+    else
+      return redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog),
+      flash: { success: I18n.t('destroy.success') } if @grandchild_catalog.really_destroy!
+    end
+
     flash[:alert] = I18n.t('destroy.failed')
     redirect_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, @sub_catalog)
   end
