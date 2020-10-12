@@ -2,7 +2,7 @@ class Buyers::CatalogItemsController < Buyers::BaseController
   before_action :set_catalog
 
   def index
-    @catalog_items = @catalog.item_requests
+    @catalog_items = @catalog.item_requests.page(params[:page]).per 10
   end
 
   private

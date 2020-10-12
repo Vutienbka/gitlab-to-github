@@ -40,23 +40,7 @@
     </div>
   </div>
   <!-- ページネーション  -->
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" disabled>前</a>
-    </li>
-    <li class="page-item active">
-      <a class="page-link" href="#" disabled>1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#" role="button">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#" role="button">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#" role="button">次</a>
-    </li>
-  </ul>
+  <%= paginate @catalog_items%>
   <!--
       <div class="row">
         <button type="submit" class="btn w-30 newji-btn--gray w-60--sp w-90--sp--450">アイテムを<span class="textbr">もっと表示</span></button>
