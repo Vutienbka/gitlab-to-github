@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_043628) do
+ActiveRecord::Schema.define(version: 2020_10_12_035234) do
 
   create_table "catalogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "parent_catalog_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_043628) do
     t.string "level_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
   end
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -126,9 +127,9 @@ ActiveRecord::Schema.define(version: 2020_10_05_043628) do
     t.string "info_sku", limit: 2000, comment: "項目説明情報"
     t.string "name", limit: 100
     t.string "info_name", limit: 2000
-    t.string "category1", limit: 1000
-    t.string "category2", limit: 1000
-    t.string "category3", limit: 1000
+    t.bigint "category1"
+    t.bigint "category2"
+    t.bigint "category3"
     t.string "info_category", limit: 2000, comment: "項目説明情報"
     t.integer "expected_sales_volume"
     t.string "info_expected_sales_volume", limit: 2000, comment: "項目説明情報"

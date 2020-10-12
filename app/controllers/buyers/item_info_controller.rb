@@ -29,8 +29,25 @@ class Buyers::ItemInfoController < Buyers::BaseController
       ActiveRecord::Base.transaction do
         @item_info.creator = current_user.id
         @item_info.save
-        @item_request.update_attributes(status: get_count, updater: current_user.id)
-        return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
+
+        catalog = @item_request.item_info&.category1
+        sub_catalog = @item_request.item_info&.category2
+        grandchild_catalog = @item_request.item_info&.category3
+
+        if grandchild_catalog.present? && grandchild_catalog.positive?
+          @item_request.update_attributes(status: get_count, updater: current_user.id, catalog_id: grandchild_catalog)
+          return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
+        end
+
+        if sub_catalog.present? && sub_catalog.positive?
+          @item_request.update_attributes(status: get_count, updater: current_user.id, catalog_id: sub_catalog)
+          return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
+        end
+
+        if catalog.present? && catalog.positive?
+          @item_request.update_attributes(status: get_count, updater: current_user.id, catalog_id: catalog)
+          return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') }
+        end
       rescue StandardError
         flash.now[:alert] = I18n.t('create.failed')
         render :new
@@ -51,8 +68,25 @@ class Buyers::ItemInfoController < Buyers::BaseController
     ActiveRecord::Base.transaction do
       @item_info.updater = current_user.id
       @item_info.update(item_info_params)
-      @item_request.update_attributes(status: get_count, updater: current_user.id)
-      return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
+
+      catalog = @item_info.category1
+      sub_catalog = @item_info.category2
+      grandchild_catalog = @item_info.category3
+
+      if grandchild_catalog.present? && grandchild_catalog.positive?
+        @item_request.update_attributes(status: get_count, updater: current_user.id, catalog_id: grandchild_catalog)
+        return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
+      end
+
+      if sub_catalog.present? && sub_catalog.positive?
+        @item_request.update_attributes(status: get_count, updater: current_user.id, catalog_id: sub_catalog)
+        return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
+      end
+
+      if catalog.present? && catalog.positive?
+        @item_request.update_attributes(status: get_count, updater: current_user.id, catalog_id: catalog)
+        return redirect_to item_drawings_edit_buyers_item_request_path(@item_request), flash: { success: I18n.t('update.success') }
+      end
     rescue StandardError
       flash.now[:alert] = I18n.t('update.failed')
       render :new
