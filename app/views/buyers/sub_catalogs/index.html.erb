@@ -32,43 +32,42 @@
       </div>
     </div>
     <div class="w-90 w-100--tab">
-      <div class="row">
+        <div class="row">
         <% if @sub_catalogs.present? %>
-        <% @sub_catalogs.each do |sub_catalog| %>
-        <div class="col-md-3 col-12 mb-1 text-center style-border">
-          <%= link_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, sub_catalog),  class: "card shadow-none border text-left category-item-content" do %>
-          <div class="d-flex align-items-center justify-content-between">
-            <%= content_tag :h6, sub_catalog.name, class: "category-name" %>
-            <i class="fas fa-ellipsis-v mr-2 font-color pass_data_to_modal" id="pass_data_to_modal_<%= sub_catalog.id %>" role="button" data-target="#modal-default2" data-toggle="modal" onclick="return false"></i>
+          <% @sub_catalogs.each do |sub_catalog| %>
+          <div class="col-md-3 col-12 mb-1 text-center style-border">
+            <%= link_to buyers_catalog_sub_catalog_grandchild_catalogs_path(@catalog, sub_catalog),  class: "card shadow-none border text-left category-item-content" do %>
+              <div class="d-flex align-items-center justify-content-between">
+                  <%= content_tag :h6, sub_catalog.name, class: "category-name" %>
+                  <i class="fas fa-ellipsis-v mr-2 font-color pass_data_to_modal" id="pass_data_to_modal_<%= sub_catalog.id %>" role="button" data-target="#modal-default2" data-toggle="modal" onclick="return false"></i>
+              </div>      
+              <% if get_size_catalog(sub_catalog) > 0 %>
+                <h6></h6>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, '孫カテゴリー数：' + get_size_catalog(sub_catalog).to_s %>
+                <% end %>
+              <% elsif get_size_item(sub_catalog) > 0 %>
+                <h6></h6>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'アイテム数：' +  get_size_item(sub_catalog).to_s %>
+                <% end %>
+              <% else %>
+                <h6></h6>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, '孫カテゴリー数：' + get_size_catalog(sub_catalog).to_s %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <input type="hidden">
+            <input type="hidden" id="catalog_id" value="<%= @catalog.id %>">
+            <%= render partial: 'sub_catalog_choose_modal', locals: { sub_catalog: sub_catalog } %>
+            <%= render 'buyers/shared/edit_modal', catalog: sub_catalog, url: buyers_catalog_path(@catalog), method: :patch, locals: { catalog: sub_catalog } %>
+            <%= render 'buyers/shared/delete_modal', catalog: sub_catalog, url: buyers_catalog_path(@catalog), method: :delete, locals: { catalog: sub_catalog } %>
           </div>
-          <% if get_size_catalog(sub_catalog) > 0 %>
-          <h6></h6>
-          <%= content_tag :h6, class: "category-name--code" do %>
-          <%= content_tag :small, '孫カテゴリー数：' + get_size_catalog(sub_catalog).to_s %>
           <% end %>
-          <% elsif get_size_item(sub_catalog) > 0 %>
-          <h6></h6>
-          <%= content_tag :h6, class: "category-name--code" do %>
-          <%= content_tag :small, 'アイテム数：' +  get_size_item(sub_catalog).to_s %>
-          <% end %>
-          <% else %>
-          <h6></h6>
-          <%= content_tag :h6, class: "category-name--code" do %>
-          <%= content_tag :small, '孫カテゴリー数：' + get_size_catalog(sub_catalog).to_s %>
-          <% end %>
-          <% end %>
-          <input type="hidden">
-          <input type="hidden" id="catalog_id" value="<%= @catalog.id %>">
-          <%= render partial: 'sub_catalog_choose_modal', locals: { sub_catalog: sub_catalog } %>
-          <%= render 'buyers/shared/edit_modal', catalog: sub_catalog, url: buyers_catalog_path(@catalog), method: :patch, locals: { catalog: sub_catalog } %>
-          <%= render 'buyers/shared/delete_modal', catalog: sub_catalog, url: buyers_catalog_path(@catalog), method: :delete, locals: { catalog: sub_catalog } %>
-        </div>
         <% end %>
+        </div>
       </div>
-      <% end %>
-      <% end %>
-    </div>
-  </div>
   <div class="w-100 text-center d-block d-sm-none">
     <button type="button" class="btn w-30 newji-btn--gray w-60--sp w-90--sp--450" role="button" data-target="#modal-default" data-toggle="modal">サブカテゴリーを追加する</button>
   </div>

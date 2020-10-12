@@ -22,7 +22,6 @@
       <% end %>
     </div>
 
-
     <div class="w-90 w-100--tab">
       <div class="row mt-5 mb-3">
         <div class="col-md-9 col-7 h-100">
@@ -37,39 +36,37 @@
     </div>
 
     <div class="w-90 w-100--tab">
-      <div class="row">
-        <% if @catalogs.present? %>
+    <div class="row">
+      <% if @catalogs.present? %>
         <% @catalogs.each do |catalog| %>
-        <div class="col-md-3 col-12 mb-1">
-          <%= link_to buyers_catalog_sub_catalogs_path(catalog), class: 'card shadow-none border text-left category-item-content' do %>
-          <div class="d-flex align-items-center justify-content-between">
-            <%= content_tag :h6, catalog.name, class: "category-name" %>
-            <i class="fas fa-ellipsis-v mr-2 font-color pass_data_to_modal" id="pass_data_to_modal_<%= catalog.id %>" role="button" data-target="#modal-default2" data-toggle="modal" onclick="return false"></i>
+          <div class="col-md-3 col-12 mb-1">
+            <%= link_to buyers_catalog_sub_catalogs_path(catalog), class: 'card shadow-none border text-left category-item-content' do %>
+              <div class="d-flex align-items-center justify-content-between">
+                <%= content_tag :h6, catalog.name, class: "category-name" %>
+                <i class="fas fa-ellipsis-v mr-2 font-color pass_data_to_modal" id="pass_data_to_modal_<%= catalog.id %>" role="button" data-target="#modal-default2" data-toggle="modal" onclick="return false"></i>
+              </div>
+              <% if get_size_catalog(catalog) > 0 %>
+                <h6></h6>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'サブカテゴリー数：' + get_size_catalog(catalog).to_s %>
+                <% end %>
+              <% elsif get_size_item(catalog) > 0 %>
+                <h6></h6>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'アイテム数：' + get_size_item(catalog).to_s %>
+                <% end %>
+              <% else %>
+                <h6></h6>
+                <%= content_tag :h6, class: "category-name--code" do %>
+                  <%= content_tag :small, 'サブカテゴリー数：' + get_size_catalog(catalog).to_s %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= render partial: 'catalog_choose_modal', locals: {catalog: catalog}%>
+            <%= render 'buyers/shared/edit_modal', catalog: catalog, url: buyers_catalogs_path, method: :patch, locals: { catalog: catalog } %>
+            <%= render 'buyers/shared/delete_modal', catalog: catalog, url: buyers_catalogs_path, method: :delete, locals: { catalog: catalog } %>
           </div>
-          <% if get_size_catalog(catalog) > 0 %>
-          <h6></h6>
-          <%= content_tag :h6, class: "category-name--code" do %>
-          <%= content_tag :small, 'サブカテゴリー数：' + get_size_catalog(catalog).to_s %>
-          <% end %>
-          <% elsif get_size_item(catalog) > 0 %>
-          <h6></h6>
-          <%= content_tag :h6, class: "category-name--code" do %>
-          <%= content_tag :small, 'アイテム数：' + get_size_item(catalog).to_s %>
-          <% end %>
-          <% else %>
-          <h6></h6>
-          <%= content_tag :h6, class: "category-name--code" do %>
-          <%= content_tag :small, 'サブカテゴリー数：' + get_size_catalog(catalog).to_s %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <%= render partial: 'catalog_choose_modal', locals: {catalog: catalog}%>
-          <%= render 'buyers/shared/edit_modal', catalog: catalog, url: buyers_catalogs_path, method: :patch, locals: { catalog: catalog } %>
-          <%= render 'buyers/shared/delete_modal', catalog: catalog, url: buyers_catalogs_path, method: :delete, locals: { catalog: catalog } %>
-        </div>
-
-      </div>
-      <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>
