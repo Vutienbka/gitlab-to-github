@@ -2,7 +2,7 @@ class Buyers::CatalogItemsController < Buyers::BaseController
   before_action :set_catalog
 
   def index
-    @catalog_items = @catalog.item_requests.page(params[:page]).per 10
+    @catalog_items = @catalog.item_requests.where(status: 7).page(params[:page]).per 10
   end
 
   private
@@ -19,6 +19,6 @@ class Buyers::CatalogItemsController < Buyers::BaseController
       @parent_catalog = Catalog.find_by(id: @sub_catalog.parent_catalog_id)
     else
       @parent_catalog = @catalog
-    end 
+    end
   end
 end
