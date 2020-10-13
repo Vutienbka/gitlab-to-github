@@ -2,9 +2,6 @@
 <% breadcrumb_add 'マイカタログ' %>
 <% content_for :content_header do %>
 <div class="card my-5">
-  <p class="breadcrumb-on-card">
-    <%= link_to "Back", buyers_searchs_path %>
-  </p>
   <div class="card-body">
     <h5 class="text-left my-catalog-head mt-3 mt-md-5 mb-3">
       アイテムを選択
@@ -21,30 +18,6 @@
       </div>
       <% end %>
     </div>
-    <!-- ページネーション  -->
-    <ul class="pagination">
-      <li class="page-item disabled">
-        <a class="page-link" disabled>前</a>
-      </li>
-      <li class="page-item active">
-        <a class="page-link" href="#" disabled>1</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" role="button">2</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" role="button">3</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" role="button">次</a>
-      </li>
-    </ul>
-    <!--
-            <div class="row">
-              <button type="submit" class="btn w-30 newji-btn--gray w-60--sp w-90--sp--450">アイテムを<span class="textbr">もっと表示</span></button>
-            </div>
-            -->
-    <!-- /.login-card-body -->
   </div>
 </div>
 <%end%>
