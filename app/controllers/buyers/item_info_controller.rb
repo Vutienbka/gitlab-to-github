@@ -3,14 +3,12 @@
 class Buyers::ItemInfoController < Buyers::BaseController
   before_action :set_item_request
   before_action :set_item_info, except: %i[create]
+  before_action :set_catalog, only: %i[new create]
 
   def new
     return redirect_to item_info_edit_buyers_item_request_path(@item_request) if @item_info.present?
 
     @item_info = @item_request.build_item_info
-    @catalogs = Catalog.where(buyer_id: current_user.id, level_type: 'parent')
-    @sub_catalogs = Catalog.where(parent_catalog_id: @catalogs.ids, level_type: 'sub_catalog')
-    @child_catalogs = Catalog.where(parent_catalog_id: @sub_catalogs.ids, level_type: 'grandchild_catalog')
   end
 
   def sub_category
@@ -28,7 +26,7 @@ class Buyers::ItemInfoController < Buyers::BaseController
     begin
       ActiveRecord::Base.transaction do
         @item_info.creator = current_user.id
-        @item_info.save
+        @item_info.save!
 
         catalog = @item_request.item_info&.category1
         sub_catalog = @item_request.item_info&.category2
@@ -101,5 +99,11 @@ class Buyers::ItemInfoController < Buyers::BaseController
 
   def item_info_params
     params.require(:item_info).permit(ItemInfo::PARAMS_ATTRIBUTES)
+  end
+
+  def set_catalog
+    @catalogs = Catalog.where(buyer_id: current_user.id, level_type: 'parent')
+    @sub_catalogs = Catalog.where(parent_catalog_id: @catalogs.ids, level_type: 'sub_catalog')
+    @child_catalogs = Catalog.where(parent_catalog_id: @sub_catalogs.ids, level_type: 'grandchild_catalog')
   end
 end

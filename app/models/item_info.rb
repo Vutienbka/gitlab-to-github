@@ -20,4 +20,5 @@ class ItemInfo < ApplicationRecord
   enumerize :item_units, in: ITEM_UNITS, predicates: { predix: true }
 
   validates :SKU, :category1, :name, :cost, :expected_sales_volume, :lead_time, :item_unit, presence: true
+  validates :SKU, uniqueness: true
 end
