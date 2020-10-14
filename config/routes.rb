@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_requests, only: %i[create destroy] do
+    resources :item_requests, only: %i[create destroy show] do
       # collection not required id from resources
       collection do
         get :index
@@ -127,7 +127,9 @@ Rails.application.routes.draw do
             end
           end
       end
-      resources :catalog_items, only: %i[index]
+      resources :catalog_items, only: %i[index show] do
+      get :download_drawing
+      end
     end
 
     resources :searchs do

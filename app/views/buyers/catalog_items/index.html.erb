@@ -30,11 +30,13 @@
     <div class="row">
       <% @catalog_items.each do |catalog_item| %>
       <div class="col-md-3 col-sm-6 col-12 mb-1">
-        <a href="item-info.html" class="card shadow-none border text-center category-item-content">
+        <%= link_to buyers_catalog_catalog_item_path(@catalog, catalog_item),  class: "card shadow-none border text-center category-item-content" do %>
           <img src="/assets/img/3490284_s.jpg" class="bd-placeholder-img card-img-top object-fit-cover" width="100%" height="200" alt="アイテム画像" />
+          <h6 class='item_request_in_catalog_id' id="item_request_in_catalog_id<%= @catalog.id %>" hidden="true"></h6>
+          <h6 class='detail_item_request' id="detail_item_request<%= catalog_item.id %>" hidden="true"></h6>
           <h6 class="category-content__name"><%= catalog_item&.item_info&.name %></h6>
           <h6 class="category-content__name--code"><small>商品コード：<%= catalog_item&.item_info&.SKU %></small></h6>
-        </a>
+        <% end %>
       </div>
       <% end %>
     </div>

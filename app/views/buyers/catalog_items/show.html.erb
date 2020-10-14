@@ -1,0 +1,295 @@
+<% content_for :title, 'NEWJI | マイカタログ' %>
+<% breadcrumb_add 'マイカタログ' %>
+<%= javascripts 'buyer/chart' %>
+
+<!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="card card-solid card--login--only-vertical">
+        <p class="breadcrumb-on-card">
+        <p class="breadcrumb-on-card">
+        <%= link_to 'カテゴリー選択', buyers_catalogs_path %>&nbsp;
+        <% if @parent_catalog.present? %>
+        <span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<%= link_to @parent_catalog&.name, buyers_catalog_sub_catalogs_path(@parent_catalog)%></span>
+        <% end %>
+        <% if @sub_catalog.present? %>
+        <span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<%= link_to @sub_catalog.name, buyers_catalog_sub_catalog_grandchild_catalogs_path(@parent_catalog, @sub_catalog)%></span>
+        <% end %>
+        <% if @grandchild_catalog.present? %>
+        <span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<%= link_to @grandchild_catalog&.name, buyers_catalog_catalog_items_path(@grandchild_catalog)%></span>
+        <% end %>
+        <span class="textbr"><i class="fas fa-angle-right"></i>&nbsp;<%= @item_request&.item_info&.name %></span>
+      </p>
+        </p>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="d-md-none">
+                <h5 class="font-bold">〇〇〇〇ベッド</h5>
+                <h5><small><span class="mr-4">商品コード：<%= @item_request&.item_info&.SKU %></span><br /><span>サプライヤー：<%= @supplier.profile.company_name %></span></small></h5>
+              </div>
+              <div class="col-12">
+                <img src="<%= @item_images[0] %>" class="product-image" alt="アイテム画像">
+              </div>
+							<div class="col-12 product-image-thumbs">
+							<% @item_images.each_with_index do |image, index| %>
+								<% if index > 0 && index <=8 %>
+								<div class="product-image-thumb active"><img src="<%= @item_images[index] %>" alt="アイテム画像"></div>
+								<% end %>
+							<% end %>
+              </div>
+              <!-- 画像が７個以上の時プラスボタンを表示 -->
+              <div class="col-12 col-md-1 text-center mt-2">
+                <a href="#" class="plus-image"><i class="fas fa-plus"></i></a>
+              </div>
+              <div class="w-100 flex--sp450-block mt-3 w-90--sp">
+                <%= link_to buyers_catalog_catalog_item_download_drawing_path(@catalog.id, @item_request.id, check_input_value: 'file_specifications'), type: "button", name: 'file_sepecifications', class: "btn newji-btn--blue w-30 w-90--sp--450 block mt-2" do %>
+                  <i class="fas fa-download"></i>&nbsp;製品<span class="textbr">仕様図</span>
+                <% end %>
+                <%= link_to buyers_catalog_catalog_item_download_drawing_path(@catalog.id, @item_request.id, check_input_value: 'file_assembly_specifications'), type: "button",  class: "btn newji-btn--blue w-30 w-90--sp--450 block mt-2" do %>
+                  <i class="fas fa-download"></i>&nbsp;組立<span class="textbr">仕様図</span>
+                <% end %>
+                <%= link_to buyers_catalog_catalog_item_download_drawing_path(@catalog.id, @item_request.id, check_input_value: "3"), type: "button", class: "btn newji-btn--blue w-30 w-90--sp--450 block mt-2" do %>
+                  <i class="fas fa-download"></i>&nbsp;梱包<span class="textbr">仕様図</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="d-none d-md-block">
+                <h4 class="my-3 font-bold"><%= @item_request&.item_info&.name %></h4>
+                <div class="d-flex flex-wrap">
+                  <p class="mr-4 mb-0">商品コード：<%= @item_request&.item_info&.SKU %></p>
+                  <p class="mb-0">サプライヤー：<%= @supplier.profile.company_name %></p>
+                </div>
+              </div>
+
+              <hr>
+              <!--
+              <h5 class="info-head font-bold">色：</h5>
+              <div class="color-choice-wrap">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-default text-center active">
+                    <input type="radio" name="color_option" id="color_option1" autocomplete="off" checked="" class="info-head">
+                    緑
+                    <br>
+                    <i class="fas fa-circle fa-2x text-green"></i>
+                  </label>
+                  <label class="btn btn-default text-center">
+                    <input type="radio" name="color_option" id="color_option2" autocomplete="off">
+                    青
+                    <br>
+                    <i class="fas fa-circle fa-2x text-blue"></i>
+                  </label>
+                  <label class="btn btn-default text-center">
+                    <input type="radio" name="color_option" id="color_option3" autocomplete="off">
+                    紫
+                    <br>
+                    <i class="fas fa-circle fa-2x text-purple"></i>
+                  </label>
+                  <label class="btn btn-default text-center">
+                    <input type="radio" name="color_option" id="color_option4" autocomplete="off">
+                    赤
+                    <br>
+                    <i class="fas fa-circle fa-2x text-red"></i>
+                  </label>
+                  <label class="btn btn-default text-center">
+                    <input type="radio" name="color_option" id="color_option5" autocomplete="off">
+                    橙
+                    <br>
+                    <i class="fas fa-circle fa-2x text-orange"></i>
+                  </label>
+
+                </div>
+              </div>
+              -->
+
+              <h5 class="info-head font-bold">単価：</h5>
+              <div class="bg-gray py-0 px-3">
+                <h2 class="pt-3 mb-0 en">
+                  ￥<%= @item_request&.item_info&.cost %>
+                </h2>
+                <h4 class="mt-0 pb-2 en">
+                  <small>$<%= @item_request&.item_info&.cost*0.009355 %></small>
+                </h4>
+              </div>
+
+              <div class="flex w-100 mt-4">
+                <h5 class="info-head font-bold">発注金額：</h5>
+                <h6 class="text-right m-auto--left"><a href="item-data.html" class="info-head to-top">詳しく見る</a></h6>
+              </div>
+              <div class="chart">
+                 <canvas id="myLineChart"></canvas>
+              </div>
+              <div class="row">
+                <button type="submit" class="btn newji-btn--pink mt-4 hacchu-btn">発注</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h5 class="info-head mt-5 pb-2 text-bold border-bottom">登録情報<a href="information.html" class="font-color company-edit"><i class="fas fa-edit ml-2"></i>編集</a></h5>
+              <div class="flex item-info__table-wrap text-left mt-2">
+                <table class="mr-2 mr-sm-5 item-info__table">
+                  <tbody>
+                    <tr>
+                      <th>
+                        発注ロット
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        500
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        単位
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        <%= @item_request&.item_info&.item_unit %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        材料手配
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        10日
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        納品場所
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        テキスト
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="item-info__table">
+                  <tbody>
+                    <tr>
+                      <th>
+                        生産ロット
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        2000
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        リードタイム
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        <%= @item_request&.item_info&.lead_time %>日
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        出荷場所
+                      </th>
+                      <td>
+                        ：
+                      </td>
+                      <td>
+                        大連港
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h5 class="info-head mt-5 pb-2 text-bold border-bottom">各種文書(PDF)<a href="quality.html" class="font-color company-edit"><i class="fas fa-edit ml-2"></i>編集</a></h5>
+              <div class="flex--sp-block mt-3 w-100 w-90--sp">
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 属性情報
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 標準見本
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 限度見本
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> NG見本
+                </button>
+              </div>
+              <div class="flex--sp-block w-100 w-90--sp">
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> SDS
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 識別マーク
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 品質管理者情報
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 生産(成形)条件
+                </button>
+              </div>
+              <div class="flex--sp-block w-100 w-90--sp">
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 納入仕様書
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> QC工程表
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 作業標準書
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 検査記録表
+                </button>
+              </div>
+              <div class="flex--sp-block w-100 w-90--sp">
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 初物検査記録表
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 4M変更
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 仕様変更
+                </button>
+                <button type="button" class="btn newji-btn--blue item-info__pdf-button">
+                  <i class="fas fa-download"></i> 工程変更
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      <div class="w-90 text-center mt-5 margin-bottom30">
+        <a href="my-catalog-item.html" class="to-top">前に戻る</a>
+      </div>
+
+    </section>
+    <!-- /.content -->
+
+<%= content_for :content_optional_scripts do %>
+  <%= javascript_include_tag 'plugins/chart.js/Chart.min' %>
+<% end %>
