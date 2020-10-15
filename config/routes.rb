@@ -145,6 +145,10 @@ Rails.application.routes.draw do
       post :input
       get :table
       get :info
+      collection do
+       post :auto_display_name
+       post :list_item_info
+      end
     end
     resources :samples, only: %i[index] do
     end

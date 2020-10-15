@@ -9,4 +9,13 @@ class Buyers::ClaimsController < Buyers::BaseController
   def table; end
 
   def info; end
+
+  def auto_display_name
+    item_info = ItemInfo.find_by_SKU(params[:claim_item_code])
+    render json: item_info
+  end
+  def list_item_info
+    item_info_list = ItemInfo.all
+    render json: item_info_list
+  end
 end
