@@ -9,6 +9,9 @@ module BuyerItemRequest
   end
 
   def get_count
+    if @item_request.status == ItemRequest.status.find_value(:submitted).value
+      count = ItemRequest.status.find_value(:submitted).value
+    else
     count = 0
     count += 1 if @item_request.item_info.present?
     count += 1 if @item_request.item_drawing.present? && @item_request.item_drawing&.file_specifications.present?
@@ -16,6 +19,7 @@ module BuyerItemRequest
     count += 1 if @item_request.item_quality.present?
     count += 1 if @item_request.item_standard.present? && @item_request.item_standard&.file_inspection_criteria.present?
     count += 1 if @item_request.item_conditions.present?
+    end
     count
   end
 end

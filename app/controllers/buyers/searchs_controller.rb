@@ -13,7 +13,6 @@ class Buyers::SearchsController < Buyers::BaseController
 
       @q = @item_requests.ransack.result.page(params[:page]).per 10
       render :search unless @item_requests.nil?
-
     end
   end
 

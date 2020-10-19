@@ -33,14 +33,14 @@
               </div>
 							<div class="col-12 product-image-thumbs">
 							<% @item_images.each_with_index do |image, index| %>
-								<% if index > 0 && index <=8 %>
-								<div class="product-image-thumb active"><img src="<%= @item_images[index] %>" alt="アイテム画像"></div>
-								<% end %>
+                <div class="product-image-thumb active"><img src="<%= @item_images[index] %>" alt="アイテム画像"></div>
 							<% end %>
               </div>
               <!-- 画像が７個以上の時プラスボタンを表示 -->
               <div class="col-12 col-md-1 text-center mt-2">
-                <a href="#" class="plus-image"><i class="fas fa-plus"></i></a>
+                <%= link_to item_images_edit_buyers_item_request_path(@item_request), class:"plus-image" do %>
+                <i class="fas fa-plus"></i>
+                <% end %>
               </div>
               <div class="w-100 flex--sp450-block mt-3 w-90--sp">
                 <%= link_to buyers_catalog_catalog_item_download_drawing_path(@catalog.id, @item_request.id, check_input_value: 'file_specifications'), type: "button", name: 'file_sepecifications', class: "btn newji-btn--blue w-30 w-90--sp--450 block mt-2" do %>
@@ -128,7 +128,11 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <h5 class="info-head mt-5 pb-2 text-bold border-bottom">登録情報<a href="information.html" class="font-color company-edit"><i class="fas fa-edit ml-2"></i>編集</a></h5>
+              <h5 class="info-head mt-5 pb-2 text-bold border-bottom">登録情報
+                <%= link_to item_info_new_buyers_item_request_path(@item_request), class: 'font-color company-edit' do %>
+                  <i class= "fas fa-edit ml-2">編集</i>
+                <% end %>
+              </h5>
               <div class="flex item-info__table-wrap text-left mt-2">
                 <table class="mr-2 mr-sm-5 item-info__table">
                   <tbody>
@@ -220,7 +224,11 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <h5 class="info-head mt-5 pb-2 text-bold border-bottom">各種文書(PDF)<a href="quality.html" class="font-color company-edit"><i class="fas fa-edit ml-2"></i>編集</a></h5>
+              <h5 class="info-head mt-5 pb-2 text-bold border-bottom">各種文書(PDF)
+                <%= link_to item_qualities_edit_buyers_item_request_path(@item_request), class: "font-color company-edit" do %>
+                  <i class="fas fa-edit ml-2">編集</i>
+                <% end %>
+              </h5>
               <div class="flex--sp-block mt-3 w-100 w-90--sp">
                 <button type="button" class="btn newji-btn--blue item-info__pdf-button">
                   <i class="fas fa-download"></i> 属性情報

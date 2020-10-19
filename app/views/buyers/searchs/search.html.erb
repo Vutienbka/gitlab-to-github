@@ -9,13 +9,17 @@
 
     <div class="row">
       <% @item_requests.each do |item_request| %>
-      <div class="col-md-3 col-sm-6 col-12 mb-1">
-        <a href="item-info.html" class="card shadow-none border text-center category-item-content">
-          <%= image_tag "img/3490284_s.jpg", alt:"アイテム画像", class:"bd-placeholder-img card-img-top object-fit-cover", width:"100%", height:"200" %>
-          <h6 class="category-content__name"><%= item_request&.item_info.name%></h6>
-          <h6 class="category-content__name--code"><small>商品コード：<%= item_request&.item_info.SKU %></small></h6>
-        </a>
-      </div>
+      <div hidden="true"><%= @catalog = item_request.catalog %></div>
+      <div hidden="true"><%= image_src= item_request.item_image.file_images.map { |image| image.url }.first %></div>
+        <div class="col-md-3 col-sm-6 col-12 mb-1">
+          <%= link_to buyers_catalog_catalog_item_path(@catalog, item_request),  class: "card shadow-none border text-center category-item-content" do %>
+            <%= image_tag(image_src, class: "bd-placeholder-img card-img-top object-fit-cover", width: "100%", height: "200", alt: "アイテム画像") %>
+            <h6 class='item_request_in_catalog_id' id="item_request_in_catalog_id<%= @catalog.id %>" hidden="true"></h6>
+            <h6 class='detail_item_request' id="detail_item_request<%= item_request.id %>" hidden="true"></h6>
+            <h6 class="category-content__name"><%= item_request&.item_info&.name %></h6>
+            <h6 class="category-content__name--code"><small>商品コード：<%= item_request&.item_info&.SKU %></small></h6>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
