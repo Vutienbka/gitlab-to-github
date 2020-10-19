@@ -24,6 +24,5 @@ $(document).ready(function() {
     let base_url = window.location.origin
     let id = $(this).attr('id').replace('pass_data_to_modal_','')
     $('#create_item_request').attr('href', base_url + '/buyers/item_requests?supplier_id=' + id)
-    $('#create_item_request_private_contract').attr('href', base_url + '/buyers/item_requests/private_contract?supplier_id=' + id)
   });
 });

@@ -20,8 +20,8 @@ class Buyers::ItemRequestsController < Buyers::BaseController
   def private_contract_progress; end
 
   # TODO:: FIX ME Do not have requirement
-  def private_contract
-    @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status: 0, creator: current_user.id)
+  def create_private_contract
+    @item_request = current_user.item_requests.new(supplier_id: params[:supplier_id], status:  ItemRequest.status.find_value(:submitted).value, creator: current_user.id)
     return redirect_to private_contract_progress_buyers_item_request_path(@item_request), flash: { success: I18n.t('create.success') } if @item_request.save
 
     redirect_to search_provider_buyers_path, flash: { alert: I18n.t('create.failed') }

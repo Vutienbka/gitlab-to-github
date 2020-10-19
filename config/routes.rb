@@ -44,7 +44,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :item_requests, only: %i[create destroy show] do
+    resources :contracts, only: %i[new edit update create]
+
+    resources :item_requests, only: %i[create show destroy] do
       # collection not required id from resources
       collection do
         get :index
