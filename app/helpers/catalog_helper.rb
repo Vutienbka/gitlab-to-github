@@ -6,7 +6,7 @@ module CatalogHelper
   end
   
   def get_size_item(catalog)
-    ItemRequest.where(catalog_id: catalog.id)&.size
+    ItemRequest.where(catalog_id: catalog.id, status: ItemRequest.status.find_value(:submitted).value)&.size
   end
 
 end
