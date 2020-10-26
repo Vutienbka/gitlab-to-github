@@ -1,7 +1,17 @@
-$(document).ready(function () {
+$(document).ready(function (e) {
+  $('select option').each(function () {
+    var data_name = $(this).attr('value');
+    var value = sessionStorage.getItem(data_name)
+    $(this).prop('selected', value)
+  })
+
+  $('input[type="text"]').each(function (){
+    var name = $(this).attr('name');
+    var value = sessionStorage.getItem(name);
+    $(this).val(value);
+})
+
   var availableTags = []
-
-
   $("#form-nolabel-claim-code").keyup(function () {
     availableTags = [];
     $.ajax({
@@ -51,4 +61,51 @@ $(document).ready(function () {
       source: availableTags
     });
   });
+
+  $(document).on('click', '.ui-menu-item', function () {
+    var item_info_id = $(this).children('div').attr('id').replace('ui-id-', '');
+    $('#item_info_id').val(item_info_id);
+    var url = $('#new_claims').attr('action')
+    url = url + '?item_info_id=' + item_info_id;
+    $('#new_claims').attr('action', url)
+    console.log(url);
+  })
+
+  $(document).on('click', '#former_claim_list', function () {
+    var item_code = $('#form-nolabel-claim-code').val().trim();
+    if (item_code === '') {
+      item_code = 'blank';
+    }
+    var new_url = $('#former_claim_list').attr('href') + '?item_code=' + item_code;
+    $('#former_claim_list').attr('href', new_url);
+  })
+
+  $('#claim_filter').on('click', function (e) {
+    e.preventDefault(); // Now nothing will happen
+    var item_code = $('h4.item-code').html();
+    if (item_code != undefined) {
+      item_code = item_code.replace('商品コード：', '').trim();
+    }
+    $('#filter').submit();
+  });
+
+  $('#filter').on('submit', function () {
+    sessionStorage.clear();
+
+    $('select option').each(function () {
+      if ($(this).is(':selected')) {
+        var data_name = $(this).attr('value');
+        var value = $(this).is(':selected');
+        sessionStorage.setItem(data_name, value);
+      }
+    });
+
+    $('input[type="text"]').each(function (){
+      var name = $(this).attr('name');
+      var value = $(this).val()
+      sessionStorage.setItem(name,value);
+  })
+
+  });
+
 }); 

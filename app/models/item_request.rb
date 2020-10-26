@@ -15,6 +15,7 @@ class ItemRequest < ApplicationRecord
   has_one :item_standard, dependent: :destroy
   has_many :item_conditions, dependent: :destroy
   has_many :contracts, dependent: :destroy
+  has_many :claims, class_name: 'Claims', dependent: :destroy
 
   belongs_to :catalog, class_name: 'Catalog', dependent: :destroy, foreign_key: 'catalog_id', optional: true
 

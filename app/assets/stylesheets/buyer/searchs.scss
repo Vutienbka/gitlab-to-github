@@ -1,0 +1,21 @@
+#result {
+    z-index         : 1000;
+    background-color: #fff;
+    position        : absolute;
+    width           : 85%;
+    border-radius   : 10px;
+    height: 140px;
+    overflow: auto;
+}
+
+.claim_detail {
+    border : 1px solid #f5e2d6;
+    padding    : 10px 20px;
+    display    : flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.claim_detail:hover {
+    background   : #f5e2d6;
+}

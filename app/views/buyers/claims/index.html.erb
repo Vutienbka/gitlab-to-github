@@ -8,12 +8,13 @@
   <div class="card-body login-card-body">
     <p class="login-head text-center">アイテムの商品コードを<span class="textbr">入力してください</span></p>
     <%# TODO:: Fix @claim %>
-    <%= form_for @claim = Buyer.first, url: buyers_claim_input_path(claim_id: 1), method: 'post' do |f|%>
+    <%= form_for @claims, url: buyers_claims_path, id: 'new_claims', method: 'post' do |f|%>
     <div class="input-group input-group--short mt-5 mb-4">
+      <input type='hidden' id='item_info_id'>
       <label for="form-nolabel-claim-code">
         <span>商品コード</span>
       </label>
-      <input id="form-nolabel-claim-code" type="text" class="form-control form-control--ie" name="claim_item_code" placeholder="例）80001580" required>
+      <input id="form-nolabel-claim-code" type="text" class="form-control form-control--ie" name="claim_item_code" placeholder="例）80001580" required autocomplete='off'>
     </div>
     <div class="input-group input-group--short mb-4">
       <label for="form-nolabel-claim-name">
@@ -32,7 +33,7 @@
     </p>
 
     <div class="row">
-      <%= link_to buyers_claim_table_path(claim_id: 1), class: 'btn w-30 newji-btn--dark-blue w-60--sp' do %>
+      <%= link_to table_buyers_claims_path, class: 'btn w-30 newji-btn--dark-blue w-60--sp', id: 'former_claim_list' do %>
       過去のクレーム<span class="textbr">一覧を表示</span>
       <% end %>
     </div>

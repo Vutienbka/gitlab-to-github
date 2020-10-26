@@ -20,7 +20,9 @@
 //= require cocoon
 //= require dropzone
 //= require select2
-
+//= require bootstrap
+//= require moment 
+//= require bootstrap-datetimepicker
 $(document).ready(function() {
   removeNotification();
 });
