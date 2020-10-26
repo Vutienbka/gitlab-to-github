@@ -18,7 +18,7 @@
 			<td class="text-center" title="クレームナンバー"><%= claim.id %></td>
 			<td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d/%m/%Y") %></td>
 			<td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
-			<td class="text-center" title="不適合区分"><%= claim&.classify %></td>
+			<td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(', ') if claim&.classify.present? %></td>
 			<td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
 			<td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claims.reason_status.find_value(claim&.reason_status) %></a></td>
 			<td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claims.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
