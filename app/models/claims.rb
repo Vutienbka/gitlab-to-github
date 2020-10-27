@@ -12,6 +12,7 @@ class Claims < ApplicationRecord
   ].freeze
 
  CLASSIFY = {
+    "未分類": 0,
     "異物混入": 1,
     "キズ": 2,
     "形状不良": 3,

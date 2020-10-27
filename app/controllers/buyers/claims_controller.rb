@@ -142,7 +142,7 @@ class Buyers::ClaimsController < Buyers::BaseController
   end
 
   def edit
-    @item_info = current_user.claims.find_by(id: params[:id]).item_request.item_info
+    @item_info = current_user.claims.find_by(id: params[:id])&.item_request&.item_info
     @claim = current_user.claims.find_by(id: params[:id])
   end
 
