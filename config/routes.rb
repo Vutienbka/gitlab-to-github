@@ -145,8 +145,8 @@ Rails.application.routes.draw do
     resources :orders, only: %i[index] do
     end
     resources :claims, only: %i[index create edit destroy] do
-      get :edit
       collection do
+        get :success
         post :auto_display_name
         post :list_item_info
         post :create
@@ -156,6 +156,7 @@ Rails.application.routes.draw do
         get :search_by_submit
       end
       member do
+        post :updated
         get :new
         post :info
         get :claim_detail

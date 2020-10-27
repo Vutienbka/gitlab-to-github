@@ -3,12 +3,23 @@
 class Buyers::ClaimsController < Buyers::BaseController
   include StaticData
   before_action :redirect_to_profile, except: %i[list_claim]
-  before_action :get_claims
-  before_action :initialize_claim, only: %i[index new]
+  before_action :get_claims, except: %i[index new]
 
-  def index; end
+  def index
+    @claims = Claims.new
+  end
 
-  def new; end
+  def new
+    @claims = Claims.new
+    @item_info = current_user.claims.find_by(id: params[:id]).item_request.item_info
+  end
+
+  def destroy
+    @claim = current_user.claims.find_by(id: params[:id])
+    if @claim.present?
+    return redirect_to table_buyers_claims_path if @claim.destroy
+    end
+  end
 
   def create
     @claim = Claims.new(claims_params)
@@ -17,13 +28,13 @@ class Buyers::ClaimsController < Buyers::BaseController
         @claim.save
         item_request = ItemInfo.find_by(SKU: params[:claim_item_code]).item_request
         @claim.update_attributes(item_request_id: item_request.id, supplier_id: item_request.supplier_id, buyer_id: current_user.id)
-        return redirect_to buyers_claim_path(@claim), flash: { success: I18n.t("update.success") }
+        return redirect_to buyers_claim_path(@claim), flash: { success: I18n.t('update.success') }
       end
     rescue StandardError
-      flash[:alert] = I18n.t("create.failed")
-      redirect_to buyers_claims_path
+    flash[:alert] = I18n.t('create.failed')
+    redirect_to buyers_claims_path
     end
-  end
+    end
 
   def input; end
 
@@ -115,16 +126,12 @@ class Buyers::ClaimsController < Buyers::BaseController
     if @claim.present?
       @claim.lot_number = params[:claims][:lot_number].to_i
       @claim.claim_content = params[:claims][:claim_content]
-
+      @claim.claims_image = params[:claims][:claims_image]
       @claim.classify = params[:claims][:classify]
 
-      return redirect_to claim_detail_buyers_claim_path(@claim.id) if @claim.save
+      return render :success if @claim.save
     end
     redirect_to buyers_claim_path
-  end
-
-  def edit
-    @claims = @claims.find(params[:claim_id])
   end
 
   def claim_detail
@@ -134,13 +141,31 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claims_images = @current_claim&.claims_image&.map { |image| image.url }
   end
 
+  def edit
+    @item_info = current_user.claims.find_by(id: params[:id]).item_request.item_info
+    @claim = current_user.claims.find_by(id: params[:id])
+  end
+
+  def updated
+    @claim = current_user.claims.find_by(id: params[:id])
+    if @claim.present?
+    @claim.classify = params[:claim][:classify]
+    @claim.lot_number = params[:claim][:lot_number].to_i
+    @claim.claim_content = params[:claim][:claim_content]
+    @claim.claims_image = params[:claim][:claims_image]
+    @claim.save
+    render :success
+  end
+  end
+
+
   def auto_display_name
     item_info = ItemInfo.find_by_SKU(params[:claim_item_code])
     render json: item_info
   end
 
   def list_item_info
-    item_info_list = ItemInfo.all
+    item_info_list = ItemInfo.where(item_request_id: current_user.item_requests.ids)
     render json: item_info_list
   end
 
@@ -159,9 +184,5 @@ class Buyers::ClaimsController < Buyers::BaseController
 
   def get_claims
     @claims = current_user.claims
-  end
-
-  def initialize_claim
-    @claims = Claims.new
   end
 end

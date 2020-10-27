@@ -3,9 +3,9 @@
   <div class="sidebar">
     <!-- Brand Logo -->
     <%= link_to buyers_home_index_path, class: "brand-link" do %>
-      <div class="d-flex w-100">
-        <%= image_tag 'img/NEWJI_002_haikei.png', class: 'brand-image border-wite', alt: 'NEWJIロゴ' %>
-      </div>
+    <div class="d-flex w-100">
+      <%= image_tag 'img/NEWJI_002_haikei.png', class: 'brand-image border-wite', alt: 'NEWJIロゴ' %>
+    </div>
     <% end %>
 
     <!-- Sidebar Menu -->
@@ -15,60 +15,60 @@
               with font-awesome or any other icon font library -->
         <li class="nav-item">
           <%= link_to buyers_home_index_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/home' && params[:action] == 'index'} " do %>
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              ホーム
-              <i class="fas fa-angle-right right"></i>
-            </p>
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            ホーム
+            <i class="fas fa-angle-right right"></i>
+          </p>
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to register_item_buyers_path, class: "nav-link w-100 #{'active' if buyer_active_link } " do %>
-            <i class="nav-icon fas fa-gem"></i>
-            <p>
-              アイテム登録
-              <i class="fas fa-angle-right right" ></i>
-              <% if fetch_item_request_quantity.present? %>
-                <span class="badge badge-info right"><%= fetch_item_request_quantity %></span>
-              <% end %>
-            </p>
+          <i class="nav-icon fas fa-gem"></i>
+          <p>
+            アイテム登録
+            <i class="fas fa-angle-right right"></i>
+            <% if fetch_item_request_quantity.present? %>
+            <span class="badge badge-info right"><%= fetch_item_request_quantity %></span>
+            <% end %>
+          </p>
           <% end %>
         </li>
         <li class="nav-item">
           <% params_catalog_controller = ['buyers/catalogs', 'buyers/sub_catalogs', 'buyers/grandchild_catalogs', 'buyers/catalog_items'] %>
           <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params_catalog_controller.include? params[:controller] } " do %>
-            <i class="nav-icon fas fa-list-alt"></i>
-            <p>
-              マイカタログ
-              <i class="fas fa-angle-right right"></i>
-            </p>
+          <i class="nav-icon fas fa-list-alt"></i>
+          <p>
+            マイカタログ
+            <i class="fas fa-angle-right right"></i>
+          </p>
           <% end %>
         </li>
         <li class="nav-item has-treeview">
           <%= link_to buyers_orders_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/orders' } " do %>
-            <i class="nav-icon fas fa-truck-moving"></i>
-            <p>
-              受発注
-              <i class="right fas fa-angle-right"></i>
-            </p>
+          <i class="nav-icon fas fa-truck-moving"></i>
+          <p>
+            受発注
+            <i class="right fas fa-angle-right"></i>
+          </p>
           <% end %>
         </li>
         <li class="nav-item has-treeview">
           <%= link_to buyers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/claims' } " do %>
-            <i class="nav-icon fas fa-bullhorn"></i>
-            <p>
-              クレーム/不適合
-              <i class="fas fa-angle-right right"></i>
-            </p>
+          <i class="nav-icon fas fa-bullhorn"></i>
+          <p>
+            クレーム/不適合
+            <i class="fas fa-angle-right right"></i>
+          </p>
           <% end %>
         </li>
         <li class="nav-item has-treeview">
           <%= link_to buyers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/samples' } " do %>
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              サンプル/見本
-              <i class="fas fa-angle-right right"></i>
-            </p>
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+            サンプル/見本
+            <i class="fas fa-angle-right right"></i>
+          </p>
           <% end %>
         </li>
         <li class="nav-item has-treeview">
@@ -92,10 +92,10 @@
         <!-- Logout do not have in design -->
         <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class:"nav-link w-100", data: {confirm: t('logout_confirmation')} do %>
-            <i class="nav-icon fas fa-sign-out-alt"></i>
-            <p>
-              Logout
-            </p>
+          <i class="nav-icon fas fa-sign-out-alt"></i>
+          <p>
+            Logout
+          </p>
           <% end %>
         </li>
       </ul>

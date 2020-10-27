@@ -89,8 +89,8 @@
                     <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claims.reason_status.find_value(claim&.reason_status) %></a></td>
                     <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claims.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
-                    <td class="text-center" title="編集"><a href="claim-info.html" class="btn btn-primary"><i class="fa fa-edit"></a></td>
-                    <td class="text-center" title="削除"><a href="claim-info.html" class="btn btn-danger"><i class="fa fa-trash"></a></td>
+                    <td class="text-center" title="編集"><%=link_to "/buyers/claims/#{claim.id}/edit" , method: :get do %><i class="fa fa-edit"><% end %></td>
+                    <td class="text-center" title="削除"><%= link_to "/buyers/claims/#{claim.id}" , method: :delete do %><i class="fa fa-trash"><% end %></td>
                   </tr>
                   <% end %>
                   <% else %>
@@ -102,8 +102,8 @@
                     <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claims.reason_status.find_value(claim&.reason_status) %></a></td>
                     <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claims.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
-                    <td class="text-center" title="編集"><a href="claim-info.html" class="btn btn-primary"><i class="fa fa-edit"></a></td>
-                    <td class="text-center" title="削除"><a href="claim-info.html" class="btn btn-danger"><i class="fa fa-trash"></a></td>
+                    <td class="text-center" title="編集"><%=link_to "/buyers/claims/#{claim.id}/edit" , method: :get do %><i class="fa fa-edit"><% end %></td>
+                    <td class="text-center" title="削除"><%= link_to "/buyers/claims/#{claim.id}", method: :delete do %><i class="fa fa-trash"><% end %></td>
                     </tr>
                   <% end %>
                 <% end %>

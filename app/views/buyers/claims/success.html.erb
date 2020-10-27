@@ -1,0 +1,17 @@
+<% content_for :title, 'NEWJI | クレーム(新規登録)' %>
+<% breadcrumb_add 'クレーム' %>
+<% breadcrumb_add '不適合'%>
+
+<% content_for :content_header do %>
+<div class="card card--login">
+  <div class="card-body">
+    <div class="text-center">
+      <h4 class="login-head text-center font">クレーム/不適合内容を登録しました
+        サプライヤーからのご回答をお待ちください</h4>
+    </div>
+  </div>
+</div>
+<div class="w-90 text-center margin-bottom30">
+  <a href="<%=buyers_claims_path%>" class="to-top">クレームトップに戻る</a>
+</div>
+<%end%>

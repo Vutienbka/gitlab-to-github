@@ -6,14 +6,14 @@ $(document).ready(function (e) {
     $(this).prop('selected', value)
   })
 
-  $('input[type="text"]').each(function (){
+  $('input[type="text"]').each(function () {
     var name = $(this).attr('name');
     var value = sessionStorage.getItem(name);
     $(this).val(value);
-})
+  })
 
   var availableTags = []
-  $("#form-nolabel-claim-code").keyup(function () {
+  $("#form-nolabel-claim-code").keypress(function () {
     availableTags = [];
     $.ajax({
       type: "POST",
@@ -102,11 +102,11 @@ $(document).ready(function (e) {
       }
     });
 
-    $('input[type="text"]').each(function (){
+    $('input[type="text"]').each(function () {
       var name = $(this).attr('name');
       var value = $(this).val()
-      sessionStorage.setItem(name,value);
-  })
+      sessionStorage.setItem(name, value);
+    })
 
   });
 
