@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Buyers::CatalogsController < Buyers::BaseController
+  include StaticData
   before_action :get_parent_catalogs
 
   def index
     if params[:q].blank?
       @q = ItemRequest.ransack(params[:q])
-      @item_requests = @q.result.page(params[:page]).per 10
+      @item_requests = @q.result.page(params[:page]).per ITEM_PER_PAGE
     else
       item_sku_id = ItemRequest.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:status_cont]}%").ids
       item_name_id = ItemRequest.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:status_cont]}%").ids
@@ -15,7 +16,7 @@ class Buyers::CatalogsController < Buyers::BaseController
       ids = item_sku_id + item_name_id + catalog_id + supplier_id
       @item_requests = ItemRequest.where(id: ids).includes([:item_info])
 
-      @q = @item_requests.ransack.result.page(params[:page]).per 10
+      @q = @item_requests.ransack.result.page(params[:page]).per ITEM_PER_PAGE
       render :search unless @item_requests.nil?
     end
   end

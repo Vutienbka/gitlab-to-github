@@ -37,6 +37,7 @@ $(document).ready(function () {
     let item_code = $('.item-code').text().replace('商品コード：', '');
     $('#claim_item_code').val(item_code);
     localStorage.setItem("item_code_from_url", item_code);
+    localStorage.setItem("filter_item_code", item_code)
     $.ajax({
       type: 'GET',
       url: '/buyers/searchs/claim_suggest_search',

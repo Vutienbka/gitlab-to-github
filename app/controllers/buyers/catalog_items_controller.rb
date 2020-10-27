@@ -1,8 +1,9 @@
 class Buyers::CatalogItemsController < Buyers::BaseController
+  include StaticData
   before_action :set_catalog
 
   def index
-    @catalog_items = @catalog.item_requests.where(status: 7).page(params[:page]).per 10
+    @catalog_items = @catalog.item_requests.where(status: 7).page(params[:page]).per ITEM_PER_PAGE
   end
 
   def show

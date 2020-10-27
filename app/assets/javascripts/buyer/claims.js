@@ -1,4 +1,5 @@
 $(document).ready(function (e) {
+  $('input#item_code').val(localStorage.getItem('filter_item_code'));
   $('select option').each(function () {
     var data_name = $(this).attr('value');
     var value = sessionStorage.getItem(data_name)
@@ -56,7 +57,6 @@ $(document).ready(function (e) {
         })
     })
 
-
     $("#form-nolabel-claim-code").autocomplete({
       source: availableTags
     });
@@ -72,12 +72,14 @@ $(document).ready(function (e) {
   })
 
   $(document).on('click', '#former_claim_list', function () {
+    sessionStorage.clear();
     var item_code = $('#form-nolabel-claim-code').val().trim();
     if (item_code === '') {
       item_code = 'blank';
     }
     var new_url = $('#former_claim_list').attr('href') + '?item_code=' + item_code;
     $('#former_claim_list').attr('href', new_url);
+    localStorage.setItem("filter_item_code", item_code)
   })
 
   $('#claim_filter').on('click', function (e) {
@@ -86,12 +88,12 @@ $(document).ready(function (e) {
     if (item_code != undefined) {
       item_code = item_code.replace('商品コード：', '').trim();
     }
+    $('#claim-search').val('');
     $('#filter').submit();
   });
 
   $('#filter').on('submit', function () {
     sessionStorage.clear();
-
     $('select option').each(function () {
       if ($(this).is(':selected')) {
         var data_name = $(this).attr('value');

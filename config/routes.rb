@@ -158,6 +158,7 @@ Rails.application.routes.draw do
       member do
         get :new
         post :info
+        get :claim_detail
       end
     end
     resources :samples, only: %i[index] do

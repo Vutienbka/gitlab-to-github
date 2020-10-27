@@ -5,6 +5,7 @@ class Claims < ApplicationRecord
   serialize :classify
   belongs_to :item_request, optional: true, foreign_key: 'item_request_id'
   belongs_to :supplier, optional: true, foreign_key: 'supplier_id'
+  belongs_to :buyer, class_name: 'Buyer', optional: true, foreign_key: 'buyer_id'
   PARAMS_ATTRIBUTES = [
    :classify, :claim_content, :lot_number,
     { claims_image: [] }

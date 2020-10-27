@@ -1,17 +1,17 @@
-<% breadcrumb_add 'クレーム' %>
-<% breadcrumb_add '不適合'%>
-<%= javascripts 'buyer/date_picker', 'buyer/claims', 'buyer/searchs' %>
-<%= stylesheets 'buyer/searchs' %>
+<% breadcrumb_add "クレーム" %>
+<% breadcrumb_add "不適合" %>
+<%= javascripts "buyer/date_picker", "buyer/claims", "buyer/searchs" %>
+<%= stylesheets "buyer/searchs" %>
 
 <% content_for :content_header do %>
 <section class="content">
       <div class="mb-4">
-        <%= search_form_for @q, url: search_by_submit_buyers_claims_path, method: 'get', html: { id: 'form_claims_search', class: 'form_claims_search' } do |f| %>
+        <%= search_form_for @q, url: search_by_submit_buyers_claims_path, method: "get", html: { id: "form_claims_search", class: "form_claims_search" } do |f| %>
           <div class="input-group">
           <input type="hidden" name='item_code' id="claim_item_code">
-            <%= f.text_field :lot_number_cont, class: "form-control form-control-navbar form-control--ie", placeholder: "〇〇、〇〇などで検索", id: "claim-search", autocomplete: 'off' %>
+            <%= f.text_field :lot_number_cont, class: "form-control form-control-navbar form-control--ie", placeholder: "〇〇、〇〇などで検索", id: "claim-search", autocomplete: "off" %>
             <div class="input-group-append">
-              <%= f.submit "検索", class: 'sbtn5', id:'search_claim_with_submit' %>
+              <%= f.submit "検索", class: "sbtn5", id: "search_claim_with_submit" %>
             </div>
           </div>
         <% end %>
@@ -23,7 +23,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body card-body--ordering">
-            <% if params[:item_code].present? && (!params[:item_code].eql? 'blank') %>
+            <% if params[:item_code].present? && (!params[:item_code].eql? "blank") %>
               <div class="px-1">
                 <div class="text-center mt-4 pb-3 border-bottom">
                   <h4 class="login-head text-center font-bold item-code">商品コード：<%= @item_info&.SKU %></h4>
@@ -33,7 +33,7 @@
             <% end %>
               <div class="row">
                 <div class="col-12 pt-3">
-                  <%= form_for :claim, url: filter_buyers_claims_path, html: { id: 'filter' },method: 'get' do |f| %>
+                  <%= form_for :claim, url: filter_buyers_claims_path, html: { id: "filter" }, method: "get" do |f| %>
                     <!-- select -->
                     <input type='hidden' name='item_code' id='item_code'>
                     <div class="form-group narrow-down-sp-select--ordering">
@@ -51,11 +51,11 @@
                         </div>
                         <div class="select-wrapper ml-0 ml-sm-3">
                           <label class="narrow-down-sp-title mb-0" for="option1">原因/対策</label>
-                          <%= f.select(:reason_counter_plans, Claims&.reason_counter_plans.options, { include_blank: '全て' }, name: 'claim[reason_counter_plans]', class: 'form-control form-control--select narrow-down-sp-select', id: 'option1') %>
+                          <%= f.select(:reason_counter_plans, Claims&.reason_counter_plans.options, { include_blank: "全て" }, name: "claim[reason_counter_plans]", class: "form-control form-control--select narrow-down-sp-select", id: "option1") %>
                         </div>
                         <div class="select-wrapper ml-0 ml-sm-3">
                           <label class="narrow-down-sp-title mb-0" for="option2">不適合区分</label>
-                          <%= f.select(:classifies, Claims&.classifies.options , { include_blank: '全て' }, class: 'form-control form-control--select narrow-down-sp-select', id: 'option2', name: "claim[classify]") %>
+                          <%= f.select(:classifies, Claims&.classifies.options, { include_blank: "全て" }, class: "form-control form-control--select narrow-down-sp-select", id: "option2", name: "claim[classify]") %>
                         </div>
                         <input class="sbtn5 sbtn5--select ml-0 ml-sm-3 mt-2 mt-sm-auto" id="claim_filter" type="submit" value="絞り込み" />
                       </div>
@@ -82,10 +82,10 @@
                   <% if @claim_classify_param.present? %>
                   <% if claim&.classify&.include? @claim_classify %>
                   <tr>
-                    <td class="text-center" title="クレームナンバー"><%= claim.id %></td>
-                    <td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d-%m-%Y")%></td>
-                    <td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
-                    <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(', ') if claim&.classify.present? %></td>
+                    <td class="text-center" title="クレームナンバー"><%= link_to claim_detail_buyers_claim_path(claim) do %><%= claim.id %><% end %></td>
+                    <td class="text-center" title="登録日"><%= link_to claim_detail_buyers_claim_path(claim) do %><%= claim&.created_at&.strftime("%d-%m-%Y") %><% end %></td>
+                    <td class="text-center" title="ロットナンバー"><%= link_to claim_detail_buyers_claim_path(claim) do %><%= claim&.lot_number %><% end %></td>
+                    <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(", ") if claim&.classify.present? %></td>
                     <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claims.reason_status.find_value(claim&.reason_status) %></a></td>
                     <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claims.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
@@ -94,11 +94,11 @@
                   </tr>
                   <% end %>
                   <% else %>
-                  <tr>
-                  <td class="text-center" title="クレームナンバー"><%= claim.id %></td>
-                    <td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d-%m-%Y")%></td>
-                    <td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
-                    <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(', ')if claim&.classify.present?%></td>
+                  <tr>    
+                  <td class="text-center" title="クレームナンバー"><%= link_to claim_detail_buyers_claim_path(claim) do %><%= claim.id %><% end %></td>
+                    <td class="text-center" title="登録日"><%= link_to claim_detail_buyers_claim_path(claim) do %><%= claim&.created_at&.strftime("%d-%m-%Y") %><% end %></td>
+                    <td class="text-center" title="ロットナンバー"><%= link_to claim_detail_buyers_claim_path(claim) do %><%= claim&.lot_number %><% end %></td> 
+                    <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(", ") if claim&.classify.present? %></td>
                     <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claims.reason_status.find_value(claim&.reason_status) %></a></td>
                     <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claims.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
@@ -123,7 +123,7 @@
                 </tfoot>
               </table>
             </div>
-            <%= paginate @claims if @claims.present?%>
+            <%= paginate @claims if @claims.present? %>
           </div>
         </div>
         <!-- /.login-box -->

@@ -12,7 +12,7 @@
     </div>
     <p class="login-head text-center mt-5">クレーム/不適合内容を<span class="textbr">登録してください</span></p>
     <!-- /.login-card-body -->
-    <%=form_for :claims, url: '/claims/' + @claims.id.to_s, method: :patch %>
+    <%=form_for @claims, url: '/claims/' + @claims.id.to_s, method: :patch do |f|%>
     <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
       <label for="form-nolabel-claim-category">
         <span>不適合区分</span>
@@ -74,7 +74,7 @@
 <div class="w-90 text-center margin-bottom30">
   <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top" %>
 </div>
-
+<% end %>
 <%= content_for :content_optional_scripts do %>
 <!--dropzone.js-->
 <%= javascript_include_tag 'plugins/dropzone-5.7.0/dist/dropzone.js' %>
