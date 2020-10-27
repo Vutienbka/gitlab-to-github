@@ -1,5 +1,9 @@
 $(document).ready(function () {
   var item_code_search_submit = $('#claim_item_code').val(localStorage.getItem('item_code_from_url'));
+  var search_input = localStorage.getItem('search_claim_with_submit');
+  if (search_input!=''){
+    $('#claim-search').val(search_input);
+  }
   var availableTags = []
   $('#result').hide();
   $("#newji-serch").keyup(function () {
@@ -38,6 +42,7 @@ $(document).ready(function () {
     $('#claim_item_code').val(item_code);
     localStorage.setItem("item_code_from_url", item_code);
     localStorage.setItem("filter_item_code", item_code)
+    localStorage.setItem('search_claim_with_submit', $(this).val())
     $.ajax({
       type: 'GET',
       url: '/buyers/searchs/claim_suggest_search',
@@ -113,6 +118,13 @@ $(document).ready(function () {
   $('#form_claims_search').submit(function(e){
     let item_code_from_url = getUrlParameter('item_code');
     localStorage.setItem("item_code_from_url", item_code_from_url);
+  })
+
+  $(document).on('click', '#search_claim_with_submit', function(e){
+    let search_input = $('#claim-search').val();
+    if (search_input!=''){
+      localStorage.setItem('search_claim_with_submit', search_input)
+    }
   })
 
   var getUrlParameter = function getUrlParameter(sParam) {
