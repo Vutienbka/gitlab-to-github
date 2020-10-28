@@ -1,19 +1,21 @@
-<%= render 'form', url: buyers_claim_path, method: 'post' %>
+<%= render 'form', url: claim_update_buyers_claim_path, method: 'post' %>
 
 <script type="text/javascript">
   Dropzone.autoDiscover = false;
-  let id = $('.flex--file3').data('item-drawing');
+  let id = $('#claims_id').val();
   let formData = new FormData();
+  let url = '/buyers/claims/' + id + '/update'
 
   $('.dropzone').each(function(){
     $(this).dropzone({
-      url: "/buyers/item_requests/" + id + "/item_drawings/update",
+      url: url,
       dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
       uploadMultiple: true,
       addRemoveLinks: true,
       autoProcessQueue: false,
       parallelUploads: 100,
       maxFiles: 100,
+      acceptedFiles: ".jpeg,.jpg,.png,.gif",
       headers: {
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       },
@@ -24,20 +26,7 @@
         }
 
         this.on("addedfile", function(file) {
-          switch (myDropzone.element.id) {
-            case 'myDropzone0':
-              $("#btnSubmit").removeAttr('disabled');
-              formData.append("item_drawing[file_specifications][" + this.files.length + "]", file);
-              break;
-            case 'myDropzone1':
-              formData.append("item_drawing[file_assembly_specifications][" + this.files.length + "]", file);
-              break;
-            case 'myDropzone2':
-              formData.append("item_drawing[file_packing_specifications][" + this.files.length + "]", file);
-              break;
-            default:
-              break;
-          }
+          formData.append("claim[claims_image][" + this.files.length + "]", file);
           // Prevent upload duplicate files
           if (this.files.length) {
             var i, len;
@@ -51,21 +40,9 @@
         });
         this.on("removedfile", function(file) {
           var _ref,
-              url = "/buyers/item_requests/" + id + "/item_drawings/remove_file";
+              url = "/buyers/claims/" + id + "/remove_file";
 
-          switch (myDropzone.element.id) {
-            case 'myDropzone0':
-              var index_of_file_specifications = file.index
-              break;
-            case 'myDropzone1':
-              var index_of_file_assembly_specifications = file.index
-              break;
-            case 'myDropzone2':
-              var index_of_file_packing_specifications = file.index
-              break;
-            default:
-              break;
-          }
+          var index_of_claims_image = file.index
 
           // Prevent action when uploading
           prevent_action_when_uploading();
@@ -74,9 +51,7 @@
             url: url,
             type: "DELETE",
             data: {
-              index_of_file_specifications: index_of_file_specifications,
-              index_of_file_assembly_specifications: index_of_file_assembly_specifications,
-              index_of_file_packing_specifications: index_of_file_packing_specifications,
+              index_of_claims_image: index_of_claims_image,
             },
             headers: {
               'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -93,62 +68,43 @@
             }
           });
         });
-        switch (myDropzone.element.id) {
-          case 'myDropzone0':
-            <% @item_drawing.file_specifications.each_with_index do |image, index| %>
-              var mockFile = {
-                name: "<%= image.file.filename %>",
-                size: <%= image.size %>,
-                index: <%= index %>,
-              }
-              myDropzone.emit("addedfile", mockFile);
-              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
-              myDropzone.emit("complete", mockFile);
-              myDropzone.files.push(mockFile);
-            <% end %>
-            break;
-          case 'myDropzone1':
-            <% @item_drawing.file_assembly_specifications.each_with_index do |image, index| %>
-              var mockFile = {
-                name: "<%= image.file.filename %>",
-                size: <%= image.size %>,
-                index: <%= index %>,
-              }
-              myDropzone.emit("addedfile", mockFile);
-              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
-              myDropzone.emit("complete", mockFile);
-              myDropzone.files.push(mockFile);
-            <% end %>
-            break;
-          case 'myDropzone2':
-            <% @item_drawing.file_packing_specifications.each_with_index do |image, index| %>
-              var mockFile = {
-                name: "<%= image.file.filename %>",
-                size: <%= image.size %>,
-                index: <%= index %>,
-              }
-              myDropzone.emit("addedfile", mockFile);
-              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
-              myDropzone.emit("complete", mockFile);
-              myDropzone.files.push(mockFile);
-            <% end %>
-            break;
-          default:
-            break;
-        }
+        <% @claim.claims_image.each_with_index do |image, index| %>
+          var mockFile = {
+            name: "<%= image.file.filename %>",
+            size: <%= image.size %>,
+            index: <%= index %>,
+          }
+          myDropzone.emit("addedfile", mockFile);
+          myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+          myDropzone.emit("complete", mockFile);
+          myDropzone.files.push(mockFile);
+        <% end %>
       }
     });
   });
 
-  $(".continue-btn").on("click", function(e) {
+  $("#btnSubmit").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
+
+    let item_request_id = $('#item_request_id').val();
+    let claim_classify = $('#form-nolabel-claim-category').val();
+    let claim_content = $('#form-nolabel-claim-detail').val();
+    let claim_lot_number = $('#form-nolabel-claim-lot-number').val();
+
+    formData.append("item_request_id", item_request_id);
+    formData.append("claim[item_request_id]", item_request_id);
+    formData.append("claim[classify][]", claim_classify);
+    formData.append("claim[claim_content]", claim_content);
+    formData.append("claim[lot_number]", claim_lot_number);
+
+    console.log(formData)
 
     // Prevent action when uploading
     prevent_action_when_uploading();
 
     $.ajax({
-      url: "/buyers/item_requests/" + id + "/item_drawings/update",
+      url: url,
       type: "POST",
       data:  formData,
       dataType: 'json',
@@ -158,7 +114,7 @@
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       },
       success: function(data) {
-        window.location.href = "/buyers/item_requests/" + id + "/item_images/edit"
+        window.location.href = '/buyers/claims/' + data
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log('AJAX call failed.');
@@ -171,7 +127,7 @@
   });
 
   function prevent_action_when_uploading() {
-    $('.flex--file3').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+    $('.dropzone').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
     $("#btnSubmit").attr('disabled', 'disabled');
     $(".dz-remove").addClass('d-none');
   }

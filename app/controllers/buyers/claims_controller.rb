@@ -4,7 +4,7 @@ class Buyers::ClaimsController < Buyers::BaseController
   include StaticData
   before_action :redirect_to_profile, except: %i[list_claim]
   before_action :item_requests, only: %i[new create]
-  before_action :claims, except: %i[index new]
+  before_action :claims, :claim, except: %i[index new]
 
   def index; end
 
@@ -19,7 +19,7 @@ class Buyers::ClaimsController < Buyers::BaseController
 
     if @claim.save
       respond_to do |format|
-        format.html { redirect_to uyers_claim_path(@claim), success: I18n.t('create.success') }
+        format.html { redirect_to buyers_claim_path(@claim), success: I18n.t('create.success') }
         format.json { render json: @claim.id }
       end
     else
@@ -35,25 +35,37 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claims_images = @current_claim&.claims_image&.map { |image| image.url }
   end
 
-  def edit
-    @item_info = current_user.claims.find_by(id: params[:id])&.item_request&.item_info
-    @claim = current_user.claims.find_by(id: params[:id])
+  def edit; end
+
+  def update
+    if @claim.present?
+      @claim.claims_image = Dropzone::AddFilesService.new('claim', 'claims_image', @claim.claims_image, params).call
+      @claim.classify = params[:claim][:classify]
+      @claim.claim_content = params[:claim][:claim_content]
+      @claim.lot_number = params[:claim][:lot_number]
+
+      if @claim.save
+        respond_to do |format|
+          format.html { redirect_to buyers_claim_path(@claim), success: I18n.t('create.success') }
+          format.json { render json: @claim.id }
+        end
+      else
+        flash.now[:alert] = I18n.t('update.failed')
+        render :edit
+      end
+    end
   end
 
-  def updated
-    @claim = current_user.claims.find_by(id: params[:id])
-    if @claim.present?
-    @claim.classify = params[:claim][:classify]
-    @claim.lot_number = params[:claim][:lot_number].to_i
-    @claim.claim_content = params[:claim][:claim_content]
-    @claim.claims_image = params[:claim][:claims_image]
+  def remove_file
+    if params[:index_of_claims_image].present?
+      remain_files = Dropzone::RemoveFileService.new(params[:index_of_file_specifications], @claim.claims_image).call
+      @claim.claims_image = remain_files
+      @claim.remove_claims_image = true if remain_files.empty?
+    end
     @claim.save
-    render :success
-  end
   end
 
   def destroy
-    @claim = @claims.find_by(id: params[:id])
     if @claim.present? && @claim.destroy
       return redirect_to table_buyers_claims_path, flash: { success: I18n.t('destroy.success') }
     end
@@ -186,6 +198,10 @@ class Buyers::ClaimsController < Buyers::BaseController
 
   def claims
     @claims = current_user.claims
+  end
+
+  def claim
+    @claim = @claims.find_by(id: params[:id]) if @claims.present?
   end
 
   def item_requests

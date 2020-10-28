@@ -144,7 +144,7 @@ Rails.application.routes.draw do
 
     resources :orders, only: %i[index] do
     end
-    resources :claims do
+    resources :claims, except: %i[update] do
       collection do
         get :success
         post :auto_display_name
@@ -156,7 +156,8 @@ Rails.application.routes.draw do
         get :search_by_submit
       end
       member do
-        post :updated
+        post 'update', to: 'claims#update', as: :claim_update
+        delete 'remove_file', to: 'claims#remove_file', as: :claim_remove_file
         post :info
       end
     end

@@ -16,6 +16,8 @@
     <%= form_for @claim, url: url, html: {multipart: true}, method: method do |f| %>
       <%= hidden_field_tag :item_request_id, @item_request&.id %>
       <%= f.hidden_field :item_request_id, value: @item_request&.id %>
+      <%= f.hidden_field :id, value: @claim&.id %>
+
       <input type='hidden' value="<%=params[:id] %>" id='claims_id'>
       <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
         <label for="form-nolabel-claim-category">
@@ -27,13 +29,14 @@
         <label for="form-nolabel-claim-detail">
           <span>クレーム内容</span>
         </label>
-        <textarea id="form-nolabel-claim-detail" type="text" class="form-control form-control--textarea form-control--ie" placeholder="例）テキストテキストテキストテキストテキストテキストテキストテキストテキスト" name="claim[claim_content]" required></textarea>
+
+        <%= f.text_area :claim_content, id: 'form-nolabel-claim-detail', class: 'form-control form-control--textarea form-control--ie', placeholder: '例）テキストテキストテキストテキストテキストテキストテキストテキストテキスト', required: true %>
       </div>
       <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
         <label for="form-nolabel-claim-lot-number">
           <span>ロットナンバー</span>
         </label>
-        <input id="form-nolabel-claim-lot-number" type="text" class="form-control form-control--ie" name="claim[lot_number]" placeholder="例）3">
+        <%= f.text_field :lot_number, id: 'form-nolabel-claim-lot-number', class: 'form-control form-control--ie', placeholder: '例）3' %>
       </div>
       <div class="input-group input-group--short input-group--has-uploader">
         <div class="input-group__add">
