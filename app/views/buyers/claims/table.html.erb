@@ -90,7 +90,7 @@
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
                     <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
                     <td class="text-center" title="編集"><%=link_to "/buyers/claims/#{claim.id}/edit" , method: :get do %><i class="fa fa-edit"><% end %></td>
-                    <td class="text-center" title="削除"><%= link_to "/buyers/claims/#{claim.id}" , method: :delete do %><i class="fa fa-trash"><% end %></td>
+                    <td class="text-center" title="削除"><%= link_to buyers_claim_path(claim), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %><i class="fa fa-trash"><% end %></td>
                   </tr>
                   <% end %>
                   <% else %>
@@ -103,7 +103,7 @@
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
                     <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
                     <td class="text-center" title="編集"><%=link_to "/buyers/claims/#{claim.id}/edit" , method: :get do %><i class="fa fa-edit"><% end %></td>
-                    <td class="text-center" title="削除"><%= link_to "/buyers/claims/#{claim.id}", method: :delete do %><i class="fa fa-trash"><% end %></td>
+                    <td class="text-center" title="削除"><%= link_to buyers_claim_path(claim), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %><i class="fa fa-trash"><% end %></td>
                     </tr>
                   <% end %>
                 <% end %>

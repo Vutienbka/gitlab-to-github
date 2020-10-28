@@ -1,5 +1,6 @@
 class Claim < ApplicationRecord
   extend Enumerize
+  acts_as_paranoid
   mount_uploaders :claims_image, ImageUploader
   serialize :claims_image, JSON
   serialize :classify, JSON

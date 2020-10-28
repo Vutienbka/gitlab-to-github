@@ -35,11 +35,31 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claims_images = @current_claim&.claims_image&.map { |image| image.url }
   end
 
-  def destroy
+  def edit
+    @item_info = current_user.claims.find_by(id: params[:id])&.item_request&.item_info
+    @claim = current_user.claims.find_by(id: params[:id])
+  end
+
+  def updated
     @claim = current_user.claims.find_by(id: params[:id])
     if @claim.present?
-    return redirect_to table_buyers_claims_path if @claim.destroy
+    @claim.classify = params[:claim][:classify]
+    @claim.lot_number = params[:claim][:lot_number].to_i
+    @claim.claim_content = params[:claim][:claim_content]
+    @claim.claims_image = params[:claim][:claims_image]
+    @claim.save
+    render :success
+  end
+  end
+
+  def destroy
+    @claim = @claims.find_by(id: params[:id])
+    if @claim.present? && @claim.destroy
+      return redirect_to table_buyers_claims_path, flash: { success: I18n.t('destroy.success') }
     end
+
+    flash[:alert] = I18n.t('destroy.failed')
+    redirect_to table_buyers_claims_path
   end
 
   def input; end
@@ -138,23 +158,6 @@ class Buyers::ClaimsController < Buyers::BaseController
       return render :success if @claim.save
     end
     redirect_to buyers_claim_path
-  end
-
-  def edit
-    @item_info = current_user.claims.find_by(id: params[:id])&.item_request&.item_info
-    @claim = current_user.claims.find_by(id: params[:id])
-  end
-
-  def updated
-    @claim = current_user.claims.find_by(id: params[:id])
-    if @claim.present?
-    @claim.classify = params[:claim][:classify]
-    @claim.lot_number = params[:claim][:lot_number].to_i
-    @claim.claim_content = params[:claim][:claim_content]
-    @claim.claims_image = params[:claim][:claims_image]
-    @claim.save
-    render :success
-  end
   end
 
   def auto_display_name

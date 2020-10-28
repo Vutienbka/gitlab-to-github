@@ -1,165 +1,178 @@
-<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone' %>
-<% content_for :title, 'NEWJI | クレーム(新規登録)' %>
-<% breadcrumb_add 'クレーム', buyers_claims_path %>
-<% breadcrumb_add '不適合'%>
+<%= render 'form', url: buyers_claim_path, method: 'post' %>
 
-<% content_for :content_header do %>
-<div class="card card--login">
-  <div class="card-body">
-    <div class="text-center">
-      <h4 class="login-head text-center font-bold">商品コード：<%=@item_info&.SKU%></h4>
-      <h6 class="login-head--small font-normal">名称：<%=@item_info&.name%></h6>
-    </div>
-    <p class="login-head text-center mt-5">クレーム/不適合内容を<span class="textbr">登録してください</span></p>
-    <!-- /.login-card-body -->
-    <%= form_for :claim, url:  updated_buyers_claim_path(params[:id]), method: 'post' do |f| %>
-    <input type='hidden' value="<%=params[:id] %>" id='claims_id'>
-    <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
-      <label for="form-nolabel-claim-category">
-        <span>不適合区分</span>
-      </label>
-      <%= f.select :classify, Claim.classifies.options , { include_blank: false}, selected: @claim.classify&.map {|a| a} , class: 'form-control form-control--ie form-control--select2', id: 'form-nolabel-claim-category', required:'required', multiple: "multiple" %>
-    </div>
-    <div class="input-group input-group--short input-group--has-uploader mt-5 mb-4">
-      <label for="form-nolabel-claim-detail">
-        <span>クレーム内容</span>
-      </label>
-      <textarea id="form-nolabel-claim-detail" type="text" value="" class="form-control form-control--textarea form-control--ie" placeholder="例）テキストテキストテキストテキストテキストテキストテキストテキストテキスト" name="claim[claim_content]" required><%=@claim&.claim_content%></textarea>
-    </div>
-    <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
-      <label for="form-nolabel-claim-lot-umber">
-        <span>ロットナンバー</span>
-      </label>
-      <input id="form-nolabel-claim-lot-umber" type="text" value="<%=@claim&.lot_number%>" class="form-control form-control--ie" name="claim[lot_number]" placeholder="例）3">
-    </div>
-    <div class="input-group input-group--short input-group--has-uploader">
-      <div class="input-group__add">
-        <i class="fas fa-plus input-plus"></i>
-        <a href="#" class="input-add">ロットナンバーを追加</a>
-      </div>
-      <input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie mt-3 d-none" name="claim-rot-number" placeholder="例）3">
-    </div>
-    <div class="file-uploader--with-input w-80--sp w-100--sp--450 mt-5 mt-md-4 mb-4">
-      <label class="w-100 file-label-wrap file-label-wrap--left">
-        <span class="file-label file-label--left">クレーム画像</span>
-      </label>
-      <div class="dropzone" id="itemImageDropzone" value="<%=@claim&.claims_image%>">
-        <div class="fallback">
-          <%= f.file_field(:claims_image, multiple: true) %>
-        </div>
-      </div>
-    </div>
+<script type="text/javascript">
+  Dropzone.autoDiscover = false;
+  let id = $('.flex--file3').data('item-drawing');
+  let formData = new FormData();
 
-    <div class="row">
-      <button type="submit" class="btn w-30 newji-btn--pink mt-4 w-60--sp" id="btnSubmit">送信</button>
-    </div>
+  $('.dropzone').each(function(){
+    $(this).dropzone({
+      url: "/buyers/item_requests/" + id + "/item_drawings/update",
+      dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
+      uploadMultiple: true,
+      addRemoveLinks: true,
+      autoProcessQueue: false,
+      parallelUploads: 100,
+      maxFiles: 100,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      init: function() {
+        var myDropzone = this;
+        if (myDropzone.files.length <= 0 && myDropzone.element.id == 'myDropzone0') {
+          $("#btnSubmit").attr('disabled', 'disabled');
+        }
 
-    <% end %>
-  </div>
-</div>
-<!-- /.login-box -->
-
-<div class="w-90 text-center margin-bottom30">
-  <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top" %>
-  <!--dropzone.js-->
-  <%= javascript_include_tag 'plugins/dropzone-5.7.0/dist/dropzone.js' %>
-  <!--dropzone IEのための関数読み込み-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.7/polyfill.min.js"></script>
-  <% end%>
-
-
-
-
-  <script>
-    $(document).ready(function() {
-      $('.form-control--select2').select2({
-        placeholder: '選択してください。',
-        allowClear: true,
-        // このオプションは、複数選択モードを有効にします。
-        multiple: true,
-        //追加を可能にします
-        tags: true,
-      });
-    });
-
-    var claims_id = $('#claims_id').val();
-    console.log(claims_id);
-    var url = "";
-    console.log(url);
-    Dropzone.autoDiscover = false;
-    let formData = new FormData();
-    $('.dropzone').each(function() {
-      $(this).dropzone({
-        url: url,
-        dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
-        uploadMultiple: true,
-        addRemoveLinks: true,
-        autoProcessQueue: false,
-        parallelUploads: 100,
-        maxFiles: 100,
-        headers: {
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-        init: function() {
-          var myDropzone = this;
-          console.console.log(myDropzone);
-
-          this.on("addedfile", function(file) {
-            $("#btnSubmit").removeAttr('disabled');
-            formData.append("claim[claims_image][" + this.files.length + "]", file);
-            // Prevent upload duplicate files
-            if (this.files.length) {
-              var i, len;
-              for (i = 0, len = this.files.length; i < len - 1; i++) {
-                if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
-                  alert("このファイル" + file.name + "が既に存在しています。");
-                  this.removeFile(file);
-                }
+        this.on("addedfile", function(file) {
+          switch (myDropzone.element.id) {
+            case 'myDropzone0':
+              $("#btnSubmit").removeAttr('disabled');
+              formData.append("item_drawing[file_specifications][" + this.files.length + "]", file);
+              break;
+            case 'myDropzone1':
+              formData.append("item_drawing[file_assembly_specifications][" + this.files.length + "]", file);
+              break;
+            case 'myDropzone2':
+              formData.append("item_drawing[file_packing_specifications][" + this.files.length + "]", file);
+              break;
+            default:
+              break;
+          }
+          // Prevent upload duplicate files
+          if (this.files.length) {
+            var i, len;
+            for (i = 0, len = this.files.length; i < len - 1; i++) {
+              if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+                alert("このファイル" + file.name + "が既に存在しています。");
+                this.removeFile(file);
               }
             }
-          });
-          this.on("removedfile", function(file) {
-            if (myDropzone.files.length <= 0) {
-              $("#btnSubmit").attr('disabled', 'disabled');
+          }
+        });
+        this.on("removedfile", function(file) {
+          var _ref,
+              url = "/buyers/item_requests/" + id + "/item_drawings/remove_file";
+
+          switch (myDropzone.element.id) {
+            case 'myDropzone0':
+              var index_of_file_specifications = file.index
+              break;
+            case 'myDropzone1':
+              var index_of_file_assembly_specifications = file.index
+              break;
+            case 'myDropzone2':
+              var index_of_file_packing_specifications = file.index
+              break;
+            default:
+              break;
+          }
+
+          // Prevent action when uploading
+          prevent_action_when_uploading();
+
+          $.ajax({
+            url: url,
+            type: "DELETE",
+            data: {
+              index_of_file_specifications: index_of_file_specifications,
+              index_of_file_assembly_specifications: index_of_file_assembly_specifications,
+              index_of_file_packing_specifications: index_of_file_packing_specifications,
+            },
+            headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+              location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('AJAX call failed.');
+              console.log(textStatus + ': ' + errorThrown);
+            },
+            complete: function() {
+              console.log('AJAX call completed');
             }
           });
+        });
+        switch (myDropzone.element.id) {
+          case 'myDropzone0':
+            <% @item_drawing.file_specifications.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case 'myDropzone1':
+            <% @item_drawing.file_assembly_specifications.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          case 'myDropzone2':
+            <% @item_drawing.file_packing_specifications.each_with_index do |image, index| %>
+              var mockFile = {
+                name: "<%= image.file.filename %>",
+                size: <%= image.size %>,
+                index: <%= index %>,
+              }
+              myDropzone.emit("addedfile", mockFile);
+              myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+              myDropzone.emit("complete", mockFile);
+              myDropzone.files.push(mockFile);
+            <% end %>
+            break;
+          default:
+            break;
         }
-      });
+      }
     });
+  });
 
-    $(".continue-btn").on("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+  $(".continue-btn").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-      // Prevent action when uploading
+    // Prevent action when uploading
+    prevent_action_when_uploading();
 
-      $("#btnSubmit").attr('disabled', 'disabled');
-      $(".dz-remove").addClass('d-none');
-
-      $.ajax({
-        url: "/buyers/claims",
-        type: "POST",
-        data: formData,
-        dataType: 'json',
-        contentType: false,
-        processData: false,
-        headers: {
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-          window.location.href = "/buyers/claims/new"
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          console.log('AJAX call failed.');
-          console.log(textStatus + ': ' + errorThrown);
-        },
-        complete: function() {
-          console.log('AJAX call completed');
-        }
-      });
+    $.ajax({
+      url: "/buyers/item_requests/" + id + "/item_drawings/update",
+      type: "POST",
+      data:  formData,
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function(data) {
+        window.location.href = "/buyers/item_requests/" + id + "/item_images/edit"
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('AJAX call failed.');
+        console.log(textStatus + ': ' + errorThrown);
+      },
+      complete: function() {
+        console.log('AJAX call completed');
+      }
     });
+  });
 
-    $(document).ready(function() {
-      $("#btnSubmit").attr('disabled', 'disabled');
-    });
-  </script>
+  function prevent_action_when_uploading() {
+    $('.flex--file3').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+    $("#btnSubmit").attr('disabled', 'disabled');
+    $(".dz-remove").addClass('d-none');
+  }
+</script>
