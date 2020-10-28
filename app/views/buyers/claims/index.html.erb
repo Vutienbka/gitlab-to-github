@@ -7,36 +7,37 @@
 <div class="card card--login">
   <div class="card-body login-card-body">
     <p class="login-head text-center">アイテムの商品コードを<span class="textbr">入力してください</span></p>
-    <%# TODO:: Fix @claim %>
-    <%= form_for @claims, url: buyers_claims_path, id: 'new_claims', method: 'post' do |f|%>
-    <div class="input-group input-group--short mt-5 mb-4">
-      <input type='hidden' id='item_info_id'>
-      <label for="form-nolabel-claim-code">
-        <span>商品コード</span>
-      </label>
-      <input id="form-nolabel-claim-code" type="text" class="form-control form-control--ie" name="claim_item_code" placeholder="例）80001580" required autocomplete='off'>
-    </div>
-    <div class="input-group input-group--short mb-4">
-      <label for="form-nolabel-claim-name">
-        <span>名称</span>
-        <small class="d-block d-sm-none"><span>※商品コードを入力すると自動で入力されます。</span></small>
-      </label>
-      <input id="form-nolabel-claim-name" type="text" class="form-control form-control--ie" placeholder="例）ふさかけオウルA ホワイト" value="商品コードを入力すると自動で入力されます。" name="claim-item-name" required>
-    </div>
 
-    <div class="row">
-      <button type="submit" class="btn w-30 newji-btn--pink mt-4 w-60--sp">新規クレーム<span class="textbr">登録</span></button>
-    </div>
+    <%= form_with url: new_buyers_claim_path, id: 'new_claims', method: 'get', local: true do |f| %>
+      <div class="input-group input-group--short mt-5 mb-4">
+        <%= f.hidden_field :item_request_id, id: 'item_request_id' %>
+        <input type='hidden' id='item_info_id'>
+        <label for="form-nolabel-claim-code">
+          <span>商品コード</span>
+        </label>
+        <input id="form-nolabel-claim-code" type="text" class="form-control form-control--ie" name="claim_item_code" placeholder="例）80001580" required autocomplete='off'>
+      </div>
+      <div class="input-group input-group--short mb-4">
+        <label for="form-nolabel-claim-name">
+          <span>名称</span>
+          <small class="d-block d-sm-none"><span>※商品コードを入力すると自動で入力されます。</span></small>
+        </label>
+        <input id="form-nolabel-claim-name" type="text" class="form-control form-control--ie" placeholder="例）ふさかけオウルA ホワイト" value="商品コードを入力すると自動で入力されます。" name="claim-item-name" required>
+      </div>
 
-    <p class="text-center mt-4 mb-4">
-      または
-    </p>
+      <div class="row">
+        <button type="submit" class="btn w-30 newji-btn--pink mt-4 w-60--sp">新規クレーム<span class="textbr">登録</span></button>
+      </div>
 
-    <div class="row">
-      <%= link_to table_buyers_claims_path, class: 'btn w-30 newji-btn--dark-blue w-60--sp', id: 'former_claim_list' do %>
-      過去のクレーム<span class="textbr">一覧を表示</span>
-      <% end %>
-    </div>
+      <p class="text-center mt-4 mb-4">
+        または
+      </p>
+
+      <div class="row">
+        <%= link_to table_buyers_claims_path, class: 'btn w-30 newji-btn--dark-blue w-60--sp', id: 'former_claim_list' do %>
+        過去のクレーム<span class="textbr">一覧を表示</span>
+        <% end %>
+      </div>
     <% end %>
     <!-- /.login-card-body -->
   </div>

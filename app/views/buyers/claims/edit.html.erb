@@ -18,7 +18,7 @@
       <label for="form-nolabel-claim-category">
         <span>不適合区分</span>
       </label>
-      <%= f.select :classify, Claims.classifies.options , { include_blank: false}, selected: @claim.classify&.map {|a| a} , class: 'form-control form-control--ie form-control--select2', id: 'form-nolabel-claim-category', required:'required', multiple: "multiple" %>
+      <%= f.select :classify, Claim.classifies.options , { include_blank: false}, selected: @claim.classify&.map {|a| a} , class: 'form-control form-control--ie form-control--select2', id: 'form-nolabel-claim-category', required:'required', multiple: "multiple" %>
     </div>
     <div class="input-group input-group--short input-group--has-uploader mt-5 mb-4">
       <label for="form-nolabel-claim-detail">

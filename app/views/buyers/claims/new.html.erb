@@ -1,69 +1,95 @@
-<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone'%>
-<%= javascripts 'buyer/select_2' %>
-<% content_for :title, 'NEWJI | クレーム(新規登録)' %>
-<% breadcrumb_add 'クレーム', buyers_claim_path %>
-<% breadcrumb_add '不適合'%>
+<%= render 'form', url: buyers_claims_path, method: 'post' %>
 
-<% content_for :content_header do %>
-<div class="card card--login">
-  <div class="card-body">
-    <div class="text-center">
-      <h4 class="login-head text-center font-bold">商品コード：<%=@item_info&.SKU%></h4>
-      <h6 class="login-head--small font-normal">名称：<%=@item_info&.name%></h6>
-    </div>
-    <p class="login-head text-center mt-5">クレーム/不適合内容を<span class="textbr">登録してください</span></p>
-    <!-- /.login-card-body -->
-    <%= form_for :claims, url: info_buyers_claim_path(params[:id]), html: {multipart: true}, method: 'post' do |f| %>
-    <input type='hidden' value="<%=params[:id] %>" id='claims_id'>
-    <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
-      <label for="form-nolabel-claim-category">
-        <span>不適合区分</span>
-      </label>
-      <%= f.select(:classify, Claims.classifies.options , { include_blank: false, include_hidden: false }, class: 'form-control form-control--ie form-control--select2', id: 'form-nolabel-claim-category', name: "claims[classify][]") %>
-    </div>
-    <div class="input-group input-group--short input-group--has-uploader mt-5 mb-4">
-      <label for="form-nolabel-claim-detail">
-        <span>クレーム内容</span>
-      </label>
-      <textarea id="form-nolabel-claim-detail" type="text" class="form-control form-control--textarea form-control--ie" placeholder="例）テキストテキストテキストテキストテキストテキストテキストテキストテキスト" name="claims[claim_content]" required></textarea>
-    </div>
-    <div class="input-group input-group--short input-group--has-uploader mt-5 mb-1">
-      <label for="form-nolabel-claim-lot-umber">
-        <span>ロットナンバー</span>
-      </label>
-      <input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie" name="claims[lot_number]" placeholder="例）3">
-    </div>
-    <div class="input-group input-group--short input-group--has-uploader">
-      <div class="input-group__add">
-        <i class="fas fa-plus input-plus"></i>
-        <a href="#" class="input-add">ロットナンバーを追加</a>
-      </div>
-      <input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie mt-3 d-none" name="claim-lot-number" placeholder="例）3">
-    </div>
-    <div class="file-uploader--with-input w-80--sp w-100--sp--450 mt-5 mt-md-4 mb-4">
-      <label class="w-100 file-label-wrap file-label-wrap--left">
-        <span class="file-label file-label--left">クレーム画像</span>
-      </label>
-      <div class="dropzone" id="itemImageDropzone">
-        <div class="fallback">
-          <%= f.file_field(:claims_image, multiple: true) %>
-        </div>
-      </div>
-    </div>
+<script>
+  Dropzone.autoDiscover = false;
+  let formData = new FormData();
+  let url = '/buyers/claims'
 
-    <div class="row">
-      <button type="submit" class="btn w-30 newji-btn--pink mt-4 w-60--sp" id="btnSubmit">送信</button>
-    </div>
+  $('.dropzone').each(function(){
+    $(this).dropzone({
+      url: url,
+      dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
+      uploadMultiple: true,
+      addRemoveLinks: true,
+      autoProcessQueue: false,
+      parallelUploads: 100,
+      maxFiles: 100,
+      acceptedFiles: ".jpeg,.jpg,.png,.gif",
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      init: function() {
+        var myDropzone = this;
 
-    <% end %>
-  </div>
-</div>
-<!-- /.login-box -->
+        this.on("addedfile", function(file) {
+          $("#btnSubmit").removeAttr('disabled');
 
-<div class="w-90 text-center margin-bottom30">
-  <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top" %>
-  <% end%>
-</div>
+          formData.append("claim[claims_image][" + this.files.length + "]", file);
 
+          // Prevent upload duplicate files
+          if (this.files.length) {
+            var i, len;
+            for (i = 0, len = this.files.length; i < len - 1; i++) {
+              if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+                alert("このファイル" + file.name + "が既に存在しています。");
+                this.removeFile(file);
+              }
+            }
+          }
+        });
+        this.on("removedfile", function(file) {
+          if (myDropzone.files.length <= 0 && myDropzone.element.id == 'myDropzone0') {
+            $("#btnSubmit").attr('disabled', 'disabled');
+          }
+        });
+      }
+    });
+  });
 
+  $("#btnSubmit").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
+    let item_request_id = $('#item_request_id').val();
+    let claim_classify = $('#form-nolabel-claim-category').val();
+    let claim_content = $('#form-nolabel-claim-detail').val();
+    let claim_lot_number = $('#form-nolabel-claim-lot-number').val();
+
+    formData.append("item_request_id", item_request_id);
+    formData.append("claim[item_request_id]", item_request_id);
+    formData.append("claim[classify][]", claim_classify);
+    formData.append("claim[claim_content]", claim_content);
+    formData.append("claim[lot_number]", claim_lot_number);
+
+    // Prevent action when uploading
+    $('.dropzone').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+    $("#btnSubmit").attr('disabled', 'disabled');
+    $(".dz-remove").addClass('d-none');
+
+    $.ajax({
+      url: url,
+      type: "POST",
+      data:  formData,
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function(data) {
+        window.location.href = '/buyers/claims/' + data
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('AJAX call failed.');
+        console.log(textStatus + ': ' + errorThrown);
+      },
+      complete: function() {
+        console.log('AJAX call completed');
+      }
+    });
+  });
+
+  $(document).ready(function() {
+    $("#btnSubmit").attr('disabled', 'disabled');
+  });
+</script>

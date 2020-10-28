@@ -18,25 +18,23 @@ $(document).ready(function (e) {
     $.ajax({
       type: "POST",
       url: "/buyers/claims/list_item_info",
-      data1: { "claim_item_code": $(this).val() },
+      data: { "claim_item_code": $(this).val() },
       datatype: "json",
       headers: {
         "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
       },
-      success: function (data, textStatus, jqXHR) { },
-      error: function (jqXHR, textStatus, errorThrown) { },
     })
-      .done(function (data1) {
-        for (let i = 0; i < data1.length; i++) {
-          availableTags.push(data1[i].SKU);
-        }
-      })
-      .fail(function (data1) {
-        console.log('Failure');
-      });
+    .done(function (data) {
+      for (let i = 0; i < data.length; i++) {
+        availableTags.push(data[i].SKU);
+      }
+    })
+    .fail(function (data) {
+      console.log('Failure');
+    });
+
     $('body').on('click', 'div.ui-menu-item-wrapper', function (e) {
       availableTags = [];
-      console.log($(this).text());
       $.ajax({
         type: "POST",
         url: "/buyers/claims/auto_display_name",
@@ -45,31 +43,22 @@ $(document).ready(function (e) {
         headers: {
           "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
         },
-        success: function (data, textStatus, jqXHR) { },
-        error: function (jqXHR, textStatus, errorThrown) { },
-      }).done(function (data) {
-        console.log(data);
-        $("#form-nolabel-claim-name").val(data.name);
-        console.log(availableTags);
       })
-        .fail(function (data) {
-          console.log('Failure');
-        })
+      .done(function (data) {
+        $("#form-nolabel-claim-name").val(data.name);
+        $("#item_request_id").val(data.item_request_id);
+        $("#form-nolabel-claim-code").attr('disabled', 'true');
+        $("#form-nolabel-claim-name").attr('disabled', 'true');
+      })
+      .fail(function (data) {
+        console.log('Failure');
+      })
     })
 
     $("#form-nolabel-claim-code").autocomplete({
       source: availableTags
     });
   });
-
-  $(document).on('click', '.ui-menu-item', function () {
-    var item_info_id = $(this).children('div').attr('id').replace('ui-id-', '');
-    $('#item_info_id').val(item_info_id);
-    var url = $('#new_claims').attr('action')
-    url = url + '?item_info_id=' + item_info_id;
-    $('#new_claims').attr('action', url)
-    console.log(url);
-  })
 
   $(document).on('click', '#former_claim_list', function () {
     sessionStorage.clear();
@@ -109,5 +98,4 @@ $(document).ready(function (e) {
     })
 
   });
-
-}); 
+});

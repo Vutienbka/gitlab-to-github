@@ -3,15 +3,36 @@
 class Buyers::ClaimsController < Buyers::BaseController
   include StaticData
   before_action :redirect_to_profile, except: %i[list_claim]
-  before_action :get_claims, except: %i[index new]
+  before_action :item_requests, only: %i[new create]
+  before_action :claims, except: %i[index new]
 
-  def index
-    @claims = Claims.new
-  end
+  def index; end
 
   def new
-    @claims = Claims.new
-    @item_info = current_user.claims.find_by(id: params[:id]).item_request.item_info
+    @claim = Claim.new
+  end
+
+  def create
+    @claim = Claim.new(claims_params)
+    @claim.supplier_id = @item_request.supplier_id
+    @claim.buyer_id = current_user.id
+
+    if @claim.save
+      respond_to do |format|
+        format.html { redirect_to uyers_claim_path(@claim), success: I18n.t('create.success') }
+        format.json { render json: @claim.id }
+      end
+    else
+      flash.now[:alert] = I18n.t('create.failed')
+      render :new
+    end
+  end
+
+  def show
+    @current_claim = @claims.find_by(id: params[:id])
+    @item_info = @current_claim&.item_request&.item_info
+    @catalog = @current_claim&.item_request&.catalog
+    @claims_images = @current_claim&.claims_image&.map { |image| image.url }
   end
 
   def destroy
@@ -20,21 +41,6 @@ class Buyers::ClaimsController < Buyers::BaseController
     return redirect_to table_buyers_claims_path if @claim.destroy
     end
   end
-
-  def create
-    @claim = Claims.new(claims_params)
-    begin
-      ActiveRecord::Base.transaction do
-        @claim.save
-        item_request = ItemInfo.find_by(SKU: params[:claim_item_code]).item_request
-        @claim.update_attributes(item_request_id: item_request.id, supplier_id: item_request.supplier_id, buyer_id: current_user.id)
-        return redirect_to buyers_claim_path(@claim), flash: { success: I18n.t('update.success') }
-      end
-    rescue StandardError
-    flash[:alert] = I18n.t('create.failed')
-    redirect_to buyers_claims_path
-    end
-    end
 
   def input; end
 
@@ -134,13 +140,6 @@ class Buyers::ClaimsController < Buyers::BaseController
     redirect_to buyers_claim_path
   end
 
-  def claim_detail
-    @current_claim = @claims.find_by(id: params[:id])
-    @item_info = @current_claim&.item_request&.item_info
-    @catalog = @current_claim&.item_request&.catalog
-    @claims_images = @current_claim&.claims_image&.map { |image| image.url }
-  end
-
   def edit
     @item_info = current_user.claims.find_by(id: params[:id])&.item_request&.item_info
     @claim = current_user.claims.find_by(id: params[:id])
@@ -158,7 +157,6 @@ class Buyers::ClaimsController < Buyers::BaseController
   end
   end
 
-
   def auto_display_name
     item_info = ItemInfo.find_by_SKU(params[:claim_item_code])
     render json: item_info
@@ -167,10 +165,6 @@ class Buyers::ClaimsController < Buyers::BaseController
   def list_item_info
     item_info_list = ItemInfo.where(item_request_id: current_user.item_requests.ids)
     render json: item_info_list
-  end
-
-  def claims_params
-    params.permit(Claims::PARAMS_ATTRIBUTES)
   end
 
   def check_match(string_params, selection_status)
@@ -182,7 +176,18 @@ class Buyers::ClaimsController < Buyers::BaseController
 
   private
 
-  def get_claims
+  def claims_params
+    params[:claim][:claims_image] = params[:claim][:claims_image].values if params.dig(:claim, :claims_image)
+    params.require(:claim).permit(Claim::PARAMS_ATTRIBUTES)
+  end
+
+  def claims
     @claims = current_user.claims
+  end
+
+  def item_requests
+    @item_requests = current_user.item_requests
+    @item_request = @item_requests.find_by(id: params[:item_request_id]) if @item_requests.present?
+    return redirect_to buyers_claims_path, flash: { alert: 'Do not have permission' } unless @item_request.present?
   end
 end
