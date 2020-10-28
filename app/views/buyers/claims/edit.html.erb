@@ -94,11 +94,11 @@
 
     formData.append("item_request_id", item_request_id);
     formData.append("claim[item_request_id]", item_request_id);
-    formData.append("claim[classify][]", claim_classify);
     formData.append("claim[claim_content]", claim_content);
     formData.append("claim[lot_number]", claim_lot_number);
-
-    console.log(formData)
+    $.each(claim_classify, function( index, value ) {
+      formData.append("claim[classify][]", value);
+    });
 
     // Prevent action when uploading
     prevent_action_when_uploading();
