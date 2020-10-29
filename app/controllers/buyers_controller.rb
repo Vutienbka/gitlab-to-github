@@ -28,8 +28,13 @@ class BuyersController < UsersController
 
   def search_provider
     return @search = Supplier.ransack if params[:search].blank?
+    if params[:supplier_id].present?
+    @search = Supplier.ransack({ supplier_id_cont: params[:supplier_id] })
+    @search_suppliers = @search.result.where(id: params[:supplier_id])
+    else
     @search = Supplier.ransack({ profile_first_name_or_profile_last_name_or_profile_company_name_or_profile_code_cont: params[:search] })
     @search_suppliers = @search.result.includes(:profile)
+    end
   end
   def search_supplier_import
     return @search = Supplier.ransack if params[:search].blank?

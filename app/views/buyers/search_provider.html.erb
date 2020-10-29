@@ -9,6 +9,7 @@
       サプライヤーコード、<span class="textbr">または名称で検索してください</span>
     </p>
     <%=search_form_for(@search, url: search_provider_buyers_path, class: "mt-5", remote: false) do |f| %>
+      <input type='hidden' id='search_supplier_with_id' name='supplier_id'>
       <div class="input-group">
         <input class="form-control form-control--ie" type="search" placeholder="NEWJI登録済みサプライヤーの会社名及び会社コードで検索可" aria-label="Search" id="newji-serch" name="search" autocomplete="off" list="search-candidates">
         <div class="input-group-append">
