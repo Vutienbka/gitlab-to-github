@@ -23,7 +23,7 @@
         <label for="form-nolabel-claim-category">
           <span>不適合区分</span>
         </label>
-        <%= f.select(:classify, Claim.classifies.options , { include_blank: false, include_hidden: false, selected: @claim.classify }, multiple: 'multiple', class: 'form-control form-control--ie form-control--select2', id: 'form-nolabel-claim-category', name: "claim[classify][]") %>
+        <%= f.select(:classify, Claim.classifies.options , { include_blank: false, include_hidden: false, selected: @claim.classify },  class: 'form-control form-control--ie form-control--select2', id: 'form-nolabel-claim-category', name: "claim[classify][]") %>
       </div>
       <div class="input-group input-group--short input-group--has-uploader mt-5 mb-4">
         <label for="form-nolabel-claim-detail">

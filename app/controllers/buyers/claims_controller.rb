@@ -10,6 +10,7 @@ class Buyers::ClaimsController < Buyers::BaseController
 
   def new
     @claim = Claim.new
+    @item_info = current_user.item_requests.find_by_id(params[:item_request_id]).item_info
   end
 
   def create
@@ -35,7 +36,9 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claims_images = @current_claim&.claims_image&.map { |image| image.url }
   end
 
-  def edit; end
+  def edit
+    @item_info = current_user.claims.find_by(id: params[:id]).item_request.item_info
+  end
 
   def update
     if @claim.present?
