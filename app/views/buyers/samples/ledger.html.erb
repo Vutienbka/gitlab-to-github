@@ -1,0 +1,352 @@
+<% content_for :title, 'NEWJI | サンプル台帳' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+
+<% content_for :content_header do %>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <p class="login-head text-center mt-5 mb-5"><strong>サンプル台帳</strong></p>
+        <form action="sample-archive.html">
+          <div class="input-group mt-5 mb-5">
+            <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+            <div class="input-group-append">
+              <input class="sbtn5" type="submit" value="検索" />
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <!-- select -->
+                <div class="">
+                  <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+                  <form action="sample-archive" class="">
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="sample-category">見本種類を選択する</label>
+                      <select class="form-control form-control--select" id="sample-category">
+                        <option>全て</option>
+                        <option>標準見本</option>
+                        <option>限度見本</option>
+                      </select>
+                    </div>
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="category">カテゴリーを選択する</label>
+                      <select class="form-control form-control--select" id="category">
+                        <option>全て</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                      </select>
+                    </div>
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="sample-deadline">有効期限を選択する</label>
+                      <select class="form-control form-control--select" id="sample-deadline">
+                        <option>全て</option>
+                        <option>3ヶ月</option>
+                        <option>2ヶ月</option>
+                        <option>1ヶ月</option>
+                        <option>10日前</option>
+                      </select>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <button type="reset" class="btn newji-btn--gray mt-4">リセット</button>
+                      <button type="submit" class="btn newji-btn--pink mt-4">決定</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-9">
+            <p class="login-head">新着サンプル</p>
+            <div class="row js-sample-archive-wrap">
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">ふさかけオウルB ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/macbook1991_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">MacBook Pro 2030 ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">布 レッド</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">丸くて長くて黒い何かのアイテム ２本...</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">ふさかけオウルB ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/macbook1991_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">MacBook Pro 2030 ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">布 レッド</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/sopudash0I9A2885_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">丸くて長くて黒い何かのアイテム ２本...</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">ふさかけオウルB ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/macbook1991_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">MacBook Pro 2030 ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">布 レッド</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/sopudash0I9A2885_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">丸くて長くて黒い何かのアイテム ２本...</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">ふさかけオウルB ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/macbook1991_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">MacBook Pro 2030 ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">布 レッド</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/sopudash0I9A2885_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">丸くて長くて黒い何かのアイテム ２本...</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">ふさかけオウルB ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/macbook1991_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">MacBook Pro 2030 ブラック</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/PAK75_akaisaten20140813_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">布 レッド</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                <div class="card">
+                  <%= image_tag 'img/sopudash0I9A2885_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                  <div class="mx-1 my-3">
+                    <h6 class="h6"><small>管理番号：CRPOHFC120</small></h6>
+                    <h6 class="h6 font-bold sample-card-title-name">丸くて長くて黒い何かのアイテム ２本...</h6>
+                    <div class="w-100 text-center">
+                      <a class="card-link card-link--sample-archive h6" href="sample-info.html">詳細を見る</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ページネーション  -->
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" disabled>前</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#" disabled>1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">次</a>
+              </li>
+            </ul>
+            <div class="w-100 text-center mt-5 margin-bottom30">
+              <a href="sample-choose.html" class="to-top">前に戻る</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- /.content-header -->
+
+  <!-- カスタマイズ -->
+  <aside class="control-sidebar control-sidebar-light">
+    <div class="sidebar">
+      <h5 class="mt-3 pb-3 border-bottom">カスタマイズ</h5>
+      <!-- ここに色変更などのカスタマイズを追加 -->
+      <div class="control-sidebar-main mt-3">
+        <p><label><input type="checkbox" name="" value="1" class="">&nbsp;文字サイズを変更</label></p>
+        <p>
+          <label><input type="radio" name="color-radio" value="dark" class="">&nbsp;ダークモード</label><br>
+          <label><input type="radio" name="color-radio" value="light" class="" checked>&nbsp;ライトモード</label>
+        </p>
+      </div>
+    </div>
+  </aside>
+</div>
+<%end%>

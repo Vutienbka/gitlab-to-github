@@ -162,6 +162,9 @@ Rails.application.routes.draw do
       end
     end
     resources :samples, only: %i[index] do
+      collection do
+        get :ledger
+      end
     end
   end
 
