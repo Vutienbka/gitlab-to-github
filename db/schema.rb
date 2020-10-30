@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.string "claim_content"
     t.integer "lot_number"
     t.text "claims_image"
-    t.datetime "created_at"
-    t.integer "reason_status"
-    t.integer "counter_plan_status"
     t.integer "item_request_id"
     t.integer "supplier_id"
     t.integer "buyer_id"
+    t.datetime "created_at"
+    t.integer "reason_status"
+    t.integer "counter_plan_status"
     t.datetime "deleted_at"
   end
 
@@ -228,6 +228,11 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
+  create_table "patterns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "pattern"
+    t.integer "samples_id"
+  end
+
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "プロバイダー詳細テーブル", force: :cascade do |t|
     t.integer "admin_id"
     t.bigint "buyer_id"
@@ -262,6 +267,17 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["buyer_id"], name: "fk_request_users1_idx"
+  end
+
+  create_table "samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.integer "category"
+    t.text "code"
+    t.integer "quantity"
+    t.date "delivery_time"
+    t.integer "type"
+    t.integer "delivery_request"
+    t.integer "function"
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
