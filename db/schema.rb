@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.string "claim_content"
     t.integer "lot_number"
     t.text "claims_image"
-    t.integer "item_request_id"
-    t.integer "supplier_id"
-    t.integer "buyer_id"
     t.datetime "created_at"
     t.integer "reason_status"
     t.integer "counter_plan_status"
+    t.integer "item_request_id"
+    t.integer "supplier_id"
+    t.integer "buyer_id"
     t.datetime "deleted_at"
   end
 
