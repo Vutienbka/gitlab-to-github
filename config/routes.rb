@@ -161,9 +161,10 @@ Rails.application.routes.draw do
         post :info
       end
     end
-    resources :samples, only: %i[index] do
+    resources :samples, only: %i[index new] do
       collection do
         get :ledger
+        get :input
       end
     end
   end
