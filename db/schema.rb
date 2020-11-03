@@ -278,6 +278,11 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.integer "type"
     t.integer "delivery_request"
     t.integer "function"
+    t.bigint "buyer_id"
+    t.string "sample_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|

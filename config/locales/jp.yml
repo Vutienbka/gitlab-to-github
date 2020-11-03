@@ -147,3 +147,24 @@ ja:
     check_match_param:
       reason: '原因'
       counterplan: '対策'
+      
+  sample:
+    sample_type:
+      color: 'カラーサンプル'
+      similar_product: '類似品サンプル'
+      design: '意匠サンプル'
+      original: 'オリジナルサンプル'
+    product_category:
+      new: '新製品'
+      existing: '既存品'
+    sample_shape:
+      product: '製品'
+      plate: 'プレート'
+    delivery_request:
+      courier: 'クーリエ'
+      sea_mail: '船便'
+      combine_shipping: '同梱'
+    function:
+      sample: 'サンプル'
+      statndard: '標準見本'
+      limit: '限度見本'  
