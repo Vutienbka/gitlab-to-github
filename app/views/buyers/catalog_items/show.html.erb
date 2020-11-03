@@ -106,10 +106,10 @@
               <h5 class="info-head font-bold">単価：</h5>
               <div class="bg-gray py-0 px-3">
                 <h2 class="pt-3 mb-0 en">
-                  ￥<%= @item_request&.item_info&.cost %>
+                  ￥<%= @cost %>
                 </h2>
                 <h4 class="mt-0 pb-2 en">
-                  <small>$<%= @item_request&.item_info&.cost*0.009355 %></small>
+                  <small>$<%= number_with_precision(@cost*@exchange_rate_to_usd , precision: 3) if  @exchange_rate_to_usd.present?%></small>
                 </h4>
               </div>
 

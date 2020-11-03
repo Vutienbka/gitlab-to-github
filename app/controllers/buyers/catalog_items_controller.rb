@@ -10,6 +10,9 @@ class Buyers::CatalogItemsController < Buyers::BaseController
     @item_request = Catalog.find_by(id: params[:catalog_id]).item_requests.find_by(id: params[:id])
     @supplier = Supplier.find_by(id: @item_request.supplier_id)
     @item_images = @item_request.item_image.file_images.map { |image| image.url }
+    @cost = @item_request&.item_info&.cost
+    @exchange_rate = ExchangeRateService.new('JPY','USD')
+    @exchange_rate_to_usd = @exchange_rate.call
   end
 
   def download_drawing
