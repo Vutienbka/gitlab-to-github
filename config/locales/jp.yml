@@ -111,3 +111,39 @@ ja:
   unauthorized:
     manage:
       all: 'アクセス権限がありません。'
+  enumerize:    
+    classifies:
+      uncategorized: '未分類'
+      mixed_with_foreign_matter: '異物混入'
+      scratches: 'キズ'
+      poor_shape: '形状不良'
+      poor_color: '色調不良（色違い）'
+      wrong_color: '色調不良（色目違い）'
+      rust: 'サビ'
+      wrong_table: 'ラベル違い'
+      insufficient_quantity: '数量不足'
+      exterior_crack: '外装割れ'
+      interior_crack: '外装破損'
+      wrong_design: '意匠違い'
+      missing_part: '部品欠落'
+      shortage_of_part: '部品不足'
+      wrong_quanlity: '数量違い'
+      misassembly: '組み間違い'
+  
+    reason_counter_plans:
+      cause_unanswered: '原因未回答'
+      counterplan_unanswered: '対策未回答'
+      cause_answered: '原因回答済み'
+      counterplan_answered: '対策回答済み'
+
+    reason_status:
+      unanswered: '未回答'
+      answered: '回答済み'
+
+    counter_plan_status:
+      unanswered: '未回答'
+      answered: '回答済み'
+
+    check_match_param:
+      reason: '原因'
+      counterplan: '対策'

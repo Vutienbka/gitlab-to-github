@@ -110,3 +110,39 @@ en:
   unauthorized:
     manage:
       all: 'アクセス権限がありません。'
+  enumerize:    
+    classifies:
+      uncategorized: 'uncategorized'
+      mixed_with_foreign_matter: 'mixed_with_foreign_matter'
+      scratches: 'scratches'
+      poor_shape: 'poor_shape'
+      poor_color: 'poor_color'
+      wrong_color: 'wrong_color'
+      rust: 'rust'
+      wrong_table: 'wrong_table'
+      insufficient_quantity: 'insufficient_quantity'
+      exterior_crack: 'exterior_crack'
+      interior_crack: 'interior_crack'
+      wrong_design: 'wrong_design'
+      missing_part: 'missing_part'
+      shortage_of_part: 'shortage_of_part'
+      wrong_quanlity: 'wrong_quanlity'
+      misassembly: 'misassembly'
+   
+    reason_counter_plans:
+      cause_unanswered: 'cause_unanswered'
+      counterplan_unanswered: 'counterplan_unanswered'
+      cause_answered: 'cause_answered'
+      counterplan_answered: 'counterplan_answered'
+
+    reason_status:
+      unanswered: 'unanswered'
+      answered: 'answered'
+
+    counter_plan_status:
+      unanswered: 'unanswered'
+      answered: 'answered'
+    
+    check_match_param:
+      reason: 'reason'
+      counterplan: 'counterplan'

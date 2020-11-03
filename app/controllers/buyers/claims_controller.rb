@@ -17,7 +17,8 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claim = Claim.new(claims_params)
     @claim.supplier_id = @item_request.supplier_id
     @claim.buyer_id = current_user.id
-
+    @claim.reason_status = Claim.reason_status.find_value(t("enumerize.reason_status.unanswered")).value
+    @claim.counter_plan_status = Claim.counter_plan_status.find_value(t("enumerize.counter_plan_status.unanswered")).value
     if @claim.save
       respond_to do |format|
         format.html { redirect_to buyers_claim_path(@claim), success: I18n.t('create.success') }
@@ -103,19 +104,22 @@ class Buyers::ClaimsController < Buyers::BaseController
         @q = @item_request&.claims.where(buyer_id: current_user.id).ransack(params[:q])
         @claims = @q.result
       end
-      string_params = params[:claim][:reason_counter_plans]
+      string_params = t("enumerize.reason_counter_plans.#{params[:claim][:reason_counter_plans]}")
 
-      if string_params.include? "原因"
+      if string_params.include? t("enumerize.check_match_param.reason") 
         selection_status = @claims.reason_status
         reason_match_string_index = check_match(string_params, selection_status)
       end
 
-      if string_params.include? "対策"
+      if string_params.include? t("enumerize.check_match_param.counterplan") 
         selection_status = @claims.counter_plan_status
         counter_plan_match_string_index = check_match(string_params, selection_status)
-      end
-      @claim_classify = @claims.classifies.find_value(params[:claim][:classify])
-      @claim_classify_param = params[:claim][:classify]
+      end 
+      if params[:claim][:classify].present?
+      @claim_classify = t("enumerize.classifies.#{params[:claim][:classify]}")
+      else
+        @claim_classify = params[:claim][:classify]
+      end 
       @q = @claims&.filter_by_date_range(params[:select_period_from]&.to_date, params[:select_period_to]&.to_date)
         .filter_by_reason_status(reason_match_string_index)
         .filter_by_counter_plan_status(counter_plan_match_string_index).ransack(params[:q])

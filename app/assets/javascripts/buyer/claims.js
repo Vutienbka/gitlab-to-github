@@ -98,4 +98,8 @@ $(document).ready(function (e) {
     })
 
   });
+
+  $(document).on('click', '.back_to_claim_table', function(){
+    sessionStorage.clear();
+  })
 });

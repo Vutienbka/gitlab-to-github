@@ -51,11 +51,12 @@
                         </div>
                         <div class="select-wrapper ml-0 ml-sm-3">
                           <label class="narrow-down-sp-title mb-0" for="option1">原因/対策</label>
-                          <%= f.select(:reason_counter_plans, Claim&.reason_counter_plans.options, { include_blank: "全て" }, name: "claim[reason_counter_plans]", class: "form-control form-control--select narrow-down-sp-select", id: "option1") %>
+                          
+                          <%= f.select :reason_counter_plans, options_for_select(Claim::REASON_COUNTER_PLANS.map { |counterplan| [t("enumerize.reason_counter_plans.#{counterplan}",  locale: locale), counterplan] }.to_h),  { include_blank: "全て" }, name: "claim[reason_counter_plans]", class: "form-control form-control--select narrow-down-sp-select", id: "option1" %>
                         </div>
                         <div class="select-wrapper ml-0 ml-sm-3">
                           <label class="narrow-down-sp-title mb-0" for="option2">不適合区分</label>
-                          <%= f.select(:classifies, Claim&.classifies.options, { include_blank: "全て" }, class: "form-control form-control--select narrow-down-sp-select", id: "option2", name: "claim[classify]") %>
+                          <%= f.select :classifies, options_for_select(Claim::CLASSIFY.map { |classify| [t("enumerize.classifies.#{classify}",  locale: locale), classify] }.to_h),  { include_blank: "全て" }, class: "form-control form-control--select narrow-down-sp-select", id: "option2", name: "claim[classify]" %>
                         </div>
                         <input class="sbtn5 sbtn5--select ml-0 ml-sm-3 mt-2 mt-sm-auto" id="claim_filter" type="submit" value="絞り込み" />
                       </div>
@@ -79,7 +80,7 @@
                 </thead>
                 <tbody>
                 <% @claims&.each do |claim| %>
-                  <% if @claim_classify_param.present? %>
+                  <% if @claim_classify.present? %>
                   <% if claim&.classify&.include? @claim_classify %>
                   <tr>
                     <td class="text-center" title="クレームナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim.id %><% end %></td>
@@ -130,7 +131,7 @@
       </div>
       <!-- /.container-fluid -->
       <div class="w-90 text-center mt-4 margin-bottom30">
-        <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top" %>
+        <%= link_to '商品コード入力に戻る', buyers_claims_path, class: "to-top back_to_claim_table" %>
       </div>
     </section>
 <% end %>

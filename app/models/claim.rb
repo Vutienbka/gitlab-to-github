@@ -14,50 +14,38 @@ class Claim < ApplicationRecord
     { claims_image: [] }
   ].freeze
 
-  CLASSIFY = {
-    "未分類": 0,
-    "異物混入": 1,
-    "キズ": 2,
-    "形状不良": 3,
-    "色調不良（色違い）": 4,
-    "色調不良（色目違い）": 5,
-    "サビ": 6,
-    "ラベル違い": 7,
-    "数量不足": 8,
-    "外装割れ": 9,
-    "外装破損": 10,
-    "意匠違い": 11,
-    "部品欠落": 12,
-    "部品不足": 13,
-    "数量違い": 14,
-    "組み間違い": 15
-  }.freeze
-  enumerize :classifies, in: CLASSIFY, predicates: { predix: true }
+  CLASSIFY = [
+   'uncategorized',
+   'mixed_with_foreign_matter',
+   'scratches',
+   'poor_shape',
+   'poor_color',
+   'wrong_color',
+   'rust',
+   'wrong_table',
+   'insufficient_quantity',
+   'exterior_crack',
+   'interior_crack',
+   'wrong_design',
+   'missing_part',
+   'shortage_of_part',
+   'wrong_quanlity',
+   'misassembly'
+  ]
 
-  REASON_COUNTER_PLAN = {
-    "原因未回答": '原因未回答',
-    "対策未回答": '対策未回答',
-    "原因回答済み": '原因回答済み​',
-    "対策回答済み": '対策回答済み'
-  }.freeze
-  enumerize :reason_counter_plans, in: REASON_COUNTER_PLAN, predicates: { predix: true }
+  REASON_COUNTER_PLANS = ['cause_unanswered', 'counterplan_unanswered', 'cause_answered', 'counterplan_answered']
 
   REASON_STATUS = {
     "未回答": 0,
-    "回答済み": 1
+    "回答済み": 1,
   }.freeze
   enumerize :reason_status, in: REASON_STATUS, predicates: { predix: true }
+
   COUNTER_PLAN_STATUS = {
     "未回答": 0,
     "回答済み": 1
   }.freeze
   enumerize :counter_plan_status, in: COUNTER_PLAN_STATUS, predicates: { predix: true }
-
-  SELECTION = {
-    "未回答": '未回答',
-    "回答済み​": '回答済み​'
-  }.freeze
-  enumerize :selections, in: SELECTION, predicates: { predix: true }
 
   scope :filter_by_date_range, ->(period_from, period_to){ where("STR_TO_DATE(created_at, '%Y-%m-%d') BETWEEN ? AND ?",period_from, period_to) if (period_from.present? && period_to.present?) }
   scope :filter_by_counter_plan_status, -> (counter_plan_status){ where(:counter_plan_status => counter_plan_status) if counter_plan_status.present?}
