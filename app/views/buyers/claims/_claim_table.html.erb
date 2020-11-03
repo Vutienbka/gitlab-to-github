@@ -14,17 +14,18 @@
 	</thead>
 	<tbody>
 	<% claims&.each do |claim| %>
-		<tr>
-			<td class="text-center" title="クレームナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim.id %><% end %></td>
-			<td class="text-center" title="登録日"><%= link_to buyers_claim_path(claim) do %><%= claim&.created_at&.strftime("%d/%m/%Y") %><% end %></td>
-			<td class="text-center" title="ロットナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim&.lot_number %></td>
-			<td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(', ') if claim&.classify.present? %><% end %></td>
-			<td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
-			<td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
-			<td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
-			<td class="text-center" title="編集"><a href="claim-info.html" class="btn btn-primary"><i class="fa fa-edit"></a></td>
-			<td class="text-center" title="削除"><a href="claim-info.html" class="btn btn-danger"><i class="fa fa-trash"></a></td>
-		</tr>
+			<tr>
+				<td type="hidden"><%= claim.id %></td>
+				<td class="text-center" title="クレームナンバー"><%= claim.id %></td>
+				<td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d/%m/%Y") %></td>
+				<td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
+				<td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(', ') if claim&.classify.present? %></td>
+				<td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
+				<td class="text-center" title="原因"><a href="#" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
+				<td class="text-center" title="対策"><a href="#" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
+				<td class="text-center" title="編集"><a href="#" class="btn btn-primary"><i class="fa fa-edit"></a></td>
+				<td class="text-center" title="削除"><a href="#" class="btn btn-danger"><i class="fa fa-trash"></a></td>
+			</tr>
 	<% end %>
 	</tbody>
 	<tfoot>
@@ -41,3 +42,61 @@
 		</tr>
 	</tfoot>
 </table>
+<script>
+$(function () {
+  // デフォルトの設定を変更
+  $.extend( $.fn.dataTable.defaults, {
+      language: {
+          url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+      }
+  });
+
+  $("#example1").DataTable({
+    "responsive": true,
+    "autoWidth": false,
+    "paging": false,
+    "lengthChange": false,
+    "searching": false,
+    "destroy": true,
+    "ordering": false,
+    "info": false
+  });
+
+  $('tr').not('.modal-kakuninn-table tr').click(function(){
+    if($(this).hasClass('select--click')){
+      return;
+    } else {
+      $(this).addClass("select--click");
+    }
+  });
+
+  // セルをマウスオーバー
+  $("td").hover(function(){
+    // 親要素（tr要素）にtargetクラスを追加
+    $(this).parent().addClass("target").addClass('select');
+    //クリックしたときの浮き出を解除
+    $('tr').removeClass("select--click");
+
+    // 親要素から見て、自分が何番目の子要素なのか調べる
+    var myIndex = $(this).index();
+
+    // myIndexに1プラス
+    myIndex ++;
+
+    // 各行の「myIndex番目の子要素」にtargetクラスを追加する
+    $("td:nth-child(" + myIndex + ")").addClass("target");
+  }, function(){
+    // マウスアウト時にtargetクラスを削除
+    $(".target").removeClass("target").removeClass("select");
+
+  });
+
+  /*ページ遷移*/
+  $("tr").click(function() {
+    var claim_id = $(this).find("td:first").html();
+    window.location.href = '/buyers/claims/' + claim_id;
+  });
+
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

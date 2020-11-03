@@ -1,7 +1,8 @@
 <% breadcrumb_add "クレーム" %>
 <% breadcrumb_add "不適合" %>
-<%= javascripts "buyer/date_picker", "buyer/claims", "buyer/searchs" %>
-<%= stylesheets "buyer/searchs" %>
+<%= javascripts "buyer/date_picker", "buyer/claims", "buyer/searchs", "buyer/claim_hover" %>
+<%= javascripts "plugins/datatables/jquery.dataTables.min", "plugins/datatables-bs4/js/dataTables.bootstrap4.min.js", "plugins/datatables-responsive/js/dataTables.responsive.min", "plugins/datatables-responsive/js/responsive.bootstrap4.min" %>
+<%= stylesheets  "buyer/searchs", "buyer/table" %>
 
 <% content_for :content_header do %>
 <section class="content">
@@ -83,9 +84,10 @@
                   <% if @claim_classify.present? %>
                   <% if claim&.classify&.include? @claim_classify %>
                   <tr>
-                    <td class="text-center" title="クレームナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim.id %><% end %></td>
-                    <td class="text-center" title="登録日"><%= link_to buyers_claim_path(claim) do %><%= claim&.created_at&.strftime("%d-%m-%Y") %><% end %></td>
-                    <td class="text-center" title="ロットナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim&.lot_number %><% end %></td>
+                    <td type="hidden"><%= claim.id %></td>
+                    <td class="text-center" title="クレームナンバー"><%= claim.id %></td>
+                    <td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d-%m-%Y") %></td>
+                    <td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
                     <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(", ") if claim&.classify.present? %></td>
                     <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
@@ -96,9 +98,9 @@
                   <% end %>
                   <% else %>
                   <tr>
-                  <td class="text-center" title="クレームナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim.id %><% end %></td>
-                    <td class="text-center" title="登録日"><%= link_to buyers_claim_path(claim) do %><%= claim&.created_at&.strftime("%d-%m-%Y") %><% end %></td>
-                    <td class="text-center" title="ロットナンバー"><%= link_to buyers_claim_path(claim) do %><%= claim&.lot_number %><% end %></td>
+                  <td class="text-center" title="クレームナンバー"><%= claim.id %></td>
+                    <td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d-%m-%Y") %></td>
+                    <td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
                     <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(", ") if claim&.classify.present? %></td>
                     <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
                     <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
