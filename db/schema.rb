@@ -275,7 +275,7 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.text "code"
     t.integer "quantity"
     t.date "delivery_time"
-    t.integer "type"
+    t.integer "classify"
     t.integer "delivery_request"
     t.integer "function"
     t.bigint "buyer_id"
