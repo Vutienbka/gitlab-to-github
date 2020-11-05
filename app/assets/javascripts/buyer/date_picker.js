@@ -131,4 +131,90 @@ $(document).ready(function () {
       $('input, textarea').not(this).removeAttr("readonly");
     });
   }
+
+  $('#form-label-sample-delivery_time').datepicker({
+    autoclose: false,
+    language: 'ja',
+    twentyFour: false, 
+    showButtonPanel: true,
+    dateFormat: 'dd-mm-yy',
+    timeFormat: "hh:mm:ss",
+    changeYear: true,  // 年選択をプルダウン化
+    onClose: function (dateText, inst) {
+      if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+        document.getElementById(this.id).value = '';
+      }
+    }
+  });
+
+  // IOSか判定
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+    // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+    $('#form-label-sample-delivery_time').on('focus', function () {
+      $('input, textarea').not(this).attr("readonly", "readonly");
+    });
+
+    // フォーカスが外れるときにreadonlyを外す
+    $('#form-label-sample-delivery_time').on('blur', function () {
+      $('input, textarea').not(this).removeAttr("readonly");
+    });
+  }
+
+
+  // デフォルトの設定を変更
+  $.extend($.fn.dataTable.defaults, {
+    language: {
+      url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+    }
+  });
+
+  $("#example1").DataTable({
+    "responsive": true,
+    "autoWidth": false,
+    "paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": false,
+    "info": false,
+    "pageLength": 12,
+  });
+
+  $('tr').not('.modal-kakuninn-table tr').click(function () {
+    //$(this).attr('data-target','#modal-default');
+    if ($(this).hasClass('select--click')) {
+      return;
+    } else {
+      $(this).addClass("select--click");
+    }
+  });
+
+  // セルをマウスオーバー
+  $("td").hover(function () {
+    // 親要素（tr要素）にtargetクラスを追加
+    $(this).parent().addClass("target").addClass('select');
+    //クリックしたときの浮き出を解除
+    $('tr').removeClass("select--click");
+
+    // 親要素から見て、自分が何番目の子要素なのか調べる
+    var myIndex = $(this).index();
+
+    // myIndexに1プラス
+    myIndex++;
+
+    // 各行の「myIndex番目の子要素」にtargetクラスを追加する
+    $("td:nth-child(" + myIndex + ")").addClass("target");
+  }, function () {
+    // マウスアウト時にtargetクラスを削除
+    $(".target").removeClass("target").removeClass("select");
+
+  });
+
+  /*ページ遷移*/
+  $("tr").click(function () {
+    window.location.href = '/buyers/claims/1/info';
+    // TODO:: Fix href late
+  });
+
+  $('[data-toggle="tooltip"]').tooltip();
 });

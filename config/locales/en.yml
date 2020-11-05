@@ -146,3 +146,24 @@ en:
     check_match_param:
       reason: 'reason'
       counterplan: 'counterplan'
+
+  sample:
+      sample_type:
+        color: 'color'
+        similar_product: 'similar_product'
+        design: 'design'
+        original: 'original'
+      product_category:
+        new: 'new'
+        existing: 'existing'
+      sample_shape:
+        product: 'product'
+        plate: 'plate'
+      delivery_request:
+        courier: 'courier'
+        sea_mail: 'sea_mail'
+        combine_shipping: 'combine_shipping'
+      function:
+        sample: 'sample'
+        standard: 'standard'
+        limit: 'limit'

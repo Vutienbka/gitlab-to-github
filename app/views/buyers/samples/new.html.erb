@@ -1,6 +1,7 @@
 <% content_for :title, 'NEWJI | サンプル/見本' %>
 <% breadcrumb_add 'サンプル'%>
 <% breadcrumb_add '見本'%>
+<%= javascripts 'buyer/sample' %>
 
 <% content_for :content_header do %>
 <div class="row mb-2">
@@ -14,38 +15,42 @@
 <p class="login-head text-center mt-5 mb-5">必要なサンプルを<span class="textbr">選択してください</span></p>
         <div class="w-90 flex--sp-block text-center mb-5">
           <div class="card w-23 w-100--sp">
-            <div class="p-3 ie-sample-card-body">
+            <div class="p-3 ie-sample-card-body pass_sample_type">
+              <div type="hidden"><%= t("sample.sample_type.similar_product") %></div>
               <%= image_tag 'img/AdobeStock_221350987.gif', class: 'sample-img', alt: '類似品サンプル', width: "100%" %>
               <h6 class="font-bold mt-3 margin-bottom10 sample-txt">類似品<span class="textbr">サンプル</span></h6>
               <div class="w-70 w-40--sp w-80--sp450">
-                <a class="card-link card-link--sample" href="<%=input_buyers_samples_path%>">進む</a>
+                <a class="card-link card-link--sample choose_sample_type" href="<%=input_buyers_samples_path%>">進む</a>
               </div>
             </div>
           </div>
           <div class="card w-23 w-100--sp mt-3 mt-md-0">
-            <div class="p-3 ie-sample-card-body">
+            <div class="p-3 ie-sample-card-body pass_sample_type">
+              <div type="hidden"><%= t("sample.sample_type.color") %></div>
               <%= image_tag 'img/AdobeStock_178751744.gif', class: 'sample-img', alt: '類似品サンプル', width: "100%" %>
               <h6 class="font-bold mt-3 margin-bottom10 sample-txt">カラー<span class="textbr">サンプル</span></h6>
               <div class="w-70 w-40--sp w-80--sp450">
-                <a class="card-link card-link--sample" href="<%=input_buyers_samples_path%>">進む</a>
+                <a class="card-link card-link--sample choose_sample_type" href="<%=input_buyers_samples_path%>">進む</a>
               </div>
             </div>
           </div>
           <div class="card w-23 w-100--sp mt-3 mt-md-0">
-            <div class="p-3 ie-sample-card-body">
+            <div class="p-3 ie-sample-card-body pass_sample_type">
+              <div type="hidden"><%= t("sample.sample_type.design") %></div>
               <%= image_tag 'img/AdobeStock_137248675.gif', class: 'sample-img', alt: '類似品サンプル', width: "100%" %>
               <h6 class="font-bold mt-3 margin-bottom10 sample-txt">意匠<span class="textbr">サンプル</span></h6>
               <div class="w-70 w-40--sp w-80--sp450">
-                <a class="card-link card-link--sample" href="<%=input_buyers_samples_path%>">進む</a>
+                <a class="card-link card-link--sample choose_sample_type" href="<%=input_buyers_samples_path%>">進む</a>
               </div>
             </div>
           </div>
           <div class="card w-23 w-100--sp mt-3 mt-md-0">
-            <div class="p-3 ie-sample-card-body">
+            <div class="p-3 ie-sample-card-body pass_sample_type">
+              <div type="hidden"><%= t("sample.sample_type.original") %></div>
               <%= image_tag 'img/AdobeStock_321556672.gif', class: 'sample-img', alt: '類似品サンプル', width: "100%" %>
               <h6 class="font-bold mt-3 margin-bottom10 sample-txt">オリジナル<span class="textbr">サンプル</span></h6>
               <div class="w-70 w-40--sp w-80--sp450">
-                <a class="card-link card-link--sample" href="<%=input_buyers_samples_path%>">進む</a>
+                <a class="card-link card-link--sample choose_sample_type" href="<%=input_buyers_samples_path%>">進む</a>
               </div>
             </div>
           </div>

@@ -283,6 +283,7 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.bigint "updater"
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|

@@ -165,6 +165,7 @@ Rails.application.routes.draw do
       collection do
         get :ledger
         get :input
+        post :create
       end
     end
   end
