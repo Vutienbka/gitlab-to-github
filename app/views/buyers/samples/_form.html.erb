@@ -2,7 +2,7 @@
 <% breadcrumb_add 'サンプル'%>
 <% breadcrumb_add '見本'%>
 <%= stylesheets 'css/newji' %>
-<%= javascripts 'buyer/date_picker' %>
+<%= javascripts 'buyer/date_picker', 'buyer/sample' %>
 
 <% content_for :content_header do %>
 	<div class="row mb-2">
@@ -17,6 +17,7 @@
 		<div class="card-body login-card-body">
 			<p class="login-head text-center mb-5">以下を入力してください</p>
 			<%= form_for @sample, method: method, url: url, html: {id: 'sample_form_id', autocomplete: 'off'} do |f| %>
+			<%= f.hidden_field :sample_type, class: "get_sample_type", name: "sample[sample_type]" %>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
 					<label for="form-label-sample-title">
 						<span class="required-txt">必須</span>
