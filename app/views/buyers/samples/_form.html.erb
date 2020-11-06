@@ -16,7 +16,7 @@
 	<div class="card card--login">
 		<div class="card-body login-card-body">
 			<p class="login-head text-center mb-5">以下を入力してください</p>
-			<%= form_for :sample, method: method, url: url, html: {id: 'sample_form_id', autocomplete: 'off'} do |f| %>
+			<%= form_for @sample, method: method, url: url, html: {id: 'sample_form_id', autocomplete: 'off'} do |f| %>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
 					<label for="form-label-sample-title">
 						<span class="required-txt">必須</span>
@@ -31,9 +31,9 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name = "sample[category]" value = "<%= t("sample.product_category.new") %>" <%= @sample.category == '新製品' ? 'checked' : '' %> id= "apple" class="choose" %>
+						<input type="radio" name = "sample[category]" value = '新製品' <%= @sample.category == '新製品' ? 'checked' : '' %> id= "apple" class="choose" %>
 						<label for="apple" class="label label--with-input">新製品</label>
-						<input type="radio" name= "sample[category]" value= "<%= t("sample.product_category.existing") %>" <%= @sample.category == '既存品' ? 'checked' : '' %> id= "pineapple" class= "choose" %>
+						<input type="radio" name= "sample[category]" value= '既存品' <%= @sample.category == '既存品' ? 'checked' : '' %> id= "pineapple" class= "choose" %>
 						<label for="pineapple" class="label label--with-input">既存品</label>
 					</div>
 				</div>
@@ -79,9 +79,9 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name="sample[classify]" value= "<%= t("sample.sample_shape.product") %>" <%= @sample.classify == '製品' ? 'checked' : '' %> id="green-apple" class="choose">
+						<input type="radio" name="sample[classify]" value= '製品' <%= @sample.classify == '製品' ? 'checked' : '' %> id="green-apple" class="choose">
 						<label for="green-apple" class="label label--with-input">製品</label>
-						<input type="radio" name="sample[classify]" value="<%= t("sample.sample_shape.plate") %>" <%= @sample.classify == 'プレート' ? 'checked' : '' %> id="strawberry" class="choose">
+						<input type="radio" name="sample[classify]" value='プレート' <%= @sample.classify == 'プレート' ? 'checked' : '' %> id="strawberry" class="choose">
 						<label for="strawberry" class="label label--with-input">プレート</label>
 					</div>
 				</div>
@@ -92,11 +92,11 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name="sample[delivery_request]" value="<%= t("sample.delivery_request.courier") %>" <%= @sample.delivery_request == 'クーリエ' ? 'checked' : '' %> id="avocado" class="choose">
+						<input type="radio" name="sample[delivery_request]" value='クーリエ' <%= @sample.delivery_request == 'クーリエ' ? 'checked' : '' %> id="avocado" class="choose">
 						<label for="avocado" class="label label--with-input">クーリエ</label>
-						<input type="radio" name="sample[delivery_request]" value="<%= t("sample.delivery_request.sea_mail") %>" <%= @sample.delivery_request == '船便' ? 'checked' : '' %> id="orange" class="choose">
+						<input type="radio" name="sample[delivery_request]" value='船便' <%= @sample.delivery_request == '船便' ? 'checked' : '' %> id="orange" class="choose">
 						<label for="orange" class="label label--with-input">船便</label>
-						<input type="radio" name="sample[delivery_request]" value="<%= t("sample.delivery_request.combine_shipping") %>" <%= @sample.delivery_request == '同梱' ? 'checked' : '' %> id="raspberry" class="choose">
+						<input type="radio" name="sample[delivery_request]" value='同梱' <%= @sample.delivery_request == '同梱' ? 'checked' : '' %> id="raspberry" class="choose">
 						<label for="raspberry" class="label label--with-input">同梱</label>
 					</div>
 				</div>
@@ -107,11 +107,11 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name="sample[function]" value="<%= t("sample.function.sample") %>" <%= @sample.function == 'サンプル' ? 'checked' : '' %> id="kiwi" class="choose">
+						<input type="radio" name="sample[function]" value='サンプル' <%= @sample.function == 'サンプル' ? 'checked' : '' %> id="kiwi" class="choose">
 						<label for="kiwi" class="label label--with-input">サンプル</label>
-						<input type="radio" name="sample[function]" value="<%= t("sample.function.standard") %>" <%= @sample.function == '標準見本' ? 'checked' : '' %> id="grapefruit" class="choose">
+						<input type="radio" name="sample[function]" value='標準見本' <%= @sample.function == '標準見本' ? 'checked' : '' %> id="grapefruit" class="choose">
 						<label for="grapefruit" class="label label--with-input">標準見本</label>
-						<input type="radio" name="sample[function]" value="<%= t("sample.function.limit") %>" <%= @sample.function == '限度見本' ? 'checked' : '' %> id="coconut" class="choose">
+						<input type="radio" name="sample[function]" value='限度見本' <%= @sample.function == '限度見本' ? 'checked' : '' %> id="coconut" class="choose">
 						<label for="coconut" class="label label--with-input">限度見本</label>
 					</div>
 				</div>

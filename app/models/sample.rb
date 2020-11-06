@@ -2,6 +2,9 @@ class Sample < ApplicationRecord
   belongs_to :buyer, class_name: 'Buyer', foreign_key: 'buyer_id'
   validates :code, uniqueness: true
 
+  has_many :patterns, dependent: :destroy
+  belongs_to :buyer, class_name: 'Buyer', optional: true, foreign_key: 'buyer_id'
+  
   SAMPLE_TYPE = %w[similar_product color design original].freeze
 
   PRODUCT_CATEGORY = %w[new existing].freeze

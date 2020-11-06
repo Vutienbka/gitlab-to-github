@@ -1,5 +1,6 @@
 class Buyers::SamplesController < Buyers::BaseController
   before_action :set_locale, only: %i[create]
+  before_action :set_sample, only: %i[edit update]
 
   def ledger; end
 
@@ -19,6 +20,18 @@ class Buyers::SamplesController < Buyers::BaseController
 
   def sample_params
     params.require(:sample).permit(Sample::PARAMS_ATTRIBUTES)
+  end
+
+  def edit; end
+
+  def update
+    @sample.update(sample_params)
+    flash[:success] = I18n.t('update.success')
+    redirect_to new_buyers_sample_path
+  end
+
+  def set_sample
+    @sample = current_user.samples.find_by_id(params[:id])
   end
 
   def set_locale

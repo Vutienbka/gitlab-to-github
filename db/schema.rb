@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.datetime "created_at"
     t.integer "reason_status"
     t.integer "counter_plan_status"
+    t.datetime "deleted_at"
     t.integer "item_request_id"
     t.integer "supplier_id"
     t.integer "buyer_id"
-    t.datetime "deleted_at"
   end
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -271,15 +271,15 @@ ActiveRecord::Schema.define(version: 202010230713025) do
 
   create_table "samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.integer "category"
+    t.text "category"
     t.text "code"
     t.integer "quantity"
     t.date "delivery_time"
-    t.integer "classify"
-    t.integer "delivery_request"
-    t.integer "function"
+    t.text "classify"
+    t.text "delivery_request"
+    t.text "function"
     t.bigint "buyer_id"
-    t.string "sample_type"
+    t.text "sample_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
