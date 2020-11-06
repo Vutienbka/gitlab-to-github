@@ -166,6 +166,8 @@ Rails.application.routes.draw do
         get :ledger
         get :input
         post :create
+        get :filter
+        get :suppliers
       end
     end
   end

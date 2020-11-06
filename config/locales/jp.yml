@@ -150,6 +150,8 @@ ja:
       
   sample:
     sample_type:
+      standard: '標準見本'
+      limit: '限度見本'
       color: 'カラーサンプル'
       similar_product: '類似品サンプル'
       design: '意匠サンプル'
