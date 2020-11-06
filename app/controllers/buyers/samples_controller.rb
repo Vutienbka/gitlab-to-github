@@ -42,18 +42,18 @@ class Buyers::SamplesController < Buyers::BaseController
     render :ledger
   end
 
-  private
-
-  def sample_params
-    params.require(:sample).permit(Sample::PARAMS_ATTRIBUTES)
-  end
-
   def edit; end
 
   def update
     @sample.update(sample_params)
     flash[:success] = I18n.t('update.success')
     redirect_to new_buyers_sample_path
+  end
+
+  private
+
+  def sample_params
+    params.require(:sample).permit(Sample::PARAMS_ATTRIBUTES)
   end
 
   def set_sample
