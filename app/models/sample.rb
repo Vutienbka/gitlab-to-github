@@ -2,7 +2,6 @@ class Sample < ApplicationRecord
   belongs_to :buyer, class_name: "Buyer", foreign_key: "buyer_id"
   belongs_to :item_request, optional: true, class_name: "ItemRequest", foreign_key: "item_request_id"
   validates :code, uniqueness: true
-  has_many :patterns, dependent: :destroy
   
   SAMPLE_TYPE = %w[similar_product color design original].freeze
   SAMPLE_TYPE = %w[standard limit similar_product color design original].freeze

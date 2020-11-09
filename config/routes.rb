@@ -161,7 +161,7 @@ Rails.application.routes.draw do
         post :info
       end
     end
-    resources :samples, only: %i[index new edit update] do
+    resources :samples, only: %i[index new edit update destroy] do
       collection do
         get :ledger
         get :input
