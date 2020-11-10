@@ -1,7 +1,7 @@
 class Buyers::SamplesController < Buyers::BaseController
   before_action :set_default_locale
   before_action :set_locale, only: %i[create new input]
-  before_action :set_sample, only: %i[edit update destroy]
+  before_action :set_sample, only: %i[edit update destroy info]
   before_action :samples, only: %i[filter suppliers ledger]
 
   def ledger
@@ -58,6 +58,8 @@ class Buyers::SamplesController < Buyers::BaseController
     flash[:alert] = I18n.t('destroy.failed')
     redirect_to ledger_buyers_samples_path and return
   end
+
+  def info; end
 
   private
 

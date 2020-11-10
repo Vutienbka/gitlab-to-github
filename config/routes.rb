@@ -169,6 +169,9 @@ Rails.application.routes.draw do
         get :filter
         get :suppliers
       end
+      member do
+        get :info
+      end
     end
   end
 

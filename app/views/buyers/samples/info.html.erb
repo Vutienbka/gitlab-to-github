@@ -1,0 +1,124 @@
+<% content_for :title, 'NEWJI | サンプル/見本' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+
+<% content_for :content_header do %>
+    <section class="content">
+      <!-- Default box -->
+      <div class="card card-solid card--login--only-vertical">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 calim-info__header-parent">
+              <div class="text-center mt-5 mt-md-4 pt-md-1 mb-5 calim-info__header-item-name">
+                <h4 class="login-head font-bold"><%=@sample.title%></h4>
+              </div>
+              <div class="text-right calim-info__header-child">
+                <h6 class="claim-info__right-info">作成日：2020年7月11日</h6>
+                <h6 class="claim-info__right-info">管理番号：CRPOHFC120</h6>
+                <h6 class="claim-info__right-info">登録者：山田裕二</h6>
+              </div>
+            </div>
+          </div>
+          <div class="row border-top pt-5">
+            <div class="col-12 col-md-6">
+              <div class="col-12">
+                <%= image_tag "img/macbook1991_TP_V4.jpg", class:"product-image", alt:"クレーム画像"%>
+              </div>
+              <div class="col-12 product-image-thumbs">
+                <div class="product-image-thumb active"><%= image_tag 'img/macbook1991_TP_V4.jpg', alt:'クレーム画像'%></div>
+                <div class="product-image-thumb" ><%= image_tag "img/gori0I9A3064072102745_TP_V4.jpg", alt:"クレーム画像"%></div>
+                <div class="product-image-thumb" ><%= image_tag "img/gori0I9A3105072103338_TP_V4.jpg", alt:"クレーム画像"%></div>
+                <div class="product-image-thumb" ><%= image_tag "img/iPhoneFTHG8887_TP_V4.jpg", alt:"クレーム画像"%></div>
+                <div class="product-image-thumb" ><%= image_tag "img/loudepedeckFTHG6200_TP_V4.jpg", alt:"クレーム画像"%></div>
+              </div>
+              <!-- 画像が７個以上の時プラスボタンを表示 -->
+              <div class="col-12 col-md-1 text-center mt-2 d-none">
+                <a href="#" class="plus-image"><i class="fas fa-plus"></i></a>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 mt-5 mt-md-0">
+              <div class="d-flex">
+                <h5 class="info-head font-bold">有効期限：</h5>
+                <h5 class="info-head text-normal">2021年3月21日</h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold">区分：</h5>
+                <h5 class="info-head text-normal"><%=@sample.category%></h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold">商品群：</h5>
+                <h5 class="info-head text-normal">CR</h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold">仕入先コード：</h5>
+                <h5 class="info-head text-normal">5555</h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold white-space-nowrap">仕入先名：</h5>
+                <h5 class="info-head text-normal">株式会社〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold">部数：</h5>
+                <h5 class="info-head text-normal"><%=@sample.quantity%></h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold">品質特性：</h5>
+                <h5 class="info-head text-normal">カラー</h5>
+              </div>
+              <div class="d-flex mt-3">
+                <h5 class="info-head font-bold">品質基準：</h5>
+                <h5 class="info-head text-normal">標準</h5>
+              </div>
+              <h5 class="info-head font-bold mt-3">配布数：</h5>
+              <table class="company-table sample-info-table">
+                <tbody>
+                  <tr>
+                    <th>
+                      配布先
+                    </th>
+                    <th>
+                      配布数
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      購買部
+                    </td>
+                    <td>
+                      6
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      テキストテキスト
+                    </td>
+                    <td>
+                      1
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="info-head font-bold mt-3">備考：</h5>
+              <div class="claim-description info-description">
+                <p>
+                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                </p>
+                <br />
+                <p>
+                  テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      <div class="w-90 text-center mt-5 margin-bottom30">
+        <a href="<%=ledger_buyers_samples_path%>" class="to-top">サンプル一覧に戻る</a>
+      </div>
+
+    </section>
+    <!-- /.content -->
+<% end %>
