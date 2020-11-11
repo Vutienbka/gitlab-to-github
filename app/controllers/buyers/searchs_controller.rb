@@ -1,7 +1,8 @@
 class Buyers::SearchsController < Buyers::BaseController
   include StaticData
-  before_action :get_claims
-
+  before_action :get_claims, only: %i[claim_suggest_search]
+  before_action :get_samples, only: %i[sample_suggest_search]
+  before_action :item_requests, only: %i[sample_suggest_search]
   def index
     if params[:q].blank?
       @q = ItemRequest.ransack(params[:q])
@@ -57,7 +58,7 @@ class Buyers::SearchsController < Buyers::BaseController
         @claims = @item_request&.claims.where(buyer_id: current_user.id).where(id: ids)
       end
       result = []
-      @claims.each_with_index do |claim, index|
+      @claims.each do |claim|
         q = []
         q << claim.id
         q << claim.lot_number
@@ -72,8 +73,40 @@ class Buyers::SearchsController < Buyers::BaseController
     end
   end
 
+  def sample_suggest_search
+    unless params[:q].blank?
+      supplier_name_or_code_ids = @samples.search_by_supplier_name_or_code(@item_requests, params[:q]).ids
+      sample_title_or_code_ids = @samples.search_by_sample_title_or_code(@samples, params[:q]).ids
+      catalog_name_ids = @samples.search_by_catalog_name(@item_requests, params[:q]).ids
+      sample_ids = supplier_name_or_code_ids + sample_title_or_code_ids + catalog_name_ids
+      @samples = @samples.where(id: sample_ids)
+      result = []
+      @samples.each do |sample|
+        q = []
+        q << sample.id
+        q << sample.title
+        q << sample.code
+        q << sample.item_request.item_info.SKU
+        q << sample.item_request.item_info.name
+        q << sample.item_request.supplier.profile.company_name
+        result.push(q)
+      end 
+    end
+    respond_to do |format|
+      format.json { render json: result }
+    end
+  end
+
   private
+  
   def get_claims
     @claims = current_user.claims
+  end
+  def get_samples
+    @samples = current_user.samples
+  end
+
+  def item_requests
+    @item_requests = current_user.item_requests
   end
 end

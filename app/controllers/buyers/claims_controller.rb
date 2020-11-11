@@ -2,6 +2,7 @@
 
 class Buyers::ClaimsController < Buyers::BaseController
   include StaticData
+  before_action :set_default_locale
   before_action :redirect_to_profile, except: %i[list_claim]
   before_action :item_requests, only: %i[new create]
   before_action :claims, :claim, except: %i[index new]
@@ -216,4 +217,9 @@ class Buyers::ClaimsController < Buyers::BaseController
     @item_request = @item_requests.find_by(id: params[:item_request_id]) if @item_requests.present?
     return redirect_to buyers_claims_path, flash: { alert: 'Do not have permission' } unless @item_request.present?
   end
+  
+  def set_default_locale
+    I18n.locale = :ja
+  end
+
 end

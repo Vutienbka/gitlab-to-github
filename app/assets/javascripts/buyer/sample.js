@@ -1,14 +1,15 @@
 $(document).ready(function(){
-	get_local_storage($("#sample-category"), 'sample_category');
-	get_local_storage($("#sample-supplier"), 'sample_supplier');
+	get_local_storage($("#sample_category"), 'sample_category');
+	get_local_storage($("#sample_supplier"), 'sample_supplier');
 	get_local_storage($("#catalog"), 'catalog');
-	get_local_storage($('.get_sample_type'), 'get_sample_type');
+	get_local_storage($('.get-sample-type'), 'get_sample_type');
+
     $(document).on('click', '.choose_sample_type', function(){
 			var sample_type = $(this).parents('.pass_sample_type').find('div').first().html();
 			localStorage.setItem('get_sample_type', sample_type)
 		});
 		
-		$('#sample-category').change(function(){
+		$(document).on('click', '#sample_category',function(){
 			var sample_type = $(this).val();
 			$.ajax({
 				type: 'GET',
@@ -27,25 +28,31 @@ $(document).ready(function(){
 				var suppliers = data.suppliers
 				var catalogs = data.catalogs
 				if(suppliers.length > 0){
-					add_append_for_array($("#sample-supplier"), suppliers);
+					add_append_for_array($("#sample_supplier"), suppliers);
+				}else{
+					localStorage.clear();
+					add_append($("#sample_supplier"));
 				}		
 				if(catalogs.length > 0){
 					add_append_for_array($("#catalog"), catalogs);
+					}else{
+						localStorage.clear();
+						add_append($("#catalog"));
 					}
 				})
 				.fail(function (data) {
 					console.log('失敗しました');
 				});
 		});
-		set_local_storage($("#sample-category"), 'sample_category');
-		set_local_storage($("#sample-supplier"), 'sample_supplier');
+		set_local_storage($("#sample_category"), 'sample_category');
+		set_local_storage($("#sample_supplier"), 'sample_supplier');
 		set_local_storage($("#catalog"), 'catalog');
 
 		$(document).on('click', '#reset_filter', function(e){
 			e.preventDefault();
 			localStorage.clear();
-			add_append($("#sample-category"));
-			add_append($("#sample-supplier"));
+			add_append($("#sample_category"));
+			add_append($("#sample_supplier"));
 			add_append($("#catalog"));
 			$('#sample_filter').submit();
 			$(this).submit();

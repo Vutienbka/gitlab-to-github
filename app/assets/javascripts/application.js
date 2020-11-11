@@ -25,4 +25,7 @@
 //= require bootstrap-datetimepicker
 $(document).ready(function() {
   removeNotification();
+  $(document).on('click', 'a.nav-link', function(){
+    localStorage.clear();
+  })
 });

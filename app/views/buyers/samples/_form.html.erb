@@ -32,8 +32,8 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name = "sample[category]" value = '新製品' <%= @sample.category == '新製品' ? 'checked' : '' %> id= "apple" class="choose" %>
-						<label for="apple" class="label label--with-input">新製品</label>
+						<input type="radio" name = "sample[category]" value = "<%= t("sample.product_category.new") %>" <%= @sample.category == "t("sample.product_category.new")" ? 'checked' : '' %> id= "apple" class="choose" %>
+						<label for="apple" class="label label--with-input"><%= t("sample.product_category.new") %> </label>
 						<input type="radio" name= "sample[category]" value= '既存品' <%= @sample.category == '既存品' ? 'checked' : '' %> id= "pineapple" class= "choose" %>
 						<label for="pineapple" class="label label--with-input">既存品</label>
 					</div>

@@ -1,19 +1,25 @@
 <% content_for :title, 'NEWJI | サンプル台帳' %>
 <% breadcrumb_add 'サンプル'%>
 <% breadcrumb_add '見本'%>
-<%= javascripts 'buyer/sample'%>
+<%= javascripts 'buyer/sample', 'buyer/searchs'%>
+<%= stylesheets 'buyer/searchs'%>
 <% content_for :content_header do %>
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+  <section class="content">
+      <div class="mb-4">
         <p class="login-head text-center mt-5 mb-5"><strong>サンプル台帳</strong></p>
-        <form action="sample-archive.html">
-          <div class="input-group mt-5 mb-5">
-            <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+        <%= search_form_for @q, url: search_by_submit_buyers_samples_path, method: "get", html: { id: "form_samples_search", class: "form_samples_search", autocomplete: "off" } do |f| %>
+          <div class="input-group">
+            <input type="hidden" name='sample_code' id="sample_code">
+            <%= f.text_field :code_cont, class: "form-control form-control-navbar form-control--ie", placeholder: "〇〇、〇〇などで検索", id: "sample-search" %>
             <div class="input-group-append">
-              <input class="sbtn5" type="submit" value="検索" />
+              <%= f.submit "検索", class: "sbtn5", id: "search_sample_with_submit" %>
             </div>
           </div>
-        </form>
+        <% end %>
+        <div class="input-group search_sample_result_table">
+          <div id="sample_result" class="list-sample"></div>
+        </div>
+      </div>
         <div class="row">
           <div class="col-12 col-md-3">
             <div class="card">
@@ -23,16 +29,16 @@
                   <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
                   <%= form_for :sample, url: filter_buyers_samples_path, html: {id: 'sample_filter'}, method: 'get' do |f| %>
                     <div class="mt-1 mt-md-3">
-                      <label class="narrow-down-sp-title" for="sample-category">見本区分を選択する</label>
-                      <%= f.select :sample, options_for_select(Sample::SAMPLE_TYPE.map { |type| [t("sample.sample_type.#{type}"), type] }.to_h),  { include_blank: "全て" }, class: "form-control form-control--select", id: "sample-category", name: "sample[sample_type]" %>
+                      <label class="narrow-down-sp-title" for="sample_category">見本区分を選択する</label>
+                      <%= f.select :sample, options_for_select(Sample::SAMPLE_TYPE.map { |type| [t("sample.sample_type.#{type}"), type] }.to_h),  { include_blank: "全て" }, class: "form-control form-control--select", id: "sample_category", name: "sample[sample_type]" %>
                     </div>
                     <div class="mt-1 mt-md-3">
-                      <label class="narrow-down-sp-title" for="sample-supplier">サプライヤーを選択する</label>
-                       <%= f.select :supplier, options_for_select(@suppliers||[].map{|supplier| supplier&.profile&.company_name }), {include_blank: '全て'}, class:"form-control form-control--select", id:"sample-supplier"%>
+                      <label class="narrow-down-sp-title" for="sample_supplier">サプライヤーを選択する</label>
+                       <%= f.select :supplier, options_for_select(@suppliers&.includes(:profile).pluck(:company_name)||[''].map{|company_name| company_name}), {include_blank: '全て'}, class:"form-control form-control--select", id: 'sample_supplier'%>
                     </div>
                     <div class="mt-1 mt-md-3">
                       <label class="narrow-down-sp-title" for="catalog">カテゴリーを選択する</label>
-                      <%= f.select :category, options_for_select(@catalogs&.pluck(:name)||[].map{|name| name}), { include_blank: '全て' }, class: 'form-control form-control--select', id: 'catalog' %>
+                      <%= f.select :category, options_for_select(@catalogs&.pluck(:name)||[''].map{|name| name}), { include_blank: '全て' }, class: 'form-control form-control--select', id: 'catalog' %>
                     </div>
                     <div class="mt-1 mt-md-3">
                       <label class="narrow-down-sp-title" for="sample-deadline">有効期限を選択する</label>
@@ -46,7 +52,7 @@
                     </div>
                     <div class="d-flex flex-wrap justify-content-between">
                       <button type="submit" class="btn newji-btn--gray mt-4" id="reset_filter">リセット</button>
-                      <button type="submit" class="btn newji-btn--pink mt-4">決定</button>
+                      <button type="submit" class="btn newji-btn--pink mt-4 submit_btn">決定</button>
                     </div>
                   <% end %>
                 </div>
@@ -55,7 +61,7 @@
           </div>
           <div class="col-12 col-md-9">
             <p class="login-head">新着サンプル</p>
-            <div class="row js-sample-archive-wrap">
+            <div class="row js-sample-archive-wrap" id="example2">
             <% @samples.each do |s| %>
               <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
                 <div class="card">
@@ -65,7 +71,7 @@
                     <h6 class="h6 font-bold sample-card-title-name"><%=s.title%></h6>
                     <div class="w-100 text-center d-flex mb-1">
                       <div class="col-sm-6">
-                      <a class="btn btn-outline-primary font-weight-light" style="width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;" href="<%=edit_buyers_sample_path(s.id)%>">修復</a>
+                      <a class="btn btn-outline-primary font-weight-light" style="width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;" href="<%=edit_buyers_sample_path(s.id)%>">修正</a>
                       </div>
                       <div class="col-sm-6">
                       <%= link_to  "消去", buyers_sample_path(s.id), method: :delete, class: 'btn btn-outline-danger font-weight-light', style:"width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;", data: {confirm: "本当に削除してよろしいですか？"} %>
@@ -74,35 +80,20 @@
                     <div class="w-100 text-center">
                       <a class="card-link card-link--sample-archive h6" href="<%=info_buyers_sample_path(s.id)%>">詳細を見る</a>
                     </div>
+                    </div>
                   </div>
                 </div>
-              </div>
               <% end %>
             </div>
             <!-- ページネーション  -->
-            <ul class="pagination">
-              <li class="page-item disabled">
-                <a class="page-link" disabled>前</a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#" disabled>1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" role="button">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" role="button">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" role="button">次</a>
-              </li>
-            </ul>
+            <%= paginate @samples, class:'text-center' %>
             <div class="w-100 text-center mt-5 margin-bottom30">
               <a href="<%=buyers_samples_path%>" class="to-top">前に戻る</a>
             </div>
           </div>
+          
         </div>
-    </div>
+  
     <!-- /.content-header -->
 
   <!-- カスタマイズ -->
@@ -120,4 +111,5 @@
     </div>
   </aside>
 </div>
+</section>
 <%end%>

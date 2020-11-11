@@ -139,6 +139,7 @@ Rails.application.routes.draw do
         get :search
         post :list_auto
         get :claim_suggest_search
+        get :sample_suggest_search
       end
     end
 
@@ -168,6 +169,8 @@ Rails.application.routes.draw do
         post :create
         get :filter
         get :suppliers
+        get :search_with_ajax
+        get :search_by_submit
       end
       member do
         get :info
