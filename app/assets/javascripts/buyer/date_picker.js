@@ -162,6 +162,37 @@ $(document).ready(function () {
   }
 
 
+  $('#form-label-nouki').datepicker({
+    autoclose: false,
+    language: 'ja',
+    twentyFour: false, 
+    showButtonPanel: true,
+    dateFormat: 'dd-mm-yy',
+    timeFormat: "hh:mm:ss",
+    changeYear: true,  // 年選択をプルダウン化
+    onClose: function (dateText, inst) {
+      if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+        document.getElementById(this.id).value = '';
+      }
+    }
+  });
+
+  // IOSか判定
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+    // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+    $('#form-label-nouki').on('focus', function () {
+      $('input, textarea').not(this).attr("readonly", "readonly");
+    });
+
+    // フォーカスが外れるときにreadonlyを外す
+    $('#form-label-nouki').on('blur', function () {
+      $('input, textarea').not(this).removeAttr("readonly");
+    });
+  }
+
+
+
   // デフォルトの設定を変更
   $.extend($.fn.dataTable.defaults, {
     language: {

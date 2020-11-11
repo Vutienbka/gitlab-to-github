@@ -17,13 +17,13 @@
 		<div class="card-body login-card-body">
 			<p class="login-head text-center mb-5">以下を入力してください</p>
 			<%= form_for @sample, method: method, url: url, html: {id: 'sample_form_id', autocomplete: 'off'} do |f| %>
-			<%= f.hidden_field :sample_type, class: "get_sample_type", name: "sample[sample_type]" %>
+				<%= f.hidden_field :sample_type, class: "get-sample-type" %>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
 					<label for="form-label-sample-title">
 						<span class="required-txt">必須</span>
 						<span>タイトル</span>
 					</label>
-					<%= f.text_field :title, id: "form-label-sample-title",class: "form-control form-control--ie", placeholder: "例）〇〇〇〇", name: "sample[title]", required: 'required' %>
+					<%= f.text_field :title, id: "form-label-sample-title",class: "form-control form-control--ie", placeholder: "例）〇〇〇〇", required: 'required' %>
 				</div>
 				<div class="input-group input-group--has-checkbox mt-5 mb-4">
 					<label for="form-label-address">
@@ -32,10 +32,10 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name = "sample[category]" value = "<%= t("sample.product_category.new") %>" <%= @sample.category == "t("sample.product_category.new")" ? 'checked' : '' %> id= "apple" class="choose" %>
-						<label for="apple" class="label label--with-input"><%= t("sample.product_category.new") %> </label>
-						<input type="radio" name= "sample[category]" value= '既存品' <%= @sample.category == '既存品' ? 'checked' : '' %> id= "pineapple" class= "choose" %>
-						<label for="pineapple" class="label label--with-input">既存品</label>
+						<%= radio_button('sample', 'category', t("sample.product_category.new"), checked: @sample&.category=='new', id: "new_product", class: "choose" ) %>
+						<label for="new_product" class="label label--with-input">新製品</label>
+						<%= radio_button('sample', 'category', t("sample.product_category.existing"), checked: @sample&.category=='existing', id: "existing_product", class: "choose" )%>
+						<label for="existing_product" class="label label--with-input">既存品</label>
 					</div>
 				</div>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
@@ -43,14 +43,14 @@
 						<span class="required-txt">必須</span>
 						<span>コード</span>
 					</label>
-					<%= f.text_field :code, id: "form-label-sample-code",class: "form-control form-control--ie", placeholder: "例）GD2020N00", name: "sample[code]", required: 'required' %>
+					<%= f.text_field :code, id:"form-label-sample-code", class:"form-control form-control--ie", placeholder: "例）GD2020N00", required: 'required' %>
 				</div>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-1">
 					<label for="form-label-apattern">
 						<span class="required-txt required-txt--any">任意</span>
 						<span>パターン1</span>
 					</label>
-					<input id="form-label-pattern" type="text" class="form-control form-control--ie" placeholder="例）〇〇" name="sample-pattern">
+					<input id="form-label-pattern" type="text" class="form-control form-control--ie" placeholder="例）〇〇">
 				</div>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label">
 					<div class="input-group__add">
@@ -64,14 +64,14 @@
 						<span class="required-txt">必須</span>
 						<span>数量</span>
 					</label>
-					<%= f.number_field :quantity, id: "form-label-sample-quantity",class: "form-control form-control--ie",placeholder: "半角数字でご入力ください。", name: "sample[quantity]", required: 'required' %>
+					<%= f.number_field :quantity, id: "form-label-amount", class: "form-control form-control--ie form-control--firefox", placeholder: "半角数字でご入力ください。", value: @sample.quantity, required: 'required' %>
 				</div>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
 					<label for="form-label-nouki">
 						<span class="required-txt required-txt--any">任意</span>
 						<span>希望納期</span>
 					</label>
-					<%= f.text_field :delivery_time, id: "form-label-sample-delivery_time",class: "form-control form-control--ie", name: "sample[delivery_time]", required: 'required', placeholder:"日付を選択してください。", value:  @sample&.delivery_time&.to_date&.strftime("%Y/%m/%d") %>
+					<%= f.text_field :delivery_time, class: "form-control form-control--ie form-control--readonly", id:"form-label-nouki", placeholder:"日付を選択してください。", readonly:"readonly" %>
 				</div>
 				<div class="input-group input-group--has-checkbox mt-5 mb-4">
 					<label for="form-label-address">
@@ -80,10 +80,10 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name="sample[classify]" value= '製品' <%= @sample.classify == '製品' ? 'checked' : '' %> id="green-apple" class="choose">
-						<label for="green-apple" class="label label--with-input">製品</label>
-						<input type="radio" name="sample[classify]" value='プレート' <%= @sample.classify == 'プレート' ? 'checked' : '' %> id="strawberry" class="choose">
-						<label for="strawberry" class="label label--with-input">プレート</label>
+						<%= radio_button('sample', 'classify', t("sample.sample_shape.product"), checked: @sample&.classify=='product', id: "product", class: "choose") %>
+						<label for="product" class="label label--with-input">製品</label>
+						<%= radio_button('sample', 'classify', t("sample.sample_shape.plate"), checked: @sample&.classify=='plate', id: "plate", class: "choose") %>
+						<label for="plate" class="label label--with-input">プレート</label>
 					</div>
 				</div>
 				<div class="input-group input-group--has-checkbox mt-5 mb-4">
@@ -93,12 +93,12 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name="sample[delivery_request]" value='クーリエ' <%= @sample.delivery_request == 'クーリエ' ? 'checked' : '' %> id="avocado" class="choose">
-						<label for="avocado" class="label label--with-input">クーリエ</label>
-						<input type="radio" name="sample[delivery_request]" value='船便' <%= @sample.delivery_request == '船便' ? 'checked' : '' %> id="orange" class="choose">
-						<label for="orange" class="label label--with-input">船便</label>
-						<input type="radio" name="sample[delivery_request]" value='同梱' <%= @sample.delivery_request == '同梱' ? 'checked' : '' %> id="raspberry" class="choose">
-						<label for="raspberry" class="label label--with-input">同梱</label>
+						<%= radio_button('sample', 'delivery_request', t("sample.delivery_request.courier"), checked: @sample&.delivery_request=='courier', id: "courier", class: "choose") %>
+						<label for="courier" class="label label--with-input">クーリエ</label>
+						<%= radio_button('sample', 'delivery_request', t("sample.delivery_request.sea_mail"), checked: @sample&.delivery_request=='sea_mail', id: "sea_mail", class: "choose") %>
+						<label for="sea_mail" class="label label--with-input">船便</label>
+						<%= radio_button('sample', 'delivery_request', t("sample.delivery_request.combine_shipping"), checked: @sample&.delivery_request=='combine_shipping', id: "combine_shipping", class: "choose") %>
+						<label for="combine_shipping" class="label label--with-input">同梱</label>
 					</div>
 				</div>
 				<div class="input-group input-group--has-checkbox mt-5 mb-4">
@@ -108,12 +108,12 @@
 					</label>
 					<div class="w-100 flex flex-wrap">
 						<!--type="checkbox"に変更しても同じデザイン-->
-						<input type="radio" name="sample[function]" value='サンプル' <%= @sample.function == 'サンプル' ? 'checked' : '' %> id="kiwi" class="choose">
-						<label for="kiwi" class="label label--with-input">サンプル</label>
-						<input type="radio" name="sample[function]" value='標準見本' <%= @sample.function == '標準見本' ? 'checked' : '' %> id="grapefruit" class="choose">
-						<label for="grapefruit" class="label label--with-input">標準見本</label>
-						<input type="radio" name="sample[function]" value='限度見本' <%= @sample.function == '限度見本' ? 'checked' : '' %> id="coconut" class="choose">
-						<label for="coconut" class="label label--with-input">限度見本</label>
+						<%= radio_button('sample', 'function', t("sample.function.sample"), checked: @sample&.function=='sample', id: "sample", class: "choose") %>
+						<label for="sample" class="label label--with-input">サンプル</label>
+						<%= radio_button('sample', 'function', t("sample.function.standard"), checked: @sample&.function=='standard', id: "standard", class: "choose") %>
+						<label for="standard" class="label label--with-input">標準見本</label>
+						<%= radio_button('sample', 'function', t("sample.function.limit"), checked: @sample&.function=='limit', id: "limit", class: "choose") %>
+						<label for="limit" class="label label--with-input">限度見本</label>
 					</div>
 				</div>
 				<div class="row">
