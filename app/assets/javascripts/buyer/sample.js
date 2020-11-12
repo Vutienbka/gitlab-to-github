@@ -8,7 +8,7 @@ $(document).ready(function(){
 			var sample_type = $(this).parents('.pass_sample_type').find('div').first().html();
 			localStorage.setItem('get_sample_type', sample_type)
 		});
-		
+
 		$(document).on('click', '#sample_category',function(){
 			var sample_type = $(this).val();
 			$.ajax({
@@ -32,7 +32,7 @@ $(document).ready(function(){
 				}else{
 					localStorage.clear();
 					add_append($("#sample_supplier"));
-				}		
+				}
 				if(catalogs.length > 0){
 					add_append_for_array($("#catalog"), catalogs);
 					}else{
@@ -66,12 +66,15 @@ $(document).ready(function(){
 		function set_local_storage(element, local_name){
 			element.change(function(){
 				var data = $(this).val();
-				localStorage.setItem(local_name, data) 
+				localStorage.setItem(local_name, data)
 			})
 		}
 
 		function get_local_storage(element, local_name){
-			element.val(localStorage.getItem(local_name));
+			var value = localStorage.getItem(local_name);
+			if ( value != null){
+				element.val(value);
+			}
 		}
 
 		function add_append_for_array(element, data){

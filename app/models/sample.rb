@@ -1,11 +1,10 @@
 class Sample < ApplicationRecord
-  belongs_to :buyer, class_name: "Buyer", foreign_key: "buyer_id"
-  belongs_to :item_request, optional: true, class_name: "ItemRequest", foreign_key: "item_request_id"
-  validates :code, uniqueness: true
+  belongs_to :buyer, class_name: 'Buyer', foreign_key: 'buyer_id'
+  belongs_to :item_request, optional: true, class_name: 'ItemRequest', foreign_key: 'item_request_id'
 
   has_many :patterns, dependent: :destroy
   accepts_nested_attributes_for :patterns, reject_if: :all_blank, allow_destroy: true
-  
+
   SAMPLE_TYPE = %w[similar_product color design original].freeze
   SAMPLE_TYPE = %w[standard limit similar_product color design original].freeze
 
@@ -18,7 +17,7 @@ class Sample < ApplicationRecord
   FUNCTION = %w[sample statndard limit].freeze
 
   PARAMS_ATTRIBUTES = [
-    :buyer_id, :title, :category, :classify,
+    :buyer_id, :item_request_id, :title, :category, :classify,
     :sample_type, :code, :quantity,
     :delivery_time, :delivery_request, :function,
     :updater, patterns_attributes: [:pattern, :_destroy]

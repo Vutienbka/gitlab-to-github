@@ -4,7 +4,7 @@ class ItemInfo < ApplicationRecord
   extend Enumerize
   self.table_name = 'item_info'
 
-  belongs_to :item_request, optional: true
+  belongs_to :item_request, optional: true, foreign_key: 'item_request_id'
 
   PARAMS_ATTRIBUTES = %i[
     id SKU info_sku name info_name category1

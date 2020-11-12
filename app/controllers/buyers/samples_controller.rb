@@ -1,10 +1,10 @@
 class Buyers::SamplesController < Buyers::BaseController
   include StaticData
   before_action :set_default_locale
-  before_action :set_locale, only: %i[create new input]
+  before_action :set_locale, only: %i[create new input edit update]
   before_action :samples, only: %i[filter suppliers ledger search_by_submit search_with_ajax]
   before_action :set_sample, only: %i[edit update destroy info]
-  before_action :item_requests, only: %i[search_by_submit filter_conditions]
+  before_action :item_requests, only: %i[search_by_submit filter_conditions create update]
 
   def ledger
     filter_conditions(@samples)
@@ -22,9 +22,18 @@ class Buyers::SamplesController < Buyers::BaseController
     @sample.buyer_id = current_user.id
     @sample.updater = current_user.id
 
-    return redirect_to input_buyers_samples_path, flash: { success: t("create.success") } if @sample.save
-
-    flash.now[:alert] = I18n.t("create.failed")
+    if params[:sample][:code].present?
+      item_request_id = @item_requests&.joins(:item_info)
+                                      .where('item_info.SKU = ?', (params[:sample][:code]).to_s)
+                                      .first&.item_info&.item_request_id
+      if item_request_id.present?
+        @sample.item_request_id = item_request_id
+        return redirect_to input_buyers_samples_path, flash: { success: t('create.success') } if @sample.save
+      end
+    else
+      return redirect_to input_buyers_samples_path, flash: { success: t('create.success') } if @sample.save
+    end
+    flash.now[:alert] = I18n.t('create.failed')
     render :input
   end
 
@@ -44,8 +53,8 @@ class Buyers::SamplesController < Buyers::BaseController
   def filter
     if params[:q].blank?
       @samples = @samples&.filter_by_sample_type(params.dig(:sample, :sample_type))
-        .filter_by_supplier_name(params.dig(:sample, :supplier))
-        .filter_by_catalog_name(params.dig(:sample, :category))
+                         .filter_by_supplier_name(params.dig(:sample, :supplier))
+                         .filter_by_catalog_name(params.dig(:sample, :category))
     end
     @q = @samples.ransack(params[:q])
     @samples = @q.result.page(params[:page]).per SAMPLE_ITEM_PER_PAGE
@@ -70,17 +79,31 @@ class Buyers::SamplesController < Buyers::BaseController
   end
 
   def update
-    @sample.update(sample_params)
-    flash[:success] = I18n.t("update.success")
-    redirect_to ledger_buyers_samples_path
+    if params[:sample][:code].present?
+      item_request_id = @item_requests&.joins(:item_info)
+                                      .where('item_info.SKU = ?', (params[:sample][:code]).to_s)
+                                      .first&.item_info&.item_request_id
+      if item_request_id.present?
+        @sample.item_request_id = item_request_id
+        if @sample.update(sample_params)
+          return redirect_to ledger_buyers_samples_path, flash: { success: t('create.success') }
+        end
+      end
+    else
+      if @sample.update(sample_params)
+        return redirect_to ledger_buyers_samples_path, flash: { success: t('create.success') }
+      end
+    end
+    flash.now[:alert] = I18n.t('create.failed')
+    render :edit
   end
 
   def destroy
     if @sample.present? && @sample.destroy
-      flash[:success] = I18n.t("destroy.success")
+      flash[:success] = I18n.t('destroy.success')
       redirect_to ledger_buyers_samples_path and return
     end
-    flash[:alert] = I18n.t("destroy.failed")
+    flash[:alert] = I18n.t('destroy.failed')
     redirect_to ledger_buyers_samples_path and return
     render :ledger
   end
@@ -89,7 +112,7 @@ class Buyers::SamplesController < Buyers::BaseController
     @q = @samples.where(id: params[:id]).ransack(params[:q])
     @samples = @q.result.page(params[:page]).per SAMPLE_ITEM_PER_PAGE
     respond_to do |format|
-      format.js { render json: { html: render_to_string(partial: "sample_table", locals: { samples: @samples }) } }
+      format.js { render json: { html: render_to_string(partial: 'sample_table', locals: { samples: @samples }) } }
     end
   end
 
