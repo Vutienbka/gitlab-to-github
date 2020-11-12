@@ -3,6 +3,9 @@ class Sample < ApplicationRecord
   belongs_to :item_request, optional: true, class_name: "ItemRequest", foreign_key: "item_request_id"
   validates :code, uniqueness: true
 
+  has_many :patterns, dependent: :destroy
+  accepts_nested_attributes_for :patterns, reject_if: :all_blank, allow_destroy: true
+  
   SAMPLE_TYPE = %w[similar_product color design original].freeze
   SAMPLE_TYPE = %w[standard limit similar_product color design original].freeze
 
@@ -14,12 +17,12 @@ class Sample < ApplicationRecord
 
   FUNCTION = %w[sample statndard limit].freeze
 
-  PARAMS_ATTRIBUTES = %i[
-    buyer_id title category classify
-    sample_type code quantity
-    delivery_time delivery_request function
-    updater
-  ].freeze
+  PARAMS_ATTRIBUTES = [
+    :buyer_id, :title, :category, :classify,
+    :sample_type, :code, :quantity,
+    :delivery_time, :delivery_request, :function,
+    :updater, patterns_attributes: [:pattern, :_destroy]
+  ]
 
   scope :filter_by_sample_type, ->(sample_type) { where(sample_type: sample_type) if sample_type.present? }
   scope :filter_by_supplier_name, ->(supplier_name) {

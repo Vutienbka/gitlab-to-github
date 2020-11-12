@@ -2,7 +2,7 @@
 <% breadcrumb_add 'サンプル'%>
 <% breadcrumb_add '見本'%>
 <%= stylesheets 'css/newji' %>
-<%= javascripts 'buyer/date_picker', 'buyer/sample' %>
+<%= javascripts 'buyer/date_picker', 'buyer/sample', 'buyer/pattern' %>
 
 <% content_for :content_header do %>
 	<div class="row mb-2">
@@ -45,12 +45,19 @@
 					</label>
 					<%= f.text_field :code, id:"form-label-sample-code", class:"form-control form-control--ie", placeholder: "例）GD2020N00", required: 'required' %>
 				</div>
-				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-1">
-					<label for="form-label-apattern">
-						<span class="required-txt required-txt--any">任意</span>
-						<span>パターン1</span>
-					</label>
-					<input id="form-label-pattern" type="text" class="form-control form-control--ie" placeholder="例）〇〇">
+
+				<div id="pattern" class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-1">
+					<%= f.fields_for :patterns do |p| %>
+						<label for="form-label-apattern">
+							<span class="required-txt required-txt--any">任意</span>
+							<span>パターン1</span>
+						</label>
+						<%= p.text_field :pattern, class: "field form-control form-control--ie", placeholder:"例）〇〇" %>
+					<%= link_to_remove_association '', p, class: 'fa fa-times delete', data: { confirm: '本当に削除しますか。'} %>
+					<% end %>
+				</div>
+
+				<div id="pattern-clone">
 				</div>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label">
 					<div class="input-group__add">

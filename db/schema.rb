@@ -230,7 +230,7 @@ ActiveRecord::Schema.define(version: 202010230713025) do
 
   create_table "patterns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "pattern"
-    t.integer "samples_id"
+    t.integer "sample_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "プロバイダー詳細テーブル", force: :cascade do |t|
@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.bigint "updater"
+    t.bigint "item_request_id"
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
