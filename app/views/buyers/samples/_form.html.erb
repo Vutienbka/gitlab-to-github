@@ -46,26 +46,18 @@
 					<%= f.text_field :code, id:"form-label-sample-code", class:"form-control form-control--ie", placeholder: "例）GD2020N00" %>
 				</div>
 
-				<div id="pattern" class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-1">
-					<%= f.fields_for :patterns do |p| %>
-						<label for="form-label-apattern">
-							<span class="required-txt required-txt--any">任意</span>
-							<span>パターン1</span>
-						</label>
-						<%= p.text_field :pattern, class: "field form-control form-control--ie", placeholder:"例）〇〇" %>
-					<%= link_to_remove_association '', p, class: 'fa fa-times delete', data: { confirm: '本当に削除しますか。'} %>
+        <div id="pattern">
+					<%= f.fields_for :patterns do |task| %>
+					<%= render 'pattern_fields', f: task %>
 					<% end %>
+					<div class="input-group input-group--has-uploader input-group--has-uploader--has-labels">
+					<label for="form-label-">
+					</label>
+					<i class="fas fa-plus input-plus"></i>
+					<%= link_to_add_association 'パターンを追加', f, :patterns, partial: 'pattern_fields', class:"input-add" %>
+					</div>
 				</div>
 
-				<div id="pattern-clone">
-				</div>
-				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label">
-					<div class="input-group__add">
-						<i class="fas fa-plus input-plus"></i>
-						<a href="#" class="input-add">パターンを追加</a>
-					</div>
-					<input id="form-nolabel-claim-lot-umber" type="text" class="form-control form-control--ie mt-3 d-none" placeholder="例）3" name="sample-pattern2">
-				</div>
 				<div class="input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
 					<label for="form-label-amount">
 						<span class="required-txt">必須</span>

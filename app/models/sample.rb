@@ -20,7 +20,7 @@ class Sample < ApplicationRecord
     :buyer_id, :item_request_id, :title, :category, :classify,
     :sample_type, :code, :quantity,
     :delivery_time, :delivery_request, :function,
-    :updater, patterns_attributes: [:pattern, :_destroy]
+    :updater, patterns_attributes: [:id, :pattern, :_destroy]
   ]
 
   scope :filter_by_sample_type, ->(sample_type) { where(sample_type: sample_type) if sample_type.present? }

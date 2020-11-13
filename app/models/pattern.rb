@@ -1,3 +1,3 @@
 class Pattern < ApplicationRecord
-  belongs_to :sample
+  belongs_to :sample, optional: true
 end

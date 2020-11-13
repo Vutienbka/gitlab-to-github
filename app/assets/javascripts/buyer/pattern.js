@@ -1,23 +1,17 @@
 $(document).ready(function() {
-  let count = 1;
-  $( ".delete" ).prop( "disabled", true );
-  $('.input-add').click(function(e) {
-    var tbody = $('#pattern').clone();
-    $('div#pattern-clone').append(tbody);
-    tbody.find('input.field').attr('name', 'sample[patterns_attributes]['+ count +'][pattern]')
-    if (count > 1){
-      $( ".delete" ).removeAttr('disabled');
-    }
-    count++;
-  });
-
-  $('body').on('click', '.delete', function(){
-    $(this).parents('div.input-group').remove();
-    count--;
-    if (count <= 1){
-      $( ".delete" ).prop( "disabled", true );
-    }
-  });
-});
-    
-
+  var count = 1
+  var sttasd = 0
+  $('.hidden-field').each(function(){
+    $(this).val(count++)
+  })
+  $('#pattern').on('cocoon:before-insert', function() {
+    sttasd = $('div#pattern').find($('span.number-of-fields')).length
+  })
+  $('#pattern').on('cocoon:after-insert', function() {
+    count = 1
+    $('.hidden-field').each(function(){
+      $(this).val(count++)
+    })
+    $('div#pattern').find($('span.number-of-fields:last')).text('パターン' +(sttasd + 1));
+  })
+ });

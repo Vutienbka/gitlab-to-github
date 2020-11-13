@@ -14,7 +14,7 @@ class Buyers::SamplesController < Buyers::BaseController
 
   def input
     @sample = Sample.new
-    @sample.patterns.build
+    @patterns = @sample.patterns.build
   end
 
   def create

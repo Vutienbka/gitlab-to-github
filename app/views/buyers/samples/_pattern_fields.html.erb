@@ -1,0 +1,9 @@
+<div class="nested-fields input-group input-group--has-uploader input-group--has-uploader--has-label mt-5 mb-4">
+  <label for="form-label-pattern">
+    <span class="required-txt required-txt--any">任意</span>
+    <span class="number-of-fields">パターン<%= f.options[:child_index].to_i + 1 %></span>
+  </label>
+  <%= f.text_field :pattern, placeholder: 'パターンを入力してください（複数可）', class:"form-control form-control--ie", autocomplete:"off", id: 'form-label-pattern' %>
+  <input type="hidden" class= 'hidden-field'>
+  <%= link_to_remove_association '', f, class: 'fa fa-times', data: { confirm: '本当に削除しますか。' } %>
+</div>
