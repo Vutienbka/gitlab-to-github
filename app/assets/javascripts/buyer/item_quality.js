@@ -7,28 +7,35 @@ $(document).ready(function () {
   for (var i = 1; i <= 16; i++) {
     selector = "input#quality" + i + "[type='checkbox']";
     quality = "#q-quality" + i;
-    if ($(quality).val() == null) {
-      $(quality).val("0");
-    }
+    info = "#q-info" + i;
+  if ($(quality).val() == null) {
+    $(quality).val("0");
+    $(info).val('');
+  }
   }
   $(".js-quality").click(function () {
     id = $(this).attr("for");
-    if ($("#q-" + id).val() == "1") {
-      $("#q-" + id).val("0");
-      let check = true;
-      for (var i = 1; i <= 16; i++) {
-        selector = "input#quality" + i + "[type='checkbox']";
-        quality = "#q-quality" + i;
-        if ($(quality).val() == 1) {
-          check = false;
-        }
-      }
-      if (check) {
-        $("#submit-form").attr("disabled", "disabled");
-      }
-    } else {
-      $("#q-" + id).val("1");
-      $("#submit-form").removeAttr("disabled");
-    }
+    info = "#q-info" + id.replace('quality','');
+  if ($("#q-" + id).val() == "1") {
+    $("#q-" + id).val("0");
+    $(info).val('');
+
+  let check = true;
+  for (var i = 1; i <= 16; i++) {
+    selector = "input#quality" + i + "[type='checkbox']";
+    quality = "#q-quality" + i;
+
+  if ($(quality).val() == 1) {
+    check = false;
+  }
+  }
+  if (check) {
+    $("#submit-form").attr("disabled", "disabled");
+  }
+  } else {
+    $("#q-" + id).val("1");
+    $(info).val($(this).html());
+    $("#submit-form").removeAttr("disabled");
+  }
   });
 });

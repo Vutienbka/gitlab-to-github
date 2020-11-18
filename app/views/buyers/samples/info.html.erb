@@ -55,11 +55,11 @@
               </div>
               <div class="d-flex mt-3">
                 <h5 class="info-head font-bold white-space-nowrap">仕入先名：</h5>
-                <h5 class="info-head text-normal">株式会社〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</h5>
+                <h5 class="info-head text-normal"><%=@profile&.company_name%></h5>
               </div>
               <div class="d-flex mt-3">
                 <h5 class="info-head font-bold">部数：</h5>
-                <h5 class="info-head text-normal"><%=@sample.quantity%></h5>
+                <h5 class="info-head text-normal"><%=@sample&.quantity%></h5>
               </div>
               <div class="d-flex mt-3">
                 <h5 class="info-head font-bold">品質特性：</h5>
@@ -67,7 +67,7 @@
               </div>
               <div class="d-flex mt-3">
                 <h5 class="info-head font-bold">品質基準：</h5>
-                <h5 class="info-head text-normal">標準</h5>
+                <h5 class="info-head text-normal"><%=@arr_quality%></h5>
               </div>
               <h5 class="info-head font-bold mt-3">配布数：</h5>
               <table class="company-table sample-info-table">

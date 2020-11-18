@@ -10,75 +10,91 @@
     <div class="mt-5 mb-5">
       <div class="w-90 flex--sp-block w-90--sp">
         <!--type="checkbox"に変更しても同じデザイン-->
-        <input type="checkbox" name="quality" id="quality1" class="choose" <%= f.object.quality1.zero? ? '' : 'checked' %>>
-        <label for="quality1" class="label label--4 js-quality">属性情報</label>
+        <input type="checkbox" name="quality" id="quality1" class="choose" <%= f.object&.quality1&.zero? ? '' : 'checked' %>>
+        <label for="quality1" class="label label--4 js-quality"><%=t("item.quality.info.1")%></label>
         <%= f.hidden_field :quality1, id: 'q-quality1' %>
+        <%= f.hidden_field :info1, id: 'q-info1' %>
 
-        <input type="checkbox" name="quality" id="quality2" class="choose" <%= f.object.quality2.zero? ? '' : 'checked' %>>
-        <label for="quality2" class="label label--4 js-quality">標準見本</label>
+        <input type="checkbox" name="quality" id="quality2" class="choose" <%= f.object&.quality2&.zero? ? '' : 'checked' %>>
+        <label for="quality2" class="label label--4 js-quality"><%=t("item.quality.info.2")%></label>
         <%= f.hidden_field :quality2, id: 'q-quality2' %>
+        <%= f.hidden_field :info2, id: 'q-info2' %>
 
-        <input type="checkbox" name="quality" id="quality3" class="choose" <%= f.object.quality3.zero? ? '' : 'checked' %>>
-        <label for="quality3" class="label label--4 js-quality">限度見本</label>
+        <input type="checkbox" name="quality" id="quality3" class="choose" <%= f.object&.quality3&.zero? ? '' : 'checked' %>>
+        <label for="quality3" class="label label--4 js-quality"><%=t("item.quality.info.3")%></label>
         <%= f.hidden_field :quality3, id: 'q-quality3' %>
+        <%= f.hidden_field :info3, id: 'q-info3' %>
 
-        <input type="checkbox" name="quality" id="quality4" class="choose" <%= f.object.quality4.zero? ? '' : 'checked' %>>
-        <label for="quality4" class="label label--4 js-quality">NG見本</label>
+        <input type="checkbox" name="quality" id="quality4" class="choose" <%= f.object&.quality4&.zero? ? '' : 'checked' %>>
+        <label for="quality4" class="label label--4 js-quality"><%=t("item.quality.info.4")%></label>
         <%= f.hidden_field :quality4, id: 'q-quality4' %>
+        <%= f.hidden_field :info4, id: 'q-info4' %>
       </div>
       <div class="w-90 flex--sp-block w-90--sp">
         <!--type="checkbox"に変更しても同じデザイン-->
-        <input type="checkbox" name="quality" id="quality5" class="choose" <%= f.object.quality5.zero? ? '' : 'checked' %>>
-        <label for="quality5" class="label label--4 js-quality">SDS</label>
+        <input type="checkbox" name="quality" id="quality5" class="choose" <%= f.object&.quality5&.zero? ? '' : 'checked' %>>
+        <label for="quality5" class="label label--4 js-quality"><%=t("item.quality.info.5")%></label>
         <%= f.hidden_field :quality5, id: 'q-quality5' %>
+        <%= f.hidden_field :info5, id: 'q-info5' %>
 
-        <input type="checkbox" name="quality" id="quality6" class="choose" <%= f.object.quality6.zero? ? '' : 'checked' %>>
-        <label for="quality6" class="label label--4 js-quality">識別マーク</label>
+        <input type="checkbox" name="quality" id="quality6" class="choose" <%= f.object&.quality6&.zero? ? '' : 'checked' %>>
+        <label for="quality6" class="label label--4 js-quality"><%=t("item.quality.info.6")%></label>
         <%= f.hidden_field :quality6, id: 'q-quality6' %>
+        <%= f.hidden_field :info6, id: 'q-info6' %>
 
-        <input type="checkbox" name="quality" id="quality7" class="choose" <%= f.object.quality7.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality7" class="choose" <%= f.object&.quality7&.zero? ? '' : 'checked' %>>
         <label for="quality7" class="label label--4 js-quality">品質管理者情報</label>
         <%= f.hidden_field :quality7, id: 'q-quality7' %>
+        <%= f.hidden_field :info7, id: 'q-info7' %>
 
-        <input type="checkbox" name="quality" id="quality8" class="choose" <%= f.object.quality8.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality8" class="choose" <%= f.object&.quality8&.zero? ? '' : 'checked' %>>
         <label for="quality8" class="label label--4 js-quality">生産(成形)条件</label>
         <%= f.hidden_field :quality8, id: 'q-quality8' %>
+        <%= f.hidden_field :info8, id: 'q-info8' %>
       </div>
       <div class="w-90 flex--sp-block w-90--sp">
         <!--type="checkbox"に変更しても同じデザイン-->
-        <input type="checkbox" name="quality" id="quality9" class="choose" <%= f.object.quality9.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality9" class="choose" <%= f.object&.quality9&.zero? ? '' : 'checked' %>>
         <label for="quality9" class="label label--4 js-quality">納入仕様書</label>
         <%= f.hidden_field :quality9, id: 'q-quality9' %>
+        <%= f.hidden_field :info9, id: 'q-info9' %>
 
-        <input type="checkbox" name="quality" id="quality10" class="choose" <%= f.object.quality10.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality10" class="choose" <%= f.object&.quality10&.zero? ? '' : 'checked' %>>
         <label for="quality10" class="label label--4 js-quality">QC工程表</label>
         <%= f.hidden_field :quality10, id: 'q-quality10' %>
+        <%= f.hidden_field :info10, id: 'q-info10' %>
 
-        <input type="checkbox" name="quality" id="quality11" class="choose" <%= f.object.quality11.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality11" class="choose" <%= f.object&.quality11&.zero? ? '' : 'checked' %>>
         <label for="quality11" class="label label--4 js-quality">作業標準書</label>
         <%= f.hidden_field :quality11, id: 'q-quality11' %>
+        <%= f.hidden_field :info11, id: 'q-info11' %>
 
-        <input type="checkbox" name="quality" id="quality12" class="choose" <%= f.object.quality12.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality12" class="choose" <%= f.object&.quality12&.zero? ? '' : 'checked' %>>
         <label for="quality12" class="label label--4 js-quality">検査記録表</label>
         <%= f.hidden_field :quality12, id: 'q-quality12' %>
+        <%= f.hidden_field :info12, id: 'q-info12' %>
       </div>
       <div class="w-90 flex--sp-block w-90--sp">
         <!--type="checkbox"に変更しても同じデザイン-->
-        <input type="checkbox" name="quality" id="quality13" class="choose" <%= f.object.quality13.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality13" class="choose" <%= f.object&.quality13&.zero? ? '' : 'checked' %>>
         <label for="quality13" class="label label--4 js-quality">初物検査記録表</label>
         <%= f.hidden_field :quality13, id: 'q-quality13' %>
+        <%= f.hidden_field :info13, id: 'q-info13' %>
 
-        <input type="checkbox" name="quality" id="quality14" class="choose" <%= f.object.quality14.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality14" class="choose" <%= f.object&.quality14&.zero? ? '' : 'checked' %>>
         <label for="quality14" class="label label--4 js-quality">4M変更</label>
         <%= f.hidden_field :quality14, id: 'q-quality14' %>
+        <%= f.hidden_field :info14, id: 'q-info14' %>
 
-        <input type="checkbox" name="quality" id="quality15" class="choose" <%= f.object.quality15.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality15" class="choose" <%= f.object&.quality15&.zero? ? '' : 'checked' %>>
         <label for="quality15" class="label label--4 js-quality">仕様変更</label>
         <%= f.hidden_field :quality15, id: 'q-quality15' %>
+        <%= f.hidden_field :info15, id: 'q-info15' %>
 
-        <input type="checkbox" name="quality" id="quality16" class="choose" <%= f.object.quality16.zero? ? '' : 'checked' %>>
+        <input type="checkbox" name="quality" id="quality16" class="choose" <%= f.object&.quality16&.zero? ? '' : 'checked' %>>
         <label for="quality16" class="label label--4 js-quality">工程変更</label>
         <%= f.hidden_field :quality16, id: 'q-quality16' %>
+        <%= f.hidden_field :info16, id: 'q-info16' %>
       </div>
     </div>
 

@@ -117,7 +117,23 @@ class Buyers::SamplesController < Buyers::BaseController
     end
   end
 
-  def info; end
+  def info
+    @arr_quality = ''
+    @quality = Sample&.find_by_id(params[:id])&.item_request&.item_quality
+    @profile = current_user&.profile
+    if @quality&.info2.present?
+      @info2 = @quality.info2.slice(0..1)
+      @arr_quality += @info2
+    end
+    if @quality&.info3.present?
+      @info3 = @quality.info3.slice(0..1)
+      @arr_quality += (',' + @info3)
+    end
+    if @quality&.info4.present?
+      @info4 = @quality.info4.slice(0..1)
+      @arr_quality += (',' + @info4)
+    end
+  end
 
   private
 
