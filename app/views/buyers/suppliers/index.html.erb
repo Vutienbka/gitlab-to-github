@@ -1,0 +1,23 @@
+<% content_for :title,'NEWJI | 取引先' %>
+<% breadcrumb_add '取引先' %>
+
+<% content_for :content_header do %>
+        <div class="card card--login">
+          <div class="card-body">
+            <p class="login-head text-center">取引先の企業を<span class="textbr">検索してください</span></p>
+            <form action="company-search-result.html">
+              <div class="input-group mt-5 mb-5">
+                <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+                <div class="input-group-append">
+                  <input class="sbtn5" type="submit" value="検索" />
+                </div>
+              </div>
+            </form>
+            <div class="w-70 w-100--tab d-flex flex-wrap text-center">
+              <a href="<%= introduce_buyers_suppliers_path %>" class="btn w-45 newji-btn--blue mt-3 w-60--sp w-100--sp--450">サプライヤーを<span class="textbr">招待する</span></a>
+              <a href="<%= credit_registration_buyers_suppliers_path %>" class="btn w-45 newji-btn--dark-blue mt-3 w-60--sp w-100--sp--450">信用調査を<span class="textbr">依頼する</span></a>
+            </div>
+          </div>
+        </div>
+
+<% end %>

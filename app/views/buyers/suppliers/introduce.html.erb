@@ -1,0 +1,35 @@
+<% content_for :title,'NEWJI | 取引先' %>
+<% breadcrumb_add '取引先' %>
+
+<% content_for :content_header do %>
+ <div class="card card--login">
+          <div class="card-body login-card-body">
+            <p class="login-head text-center">以下を入力してください</p>
+            <form action="complete-introduce.html" method="post">
+              <div class="input-group mt-5 mb-4">
+                <label for="form-label-mail">
+                  <span class="required-txt">必須</span>
+                  <span>メールアドレス</span>
+                </label>
+                <input id="form-label-mail" type="email" class="form-control form-control--ie" placeholder="例）example@example.co.jp" name="mail" required>
+              </div>
+              <div class="input-group mb-4">
+                <label for="form-label-name">
+                  <span class="required-txt">必須</span>
+                  <span>ご担当者名</span>
+                </label>
+                <input id="form-label-name" type="text" class="form-control form-control--ie" placeholder="例）山田隆弘" name="name" required>
+                <span class="ml-3 mt-4">様</span>
+              </div>
+
+              <div class="row">
+                <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp">招待する</button>
+              </div>
+            </form>
+          <!-- /.login-card-body -->
+          </div>
+        </div>
+        <div class="w-90 text-center margin-bottom30">
+          <a href="<%=credit_registration_buyers_suppliers_path%>" class="btn w-30 newji-btn--dark-blue w-60--sp">または信用調査を<span class="textbr">依頼する</span></a>
+        </div>
+<% end %>

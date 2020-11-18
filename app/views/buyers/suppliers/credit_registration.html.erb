@@ -1,0 +1,51 @@
+<% content_for :title,'NEWJI | 取引先' %>
+<% breadcrumb_add '取引先' %>
+
+<% content_for :content_header do %>
+<div class="card card--login">
+          <div class="card-body login-card-body">
+            <p class="login-head text-center mb-5">以下を入力してください<!--<br />または、名刺を登録することで<span class="textbr">自動入力が可能です。</span>--></p>
+            <!--<a href="#" class="text-center block m-30"><i class="far fa-address-card" title="名刺を登録する"></i></a>-->
+            <form action="influence.html" method="post">
+              <div class="input-group mb-4">
+                <label for="form-label-company">
+                  <span class="required-txt">必須</span>
+                  <span>社名</span>
+                </label>
+                <input id="form-label-company" type="text" class="form-control form-control--ie" placeholder="例）株式会社〇〇" name="company-name" required>
+              </div>
+              <div class="input-group mb-4">
+                <label for="form-label-address">
+                  <span class="required-txt">必須</span>
+                  <span>住所</span>
+                </label>
+                <input id="form-label-address" type="text" class="form-control form-control--ie" placeholder="例）〇〇県〇〇市1-89" name="company-address" required>
+              </div>
+              <div class="input-group mb-4">
+                <label for="form-label-number">
+                  <span class="required-txt">必須</span>
+                  <span>電話番号</span>
+                </label>
+                <input id="form-label-number" type="tel" class="form-control form-control--ie" placeholder="例）09077777777" name="company-tel-number" required>
+              </div>
+              <label class="label-block">
+                <span class="required-txt required-txt--any">任意</span>
+                <span>審査のスピード</span>
+              </label>
+              <div class="w-70 flex--sp-block mt-2 mb-5 w-100--sp--450">
+                <!--type="checkbox"に変更しても同じデザイン-->
+                <input type="radio" name="examination-speed" value="1" id="apple" class="choose" checked>
+                <label for="apple" class="label">普通</label>
+                <input type="radio" name="examination-speed" value="2" id="pineapple" class="choose">
+                <label for="pineapple" class="label">特急</label>
+                <input type="radio" name="examination-speed" value="3" id="orange" class="choose">
+                <label for="orange" class="label">超特急</label>
+              </div>
+              <div class="row">
+                <button type="submit" class="btn w-30 newji-btn--blue w-60--sp">登録</button>
+              </div>
+            </form>
+          <!-- /.login-card-body -->
+          </div>
+        </div>
+<%end%>

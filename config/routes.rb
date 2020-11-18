@@ -176,9 +176,13 @@ Rails.application.routes.draw do
         get :info
       end
     end
-  end
 
-  namespace :suppliers do
+    resources :suppliers, only: %i[index] do
+      collection do
+        get :introduce
+        get :credit_registration
+      end
+    end
   end
 
   resources :buyers, only: [] do
