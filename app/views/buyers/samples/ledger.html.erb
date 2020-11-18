@@ -59,41 +59,44 @@
               </div>
             </div>
           </div>
+
           <div class="col-12 col-md-9">
-            <p class="login-head">新着サンプル</p>
-            <div class="row js-sample-archive-wrap" id="example2">
-            <% @samples.each do |s| %>
-              <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
-                <div class="card">
-                <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
-                  <div class="mx-1 my-3">
-                    <h6 class="h6"><small>管理番号：<%=s.code%></small></h6>
-                    <h6 class="h6 font-bold sample-card-title-name"><%=s.title%></h6>
-                    <div class="w-100 text-center d-flex mb-1">
-                      <div class="col-sm-6">
-                      <a class="btn btn-outline-primary font-weight-light" style="width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;" href="<%=edit_buyers_sample_path(s.id)%>">修正</a>
+            <% if @samples.present? %>
+              <p class="login-head">新着サンプル</p>
+              <div class="row js-sample-archive-wrap" id="example2">
+              <% @samples.each do |s| %>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                  <div class="card">
+                  <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                    <div class="mx-1 my-3">
+                      <h6 class="h6"><small>管理番号：<%=s.code%></small></h6>
+                      <h6 class="h6 font-bold sample-card-title-name"><%=s.title%></h6>
+                      <div class="w-100 text-center d-flex mb-1">
+                        <div class="col-sm-6">
+                        <a class="btn btn-outline-primary font-weight-light" style="width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;" href="<%=edit_buyers_sample_path(s.id)%>">修正</a>
+                        </div>
+                        <div class="col-sm-6">
+                        <%= link_to  "消去", buyers_sample_path(s.id), method: :delete, class: 'btn btn-outline-danger font-weight-light', style:"width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;", data: {confirm: "本当に削除してよろしいですか？"} %>
+                        </div>
                       </div>
-                      <div class="col-sm-6">
-                      <%= link_to  "消去", buyers_sample_path(s.id), method: :delete, class: 'btn btn-outline-danger font-weight-light', style:"width:100%; padding: 3px 1px; text-align: center; text-decoration: none; display: inline-block; border-radius: 25px; font-size: 16px; margin: 4px 2px; cursor: pointer;", data: {confirm: "本当に削除してよろしいですか？"} %>
+                      <div class="w-100 text-center">
+                        <a class="card-link card-link--sample-archive h6" href="<%=info_buyers_sample_path(s.id)%>">詳細を見る</a>
+                      </div>
                       </div>
                     </div>
-                    <div class="w-100 text-center">
-                      <a class="card-link card-link--sample-archive h6" href="<%=info_buyers_sample_path(s.id)%>">詳細を見る</a>
-                    </div>
-                    </div>
-                  </div>
                 </div>
               <% end %>
-            </div>
+              </div>
+            <% else %>
+            <div colspan="9" class="text-center">データーがありません</div>
+            <% end %>
             <!-- ページネーション  -->
             <%= paginate @samples, class:'text-center' %>
             <div class="w-100 text-center mt-5 margin-bottom30">
               <a href="<%=buyers_samples_path%>" class="to-top">前に戻る</a>
             </div>
           </div>
-          
         </div>
-  
     <!-- /.content-header -->
 
   <!-- カスタマイズ -->

@@ -14,7 +14,7 @@ class Sample < ApplicationRecord
 
   DELIVERY_REQUEST = %w[courier sea_mail combine_shipping].freeze
 
-  FUNCTION = %w[sample statndard limit].freeze
+  FUNCTION = %w[not_good statndard limit].freeze
 
   PARAMS_ATTRIBUTES = [
     :buyer_id, :item_request_id, :title, :category, :classify,

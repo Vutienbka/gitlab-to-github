@@ -2,8 +2,9 @@
 
 class Buyers::ClaimsController < Buyers::BaseController
   include StaticData
-  before_action :set_default_locale
-  before_action :redirect_to_profile, except: %i[list_claim]
+  include ChangeLocale
+  before_action :set_default_locale, only: %i[new create table show filter]
+  before_action :redirect_to_profile
   before_action :item_requests, only: %i[new create]
   before_action :claims, :claim, except: %i[index new]
 
@@ -18,8 +19,8 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claim = Claim.new(claims_params)
     @claim.supplier_id = @item_request.supplier_id
     @claim.buyer_id = current_user.id
-    @claim.reason_status = Claim.reason_status.find_value(t("enumerize.reason_status.unanswered")).value
-    @claim.counter_plan_status = Claim.counter_plan_status.find_value(t("enumerize.counter_plan_status.unanswered")).value
+    @claim.reason_status = Claim.reason_status.find_value(t('enumerize.reason_status.unanswered')).value
+    @claim.counter_plan_status = Claim.counter_plan_status.find_value(t('enumerize.counter_plan_status.unanswered')).value
     if @claim.save
       respond_to do |format|
         format.html { redirect_to buyers_claim_path(@claim), success: I18n.t('create.success') }
@@ -83,7 +84,7 @@ class Buyers::ClaimsController < Buyers::BaseController
 
   def table
     if params[:q].blank?
-      if params[:item_code].blank? || (params[:item_code] == "blank")
+      if params[:item_code].blank? || (params[:item_code] == 'blank')
         @q = @claims.ransack(params[:q])
       else
         @item_info = ItemInfo.find_by(SKU: params[:item_code])
@@ -96,7 +97,7 @@ class Buyers::ClaimsController < Buyers::BaseController
 
   def filter
     if params[:q].blank?
-      if params[:item_code].blank? || (params[:item_code] == "blank")
+      if params[:item_code].blank? || (params[:item_code] == 'blank')
         @q = @claims.ransack(params[:q])
         @claims = @q.result.page(params[:page]).per ITEM_PER_PAGE
       else
@@ -107,27 +108,27 @@ class Buyers::ClaimsController < Buyers::BaseController
       end
       string_params = t("enumerize.reason_counter_plans.#{params[:claim][:reason_counter_plans]}")
 
-      if string_params.include? t("enumerize.check_match_param.reason") 
+      if string_params.include? t('enumerize.check_match_param.reason')
         selection_status = @claims.reason_status
         reason_match_string_index = check_match(string_params, selection_status)
       end
 
-      if string_params.include? t("enumerize.check_match_param.counterplan") 
+      if string_params.include? t('enumerize.check_match_param.counterplan')
         selection_status = @claims.counter_plan_status
         counter_plan_match_string_index = check_match(string_params, selection_status)
-      end 
-      if params[:claim][:classify].present?
-      @claim_classify = t("enumerize.classifies.#{params[:claim][:classify]}")
-      else
-        @claim_classify = params[:claim][:classify]
-      end 
+      end
+      @claim_classify = if params[:claim][:classify].present?
+                          t("enumerize.classifies.#{params[:claim][:classify]}")
+                        else
+                          params[:claim][:classify]
+                        end
       @q = @claims&.filter_by_date_range(params[:select_period_from]&.to_date, params[:select_period_to]&.to_date)
-        .filter_by_reason_status(reason_match_string_index)
-        .filter_by_counter_plan_status(counter_plan_match_string_index).ransack(params[:q])
+                  .filter_by_reason_status(reason_match_string_index)
+                  .filter_by_counter_plan_status(counter_plan_match_string_index).ransack(params[:q])
       @claims = @q.result.page(params[:page]).per ITEM_PER_PAGE
 
       unless @claims.present?
-        flash[:alert] = "見つからなかった"
+        flash[:alert] = '見つからなかった'
         render :table
         return
       end
@@ -141,12 +142,12 @@ class Buyers::ClaimsController < Buyers::BaseController
     @q = @claims.where(id: params[:id]).ransack(params[:q])
     @claims = @q.result.page(params[:page]).per ITEM_PER_PAGE
     respond_to do |format|
-      format.js { render json: { html: render_to_string(partial: "claim_table", locals: { claims: @claims }) } }
+      format.js { render json: { html: render_to_string(partial: 'claim_table', locals: { claims: @claims }) } }
     end
   end
 
   def search_by_submit
-    if params[:item_code].blank? || (params[:item_code] == "blank")
+    if params[:item_code].blank? || (params[:item_code] == 'blank')
       @claims = @claims
     else
       @item_info = ItemInfo.find_by(SKU: params[:item_code])
@@ -156,10 +157,10 @@ class Buyers::ClaimsController < Buyers::BaseController
     if params[:q][:lot_number_cont].blank?
       @q = @claims.ransack(params[:q][:lot_number_cont])
     else
-      item_sku_ids = @claims.joins(:item_request).where(item_request_id: (ItemRequest.joins(:item_info).where("item_info.SKU like ?", "%#{params[:q][:lot_number_cont]}%").ids)).ids
-      item_name_ids = @claims.joins(:item_request).where(item_request_id: (ItemRequest.joins(:item_info).where("item_info.name like ?", "%#{params[:q][:lot_number_cont]}%").ids)).ids
-      claim_lot_number_ids = @claims.where("lot_number like ?", "%#{params[:q][:lot_number_cont]}%").ids
-      claim_supplier_name_ids = @claims.where(supplier_id: Profile.where("company_name like ?", "%#{params[:q][:lot_number_cont]}%").ids).ids
+      item_sku_ids = @claims.joins(:item_request).where(item_request_id: ItemRequest.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:lot_number_cont]}%").ids).ids
+      item_name_ids = @claims.joins(:item_request).where(item_request_id: ItemRequest.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:lot_number_cont]}%").ids).ids
+      claim_lot_number_ids = @claims.where('lot_number like ?', "%#{params[:q][:lot_number_cont]}%").ids
+      claim_supplier_name_ids = @claims.where(supplier_id: Profile.where('company_name like ?', "%#{params[:q][:lot_number_cont]}%").ids).ids
       ids = item_sku_ids + item_name_ids + claim_lot_number_ids + claim_supplier_name_ids
       @q = @claims.where(id: ids).ransack(params[:q][:lot_number_cont])
     end
@@ -217,9 +218,4 @@ class Buyers::ClaimsController < Buyers::BaseController
     @item_request = @item_requests.find_by(id: params[:item_request_id]) if @item_requests.present?
     return redirect_to buyers_claims_path, flash: { alert: 'Do not have permission' } unless @item_request.present?
   end
-  
-  def set_default_locale
-    I18n.locale = :ja
-  end
-
 end

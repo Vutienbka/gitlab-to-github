@@ -164,6 +164,6 @@ en:
         sea_mail: 'sea_mail'
         combine_shipping: 'combine_shipping'
       function:
-        sample: 'sample'
+        not_good: 'not_good'
         standard: 'standard'
         limit: 'limit'

@@ -111,7 +111,7 @@ ja:
   unauthorized:
     manage:
       all: 'アクセス権限がありません。'
-  enumerize:    
+  enumerize:
     classifies:
       uncategorized: '未分類'
       mixed_with_foreign_matter: '異物混入'
@@ -129,7 +129,7 @@ ja:
       shortage_of_part: '部品不足'
       wrong_quanlity: '数量違い'
       misassembly: '組み間違い'
-  
+
     reason_counter_plans:
       cause_unanswered: '原因未回答'
       counterplan_unanswered: '対策未回答'
@@ -147,7 +147,7 @@ ja:
     check_match_param:
       reason: '原因'
       counterplan: '対策'
-      
+
   sample:
     sample_type:
       standard: '標準見本'
@@ -167,6 +167,6 @@ ja:
       sea_mail: '船便'
       combine_shipping: '同梱'
     function:
-      sample: 'サンプル'
+      not_good: 'NG見本'
       standard: '標準見本'
-      limit: '限度見本'  
+      limit: '限度見本'

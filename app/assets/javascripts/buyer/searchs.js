@@ -43,7 +43,7 @@ $(document).ready(function () {
     $('#claim_item_code').val(item_code);
     localStorage.setItem("item_code_from_url", item_code);
     localStorage.setItem("filter_item_code", item_code)
-    localStorage.setItem('search_claim_with_submit', $(this).val())  
+    localStorage.setItem('search_claim_with_submit', $(this).val())
     suggest_search($("#claim-search"), $("#result"), '/buyers/searchs/claim_suggest_search', 'claim', data)
   });
 
@@ -146,7 +146,7 @@ $(document).ready(function () {
         .fail(function (data) {
           console.log('失敗しました');
         })
-  
+
       if (query_string == '') {
         result_element.hide();
       } else {
@@ -172,8 +172,7 @@ $(document).ready(function () {
       result_element.append(
         '<div class="samples">' +
           '<div class="sample_detail" id="sample_detail_' + data[i][0] + '">' +
-            '<div class="sample_info" data-sample-title="title_' + data[i][1] + '" data-sample-classify="code_' + data[i][2] + '">' + 'サンプルタイトル: ' + data[i][1] + ' | ' + 'サンプルコード: ' + data[i][2] + ' | ' +
-              'アイテムコード: ' + data[i][3] + ' | ' +  'アイテム名: ' + data[i][4] + ' | ' +'サプライヤー名: ' + data[i][5] +
+            '<div class="sample_info" data-sample-title="title_' + data[i][1] + '" data-sample-classify="code_' + data[i][2] + '">' + 'サンプルタイトル: ' + data[i][1] + ' | ' + 'サンプルコード: ' + data[i][2] + ' | ' +'サプライヤー名: ' + data[i][5] +
             '</div>' +
           '</div>' +
         '</div>')

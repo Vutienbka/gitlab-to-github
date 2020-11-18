@@ -108,7 +108,7 @@
 					<div class="w-100 flex flex-wrap" required = "required">
 						<!--type="checkbox"に変更しても同じデザイン-->
 						<%= radio_button('sample', 'function', t("sample.function.sample"), checked: @sample&.function=='sample', id: "sample", class: "choose") %>
-						<label for="sample" class="label label--with-input">サンプル</label>
+						<label for="sample" class="label label--with-input">NG見本</label>
 						<%= radio_button('sample', 'function', t("sample.function.standard"), checked: @sample&.function=='standard', id: "standard", class: "choose") %>
 						<label for="standard" class="label label--with-input">標準見本</label>
 						<%= radio_button('sample', 'function', t("sample.function.limit"), checked: @sample&.function=='limit', id: "limit", class: "choose") %>

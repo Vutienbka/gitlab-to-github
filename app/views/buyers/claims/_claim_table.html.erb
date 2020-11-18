@@ -1,46 +1,70 @@
 <table id="example1" class="table table-bordered table-striped table--ordering table--claim">
-	<thead>
-		<tr>
-			<th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
-			<th class="text-center">登録日</th>
-			<th class="text-center">ロット<span class="textbr">ナンバー</span></th>
-			<th class="text-center">不適合区分</th>
-			<th class="text-center">クレーム<span class="textbr">内容</span></th>
-			<th class="text-center">原因</th>
-			<th class="text-center">対策</th>
-			<th class="text-center">編集</th>
-			<th class="text-center">削除</th>
-		</tr>
-	</thead>
-	<tbody>
-	<% claims&.each do |claim| %>
-			<tr>
-				<td type="hidden"><%= claim.id %></td>
-				<td class="text-center" title="クレームナンバー"><%= claim.id %></td>
-				<td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d/%m/%Y") %></td>
-				<td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
-				<td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(', ') if claim&.classify.present? %></td>
-				<td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
-				<td class="text-center" title="原因"><a href="#" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
-				<td class="text-center" title="対策"><a href="#" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
-				<td class="text-center" title="編集"><a href="#" class="btn btn-primary"><i class="fa fa-edit"></a></td>
-				<td class="text-center" title="削除"><a href="#" class="btn btn-danger"><i class="fa fa-trash"></a></td>
-			</tr>
-	<% end %>
-	</tbody>
-	<tfoot>
-		<tr>
-			<th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
-			<th class="text-center">登録日</th>
-			<th class="text-center">ロット<span class="textbr">ナンバー</span></th>
-			<th class="text-center">不適合区分</th>
-			<th class="text-center">クレーム<span class="textbr">内容</span></th>
-			<th class="text-center">原因</th>
-			<th class="text-center">対策</th>
-			<th class="text-center">編集</th>
-			<th class="text-center">削除</th>
-		</tr>
-	</tfoot>
+  <thead>
+    <tr>
+      <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
+      <th class="text-center">登録日</th>
+      <th class="text-center">ロット<span class="textbr">ナンバー</span></th>
+      <th class="text-center">不適合区分</th>
+      <th class="text-center">クレーム<span class="textbr">内容</span></th>
+      <th class="text-center">原因</th>
+      <th class="text-center">対策</th>
+      <th class="text-center">編集</th>
+      <th class="text-center">削除</th>
+    </tr>
+  </thead>
+  <% if claims.present? %>
+    <tbody>
+    <% claims&.each do |claim| %>
+      <% if @claim_classify.present? %>
+      <% if claim&.classify&.include? @claim_classify %>
+      <tr>
+        <td type="hidden" class="hidden"><%= claim.id %></td>
+        <td class="text-center" title="クレームナンバー"><%= claim.id %></td>
+        <td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d-%m-%Y") %></td>
+        <td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
+        <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(", ") if claim&.classify.present? %></td>
+        <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
+        <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
+        <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
+        <td class="text-center" title="編集"><%=link_to "/buyers/claims/#{claim.id}/edit" , method: :get do %><i class="fa fa-edit"><% end %></td>
+        <td class="text-center" title="削除"><%= link_to buyers_claim_path(claim), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %><i class="fa fa-trash"><% end %></td>
+      </tr>
+      <% end %>
+      <% else %>
+      <tr>
+      <td class="text-center" title="クレームナンバー"><%= claim.id %></td>
+        <td class="text-center" title="登録日"><%= claim&.created_at&.strftime("%d-%m-%Y") %></td>
+        <td class="text-center" title="ロットナンバー"><%= claim&.lot_number %></td>
+        <td class="text-center" title="不適合区分"><%= claim&.classify.reject(&:blank?).join(", ") if claim&.classify.present? %></td>
+        <td class="text-center" title="クレーム内容を確認"><%= claim&.claim_content %></td>
+        <td class="text-center" title="原因"><a href="claim-info.html" class="to-top"><%= Claim.reason_status.find_value(claim&.reason_status) %></a></td>
+        <td class="text-center" title="対策"><a href="claim-info.html" class="to-top"><%= Claim.counter_plan_status.find_value(claim&.counter_plan_status) %></a></td>
+        <td class="text-center" title="編集"><%=link_to "/buyers/claims/#{claim.id}/edit" , method: :get do %><i class="fa fa-edit"><% end %></td>
+        <td class="text-center" title="削除"><%= link_to buyers_claim_path(claim), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %><i class="fa fa-trash"><% end %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  <% else %>  
+    <tbody>
+      <tr class="odd">
+        <td valign="top" colspan="9" class="dataTables_empty">データーがありません</td>
+      </tr>
+    </tbody>
+  <% end %>
+  <tfoot>
+    <tr>
+      <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
+      <th class="text-center">登録日</th>
+      <th class="text-center">ロット<span class="textbr">ナンバー</span></th>
+      <th class="text-center">不適合区分</th>
+      <th class="text-center">クレーム<span class="textbr">内容</span></th>
+      <th class="text-center">原因</th>
+      <th class="text-center">対策</th>
+      <th class="text-center">編集</th>
+      <th class="text-center">削除</th>
+    </tr>
+  </tfoot>
 </table>
 <script>
 $(function () {

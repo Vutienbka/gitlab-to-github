@@ -5,7 +5,7 @@
 
 <% content_for :content_header do %>
 <div class="mt-4">
-  <%= search_form_for @q, url:buyers_searchs_path do |f| %>
+  <%= search_form_for @q, url:buyers_searchs_path, html: { autocomplete: 'off' } do |f| %>
   <div class="input-group">
     <%= f.text_field :status_cont, class: "form-control form-control-navbar form-control--ie", placeholder: "〇〇、〇〇などで検索", id:"newji-serch" %><br>
     <div class="input-group-append">
@@ -40,7 +40,7 @@
               <div class="d-flex align-items-center justify-content-between">
                   <%= content_tag :h6, sub_catalog.name, class: "category-name" %>
                   <i class="fas fa-ellipsis-v mr-2 font-color pass_data_to_modal" id="pass_data_to_modal_<%= sub_catalog.id %>" role="button" data-target="#modal-default2" data-toggle="modal" onclick="return false"></i>
-              </div>      
+              </div>
               <% if get_size_catalog(sub_catalog) > 0 %>
                 <h6></h6>
                 <%= content_tag :h6, class: "category-name--code" do %>

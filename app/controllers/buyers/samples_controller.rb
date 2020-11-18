@@ -1,5 +1,6 @@
 class Buyers::SamplesController < Buyers::BaseController
   include StaticData
+  include ChangeLocale
   before_action :set_default_locale
   before_action :set_locale, only: %i[create new input edit update]
   before_action :samples, only: %i[filter suppliers ledger search_by_submit search_with_ajax]
@@ -122,14 +123,6 @@ class Buyers::SamplesController < Buyers::BaseController
 
   def sample_params
     params.require(:sample).permit(Sample::PARAMS_ATTRIBUTES)
-  end
-
-  def set_locale
-    I18n.locale = :en
-  end
-
-  def set_default_locale
-    I18n.locale = :ja
   end
 
   def samples
