@@ -121,6 +121,7 @@ class Buyers::SamplesController < Buyers::BaseController
     @arr_quality = ''
     @quality = Sample&.find_by_id(params[:id])&.item_request&.item_quality
     @profile = current_user&.profile
+    @registrant = Profile.find_by_id(@sample.buyer_id)
     if @quality&.info2.present?
       @info2 = @quality.info2.slice(0..1)
       @arr_quality += @info2

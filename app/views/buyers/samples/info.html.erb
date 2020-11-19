@@ -13,9 +13,9 @@
                 <h4 class="login-head font-bold"><%=@sample.title%></h4>
               </div>
               <div class="text-right calim-info__header-child">
-                <h6 class="claim-info__right-info">作成日：2020年7月11日</h6>
+                 <h6 class="claim-info__right-info">作成日：<%=@sample.created_at.to_date.year.to_s + '年' + @sample.created_at.to_date.month.to_s + '月' + @sample.created_at.to_date.day.to_s + '日'%></h6>
                 <h6 class="claim-info__right-info">管理番号：CRPOHFC120</h6>
-                <h6 class="claim-info__right-info">登録者：山田裕二</h6>
+                <h6 class="claim-info__right-info">登録者：<%=@registrant.first_name%></h6>
               </div>
             </div>
           </div>
