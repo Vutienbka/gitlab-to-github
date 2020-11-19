@@ -102,4 +102,9 @@ $(document).ready(function (e) {
   $(document).on('click', '.back_to_claim_table', function(){
     sessionStorage.clear();
   })
+
+  $("tr").click(function() {
+    var claim_id = $(this).find("td:first").html();
+    window.location.href = '/buyers/claims/' + claim_id;
+  });
 });
