@@ -49,19 +49,19 @@
         <div class="dashed my-4">
 
         </div>
-        <h5 class="info-head font-bold">原因：</h5>
-        <div class="info-description claim-description">
-          <p>
-          <%= @current_claim&.reason_status %>
-          </p>
-          <br />
-        </div>
-        <h5 class="info-head font-bold mt-3">今後の対策：</h5>
-        <div class="info-description claim-description">
-          <p>
-            まだ回答されていません。
-          </p>
-        </div>
+        <%= form_for @claim, url: submit_show_buyers_claim_path(params[:id]), method: "post" do |f| %>
+          <h5 class="info-head font-bold">原因：</h5>
+            <%= f.text_area :claims_cause, id: 'cause', rows:'10', cols:'99', readonly: current_user.type == 'Buyer' ? true : false %>
+            </textarea>
+          <h5 class="info-head font-bold mt-3">今後の対策：</h5>
+            <%= f.text_area :claims_solution, id: 'cause', rows:'10', cols:'99', readonly: current_user.type == 'Buyer' ? true : false %>
+            </textarea>
+          <% if current_user.type == 'Supplier' %>
+            <div class="row">
+              <button type="submit" class="btn w-30 newji-btn--pink mt-4 w-60--sp" id="btnSubmit">送信</button>
+            </div>
+          <% end %>
+        <% end %>
       </div>
 
     </div>

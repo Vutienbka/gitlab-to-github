@@ -39,6 +39,14 @@ class Buyers::ClaimsController < Buyers::BaseController
     @claims_images = @current_claim&.claims_image&.map { |image| image.url }
   end
 
+  def submit_show
+    @claim = @claims.find_by(id: params[:id]) if @claims.present?
+    @claim.claims_solution = params[:claim][:claims_solution]
+    @claim.claims_cause = params[:claim][:claims_cause]
+    @claim.save
+    redirect_to table_buyers_claims_path
+  end
+
   def edit
     @item_info = current_user.claims.find_by(id: params[:id]).item_request.item_info
   end

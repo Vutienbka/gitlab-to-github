@@ -157,6 +157,7 @@ Rails.application.routes.draw do
         get :search_by_submit
       end
       member do
+        post :submit_show
         post 'update', to: 'claims#update', as: :claim_update
         delete 'remove_file', to: 'claims#remove_file', as: :claim_remove_file
         post :info
