@@ -118,7 +118,6 @@ class Buyers::SamplesController < Buyers::BaseController
   end
 
   def info
-    binding.pry
     @arr_quality = ''
     @quality = Sample&.find_by_id(params[:id])&.item_request&.item_quality
     @profile = current_user&.profile
