@@ -53,15 +53,31 @@
           </p>
           <% end %>
         </li>
-        <li class="nav-item has-treeview">
-          <%= link_to buyers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/claims' } " do %>
-          <i class="nav-icon fas fa-bullhorn"></i>
-          <p>
-            クレーム/不適合
-            <i class="fas fa-angle-right right"></i>
-          </p>
-          <% end %>
-        </li>
+
+        <% if current_user.supplier? %>
+          <li class="nav-item has-treeview">
+            <%= link_to suppliers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'suppliers/claims' } " do %>
+            <i class="nav-icon fas fa-bullhorn"></i>
+            <p>
+              クレーム/不適合
+              <i class="fas fa-angle-right right"></i>
+            </p>
+            <% end %>
+          </li>
+        <% end %>
+
+        <% if current_user.buyer? %>
+          <li class="nav-item has-treeview">
+            <%= link_to buyers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/claims' } " do %>
+            <i class="nav-icon fas fa-bullhorn"></i>
+            <p>
+              クレーム/不適合
+              <i class="fas fa-angle-right right"></i>
+            </p>
+            <% end %>
+          </li>
+        <% end %>
+
         <li class="nav-item has-treeview">
           <%= link_to buyers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/samples' } " do %>
           <i class="nav-icon fas fa-book"></i>

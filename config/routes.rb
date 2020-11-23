@@ -186,6 +186,23 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :suppliers do
+    resources :claims, only: %i[index show] do
+      collection do
+        get :table
+      end
+      member do
+        post :submit_show
+      end
+    end
+
+    resources :home, only: [] do
+      collection do
+        get :index
+      end
+    end
+  end
+
   resources :buyers, only: [] do
     collection do
       get :search_supplier_import
