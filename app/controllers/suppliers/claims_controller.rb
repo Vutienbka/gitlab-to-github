@@ -1,20 +1,12 @@
 class Suppliers::ClaimsController < Suppliers::BaseController
-  before_action :claims, only: %i[table show submit_show]
-  before_action :claim, only: %i[table show submit_show]
+  before_action :claims, only: %i[table show submit_show submit_show_modal]
+  before_action :claim, only: %i[table show submit_show submit_show_modal]
 
   def index; end
 
   def table
-    if params[:q].blank?
-      if params[:item_code].blank? || (params[:item_code] == 'blank')
-        @q = @claims.ransack(params[:q])
-      else
-        @item_info = ItemInfo.find_by(SKU: params[:item_code])
-        @item_request = @item_info&.item_request
-        @q = @item_request&.claims.where(buyer_id: current_user.id).ransack(params[:q])
-      end
-      @claims = @q.result.page(params[:page]).per 10
-    end
+    @claims_list = current_user.claims.where(supplier_id= current_user.id.to_s)
+    @count = 0
   end
 
   def show
@@ -26,10 +18,29 @@ class Suppliers::ClaimsController < Suppliers::BaseController
 
   def submit_show
     @claim = @claims.find_by(id: params[:id]) if @claims.present?
-    @claim.claims_solution = params[:claim][:claims_solution]
-    @claim.claims_cause = params[:claim][:claims_cause]
-    @claim.save
-    redirect_to table_buyers_claims_path
+    begin
+      ActiveRecord::Base.transaction do
+        @claim.update(claims_params)
+        redirect_to table_suppliers_claims_path
+    rescue StandardError
+        flash[:alert] = I18n.t('update.failed')
+        render :table
+      end
+    end
+  end
+
+  def submit_show_modal
+    @claim = @claims.find_by(id: params[:id]) if @claims.present?
+    begin
+      ActiveRecord::Base.transaction do
+        @claim.claims_solution = params[:claim][:claims_solution]
+        @claim.save
+        redirect_to table_suppliers_claims_path
+    rescue StandardError
+      flash[:alert] = I18n.t('update.failed')
+      render :table
+      end
+    end
   end
 
   def claims
@@ -38,5 +49,15 @@ class Suppliers::ClaimsController < Suppliers::BaseController
 
   def claim
     @claim = @claims.find_by(id: params[:id]) if @claims.present?
+  end
+
+  def claims_params
+    params.require(:claim).permit(Claim::PARAMS_ATTRIBUTES_CLAIM_CAUSE)
+  end
+
+  def add_files(string, remain_files, params)
+    added_files = remain_files
+    added_files += params[:claim][string.to_sym].values if params.dig(:claim, string.to_sym)
+    remain_files = added_files
   end
 end

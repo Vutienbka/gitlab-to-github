@@ -56,7 +56,7 @@
 
         <% if current_user.supplier? %>
           <li class="nav-item has-treeview">
-            <%= link_to suppliers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'suppliers/claims' } " do %>
+            <%= link_to table_suppliers_claims_path, class: "nav-link w-100 #{'active' if params[:controller] == 'suppliers/claims/table' } " do %>
             <i class="nav-icon fas fa-bullhorn"></i>
             <p>
               クレーム/不適合

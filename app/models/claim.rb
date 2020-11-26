@@ -14,6 +14,11 @@ class Claim < ApplicationRecord
     { claims_image: [] }
   ].freeze
 
+  PARAMS_ATTRIBUTES_CLAIM_CAUSE = [
+    :id,:claims_cause,
+    { claim_cause_images: [] }
+  ].freeze
+
   CLASSIFY = [
    'uncategorized',
    'mixed_with_foreign_matter',

@@ -190,9 +190,11 @@ Rails.application.routes.draw do
     resources :claims, only: %i[index show] do
       collection do
         get :table
+        get :info
       end
       member do
         post :submit_show
+        post :submit_show_modal
       end
     end
 

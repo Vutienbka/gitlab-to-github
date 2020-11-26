@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.integer "buyer_id"
     t.string "claims_cause"
     t.string "claims_solution"
+    t.text "claim_cause_images"
+    t.text "claim_solution_images"
   end
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
