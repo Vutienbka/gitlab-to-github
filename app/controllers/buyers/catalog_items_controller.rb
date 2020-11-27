@@ -3,6 +3,23 @@ class Buyers::CatalogItemsController < Buyers::BaseController
   before_action :set_catalog
 
   def index
+    if params[:q].blank?
+      @q = current_user&.item_requests.ransack(params[:q])
+      @item_requests = @q.result.page(params[:page]).per 10
+    else
+      item_sku_id = current_user&.item_requests.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:status_cont]}%").ids
+      item_name_id = current_user&.item_requests.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:status_cont]}%").ids
+      catalog_id = current_user&.item_requests.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
+      supplier_id = current_user&.item_requests.where(supplier_id: Profile.where('first_name like ? ', "%#{params[:q][:status_cont]}%").ids).ids
+      ids = item_sku_id + item_name_id + catalog_id + supplier_id
+      @item_requests = current_user&.item_requests.where(id: ids).includes([:item_info])
+
+      @q = @item_requests.ransack.result.page(params[:page]).per 10
+      render :search unless @item_requests.nil?
+    end
+    if check_exist_of_items(@catalog).present?
+      redirect_to buyers_catalog_catalog_items_path(@catalog.id)
+    end
     @catalog_items = @catalog.item_requests.where(status: 7).page(params[:page]).per ITEM_PER_PAGE
   end
 
@@ -29,6 +46,10 @@ class Buyers::CatalogItemsController < Buyers::BaseController
       end
       download_zip_file(params[:check_input_value])
     end
+  end
+
+  def check_exist_of_items(catalog)
+    @current_user.item_requests.where(catalog_id: catalog.id)
   end
 
   def download_zip_file(field_name)

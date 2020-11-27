@@ -6,15 +6,15 @@ class Buyers::CatalogsController < Buyers::BaseController
 
   def index
     if params[:q].blank?
-      @q = ItemRequest.ransack(params[:q])
-      @item_requests = @q.result.page(params[:page]).per ITEM_PER_PAGE
+      @q = current_user&.item_requests&.ransack(params[:q])
+      @item_requests = @q&.result&.page(params[:page]).per ITEM_PER_PAGE
     else
-      item_sku_id = ItemRequest.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:status_cont]}%").ids
-      item_name_id = ItemRequest.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:status_cont]}%").ids
-      catalog_id = ItemRequest.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
-      supplier_id = ItemRequest.where(supplier_id: Profile.where('first_name like ? ', "%#{params[:q][:status_cont]}%").ids).ids
+      item_sku_id = current_user&.item_requests.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:status_cont]}%").ids
+      item_name_id = current_user&.item_requests.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:status_cont]}%").ids
+      catalog_id = current_user&.item_requests.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
+      supplier_id = current_user&.item_requests.where(supplier_id: Profile.where('first_name like ? ', "%#{params[:q][:status_cont]}%").ids).ids
       ids = item_sku_id + item_name_id + catalog_id + supplier_id
-      @item_requests = ItemRequest.where(id: ids).includes([:item_info])
+      @item_requests = current_user&.item_requests.where(id: ids).includes([:item_info])
 
       @q = @item_requests.ransack.result.page(params[:page]).per ITEM_PER_PAGE
       render :search unless @item_requests.nil?

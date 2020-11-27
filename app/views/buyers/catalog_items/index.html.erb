@@ -3,15 +3,15 @@
 
 <% content_for :content_header do %>
 <div class="mt-4">
-  <form action="my-catalog-search-result.html">
-    <div class="input-group">
-      <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
-      <div class="input-group-append">
-        <input class="sbtn5" type="submit" value="検索" />
+      <%= search_form_for @q, url:buyers_searchs_path do |f| %>
+      <div class="input-group">
+        <%= f.text_field :status_cont, class: "form-control form-control-navbar form-control--ie", placeholder: "〇〇、〇〇などで検索", id:"newji-serch" %><br>
+        <div class="input-group-append">
+          <%= f.submit '検索', class: "sbtn5" %>
+        </div>
       </div>
+      <% end %>
     </div>
-  </form>
-</div>
 <div class="card my-5">
   <p class="breadcrumb-on-card">
     <%= link_to 'カテゴリー選択', buyers_catalogs_path %>
@@ -28,7 +28,7 @@
       アイテムを選択
     </h5>
     <div class="row">
-      <% @catalog_items.each do |catalog_item| %>
+      <% @@catalogs.each do |catalog_item| %>
         <div hidden="true"><%= image_src= catalog_item.item_image.file_images.map { |image| image.url }.first %></div>
       <div class="col-md-3 col-sm-6 col-12 mb-1">
         <%= link_to buyers_catalog_catalog_item_path(@catalog, catalog_item),  class: "card shadow-none border text-center category-item-content" do %>

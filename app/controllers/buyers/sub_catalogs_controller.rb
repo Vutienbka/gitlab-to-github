@@ -3,16 +3,15 @@ class Buyers::SubCatalogsController < Buyers::BaseController
 
   def index
     if params[:q].blank?
-      @q = ItemRequest.ransack(params[:q])
+      @q = current_user&.item_requests.ransack(params[:q])
       @item_requests = @q.result.page(params[:page]).per 10
     else
-      item_sku_id = ItemRequest.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:status_cont]}%").ids
-      item_name_id = ItemRequest.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:status_cont]}%").ids
-      catalog_id = ItemRequest.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
-      supplier_id = ItemRequest.where(supplier_id: Profile.where('first_name like ? ', "%#{params[:q][:status_cont]}%").ids).ids
+      item_sku_id = current_user&.item_requests.joins(:item_info).where('item_info.SKU like ?', "%#{params[:q][:status_cont]}%").ids
+      item_name_id = current_user&.item_requests.joins(:item_info).where('item_info.name like ?', "%#{params[:q][:status_cont]}%").ids
+      catalog_id = current_user&.item_requests.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
+      supplier_id = current_user&.item_requests.where(supplier_id: Profile.where('first_name like ? ', "%#{params[:q][:status_cont]}%").ids).ids
       ids = item_sku_id + item_name_id + catalog_id + supplier_id
-      @item_requests = ItemRequest.where(id: ids).includes([:item_info])
-
+      @item_requests = current_user&.item_requests.where(id: ids).includes([:item_info])
       @q = @item_requests.ransack.result.page(params[:page]).per 10
       render :search unless @item_requests.nil?
     end
@@ -51,7 +50,7 @@ class Buyers::SubCatalogsController < Buyers::BaseController
   end
 
   def check_exist_of_items(catalog)
-    ItemRequest.where(catalog_id: catalog.id)
+    @current_user.item_requests.where(catalog_id: catalog.id)
   end
 
   def get_selected_sub_catalog

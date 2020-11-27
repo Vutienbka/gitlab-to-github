@@ -4,35 +4,32 @@ class Buyers::SearchsController < Buyers::BaseController
   before_action :get_samples, only: %i[sample_suggest_search]
   before_action :item_requests, only: %i[sample_suggest_search]
   def index
-    if params[:q].blank?
-      @q = ItemRequest.ransack(params[:q])
-      @item_requests = @q.result.page(params[:page]).per ITEM_PER_PAGE
-    else
-      item_sku_id = ItemRequest.joins(:item_info).where("item_info.SKU like ?", "%#{params[:q][:status_cont]}%").ids
-      item_name_id = ItemRequest.joins(:item_info).where("item_info.name like ?", "%#{params[:q][:status_cont]}%").ids
-      catalog_id = ItemRequest.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
-      supplier_id = ItemRequest.where(supplier_id: Profile.where("first_name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
+      @q = current_user&.item_requests.ransack(params[:q])
+      item_sku_id = current_user&.item_requests.joins(:item_info).where("item_info.SKU like ?", "%#{params[:q][:status_cont]}%").ids
+      item_name_id = current_user&.item_requests.joins(:item_info).where("item_info.name like ?", "%#{params[:q][:status_cont]}%").ids
+      catalog_id = current_user&.item_requests.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
+      supplier_id = current_user.item_requests.where(supplier_id: Profile.where("first_name like ? ", "%#{params[:q][:status_cont]}%").ids).ids
       ids = item_sku_id + item_name_id + catalog_id + supplier_id
-      @item_requests = ItemRequest.where(id: ids, status: 7).where.not(catalog_id: nil).includes([:item_info])
-
+      @item_requests = current_user&.item_requests.where(id: ids, status: 7).includes([:item_info])
+      session[:link_search_sucatalog] = request.original_url
       @q = @item_requests.ransack.result.page(params[:page]).per ITEM_PER_PAGE
       render :search unless @item_requests.nil?
-    end
+   
   end
 
   def search; end
 
   def list_auto
     if params[:q].blank?
-      @q = ItemRequest.ransack(params[:q])
+      @q = current_user.item_requests.ransack(params[:q])
       @item_requests = @q.result.page(params[:page]).per ITEM_PER_PAGE
     else
-      item_sku_id = ItemRequest.joins(:item_info).where("item_info.SKU like ?", "%#{params[:q]}%").ids
-      item_name_id = ItemRequest.joins(:item_info).where("item_info.name like ?", "%#{params[:q]}%").ids
-      catalog_id = ItemRequest.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q]}%").ids).ids
-      supplier_id = ItemRequest.where(supplier_id: Profile.where("first_name like ? ", "%#{params[:q]}%").ids).ids
+      item_sku_id = current_user.item_requests.joins(:item_info).where("item_info.SKU like ?", "%#{params[:q]}%").ids
+      item_name_id = current_user.item_requests.joins(:item_info).where("item_info.name like ?", "%#{params[:q]}%").ids
+      catalog_id = current_user.item_requests.includes(:catalog).where(catalog_id: Catalog.where("name like ? ", "%#{params[:q]}%").ids).ids
+      supplier_id = current_user.item_requests.where(supplier_id: Profile.where("first_name like ? ", "%#{params[:q]}%").ids).ids
       ids = item_sku_id + item_name_id + catalog_id + supplier_id
-      @item_requests = ItemRequest.where(id: ids).includes([:item_info])
+      @item_requests = current_user.item_requests.where(id: ids).includes([:item_info])
       q = []
       @item_requests.each do |it|
         q << it.item_info
