@@ -1,0 +1,403 @@
+<%= javascripts 'buyer/claims' %>
+<%= stylesheets 'plugins/dropzone-5.7.0/dist/dropzone', 'buyer/item_image' %>
+<% content_for :title, 'NEWJI | クレーム/不適合' %>
+<% breadcrumb_add 'クレーム'%>
+<% breadcrumb_add '不適合'%>
+
+<% content_for :content_header do %>
+  <section class="content">
+    <!-- Default box -->
+    <div class="card card-solid card--login--only-vertical">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 calim-info__header-parent">
+            <div class="text-center mt-5 mt-md-4 mb-5 calim-info__header-item-name">
+              <h4 class="login-head font-bold">商品コード：<%= @item_info&.SKU %></h4>
+              <h6 class="login-head--small font-normal">名称：<%= @item_info&.name %></h6>
+            </div>
+            <div class="text-right calim-info__header-child">
+              <h6 class="claim-info__right-info">登録日：<%= @claim&.created_at&.strftime("%Y")%>年<%= @claim&.created_at&.strftime("%m")%>月<%= @claim&.created_at&.strftime("%d")%>日</h6>
+              <h6 class="claim-info__right-info"><%= @claim&.id %></h6>
+              <h6 class="claim-info__right-info">ロットナンバー：<%= @claim&.lot_number %></h6>
+            </div>
+          </div>
+        </div>
+        <div class="row border-top pt-5">
+          <div class="col-12 col-md-6">
+            <div class="col-12">
+                <img src="<%= @claims_images[0] if @claims_images.present?%>" alt="アイテム画像" class="product-image" >
+            </div>
+            <div class="col-12 product-image-thumbs">
+              <% @claims_images&.each_with_index do |image, index| %>
+                <div class="product-image-thumb active"><img src="<%= @claims_images[index] %>" alt="アイテム画像"></div>
+              <% end %>
+            </div>
+
+            <!-- 画像が７個以上の時プラスボタンを表示 -->
+            <div class="col-12 col-md-1 text-center mt-2">
+              <%= link_to edit_buyers_claim_path(@claim) do %><i class="fas fa-plus"></i><% end %>
+            </div>
+
+            <!-- <div class="row">
+              <a href="#" role="button" data-target="#modal-default3" data-toggle="modal" class="btn w-30 newji-btn--pink mt-4 w-60--sp">画像を追加</a>
+            </div> -->
+          </div>
+          <div class="col-12 col-md-6 mt-5 mt-md-0">
+            <div class="d-flex">
+              <h5 class="info-head font-bold">不適合区分：</h5>
+              <h5 class="info-head text-normal"><%= @catalog&.name %></h5>
+            </div>
+            <h5 class="info-head font-bold mt-3">クレーム内容：</h5>
+            <div class="info-description claim-description">
+              <p>
+                <%= @claim&.claim_content %>
+              </p>
+            </div>
+            <div class="dashed my-4"></div>
+            <h5 class="info-head font-bold">原因：<a href="" class="align-text-top font-color company-edit font-bold" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>編集</a></h5>
+            <div class="info-description claim-description">
+              <p>
+                <%= @claim&.claims_cause %>
+              </p>
+            </div>
+            <h5 class="info-head font-bold mt-3">今後の対策：<a href="" class="align-text-top font-color company-edit font-bold" role="button" data-target="#modal-default2" data-toggle="modal"><i class="fas fa-edit ml-2"></i>入力</a></h5>
+            <% if @claim&.claims_solution.nil? %>
+            <div class="info-description claim-description">
+              <p>
+                まだ回答していません。<a href="#" class="to-top to-top--pink" role="button" data-target="#modal-default2" data-toggle="modal">ご入力よろしくお願いします。</a>
+              </p>
+            </div>
+            <% else %>
+            <div class="info-description claim-description">
+              <p>
+                <%= @claim&.claims_solution %>
+              </p>
+            </div>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+    <div class="w-90 text-center mt-5 margin-bottom30">
+      <a href="claim-table--s.html" class="to-top">クレーム一覧に戻る</a>
+    </div>
+
+    <!-- モーダル -->
+    <div class="modal fade" id="modal-default">
+      <div class="modal-dialog modal-default">
+        <div class="modal-content">
+          <%= form_for @claim, url: suppliers_claim_path(@claim), method: 'post' do |f| %>
+            <input type="hidden" class="mb-3" data-item-image="<%= f.object.id %>">
+            <div class="modal-header modal-header--ordering">
+              <h6 class="modal-title"></h6>
+              <button type="reset" class="close" role="button" data-target="#modal-default" data-toggle="modal">
+                <span class="align-middle" aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5 class="text-center pt-3">以下を入力してください</h5>
+              <div class="input-group input-group--modal mt-4 mb-4">
+                <label for="form-modal-claim-cause">
+                  <span>原因</span>
+                </label>
+                <%= f.text_area :claims_cause, id: 'cause', rows:'10', cols:'99', readonly: current_user.type == 'Buyer' ? true : false %>
+              </div>
+              <div class="w-100 mt-3">
+                <label class="w-100 file-label-wrap">
+                  <span class="file-label-detail">画像添付</span>
+                </label>
+                <div class="dropzone" id="itemImageDropzone">
+                  <div class="fallback">
+                    <%= f.file_field(:claim_cause_images, multiple: true) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between modal-footer--ordering">
+              <button type="reset" class="btn btn-default" role="button" data-target="#modal-default" data-toggle="modal">閉じる</button>
+              <button type="submit" class="btn newji-btn--pink" id='claim_cause_images_btnSubmit'>登録</button>
+            </div>
+          <% end %>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <!-- モーダル -->
+    <div class="modal fade" id="modal-default2">
+      <div class="modal-dialog modal-default">
+        <div class="modal-content">
+          <%= form_for @claim, url: suppliers_claim_path(@claim), method: "post" do |f| %>
+            <input type="hidden" class="mb-3" data-item-image2="<%= f.object.id %>">
+            <div class="modal-header modal-header--ordering">
+              <h6 class="modal-title"></h6>
+              <button type="reset" class="close" role="button" data-target="#modal-default2" data-toggle="modal">
+                <span class="align-middle" aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h5 class="text-center pt-3">以下を入力してください</h5>
+              <div class="input-group input-group--modal mb-4">
+                <label for="form-modal-claim-countermeasures">
+                  <span>今後の対策</span>
+                </label>
+                <%= f.text_area :claims_solution, id: 'solution', rows:'10', cols:'99', readonly: current_user.type == 'Buyer' ? true : false %>
+              </div>
+              <div class="w-100 mt-3">
+                <label class="w-100 file-label-wrap">
+                  <span class="file-label-detail">画像添付</span>
+                </label>
+                <div class="dropzone" id="itemImageDropzone2">
+                  <div class="fallback">
+                      <%= f.file_field(:claim_solution_images, multiple: true) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between modal-footer--ordering">
+              <button type="reset" class="btn btn-default" role="button" data-target="#modal-default2" data-toggle="modal">閉じる</button>
+              <button type="submit" class="btn newji-btn--pink" id='claim_solution_images_btnSubmit'>登録</button>
+            </div>
+          <% end %>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <!-- モーダル -->
+    <div class="modal fade" id="modal-default3">
+      <div class="modal-dialog modal-default">
+        <div class="modal-content">
+          <form action="claim-info--s.html">
+            <div class="modal-header modal-header--ordering">
+              <h6 class="modal-title"></h6>
+              <button type="reset" class="close" role="button" data-target="#modal-default3" data-toggle="modal">
+                <span class="align-middle" aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="w-100 text-center mt-3">
+                <label class="w-100 file-label-wrap">
+                  <span class="file-label-detail">クレーム画像</span>
+                </label>
+                <div action="/file-upload" class="dropzone">
+                  <!--dropzone.jsの443行目に記述-->
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between modal-footer--ordering">
+              <button type="reset" class="btn btn-default" role="button" data-target="#modal-default3" data-toggle="modal">閉じる</button>
+              <button type="submit" class="btn newji-btn--pink">送信</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+  </section>
+  <!-- /.content -->
+<% end %>
+
+<script>
+  Dropzone.autoDiscover = false;
+  let id = $('.mb-3').data('item-image');
+  let url = "/suppliers/claims/" + id;
+
+  $('#itemImageDropzone').dropzone({
+    url: url,
+    dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
+    paramName: "claim[claim_cause_images]",
+    uploadMultiple: true,
+    addRemoveLinks: true,
+    autoProcessQueue: false,
+    parallelUploads: 100,
+    maxFiles: 100,
+    acceptedFiles: ".jpeg,.jpg,.png,.gif",
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: function() {
+      var myDropzone = this;
+
+      $("#claim_cause_images_btnSubmit").on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Prevent action when uploading
+        $('.mb-3').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+        $("#claim_cause_images_btnSubmit").attr('disabled', 'disabled');
+        $(".dz-remove").addClass('d-none');
+
+        if (myDropzone.getQueuedFiles().length > 0) {
+          myDropzone.processQueue();
+          return;
+        }
+      });
+      this.on("addedfile", function(file) {
+        $("#claim_cause_images_btnSubmit").removeAttr('disabled');
+
+        // Prevent upload duplicate files
+        if (this.files.length) {
+          var i, len;
+          for (i = 0, len = this.files.length; i < len - 1; i++) {
+            if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+              alert("このファイル" + file.name + "が既に存在しています。");
+              this.removeFile(file);
+            }
+          }
+        }
+      });
+      this.on("removedfile", function(file) {
+        var _ref,
+            url = "/suppliers/claims/" + id + "/remove_claim";
+
+        var index_of_claim_cause_images = file.index
+
+        // Prevent action when uploading
+        prevent_action_when_uploading();
+
+        $.ajax({
+          url: url,
+          type: "DELETE",
+          data: {
+            index_of_claim_cause_images: index_of_claim_cause_images,
+          },
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: function(data) {
+            location.reload();
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log('AJAX call failed.');
+            console.log(textStatus + ': ' + errorThrown);
+          },
+          complete: function() {
+            console.log('AJAX call completed');
+          }
+        });
+      });
+      this.on("successmultiple", function(files, response) {
+        $(location).attr('href', window.origin + '/suppliers/claims/table')
+      });
+      <% @claim.claim_cause_images.each_with_index do |image, index| %>
+        var mockFile = {
+          name: "<%= image.file.filename %>",
+          size: <%= image.size %>,
+          index: <%= index %>,
+        }
+        myDropzone.emit("addedfile", mockFile);
+        myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+        myDropzone.emit("complete", mockFile);
+        myDropzone.files.push(mockFile);
+      <% end %>
+    }
+  });
+
+  $('#itemImageDropzone2').dropzone({
+    url: url,
+    dictDefaultMessage: "<p>ここにファイルを<br>ドラッグアンドドロップ</p><p>または</p><label for='file_upload'>PCから<span class='textbr'>アップロード</span></label>",
+    paramName: "claim[claim_solution_images]",
+    uploadMultiple: true,
+    addRemoveLinks: true,
+    autoProcessQueue: false,
+    parallelUploads: 100,
+    maxFiles: 100,
+    acceptedFiles: ".jpeg,.jpg,.png,.gif",
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: function() {
+      var myDropzone = this;
+
+      $("#claim_solution_images_btnSubmit").on("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Prevent action when uploading
+        $('.mb-3').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+        $("#claim_solution_images_btnSubmit").attr('disabled', 'disabled');
+        $(".dz-remove").addClass('d-none');
+
+        if (myDropzone.getQueuedFiles().length > 0) {
+          myDropzone.processQueue();
+          return;
+        }
+      });
+      this.on("addedfile", function(file) {
+        $("#claim_solution_images_btnSubmit").removeAttr('disabled');
+        // Prevent upload duplicate files
+        if (this.files.length) {
+          var i, len;
+          for (i = 0, len = this.files.length; i < len - 1; i++) {
+            if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+              alert("このファイル" + file.name + "が既に存在しています。");
+              this.removeFile(file);
+            }
+          }
+        }
+      });
+      this.on("removedfile", function(file) {
+        var _ref,
+            url = "/suppliers/claims/" + id + "/remove_claim";
+
+        var index_of_claim_solution_images = file.index
+
+        // Prevent action when uploading
+        prevent_action_when_uploading();
+
+        $.ajax({
+          url: url,
+          type: "DELETE",
+          data: {
+            index_of_claim_solution_images: index_of_claim_solution_images,
+          },
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: function(data) {
+            location.reload();
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log('AJAX call failed.');
+            console.log(textStatus + ': ' + errorThrown);
+          },
+          complete: function() {
+            console.log('AJAX call completed');
+          }
+        });
+      });
+      this.on("successmultiple", function(files, response) {
+        $(location).attr('href', window.origin + '/suppliers/claims/table')
+      });
+      <% @claim.claim_solution_images.each_with_index do |image, index| %>
+        var mockFile = {
+          name: "<%= image.file.filename %>",
+          size: <%= image.size %>,
+          index: <%= index %>,
+        }
+        myDropzone.emit("addedfile", mockFile);
+        myDropzone.createThumbnailFromUrl(mockFile, "<%= image.url %>");
+        myDropzone.emit("complete", mockFile);
+        myDropzone.files.push(mockFile);
+      <% end %>
+    }
+  });
+
+  $(document).ready(function() {
+    $("#claim_cause_images_btnSubmit").attr('disabled', 'disabled');
+  });
+
+  function prevent_action_when_uploading() {
+    $('.dropzone').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
+    $("#claim_cause_images_btnSubmit").attr('disabled', 'disabled');
+    $(".dz-remove").addClass('d-none');
+  }
+</script>

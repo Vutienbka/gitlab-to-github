@@ -2,7 +2,11 @@ class Claim < ApplicationRecord
   extend Enumerize
   acts_as_paranoid
   mount_uploaders :claims_image, ImageUploader
+  mount_uploaders :claim_cause_images, ImageUploader
+  mount_uploaders :claim_solution_images, ImageUploader
   serialize :claims_image, JSON
+  serialize :claim_cause_images, JSON
+  serialize :claim_solution_images, JSON
   serialize :classify, JSON
 
   belongs_to :item_request, optional: true, foreign_key: 'item_request_id'
@@ -15,8 +19,8 @@ class Claim < ApplicationRecord
   ].freeze
 
   PARAMS_ATTRIBUTES_CLAIM_CAUSE = [
-    :id,:claims_cause,
-    { claim_cause_images: [] }
+    :claims_cause, { claim_cause_images: [] },
+    :claims_solution, { claim_solution_images: [] }
   ].freeze
 
   CLASSIFY = [

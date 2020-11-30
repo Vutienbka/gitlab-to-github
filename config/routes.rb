@@ -187,14 +187,15 @@ Rails.application.routes.draw do
   end
 
   namespace :suppliers do
-    resources :claims, only: %i[index show] do
+    resources :claims, only: %i[edit] do
       collection do
         get :table
         get :info
       end
+
       member do
-        post :submit_show
-        post :submit_show_modal
+        post :update
+        delete :remove_claim
       end
     end
 

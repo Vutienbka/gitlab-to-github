@@ -1,47 +1,45 @@
 class Suppliers::ClaimsController < Suppliers::BaseController
-  before_action :claims, only: %i[table show submit_show submit_show_modal]
-  before_action :claim, only: %i[table show submit_show submit_show_modal]
-
-  def index; end
+  before_action :claims, :claim
 
   def table
-    @claims_list = current_user.claims.where(supplier_id= current_user.id.to_s)
     @count = 0
   end
 
-  def show
-    @current_claim = @claims.find_by(id: params[:id])
-    @item_info = @current_claim&.item_request&.item_info
-    @catalog = @current_claim&.item_request&.catalog
-    @claims_images = @current_claim&.claims_image&.map { |image| image.url }
+  def edit
+    @item_info = @claim&.item_request&.item_info
+    @catalog = @claim&.item_request&.catalog
+    @claims_images = @claim&.claims_image&.map { |image| image.url }
   end
 
-  def submit_show
-    @claim = @claims.find_by(id: params[:id]) if @claims.present?
-    begin
-      ActiveRecord::Base.transaction do
-        @claim.update(claims_params)
-        redirect_to table_suppliers_claims_path
-    rescue StandardError
-        flash[:alert] = I18n.t('update.failed')
-        render :table
+  def update
+    @claim.claim_cause_images = Dropzone::AddFilesService.new('claim', 'claim_cause_images', @claim.claim_cause_images, params).call
+    @claim.claim_solution_images = Dropzone::AddFilesService.new('claim', 'claim_solution_images', @claim.claim_solution_images, params).call
+
+    if @claim.save
+      respond_to do |format|
+        format.html { redirect_to buyers_claim_path(@claim), success: I18n.t('create.success') }
+        format.json { render json: @claim.id }
       end
+    else
+      flash.now[:alert] = I18n.t('update.failed')
+      render :show
     end
   end
 
-  def submit_show_modal
-    @claim = @claims.find_by(id: params[:id]) if @claims.present?
-    begin
-      ActiveRecord::Base.transaction do
-        @claim.claims_solution = params[:claim][:claims_solution]
-        @claim.save
-        redirect_to table_suppliers_claims_path
-    rescue StandardError
-      flash[:alert] = I18n.t('update.failed')
-      render :table
-      end
+  def remove_claim
+    if params[:index_of_claim_cause_images].present?
+      remain_files = Dropzone::RemoveFileService.new(params[:index_of_claim_cause_images], @claim.claim_cause_images).call
+      @claim.claim_cause_images = remain_files
+      @claim.remove_claim_cause_images = true if remain_files.empty?
+    elsif params[:index_of_claim_solution_images].present?
+      remain_files = Dropzone::RemoveFileService.new(params[:index_of_claim_solution_images], @claim.claim_solution_images).call
+      @claim.claim_solution_images = remain_files
+      @claim.remove_claim_solution_images = true if remain_files.empty?
     end
+    @claim.save
   end
+
+  private
 
   def claims
     @claims = current_user.claims
@@ -51,7 +49,10 @@ class Suppliers::ClaimsController < Suppliers::BaseController
     @claim = @claims.find_by(id: params[:id]) if @claims.present?
   end
 
-  def claims_params
+  def claim_params
+    if params.dig(:claim, :claim_cause_images)
+      params[:claim][:claim_cause_images] = params[:claim][:claim_cause_images].values
+    end
     params.require(:claim).permit(Claim::PARAMS_ATTRIBUTES_CLAIM_CAUSE)
   end
 

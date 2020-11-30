@@ -4,66 +4,27 @@
 <%= javascripts 'buyer/table' %>
 
 <% content_for :content_header do %>
-
-    <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body card-body--ordering pt-5 pb-5">
-              <div class="d-flex">
-                <h5 class="text-left my-catalog-head">未回答のクレーム一覧</h5>
-                <div type="hidden">
-                  <% @claims_list&.each do |claim| %>
-                  <%if claim.claims_cause.nil? || claim.claims_solution.nil? %>
-                     <%@count = @count +1 %>
-                  <%end%>
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body card-body--ordering pt-5 pb-5">
+            <div class="d-flex">
+              <h5 class="text-left my-catalog-head">未回答のクレーム一覧</h5>
+              <div type="hidden">
+                <% @claims&.each do |claim| %>
+                <% if claim.claims_cause.nil? || claim.claims_solution.nil? %>
+                    <% @count = @count +1 %>
                 <% end %>
-                </div>
-                <div class="ml-2">
-                  <span class="badge badge-info"><%=@count%></span>
-                </div>
+              <% end %>
               </div>
-              <table id="example1" class="table table-bordered table-striped table--ordering">
-                <thead>
-                  <tr>
-                    <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
-                    <th class="text-center">登録日</th>
-                    <th class="text-center">商品<span class="textbr">コード</span></th>
-                    <th class="text-center">アイテム<span class="textbr">名称</span></th>
-                    <th class="text-center">ロット<span class="textbr">ナンバー</span></th>
-                    <th class="text-center">不適合<span class="textbr">区分</span></th>
-                    <th class="text-center">クレーム<span class="textbr">内容</span></th> 
-                    <th class="text-center">原因</th>
-                    <th class="text-center">対策</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @claims_list&.each do |claim| %>
-                  <tr>
-                    <td class="text-center" title="クレームナンバー"><%=claim.id%></td>
-                    <td class="text-center" title="登録日"><%=claim.created_at.day.to_s + '/' + claim.created_at.month.to_s%></td>
-                    <td class="text-center" title="商品コード">12120</td>
-                    <td class="text-left text-md-center" title="アイテム名称">ふさかけオウルA ホワイト</td>
-                    <td class="text-center" title="ロットナンバー"><%=claim.lot_number%></td>
-                    <td class="text-center" title="不適合区分"><%=claim.classify%></td>
-                    <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip"><%=claim.claim_content%></td>
-                    <%unless claim.claims_cause.nil? %>
-                      <td class="text-center white-space-nowrap" title="原因">回答済み</td>
-                    <%else%>
-                      <td class="text-center white-space-nowrap" title="原因"><a href="<%=suppliers_claim_path(claim.id)%>" class="to-top">未回答</a></td>
-                    <%end%>
-                    <%unless claim.claims_solution.nil? %>
-                      <td class="text-center white-space-nowrap" title="対策">回答済み</td>
-                    <%else%>
-                      <td class="text-center white-space-nowrap" title="対策"><a href="<%=suppliers_claim_path(claim.id)%>" class="to-top">未回答</a></td>
-                    <% end %>
-                  </tr>
-                  <%if claim.claims_cause.nil? || claim.claims_solution.nil? %>
-                     <%@count = @count +1 %>
-                  <%end%>
-                <% end %>
-                </tbody>
-                <tfoot>
+              <div class="ml-2">
+                <span class="badge badge-info"><%= @count %></span>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped table--ordering">
+              <thead>
+                <tr>
                   <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
                   <th class="text-center">登録日</th>
                   <th class="text-center">商品<span class="textbr">コード</span></th>
@@ -73,14 +34,52 @@
                   <th class="text-center">クレーム<span class="textbr">内容</span></th>
                   <th class="text-center">原因</th>
                   <th class="text-center">対策</th>
-                </tfoot>
-              </table>
-              <div class="row mt-3">
-                <a href="#" class="btn w-30 newji-btn--dark-blue w-60--sp w-90--sp--450">過去のクレーム<span class="textbr">一覧を表示</span></a>
-              </div>
+                </tr>
+              </thead>
+              <tbody>
+              <% @claims&.each do |claim| %>
+                <tr>
+                  <td class="text-center" title="クレームナンバー"><%=claim.id%></td>
+                  <td class="text-center" title="登録日"><%=claim.created_at.day.to_s + '/' + claim.created_at.month.to_s%></td>
+                  <td class="text-center" title="商品コード">12120</td>
+                  <td class="text-left text-md-center" title="アイテム名称">ふさかけオウルA ホワイト</td>
+                  <td class="text-center" title="ロットナンバー"><%=claim.lot_number%></td>
+                  <td class="text-center" title="不適合区分"><%=claim.classify%></td>
+                  <td class="text-left" title="クレーム内容を確認" data-toggle="tooltip"><%= claim.claim_content %></td>
+                  <% unless claim.claims_cause.nil? %>
+                    <td class="text-center white-space-nowrap" title="原因">回答済み</td>
+                  <% else %>
+                    <td class="text-center white-space-nowrap" title="原因"><a href="<%= edit_suppliers_claim_path(claim) %>" class="to-top">未回答</a></td>
+                  <% end %>
+                  <% unless claim.claims_solution.nil? %>
+                    <td class="text-center white-space-nowrap" title="対策">回答済み</td>
+                  <% else %>
+                    <td class="text-center white-space-nowrap" title="対策"><a href="<%= edit_suppliers_claim_path(claim) %>" class="to-top">未回答</a></td>
+                  <% end %>
+                </tr>
+                <% if claim.claims_cause.nil? || claim.claims_solution.nil? %>
+                    <% @count = @count +1 %>
+                <% end %>
+              <% end %>
+              </tbody>
+              <tfoot>
+                <th class="text-center">クレーム<span class="textbr">ナンバー</span></th>
+                <th class="text-center">登録日</th>
+                <th class="text-center">商品<span class="textbr">コード</span></th>
+                <th class="text-center">アイテム<span class="textbr">名称</span></th>
+                <th class="text-center">ロット<span class="textbr">ナンバー</span></th>
+                <th class="text-center">不適合<span class="textbr">区分</span></th>
+                <th class="text-center">クレーム<span class="textbr">内容</span></th>
+                <th class="text-center">原因</th>
+                <th class="text-center">対策</th>
+              </tfoot>
+            </table>
+            <div class="row mt-3">
+              <a href="#" class="btn w-30 newji-btn--dark-blue w-60--sp w-90--sp--450">過去のクレーム<span class="textbr">一覧を表示</span></a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 <% end %>
