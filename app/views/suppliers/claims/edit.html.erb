@@ -89,7 +89,7 @@
     <div class="modal fade" id="modal-default">
       <div class="modal-dialog modal-default">
         <div class="modal-content">
-          <%= form_for @claim, url: suppliers_claim_path(@claim), method: 'post' do |f| %>
+          <%= form_for @claim, url: suppliers_claim_path(@claim), html: {id: 'claim_cause_form'}, method: 'post' do |f| %>
             <input type="hidden" class="mb-3" data-item-image="<%= f.object.id %>">
             <div class="modal-header modal-header--ordering">
               <h6 class="modal-title"></h6>
@@ -131,7 +131,7 @@
     <div class="modal fade" id="modal-default2">
       <div class="modal-dialog modal-default">
         <div class="modal-content">
-          <%= form_for @claim, url: suppliers_claim_path(@claim), method: "post" do |f| %>
+          <%= form_for @claim, url: suppliers_claim_path(@claim), html: {id: 'claim_solution_form'}, method: "post" do |f| %>
             <input type="hidden" class="mb-3" data-item-image2="<%= f.object.id %>">
             <div class="modal-header modal-header--ordering">
               <h6 class="modal-title"></h6>
@@ -226,6 +226,10 @@
     init: function() {
       var myDropzone = this;
 
+      <% unless @claim.claim_cause_images.present? %>
+        $("#claim_cause_images_btnSubmit").attr('disabled', 'disabled')
+      <% end %>
+
       $("#claim_cause_images_btnSubmit").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -238,6 +242,8 @@
         if (myDropzone.getQueuedFiles().length > 0) {
           myDropzone.processQueue();
           return;
+        } else {
+          $('#claim_cause_form').submit();
         }
       });
       this.on("addedfile", function(file) {
@@ -284,6 +290,9 @@
           }
         });
       });
+      this.on("sendingmultiple", function(data, xhr, formData) {
+        formData.append("claim[claims_cause]", $('#cause').val());
+      });
       this.on("successmultiple", function(files, response) {
         $(location).attr('href', window.origin + '/suppliers/claims/table')
       });
@@ -317,6 +326,10 @@
     init: function() {
       var myDropzone = this;
 
+      <% unless @claim.claim_cause_images.present? %>
+        $("#claim_solution_images_btnSubmit").attr('disabled', 'disabled')
+      <% end %>
+
       $("#claim_solution_images_btnSubmit").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -329,6 +342,8 @@
         if (myDropzone.getQueuedFiles().length > 0) {
           myDropzone.processQueue();
           return;
+        } else {
+          $('#claim_solution_form').submit();
         }
       });
       this.on("addedfile", function(file) {
@@ -374,6 +389,9 @@
           }
         });
       });
+      this.on("sendingmultiple", function(data, xhr, formData) {
+        formData.append("claim[claims_solution]", $('#solution').val());
+      });
       this.on("successmultiple", function(files, response) {
         $(location).attr('href', window.origin + '/suppliers/claims/table')
       });
@@ -391,13 +409,10 @@
     }
   });
 
-  $(document).ready(function() {
-    $("#claim_cause_images_btnSubmit").attr('disabled', 'disabled');
-  });
-
   function prevent_action_when_uploading() {
     $('.dropzone').prepend('<img id="ripple_loading" src="<%= asset_path('ripple_loading.svg') %>" />')
     $("#claim_cause_images_btnSubmit").attr('disabled', 'disabled');
+    $("#claim_solution_images_btnSubmit").attr('disabled', 'disabled');
     $(".dz-remove").addClass('d-none');
   }
 </script>

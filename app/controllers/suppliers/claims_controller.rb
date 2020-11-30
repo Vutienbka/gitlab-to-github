@@ -12,12 +12,14 @@ class Suppliers::ClaimsController < Suppliers::BaseController
   end
 
   def update
+    @claim.claims_cause = params.dig(:claim, :claims_cause) if params.dig(:claim, :claims_cause).present?
+    @claim.claims_solution = params.dig(:claim, :claims_solution) if params.dig(:claim, :claims_solution).present?
     @claim.claim_cause_images = Dropzone::AddFilesService.new('claim', 'claim_cause_images', @claim.claim_cause_images, params).call
     @claim.claim_solution_images = Dropzone::AddFilesService.new('claim', 'claim_solution_images', @claim.claim_solution_images, params).call
 
     if @claim.save
       respond_to do |format|
-        format.html { redirect_to buyers_claim_path(@claim), success: I18n.t('create.success') }
+        format.html { redirect_to table_suppliers_claims_path, success: I18n.t('update.success') }
         format.json { render json: @claim.id }
       end
     else
