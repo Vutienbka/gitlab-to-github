@@ -36,7 +36,7 @@
           if (this.files.length) {
             var i, len;
             for (i = 0, len = this.files.length; i < len - 1; i++) {
-              if (this.files[i].name === file.name && this.files[i].size === file.size && this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+              if (this.files[i].name === file.name && this.files[i].size === file.size) {
                 alert("このファイル" + file.name + "が既に存在しています。");
                 this.removeFile(file);
               }
