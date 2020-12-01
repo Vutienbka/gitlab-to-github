@@ -42,33 +42,35 @@
         }
       });
       this.on("removedfile", function(file) {
-        var _ref,
-            url = "/buyers/item_requests/" + id + "/item_images/remove_file",
-            index_of_file_images = file.index
+        if (file.status == undefined) {
+          var _ref,
+              url = "/buyers/item_requests/" + id + "/item_images/remove_file",
+              index_of_file_images = file.index
 
-        // Prevent action when uploading
-        prevent_action_when_uploading();
+          // Prevent action when uploading
+          prevent_action_when_uploading();
 
-        $.ajax({
-          url: url,
-          type: "DELETE",
-          data: {
-            index_of_file_images: index_of_file_images
-          },
-          headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-          },
-          success: function(data) {
-            location.reload();
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log('AJAX call failed.');
-            console.log(textStatus + ': ' + errorThrown);
-          },
-          complete: function() {
-            console.log('AJAX call completed');
-          }
-        });
+          $.ajax({
+            url: url,
+            type: "DELETE",
+            data: {
+              index_of_file_images: index_of_file_images
+            },
+            headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+              location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('AJAX call failed.');
+              console.log(textStatus + ': ' + errorThrown);
+            },
+            complete: function() {
+              console.log('AJAX call completed');
+            }
+          });
+        }
       });
       this.on("successmultiple", function(files, response) {
         window.location.href = "/buyers/item_requests/" + id + "/item_qualities/edit"

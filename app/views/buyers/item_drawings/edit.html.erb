@@ -50,48 +50,50 @@
           }
         });
         this.on("removedfile", function(file) {
-          var _ref,
-              url = "/buyers/item_requests/" + id + "/item_drawings/remove_file";
+          if (file.status == undefined) {
+            var _ref,
+                url = "/buyers/item_requests/" + id + "/item_drawings/remove_file";
 
-          switch (myDropzone.element.id) {
-            case 'myDropzone0':
-              var index_of_file_specifications = file.index
-              break;
-            case 'myDropzone1':
-              var index_of_file_assembly_specifications = file.index
-              break;
-            case 'myDropzone2':
-              var index_of_file_packing_specifications = file.index
-              break;
-            default:
-              break;
-          }
-
-          // Prevent action when uploading
-          prevent_action_when_uploading();
-
-          $.ajax({
-            url: url,
-            type: "DELETE",
-            data: {
-              index_of_file_specifications: index_of_file_specifications,
-              index_of_file_assembly_specifications: index_of_file_assembly_specifications,
-              index_of_file_packing_specifications: index_of_file_packing_specifications,
-            },
-            headers: {
-              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-              location.reload();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              console.log('AJAX call failed.');
-              console.log(textStatus + ': ' + errorThrown);
-            },
-            complete: function() {
-              console.log('AJAX call completed');
+            switch (myDropzone.element.id) {
+              case 'myDropzone0':
+                var index_of_file_specifications = file.index
+                break;
+              case 'myDropzone1':
+                var index_of_file_assembly_specifications = file.index
+                break;
+              case 'myDropzone2':
+                var index_of_file_packing_specifications = file.index
+                break;
+              default:
+                break;
             }
-          });
+
+            // Prevent action when uploading
+            prevent_action_when_uploading();
+
+            $.ajax({
+              url: url,
+              type: "DELETE",
+              data: {
+                index_of_file_specifications: index_of_file_specifications,
+                index_of_file_assembly_specifications: index_of_file_assembly_specifications,
+                index_of_file_packing_specifications: index_of_file_packing_specifications,
+              },
+              headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function(data) {
+                location.reload();
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                console.log('AJAX call failed.');
+                console.log(textStatus + ': ' + errorThrown);
+              },
+              complete: function() {
+                console.log('AJAX call completed');
+              }
+            });
+          }
         });
         switch (myDropzone.element.id) {
           case 'myDropzone0':
