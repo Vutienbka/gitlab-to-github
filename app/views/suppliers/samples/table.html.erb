@@ -1,0 +1,129 @@
+<% content_for :title, 'NEWJI | サンプル/見本' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+<%= javascripts 'buyer/sample_top2' %>
+
+<% content_for :content_header do %>
+
+        <div class="mb-5">
+          <h4 class="login-head text-center mb-5">詳細を見るサンプルを<span class="textbr">選択してください。</span></h4>
+          <form>
+            <div class="input-group">
+              <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+              <div class="input-group-append">
+                <input class="sbtn5" type="submit" value="検索" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body card-body--ordering">
+                <div class="row">
+                  <div class="col-12">
+                    <form action="ordering--s.html">
+                      <!-- select -->
+                      <div class="form-group narrow-down-sp-select--ordering">
+                        <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+                        <div class="d-block d-sm-flex">
+                          <div class="select-wrapper">
+                            <label class="narrow-down-sp-title mb-0" for="select-period-from">希望納期</label>
+                            <div class="flex">
+                              <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select mr-1" id="select-period-from" placeholder="日付を選択" name="select-period-from" readonly="readonly">
+                              <label class="narrow-down-sp-title d-flex align-items-center m-0">
+                                〜
+                              </label>
+                              <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select ml-1" id="select-period-to" placeholder="日付を選択" name="select-period-to" readonly="readonly">
+                            </div>
+                          </div>
+                          <div class="select-wrapper ml-0 ml-sm-3">
+                            <label class="narrow-down-sp-title mb-0" for="option1">オプション1</label>
+                            <select class="form-control form-control--select narrow-down-sp-select" id="option1">
+                              <option>全て</option>
+                              <option>本日</option>
+                              <option>今月</option>
+                              <option>アイテム</option>
+                              <option>発注番号</option>
+                              <option>促進</option>
+                              <option>遅延</option>
+                              <option>仕入先</option>
+                              <option>出荷日</option>
+                              <option>納品場所</option>
+                            </select>
+                          </div>
+                          <div class="select-wrapper ml-0 ml-sm-3">
+                            <label class="narrow-down-sp-title mb-0" for="option2">オプション2</label>
+                            <select class="form-control form-control--select narrow-down-sp-select" id="option2">
+                              <option>全て</option>
+                              <option>本日</option>
+                              <option>今月</option>
+                              <option>アイテム</option>
+                              <option>発注番号</option>
+                              <option>促進</option>
+                              <option>遅延</option>
+                              <option>仕入先</option>
+                              <option>出荷日</option>
+                              <option>納品場所</option>
+                            </select>
+                          </div>
+                          <input class="sbtn5 sbtn5--select ml-0 ml-sm-3 mt-2 mt-sm-auto" type="submit" value="絞り込み" />
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- <div class="col-6 text-right">
+                    <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--blue" role="button" data-target="#modal-description1" data-toggle="modal">促進依頼</button>
+                    <button type="button" class="ordering-sokusin-button mr-1 mr-md-0 btn newji-btn--pink" role="button" data-target="#modal-description2" data-toggle="modal">追加発注</button>
+                  </div> -->
+                </div>
+                <table id="example1" class="table table-bordered table-striped table--ordering table--item mt-2">
+                  <thead>
+                    <tr>
+                      <th>〇〇サンプル</th>
+                      <th>タイトル</th>
+                      <th>商品コード</th>
+                      <th>希望納期</th>
+                      <th>用途</th>
+                      <th>発送済/未発送</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% @list_table.each do |list_table| %>
+                    <tr>
+                      <td type="hidden" class="hidden"><%= list_table.id %></td>
+                      <td title="〇〇サンプル">カラーサンプル</td>
+                      <td title="タイトル"><%=list_table.title%></td>
+                      <td title="商品コード"><%=list_table.code%></td>
+                      <td title="希望納期"><%=list_table.delivery_time%></td>
+                      <%unless list_table.status.nil?%>
+                        <td title="発送済/未発送" class="text-center white-space-nowrap">発送済</td>
+                      <% else %>
+                        <td title="発送済/未発送"><a href="<%=suppliers_sample_path(list_table.id)%>" class="to-top">未発送</a></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>〇〇サンプル</th>
+                      <th>タイトル</th>
+                      <th>商品コード</th>
+                      <th>希望納期</th>
+                      <th>用途</th>
+                      <th>発送済/未発送</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /.login-box -->
+        </div>
+        <!-- /.container-fluid -->
+        <div class="w-90 text-center mt-4 margin-bottom30">
+          <a href="<%=suppliers_samples_path%>" class="to-top">前に戻る</a>
+        </div>
+
+
+<%end%>

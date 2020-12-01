@@ -78,6 +78,19 @@
           </li>
         <% end %>
 
+        <% if current_user.supplier? %>
+        <li class="nav-item has-treeview">
+          <%= link_to suppliers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'suppliers/samples' } " do %>
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+            サンプル/見本
+            <i class="fas fa-angle-right right"></i>
+          </p>
+          <% end %>
+        </li>
+        <% end %>
+
+        <% if current_user.buyer? %>
         <li class="nav-item has-treeview">
           <%= link_to buyers_samples_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/samples' } " do %>
           <i class="nav-icon fas fa-book"></i>
@@ -87,6 +100,8 @@
           </p>
           <% end %>
         </li>
+        <% end %>
+        
         <li class="nav-item has-treeview">
           <a href="<%= buyers_suppliers_path %>" class="nav-link w-100">
             <i class="nav-icon fas fa-handshake"></i>

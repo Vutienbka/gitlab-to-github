@@ -1,0 +1,29 @@
+<% content_for :title, 'NEWJI | サンプル/見本' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+
+<% content_for :content_header do %>
+  <p class="login-head text-center mt-5 mb-5">ここはサンプル未作成を表示<span class="textbr">または<span class="textbr">サンプルを確認するページです</span></span></p>
+        <div class="w-90 flex--sp-block text-center mb-5">
+          <div class="card w-40 w-100--sp">
+            <%= image_tag 'img/AdobeStock_369473297.jpeg', class: 'sample-img--top', alt: 'サンプルを新規依頼する' %>
+            <div class="px-2 py-3 ie-sample-card-body">
+              <h5 class="font-bold margin-bottom10 sample-choose--card-title">サンプル未作成を<span class="textbr">表示する</span></h5>
+              <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。</h6>
+              <div class="w-70 w-60--sp w-100--sp450">
+                <a class="card-link card-link--sample" href="<%=table_suppliers_samples_path%>">サンプル<span class="textbr">未作成一覧</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="card w-40 w-100--sp mt-3 mt-md-0">
+             <%= image_tag 'img/AdobeStock_321786742.jpeg', class: 'sample-img--top', alt: 'サンプルを新規依頼する' %>
+            <div class="px-2 py-3 ie-sample-card-body">
+              <h5 class="font-bold margin-bottom10 sample-choose--card-title">サンプル台帳</h5>
+              <h6 class="font-normal text-left w-80 w-90--sp--450 mt-1 mb-3 sample-choose--card-description">作成したサンプルを管理するページです。<br />テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。</h6>
+              <div class="w-70 w-60--sp w-100--sp450">
+                <a class="card-link card-link--sample" href="sample-archive--s.html">サンプル<span class="textbr">台帳へ</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+<% end %>

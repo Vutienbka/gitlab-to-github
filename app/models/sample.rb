@@ -1,4 +1,5 @@
 class Sample < ApplicationRecord
+  has_one :sample_deliveries, class_name: 'SampleDelivery', dependent: :destroy
   belongs_to :buyer, class_name: 'Buyer', foreign_key: 'buyer_id'
   belongs_to :item_request, optional: true, class_name: 'ItemRequest', foreign_key: 'item_request_id'
 
@@ -17,11 +18,13 @@ class Sample < ApplicationRecord
   FUNCTION = %w[not_good statndard limit].freeze
 
   PARAMS_ATTRIBUTES = [
-    :buyer_id, :item_request_id, :title, :category, :classify,
+    :supplier_id,:buyer_id, :item_request_id, :title, :category, :classify,
     :sample_type, :code, :quantity,
     :delivery_time, :delivery_request, :function,
     :updater, patterns_attributes: [:id, :pattern, :_destroy]
   ]
+
+  SAMPLE_STATUS = '出荷済み'
 
   scope :filter_by_sample_type, ->(sample_type) { where(sample_type: sample_type) if sample_type.present? }
   scope :filter_by_supplier_name, ->(supplier_name) {

@@ -29,6 +29,7 @@ class Buyers::SamplesController < Buyers::BaseController
                                       .first&.item_info&.item_request_id
       if item_request_id.present?
         @sample.item_request_id = item_request_id
+        @sample.supplier_id = @item_requests.find_by_id(item_request_id).supplier_id
         return redirect_to input_buyers_samples_path, flash: { success: t('create.success') } if @sample.save
       end
     else
@@ -86,6 +87,7 @@ class Buyers::SamplesController < Buyers::BaseController
                                       .first&.item_info&.item_request_id
       if item_request_id.present?
         @sample.item_request_id = item_request_id
+        @sample.supplier_id = @item_requests.find_by_id(item_request_id).supplier_id
         if @sample.update(sample_params)
           return redirect_to ledger_buyers_samples_path, flash: { success: t('create.success') }
         end

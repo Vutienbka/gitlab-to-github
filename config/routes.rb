@@ -204,6 +204,16 @@ Rails.application.routes.draw do
         get :index
       end
     end
+
+    resources :samples, only: %i[index show] do
+      collection do
+        get :table
+        post :delivery_submit
+      end
+      member do
+        get :delivery
+      end
+    end
   end
 
   resources :buyers, only: [] do

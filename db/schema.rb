@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.integer "reason_status"
     t.integer "counter_plan_status"
     t.datetime "deleted_at"
-    t.integer "item_request_id"
-    t.integer "supplier_id"
-    t.integer "buyer_id"
     t.string "claims_cause"
     t.string "claims_solution"
     t.text "claim_cause_images"
     t.text "claim_solution_images"
+    t.integer "item_request_id"
+    t.integer "supplier_id"
+    t.integer "buyer_id"
   end
 
   create_table "contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.text "file_link", null: false, comment: "ファイルリンク"
     t.string "file_name", comment: "ファイルタイプ"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["item_category", "item_sample_id"], name: "fk_file_item_sample_idx"
   end
@@ -113,9 +113,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.integer "position", limit: 1
     t.integer "type", limit: 1
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
@@ -125,9 +125,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.text "file_assembly_specifications"
     t.text "file_specifications"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
@@ -135,9 +135,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.bigint "item_request_id"
     t.text "file_images"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
@@ -158,9 +158,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.bigint "cost"
     t.text "info_cost"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.string "item_unit"
     t.bigint "catalog_id"
@@ -202,9 +202,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.integer "quality16", default: 0, comment: "項目品質16"
     t.string "info16", limit: 500, comment: "品質情報16"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
@@ -214,9 +214,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.bigint "supplier_id"
     t.string "status"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.bigint "catalog_id"
   end
@@ -253,9 +253,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.string "position", limit: 30, comment: "役職"
     t.bigint "creator", comment: "登録者Id"
     t.string "contract_status", limit: 45, default: "", comment: "NDA契約済み"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
   end
 
@@ -266,11 +266,17 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.date "submitted_date"
     t.date "request_by"
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["buyer_id"], name: "fk_request_users1_idx"
+  end
+
+  create_table "sample_deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "samples_id"
+    t.text "delivery_code"
+    t.string "delivery_function"
   end
 
   create_table "samples", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -289,6 +295,8 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.datetime "deleted_at"
     t.bigint "updater"
     t.bigint "item_request_id"
+    t.bigint "supplier_id"
+    t.text "status"
   end
 
   create_table "user_calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "項目カレンダーテーブル", force: :cascade do |t|
@@ -301,9 +309,9 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.string "occur_time_from", limit: 5
     t.string "occur_time_to", limit: 5
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.index ["user_id"], name: "fk_user_calendar_users1_idx"
   end
@@ -330,11 +338,11 @@ ActiveRecord::Schema.define(version: 202010230713025) do
     t.string "token"
     t.string "reset_password_token"
     t.timestamp "reset_password_sent_at"
-    t.timestamp "remember_created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.timestamp "remember_created_at", default: -> { "CURRENT_TIMESTAMP" }
     t.bigint "creator", comment: "登録者Id"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "登録日"
+    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "登録日"
     t.bigint "updater", comment: "最終更新者Id"
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false, comment: "最終更新日"
+    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP" }, comment: "最終更新日"
     t.timestamp "deleted_at", comment: "削除時点 Deleted time"
     t.string "confirmation_token"
     t.datetime "confirmed_at"

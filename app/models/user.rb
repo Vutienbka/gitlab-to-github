@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :catalogs, dependent: :destroy
   has_many :contracts, dependent: :destroy
   has_many :claims, dependent: :destroy
+  has_many :samples, dependent: :destroy
   validates :password, confirmation: { case_sensitive: true }
   validates :password, presence: true, unless: :check_update_profile?
   validates :email, presence: true

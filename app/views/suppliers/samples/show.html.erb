@@ -1,0 +1,211 @@
+<% content_for :title, 'NEWJI | サンプル/見本' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+
+<% content_for :content_header do %>
+      <div class="card card-solid pt-5 pb-5">
+        <div class="card-body">
+          <p class="login-head text-center"><span class="textbr">作成したサンプルを<span class="textbr">印刷する場合は</span></span><span class="textbr">｢<a href="#btn" class="to-top to-top--pink">PDFで開く</a>｣ボタンを、</span><br /><span class="textbr">作成したサンプルを<span class="textbr">発送する場合は</span></span><span class="textbr">｢<a href="#btn" class="to-top to-top--pink">発送通知へ進む</a>｣ボタンを</span><br />クリックしてください</p>
+          <div class="row">
+            <div class="col-12">
+              <div class="company-table-wrap" id="company">
+                <table class="company-table company-table--yoko">
+                  <tbody>
+                    <tr>
+                      <th>
+                        〇〇サンプル
+                      </th>
+                      <td>
+                        カラーサンプル
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        タイトル
+                      </th>
+                      <td>
+                        ふさかけオウルA ブラック
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        分類
+                      </th>
+                      <td>
+                        新商品
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        商品コード
+                      </th>
+                      <td>
+                        ー
+                      </td>
+                    </tr>
+                    <!-- パターンの数に応じてrowspan=""の値を変更 -->
+                    <tr>
+                      <th rowspan="3">
+                        パターン
+                      </th>
+                      <td>
+                        パターン1
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        パターン2
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        パターン3
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        数量
+                      </th>
+                      <td>
+                        1
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        希望納期
+                      </th>
+                      <td>
+                        2020年8月10日
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        形状
+                      </th>
+                      <td>
+                        製品
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        配送リクエスト
+                      </th>
+                      <td>
+                        クーリエ
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        用途
+                      </th>
+                      <td>
+                        標準見本
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5" id="btn">
+            <a href="#" class="btn w-30 newji-btn--pink w-60--sp">PDFで開く</a>
+          </div>
+          <p class="text-center mt-4 mb-4">
+            または
+          </p>
+          <div class="row">
+            <a href="<%=delivery_suppliers_sample_path(params[:id])%>" class="btn w-30 newji-btn--pink w-60--sp">発送通知へ進む</a>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      <div class="w-100 text-center mt-5 margin-bottom30">
+        <a href="<%=table_suppliers_samples_path%>" class="to-top">前に戻る</a>
+      </div>
+
+      <!-- モーダル -->
+      <div class="modal fade" id="modal-default">
+        <div class="modal-dialog modal-default">
+          <div class="modal-content">
+            <form action="#" method="post">
+              <div class="modal-header modal-header--ordering">
+                <h6 class="modal-title"></h6>
+                <button type="reset" class="close" role="button" data-target="#modal-default" data-toggle="modal">
+                  <span class="align-middle" aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-center pt-3">以下を入力してください</h5>
+                <div class="input-group input-group--modal mt-4 mb-4">
+                  <label for="form-modal-hyouka">
+                    <span class="required-txt">必須</span>
+                    <span>評価</span>
+                  </label>
+                  <input id="form-modal-hyouka" type="text" class="form-control form-control--ie" name="company-evaluation" placeholder="半角英語で記入" required>
+                </div>
+                <div class="input-group input-group--modal mt-5 mb-4">
+                  <label for="form-modal-kubun">
+                    <span class="required-txt">必須</span>
+                    <span>活用区分</span>
+                  </label>
+                  <input type="text" class="form-control form-control--ie" id="form-modal-kubun" placeholder="半角英語で記入" name="company-utilization-category" required>
+                </div>
+                <div class="input-group input-group--modal mt-5 mb-4">
+                  <label for="form-modal-kubun">
+                    <span class="required-txt required-txt--any">任意</span>
+                    <span>所見</span>
+                  </label>
+                  <textarea type="text" class="form-control form-control--ie form-control--textarea" id="form-modal-kubun" placeholder="例)テキストテキストテキスト" name="company-findings"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between modal-footer--ordering">
+                <button type="reset" class="btn btn-default" role="button" data-target="#modal-default" data-toggle="modal">閉じる</button>
+                <button type="submit" class="btn newji-btn--pink">登録</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+      <!-- モーダル -->
+      <div class="modal fade" id="modal-default2">
+        <div class="modal-dialog modal-default">
+          <div class="modal-content">
+            <form action="#" method="post">
+              <div class="modal-header modal-header--ordering">
+                <h6 class="modal-title"></h6>
+                <button type="reset" class="close" role="button" data-target="#modal-default2" data-toggle="modal">
+                  <span class="align-middle" aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-center pt-3">以下を入力してください</h5>
+                <div class="input-group input-group--modal mt-5 mb-4">
+                  <label for="form-modal-record">
+                    <span class="required-txt">必須</span>
+                    <span>年月日</span>
+                  </label>
+                  <input type="text" class="form-control form-control--ie form-control--readonly" id="form-modal-record" placeholder="希望日付を選択してください。" name="company-activity-date" readonly="readonly">
+                </div>
+                <div class="input-group input-group--modal mt-5 mb-4">
+                  <label for="form-modal-kubun">
+                    <span class="required-txt">必須</span>
+                    <span>主な事柄、所見</span>
+                  </label>
+                  <textarea type="text" class="form-control form-control--ie form-control--textarea" id="form-modal-kubun" placeholder="例)テキストテキストテキスト" name="company-activity-findings"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between modal-footer--ordering">
+                <button type="reset" class="btn btn-default" role="button" data-target="#modal-default2" data-toggle="modal">閉じる</button>
+                <button type="submit" class="btn newji-btn--pink">登録</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<% end %>

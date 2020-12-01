@@ -1,0 +1,36 @@
+<% content_for :title, 'NEWJI | サンプル/見本' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+
+<% content_for :content_header do %>
+  <div class="card card--login">
+    <div class="card-body login-card-body">
+      <p class="login-head text-center mb-5">以下を入力してください</p>
+      <%= form_for @sample_delivery, url: delivery_submit_suppliers_samples_path, html: {multipart: true}, method: 'post' do |f| %>
+        <%= f.text_field :samples_id, type:'hidden', value:params[:id]%>
+        <div class="input-group mt-5 mb-4">
+          <label for="form-label-sample-slip-number">
+            <span class="required-txt">必須</span>
+            <span>伝票ナンバー</span>
+          </label>
+          <%= f.text_field :delivery_code, id: "form-label-sample-slip-number",class: "form-control form-control--ie", placeholder: "例）", required: 'required' %>
+        </div>
+        <div class="input-group mb-4">
+          <label for="form-label-sample-delivery-method">
+            <span class="required-txt">必須</span>
+            <span>発送方法</span>
+          </label>
+          <%= f.select :delivery_function, options_for_select(["Select One", "クーリエ", "船便", "同梱"],:disabled => ["Select One"]),{} , :placeholder => "選択してください。",:class => 'form-control form-control--ie' %>                 
+        </div>
+        <div class="row">
+          <button type="submit" class="btn w-30 newji-btn--blue w-60--sp mt-5">発送通知</button>
+        </div>
+      <% end %>
+    <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.card -->
+  <div class="w-100 text-center mt-5 margin-bottom30">
+    <a href="<%=suppliers_sample_path(params[:id])%>" class="to-top">前に戻る</a>
+  </div>
+<% end %>
