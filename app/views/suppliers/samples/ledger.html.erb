@@ -1,0 +1,124 @@
+<% content_for :title, 'NEWJI | サンプル台帳' %>
+<% breadcrumb_add 'サンプル'%>
+<% breadcrumb_add '見本'%>
+<%= javascripts 'buyer/sample', 'buyer/searchs'%>
+<%= stylesheets 'buyer/searchs'%>
+<% content_for :content_header do %>
+       
+        <p class="login-head text-center mt-5 mb-5"><strong>サンプル台帳</strong></p>
+        <form action="sample-archive--s.html">
+          <div class="input-group mt-5 mb-5">
+            <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+            <div class="input-group-append">
+              <input class="sbtn5" type="submit" value="検索" />
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <!-- select -->
+                <div class="">
+                  <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+                  <form action="sample-archive--s.html" class="">
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="sample-category">見本区分を選択する</label>
+                      <select class="form-control form-control--select" id="sample-category">
+                        <option>全て</option>
+                        <option>標準見本</option>
+                        <option>限度見本</option>
+                        <option>類似品サンプル</option>
+                        <option>カラーサンプル</option>
+                        <option>意匠サンプル</option>
+                        <option>オリジナルサンプル</option>
+                      </select>
+                    </div>
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="sample-buyer">バイヤーを選択する</label>
+                      <select class="form-control form-control--select" id="sample-buyer">
+                        <option>全て</option>
+                        <option>バイヤー1</option>
+                        <option>バイヤー2</option>
+                        <option>バイヤー3</option>
+                        <option>バイヤー4</option>
+                      </select>
+                    </div>
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="category">カテゴリーを選択する</label>
+                      <select class="form-control form-control--select" id="category">
+                        <option>全て</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                        <option>カテゴリー</option>
+                      </select>
+                    </div>
+                    <div class="mt-1 mt-md-3">
+                      <label class="narrow-down-sp-title" for="sample-deadline">有効期限を選択する</label>
+                      <select class="form-control form-control--select" id="sample-deadline">
+                        <option>全て</option>
+                        <option>6ヶ月</option>
+                        <option>3ヶ月</option>
+                        <option>1ヶ月</option>
+                        <option>10日前</option>
+                      </select>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <button type="reset" class="btn newji-btn--gray mt-4">リセット</button>
+                      <button type="submit" class="btn newji-btn--pink mt-4">決定</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-9">
+            <p class="login-head">新着サンプル</p>
+              <div class="row js-sample-archive-wrap" id="example2">
+              <% @list_table.each do |s| %>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-4 col-12 mb-1">
+                  <div class="card">
+                  <%= image_tag 'img/055AME0226_TP_V4.jpg', class: 'bd-placeholder-img card-img-top object-fit-cover', alt: 'サンプル画像' %>
+                    <div class="mx-1 my-3">
+                      <h6 class="h6"><small>管理番号：<%=s.code%></small></h6>
+                      <h6 class="h6 font-bold sample-card-title-name"><%=s.title%></h6>
+                      <div class="w-100 text-center d-flex mb-1">
+                      </div>
+                      <div class="w-100 text-center">
+                        <a class="card-link card-link--sample-archive h6" href="<%=info_suppliers_sample_path(s.id)%>">詳細を見る</a>
+                      </div>
+                      </div>
+                    </div>
+                </div>
+              <% end %>
+              </div>
+            <!-- ページネーション  -->
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" disabled>前</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#" disabled>1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">次</a>
+              </li>
+            </ul>
+            <div class="w-100 text-center mt-5 margin-bottom30">
+              <a href="sample-choose--s.html" class="to-top">前に戻る</a>
+            </div>
+          </div>
+        </div>
+<%end%>

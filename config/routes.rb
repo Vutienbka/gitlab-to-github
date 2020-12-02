@@ -207,10 +207,12 @@ Rails.application.routes.draw do
 
     resources :samples, only: %i[index show] do
       collection do
+        get :ledger
         get :table
         post :delivery_submit
       end
       member do
+        get :info
         get :delivery
       end
     end

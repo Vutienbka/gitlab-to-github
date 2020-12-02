@@ -1,6 +1,6 @@
 class Suppliers::SamplesController < Suppliers::BaseController
-  before_action :sample, only: %i[table]
-  before_action :samples, only: %i[table]
+  before_action :sample, only: %i[table info]
+  before_action :samples, only: %i[table filter_conditions ledger]
 
   def index; end
 
@@ -9,6 +9,8 @@ class Suppliers::SamplesController < Suppliers::BaseController
   def delivery
     @sample_delivery = SampleDelivery.new
   end
+
+  def ledger; end
 
   def delivery_submit
     @sample_delivery = SampleDelivery.new(sample_params)
@@ -22,6 +24,10 @@ class Suppliers::SamplesController < Suppliers::BaseController
       flash.now[:alert] = I18n.t('create.failed')
       render :delivery
     end
+  end
+
+  def info
+    @registrant = Profile.find_by_buyer_id(@sample.buyer_id)
   end
 
   private
