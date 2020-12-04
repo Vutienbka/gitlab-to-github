@@ -187,6 +187,21 @@ Rails.application.routes.draw do
   end
 
   namespace :suppliers do
+    resources :catalogs, only: %i[index] do
+      collection do
+        post :search_auto
+        post :search_item_catalogs_auto
+        get :search
+        get :search_item_catalogs
+        get '/parents/:buyer_id', to: 'catalogs#parents', as: :catalog_parents
+        get '/parents/:buyer_id/sub_catalogs/:parent_catalog_id', to: 'catalogs#sub_catalogs', as: :catalog_subs
+        get '/parents/:buyer_id/sub_catalogs/:parent_catalog_id/grandchildren_catalogs/:sub_catalog_id', to: 'catalogs#grandchildren_catalogs', as: :catalog_grandchildren
+        get '/parents/:buyer_id/sub_catalogs/:parent_catalog_id/grandchildren_catalogs/:sub_catalog_id/item_catalogs/:grandchildren_catalog_id', to: 'catalogs#item_catalogs', as: :catalog_item_request
+      end
+      member do
+      end
+    end
+
     resources :claims, only: %i[edit] do
       collection do
         get :table

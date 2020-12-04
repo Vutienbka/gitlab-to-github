@@ -34,6 +34,7 @@
           </p>
           <% end %>
         </li>
+        <%if current_user.buyer?%>
         <li class="nav-item">
           <% params_catalog_controller = ['buyers/catalogs', 'buyers/sub_catalogs', 'buyers/grandchild_catalogs', 'buyers/catalog_items'] %>
           <%= link_to buyers_catalogs_path, class: "nav-link w-100 #{'active' if params_catalog_controller.include? params[:controller] } " do %>
@@ -44,6 +45,21 @@
           </p>
           <% end %>
         </li>
+        <% end %>
+
+        <%if current_user.supplier?%>
+          <li class="nav-item">
+          <% params_catalog_controller = ['suppliers/catalogs', 'suppliers/sub_catalogs', 'suppliers/grandchild_catalogs', 'suppliers/catalog_items'] %>
+          <%= link_to suppliers_catalogs_path, class: "nav-link w-100 #{'active' if params_catalog_controller.include? params[:controller] } " do %>
+          <i class="nav-icon fas fa-list-alt"></i>
+          <p>
+            マイカタログ
+            <i class="fas fa-angle-right right"></i>
+          </p>
+          <% end %>
+        </li>
+        <% end %>
+
         <li class="nav-item has-treeview">
           <%= link_to buyers_orders_path, class: "nav-link w-100 #{'active' if params[:controller] == 'buyers/orders' } " do %>
           <i class="nav-icon fas fa-truck-moving"></i>

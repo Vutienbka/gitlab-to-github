@@ -1,0 +1,66 @@
+<%= content_for :title, 'NEWJI | マイカタログ' %>
+<% breadcrumb_add 'マイカタログ' %>
+<%= javascripts 'buyer/supplier_catalog' %>
+
+<% content_for :content_header do %>
+        <div class="mt-4">
+          <%= search_form_for @q, url:search_item_catalogs_suppliers_catalogs_path do |f| %>
+            <div class="input-group">
+              <%= f.text_field :name_cont, class: "form-control form-control-navbar form-control--ie", placeholder: "〇〇、〇〇などで検索", id:"search_catalog_auto" %><br>
+              <div class="input-group-append">
+                <%= f.submit '検索', class: "sbtn5" %>
+              </div>
+            </div>
+            <% end %>
+        </div>
+        <div class="card my-5">
+          <p class="breadcrumb-on-card">
+            ヒット件数:10件
+          </p>
+          <div class="card-body">
+            <h5 class="text-left my-catalog-head mt-3 mt-md-5 mb-3">
+              アイテムを選択
+            </h5>
+            <div class="row">
+              <%@item_info.each do |f|%>
+                <div class="col-md-3 col-sm-6 col-12 mb-1">
+                  <a href="item-info--s.html" class="card shadow-none border text-center category-item-content">
+                    <%= image_tag 'img/3490284_s.jpg', class:"bd-placeholder-img card-img-top object-fit-cover", width:"100%", height:"200", alt:"アイテム画像" %>
+                    <h6 class="category-content__name"><%=f.name%></h6>
+                    <h6 class="category-content__name--code"><small>商品コード：<%=f.SKU%></small></h6>
+                  </a>
+                </div>
+              <% end %>
+            </div>
+            <!-- ページネーション  -->
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" disabled>前</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#" disabled>1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" role="button">次</a>
+              </li>
+            </ul>
+            <!--
+            <div class="row">
+              <button type="submit" class="btn w-30 newji-btn--gray w-60--sp w-90--sp--450">アイテムを<span class="textbr">もっと表示</span></button>
+            </div>
+            -->
+          <!-- /.login-card-body -->
+          </div>
+        </div>
+        <!-- /.login-box -->
+        <!-- <div class="w-90 text-center margin-bottom30">
+          <a href="item-top.html" class="to-top">アイテムを追加する</a>
+        </div> -->
+
+<% end %>
