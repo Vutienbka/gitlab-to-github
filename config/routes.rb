@@ -189,6 +189,9 @@ Rails.application.routes.draw do
   namespace :suppliers do
     resources :catalogs, only: %i[index] do
       collection do
+        get :invite_email
+        post :introduce_submit
+        get :introduce
         post :search_auto
         post :search_item_catalogs_auto
         get :search

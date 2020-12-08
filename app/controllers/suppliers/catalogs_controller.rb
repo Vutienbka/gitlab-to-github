@@ -59,4 +59,46 @@ class Suppliers::CatalogsController < Suppliers::BaseController
     render json: { profile: @q.result }
   end
 
+  def introduce
+    @invite_buyer = InviteBuyer.new
+  end
+
+  def introduce_submit
+    @url = request.base_url + invite_email_suppliers_catalogs_path
+    @buyer = User.find_by_email(params.dig(:invite_buyer, :email_address))
+    session[:email] = params.dig(:invite_buyer, :email_address)
+    if @buyer.present?
+      @email_invite = InviteBuyer.find_by_email_address(params.dig(:invite_buyer, :email_address))
+      if @email_invite.present?
+        flash[:alert] = I18n.t('email_already_exists.fail')
+      else
+        @invite_buyer = InviteBuyer.create(introduce_params)
+        BuyerMailer.send_mail_after_buyer_regiter(@buyer, @url).deliver_now
+        flash[:success] = I18n.t('send_email_invite.success')
+      end
+    else
+      flash[:alert] = I18n.t('email_not_already.fail')
+    end
+    @invite_buyer = InviteBuyer.new(introduce_params)
+    render :introduce
+  end
+
+  def invite_email
+    @buyer = User.find_by_email(session[:email])
+    @item_request = ItemRequest.new
+    @item_request.supplier_id = current_user.id
+    @item_request.buyer_id = @buyer.id
+    if @item_request.save
+      flash[:success] = I18n.t('invite_buyer.success')
+    else
+      flash[:alert] = I18n.t('invite_buyer.fail')
+    end
+    redirect_to suppliers_catalogs_path
+  end
+
+  private
+
+  def introduce_params
+    params.require(:invite_buyer).permit(InviteBuyer::PARAMS_ATTRIBUTES)
+  end
 end

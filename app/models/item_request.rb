@@ -8,6 +8,7 @@ class ItemRequest < ApplicationRecord
   belongs_to :buyer
   belongs_to :catalog, class_name: 'Catalog', dependent: :destroy, foreign_key: 'catalog_id', optional: true
 
+  has_one :invite_buyer, dependent: :destroy
   has_one :item_info, dependent: :destroy
   has_one :item_quality, dependent: :destroy
   has_one :item_drawing, dependent: :destroy

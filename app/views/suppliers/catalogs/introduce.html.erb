@@ -1,0 +1,32 @@
+<% content_for :title, 'NEWJI | マイカタログ' %>
+<% breadcrumb_add 'マイカタログ' %>
+
+<% content_for :content_header do %>
+        <div class="card card--login">
+          <div class="card-body login-card-body">
+            <p class="login-head text-center">以下を入力してください</p>
+            <%= form_for @invite_buyer, url: introduce_submit_suppliers_catalogs_path, method: 'post' do |f| %>
+              <div class="input-group mt-5 mb-4">
+                <label for="form-label-mail">
+                  <span class="required-txt">必須</span>
+                  <span>メールアドレス</span>
+                </label>
+                <%= f.text_field :email_address, placeholder: '例）example@example.co.jp', required: true, class: 'form-control form-control--ie', id: 'form-label-mail',type: 'email' %>
+              </div>
+              <div class="input-group mb-4">
+                <label for="form-label-name">
+                  <span class="required-txt">必須</span>
+                  <span>ご担当者名</span>
+                </label>
+                <%= f.text_field :name, placeholder: '例）山田隆弘', required: true, class: 'form-control form-control--ie', id: 'form-label-name',type: 'text' %>
+                <span class="ml-3 mt-4">様</span>
+              </div>
+
+              <div class="row">
+                <button type="submit" class="btn w-30 newji-btn--blue mt-4 w-60--sp">招待する</button>
+              </div>
+            <% end %>
+          <!-- /.login-card-body -->
+          </div>
+        </div>
+<% end %>

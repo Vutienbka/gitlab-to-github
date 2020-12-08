@@ -23,8 +23,9 @@ class BuyerMailer < ActionMailer::Base
     )
   end
 
-  def send_mail_after_buyer_regiter(buyer)
+  def send_mail_after_buyer_regiter(buyer, url = nil)
     @buyer = buyer
+    @url = url
     mail(
       to: @buyer.email,
       subject: t('devise.mailer.confirmation_instructions.subject')
