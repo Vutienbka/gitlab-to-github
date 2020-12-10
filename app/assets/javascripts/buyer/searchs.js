@@ -2,6 +2,8 @@ $(document).ready(function () {
   var item_code_search_submit = $('#claim_item_code').val(localStorage.getItem('item_code_from_url'));
   var search_input = localStorage.getItem('search_claim_with_submit');
   $('#sample_result').hide();
+  $('#supplier_result').hide();
+
   if (search_input !=''){
     $('#claim-search').val(search_input);
   }
@@ -113,6 +115,13 @@ $(document).ready(function () {
       })
   })
 
+  $("#supplier_search").keyup(function () {
+    $("#supplier_result").empty();
+    localStorage.clear();
+    let data = $(this).val();
+    suggest_search($("#supplier_search"), $("#supplier_result"), '/buyers/searchs/supplier_suggest_search', 'supplier', data)
+  });
+
   function suggest_search(text_element, result_element, url, append_type, query_string){
       $.ajax({
         type: 'GET',
@@ -136,8 +145,10 @@ $(document).ready(function () {
           }
           if(append_type == 'sample'){
           append_sample(result_element, data)
-          } else {
+          } else if (append_type == 'claim'){
             append_claim(result_element, data)
+          }else{
+            append_supplier(result_element, data)
           }
         }else{
           result_element.hide();
@@ -147,11 +158,12 @@ $(document).ready(function () {
           console.log('失敗しました');
         })
 
-      if (query_string == '') {
+      if ($.trim(query_string) == '') {
         result_element.hide();
       } else {
         result_element.show();
       }
+      console.log(url);
   }
 
   function append_claim(result_element, data){
@@ -178,6 +190,19 @@ $(document).ready(function () {
         '</div>')
     }
   }
+
+  function append_supplier(result_element, data){
+    for (let i = 0; i <= data.length - 1; i++) {
+      result_element.append(
+        '<div class="suppliers">' +
+          '<div class="supplier_detail" id="supplier_detail_' + data[i][0] + '">' +
+            '<div class="supplier_info" data-supplier-title="title_' + data[i][0] + '" data-sample-classify="code_' + data[i][0] + '">' + 'サンプルコード: ' + data[i][1] + ' | ' +'サプライヤー名: ' + data[i][2] +
+            '</div>' +
+          '</div>' +
+        '</div>')
+    }
+}
+
 
   var getUrlParameter = function getUrlParameter(sParam) {
     let sPageURL = window.location.search.substring(1),

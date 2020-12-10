@@ -42,3 +42,25 @@
 .sample_detail:hover {
 	background: #f5e2d6;
 }
+
+#supplier_result {
+	z-index: 1000;
+	background-color: #fff;
+	position: absolute;
+	width: 65%;
+	border-radius: 10px;
+	height: 140px;
+	overflow: auto;
+}
+
+.supplier_detail {
+	border: 1px solid #f5e2d6;
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	border-radius: 10px;
+}
+
+.supplier_detail:hover {
+	background: #f5e2d6;
+}

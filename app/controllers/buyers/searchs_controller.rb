@@ -3,6 +3,7 @@ class Buyers::SearchsController < Buyers::BaseController
   before_action :get_claims, only: %i[claim_suggest_search]
   before_action :get_samples, only: %i[sample_suggest_search]
   before_action :item_requests, only: %i[sample_suggest_search]
+
   def index
       @q = current_user&.item_requests.ransack(params[:q])
       item_sku_id = current_user&.item_requests.joins(:item_info).where("item_info.SKU like ?", "%#{params[:q][:status_cont]}%").ids
@@ -94,6 +95,26 @@ class Buyers::SearchsController < Buyers::BaseController
     end
   end
 
+  def supplier_suggest_search
+    unless params[:q].blank?
+      @search = Supplier.ransack({ profile_company_name_or_profile_code_cont: params[:q]})
+      @suppliers = @search.result.includes(:profile)
+      
+      result = []
+       
+      @suppliers.each do |supplier|
+        q = []
+        q << supplier.id
+        q << supplier.profile.code
+        q << supplier.profile.company_name
+        result.push(q)
+      end
+    end
+    respond_to do |format|
+      format.json { render json: result }
+    end
+  end
+
   private
   
   def get_claims
@@ -106,4 +127,6 @@ class Buyers::SearchsController < Buyers::BaseController
   def item_requests
     @item_requests = current_user.item_requests
   end
+
+
 end

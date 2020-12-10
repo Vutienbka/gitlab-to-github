@@ -1,23 +1,231 @@
 <% content_for :title,'NEWJI | 取引先' %>
 <% breadcrumb_add '取引先' %>
+<%= javascripts 'buyer/searchs'%>
+<%= stylesheets  "buyer/searchs" %>
 
 <% content_for :content_header do %>
         <div class="card card--login">
           <div class="card-body">
             <p class="login-head text-center">取引先の企業を<span class="textbr">検索してください</span></p>
-            <form action="company-search-result.html">
-              <div class="input-group mt-5 mb-5">
-                <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+            <%= search_form_for @q, url: buyers_suppliers_path, method: "get", html: { id: "form_suppliers_search", class: "form_suppliers_search" } do |f| %>
+            <input type='hidden' id='search_supplier_with_id' name='supplier_id'>
+              <div class="input-group mt-5">
+                <%= f.text_field :profile_company_name_cont, class: "form-control form-control--ie", placeholder: "〇〇、〇〇などで検索", id:"supplier_search", autocomplete: "off"%>
                 <div class="input-group-append">
-                  <input class="sbtn5" type="submit" value="検索" />
+                  <!--PC,tabでこの検索ボタンを表示-->
+                  <%= f.submit '検索', class: "sbtn5" %>
                 </div>
               </div>
-            </form>
-            <div class="w-70 w-100--tab d-flex flex-wrap text-center">
+            <% end %>
+            <div class="input-group search_supplier_result_table">
+              <div id="supplier_result" class="list-supplier"></div>
+            </div>
+
+            <% if @search_suppliers.present? %>
+              <div class="card mt-5">
+                <p class="breadcrumb-on-card">
+                  ヒット件数:<%= @search_suppliers.size %>件
+                </p>
+                <div class="card-body">
+                  <ul class="text-left pl-0 serch-result-with-logo border-top">
+                    <% @search_suppliers.each do |supplier| %>
+                      <li class="py-3">
+                        <a href="/buyers/suppliers/<%= supplier.id %>" class="h5 d-flex align-items-center">
+                        <span><img src="/assets/logo.png" width="50" class="mr-2" /></span>
+                        <span></span><%= supplier.profile.company_name %></span>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+            <div class="w-70 w-100--tab d-flex flex-wrap text-center mt-5">
               <a href="<%= introduce_buyers_suppliers_path %>" class="btn w-45 newji-btn--blue mt-3 w-60--sp w-100--sp--450">サプライヤーを<span class="textbr">招待する</span></a>
               <a href="<%= credit_registration_buyers_suppliers_path %>" class="btn w-45 newji-btn--dark-blue mt-3 w-60--sp w-100--sp--450">信用調査を<span class="textbr">依頼する</span></a>
             </div>
           </div>
         </div>
-
 <% end %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    var ctx = document.getElementById("pieChart");
+    var mpieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ["ヨーロッパ", "アメリカ・カナダ", "日本", "その他"],
+        datasets: [{
+            backgroundColor: [
+                "#FA1F6C",
+                "#2863A3",
+                "#a36828",
+                "#888888"
+            ],
+            data: [33, 53, 10, 7]
+        }]
+      },
+      options: {
+        title: {
+          display: false,
+          text: '血液型 割合'
+        },
+        responsive: true,
+        maintainAspectRatio: false
+
+      }
+    });
+
+  })
+</script>
+
+<script>
+$(function(){
+  // 変数navPosに、nav要素の初期位置を代入
+  var navPos = $(".js-page-scroll-link").offset().top;
+
+  // ブラウザをスクロール
+  //$(window).scroll(function(){
+    // スクロール量とnav要素の初期位置を比較
+    //if($(window).scrollTop() > navPos){
+      // 条件を満たした場合：nav要素をブラウザ上部に固定
+      //$(".js-page-scroll-link").css("position", "fixed").addClass('js-page-scroll-link--fixed');
+    //}else{
+      // 満たさない場合：nav要素を通常の配置にする
+      //$(".js-page-scroll-link").css("position", "static").removeClass('js-page-scroll-link--fixed');
+    //}
+  //});
+
+  var topBtn = $('.page-top');
+  topBtn.hide();
+  $(window).scroll(function () {
+    const ua = navigator.userAgent;
+    if(ua.indexOf('Trident') !== -1) {
+      //IE 11のときの挙動をここに書く
+      if ($(this).scrollTop() > 500) {
+          topBtn.fadeIn();
+      } else {
+          topBtn.fadeOut();
+      }
+    }
+  });
+
+  topBtn.click(function () {
+      $('body,html').animate({
+          scrollTop: 0
+      }, 500);
+      return false;
+  });
+
+  //目次開閉
+  //$('.js-page-scroll-link__mokuji').next().hide();
+
+  $('.js-page-scroll-link__mokuji').click(function(){
+    if($(this).hasClass('js-open')){
+      $(this).removeClass('js-open');
+      $(this).next().slideUp();
+      $(this).find('.js-mokuji-icon').removeClass('fa-angle-up').addClass('fa-angle-down');
+    } else {
+      $(this).addClass('js-open');
+      $(this).next().slideDown();
+      $(this).find('.js-mokuji-icon').removeClass('fa-angle-down').addClass('fa-angle-up');
+    }
+  });
+
+  // ナビゲーションのリンクを指定
+	var navLink = $('.js-page-scroll-link__list li a');
+
+	// 各コンテンツのページ上部からの開始位置と終了位置を配列に格納しておく
+	var contentsArr = new Array();
+	for (var i = 0; i < navLink.length; i++) {
+		// コンテンツのIDを取得
+		var targetContents = navLink.eq(i).attr('href');
+		// ページ内リンクでないナビゲーションが含まれている場合は除外する
+		if(targetContents.charAt(0) == '#') {
+			// ページ上部からコンテンツの開始位置までの距離を取得
+			var targetContentsTop = $(targetContents).offset().top - 215;
+			// ページ上部からコンテンツの終了位置までの距離を取得
+			var targetContentsBottom = targetContentsTop + $(targetContents).outerHeight(true) - 1;
+			// 配列に格納
+			contentsArr[i] = [targetContentsTop, targetContentsBottom]
+		}
+	};
+
+	// 現在地をチェックする
+	function currentCheck() {
+		// 現在のスクロール位置を取得
+		var windowScrolltop = $(window).scrollTop();
+		for (var i = 0; i < contentsArr.length; i++) {
+			// 現在のスクロール位置が、配列に格納した開始位置と終了位置の間にあるものを調べる
+			if(contentsArr[i][0] <= windowScrolltop && contentsArr[i][1] >= windowScrolltop) {
+				// 開始位置と終了位置の間にある場合、ナビゲーションにclass="current"をつける
+				navLink.removeClass('current');
+				navLink.eq(i).addClass('current');
+				i == contentsArr.length;
+			}
+		};
+	}
+
+	// ページ読み込み時とスクロール時に、現在地をチェックする
+	$(window).on('load scroll', function() {
+		currentCheck();
+	});
+
+  var urlHash = location.hash;
+  if(urlHash) {
+  	setTimeout(function(){
+  		var target = $(urlHash);
+  		var position = target.offset().top;
+  		$('body,html').stop().animate({scrollTop:position - 150}, 500);
+  	}, 100);
+  }
+
+  // #で始まるアンカーをクリックした場合に処理
+   navLink.click(function() {
+      var speed = 500;
+      // アンカーの値取得
+      var href= $(this).attr("href");
+      // 移動先を取得
+      var target = $(href == "#" || href == "" ? 'html' : href);
+      // 移動先を数値で取得
+      var position = target.offset().top;
+      // スムーススクロール
+      $('body,html').animate({scrollTop:position - 150}, speed, "swing");
+      return false;
+   });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  $.datepicker._gotoToday = function(id) {
+    var target = $(id);
+    var inst = this._getInst(target[0]);
+    var date = new Date();
+    this._setDate(inst,date);
+    this._hideDatepicker();
+  }
+
+  $('#form-modal-record').datepicker({
+    autoclose: false,
+    showButtonPanel: true,
+    changeYear: true,  // 年選択をプルダウン化
+  });
+
+  // IOSか判定
+  if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+
+    // 現在フォーカスが当たっているinput, textarea以外にreadonlyを設定
+    $('#form-modal-record').on('focus', function() {
+      $('input, textarea').not(this).attr("readonly", "readonly");
+    });
+
+    // フォーカスが外れるときにreadonlyを外す
+    $('#form-modal-record').on('blur', function() {
+      $('input, textarea').not(this).removeAttr("readonly");
+    });
+  }
+});
+</script>

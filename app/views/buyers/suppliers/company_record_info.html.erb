@@ -1,0 +1,439 @@
+<% content_for :title,'NEWJI | 取引先' %>
+<% breadcrumb_add '取引先' %>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-12 mb-5">
+      <form>
+        <div class="input-group input-group">
+          <input class="form-control form-control-navbar form-control--ie" type="search" placeholder="〇〇、〇〇などで検索" aria-label="Search" id="newji-serch">
+          <div class="input-group-append">
+            <input class="sbtn5" type="submit" value="検索" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Default box -->
+  <div class="card card-solid card--login--only-vertical">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 calim-info__header-parent">
+          <div class="text-center mt-5 mt-md-4 mb-5 calim-info__header-item-name">
+            <h4 class="login-head font-bold"><%= @supplier.profile.company_name if @supplier.present? %></h4>
+            <h4 class="login-head font-bold">当社間活動記録</h4>
+          </div>
+          <div class="text-right calim-info__header-child">
+            <h6 class="claim-info__right-info">更新日：2020年7月11日</h6>
+            <h6 class="claim-info__right-info">作成日：2020年6月11日</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row border-top pt-5 flex-wrap-reverse">
+        <div class="col-12 col-md-9">
+          <form action="#">
+            <!-- select -->
+            <div class="form-group narrow-down-sp-select--ordering">
+              <label class="narrow-down-sp-title">絞り込み<i class="fas fa-filter"></i></label>
+              <div class="d-block d-sm-flex">
+                <div class="select-wrapper">
+                  <label class="narrow-down-sp-title mb-0" for="select-period-from">評価日期間</label>
+                  <div class="flex">
+                    <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select mr-1" id="select-period-from" placeholder="日付を選択" name="select-period-from" readonly="readonly">
+                    <label class="narrow-down-sp-title d-flex align-items-center m-0">
+                      〜
+                    </label>
+                    <input type="text" class="form-control form-control--readonly form-control--select narrow-down-sp-select ml-1" id="select-period-to" placeholder="日付を選択" name="select-period-to" readonly="readonly">
+                  </div>
+                </div>
+                <div class="select-wrapper ml-0 ml-sm-3">
+                  <label class="narrow-down-sp-title mb-0" for="option1">オプション1</label>
+                  <select class="form-control form-control--select narrow-down-sp-select" id="option1">
+                    <option>全て</option>
+                    <option>本日</option>
+                    <option>今月</option>
+                    <option>アイテム</option>
+                    <option>発注番号</option>
+                    <option>促進</option>
+                    <option>遅延</option>
+                    <option>仕入先</option>
+                    <option>出荷日</option>
+                    <option>納品場所</option>
+                  </select>
+                </div>
+                <div class="select-wrapper ml-0 ml-sm-3">
+                  <label class="narrow-down-sp-title mb-0" for="option2">オプション2</label>
+                  <select class="form-control form-control--select narrow-down-sp-select" id="option2">
+                    <option>全て</option>
+                    <option>本日</option>
+                    <option>今月</option>
+                    <option>アイテム</option>
+                    <option>発注番号</option>
+                    <option>促進</option>
+                    <option>遅延</option>
+                    <option>仕入先</option>
+                    <option>出荷日</option>
+                    <option>納品場所</option>
+                  </select>
+                </div>
+                <input class="sbtn5 sbtn5--select ml-0 ml-sm-3 mt-2 mt-sm-auto" type="submit" value="絞り込み" />
+              </div>
+            </div>
+          </form>
+          <div class="company-table-wrap mt-0">
+            <table id="example1" class="company-table company-table--yoko">
+              <caption class="text-left text-md-right pb-0">
+                <a href="" class="font-color font-weight-bold company-edit" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>編集</a>
+              </caption>
+              <tbody>
+                <tr>
+                  <th>
+                    年月日
+                  </th>
+                  <td>
+                    2020年<span class="textbr">1月2日</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    記入者
+                  </th>
+                  <td>
+                    山田<span class="textbr">裕司</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    主な事柄、所見
+                  </th>
+                  <td class="text-left">
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br />テキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="example1" class="company-table company-table--yoko">
+              <caption class="text-left text-md-right pb-0">
+                <a href="" class="font-color font-weight-bold company-edit" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>編集</a>
+              </caption>
+              <tbody>
+                <tr>
+                  <th>
+                    年月日
+                  </th>
+                  <td>
+                    2020年<span class="textbr">1月2日</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    記入者
+                  </th>
+                  <td>
+                    山田<span class="textbr">裕司</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    主な事柄、所見
+                  </th>
+                  <td class="text-left">
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br />テキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="example1" class="company-table company-table--yoko">
+              <caption class="text-left text-md-right pb-0">
+                <a href="" class="font-color font-weight-bold company-edit" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>編集</a>
+              </caption>
+              <tbody>
+                <tr>
+                  <th>
+                    年月日
+                  </th>
+                  <td>
+                    2020年<span class="textbr">1月2日</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    記入者
+                  </th>
+                  <td>
+                    山田<span class="textbr">裕司</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    主な事柄、所見
+                  </th>
+                  <td class="text-left">
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br />テキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="example1" class="company-table company-table--yoko">
+              <caption class="text-left text-md-right pb-0">
+                <a href="" class="font-color font-weight-bold company-edit" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>編集</a>
+              </caption>
+              <tbody>
+                <tr>
+                  <th>
+                    年月日
+                  </th>
+                  <td>
+                    2020年<span class="textbr">1月2日</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    記入者
+                  </th>
+                  <td>
+                    山田<span class="textbr">裕司</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    主な事柄、所見
+                  </th>
+                  <td class="text-left">
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br />テキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="example1" class="company-table company-table--yoko">
+              <caption class="text-left text-md-right pb-0">
+                <a href="" class="font-color font-weight-bold company-edit" role="button" data-target="#modal-default" data-toggle="modal"><i class="fas fa-edit ml-2"></i>編集</a>
+              </caption>
+              <tbody>
+                <tr>
+                  <th>
+                    年月日
+                  </th>
+                  <td>
+                    2020年<span class="textbr">1月2日</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    記入者
+                  </th>
+                  <td>
+                    山田<span class="textbr">裕司</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    主な事柄、所見
+                  </th>
+                  <td class="text-left">
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br />テキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- ページネーション  -->
+          <ul class="pagination mt-3">
+            <li class="page-item disabled">
+              <a class="page-link" disabled>前</a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#" disabled>1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" role="button">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" role="button">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" role="button">次</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-5 col-md-3 mb-5 side">
+          <div class="page-scroll-link js-page-scroll-link">
+            <h6 class="page-scroll-link__mokuji js-page-scroll-link__mokuji js-open" unselectable="on"><a>目次<i class="fas fa-angle-up mokuji-icon js-mokuji-icon"></i></a></h6>
+            <ul class="page-scroll-link__list js-page-scroll-link__list h6">
+              <li>
+                <a href="company-info.html#company">企業概要</a>
+              </li>
+              <li>
+                <a href="company-info.html#policy">企業方針・<span class="textbr">企業政策</span></a>
+              </li>
+              <li>
+                <a href="company-info.html#authentication">認証状況</a>
+              </li>
+              <li>
+                <a href="company-info.html#product">主要生産品目</a>
+              </li>
+              <li>
+                <a href="company-info.html#client">主要販売先</a>
+              </li>
+              <li>
+                <a href="company-info.html#risk">リスク管理</a>
+              </li>
+              <li>
+                <a href="company-info.html#primary-evaluation">１次評価</a>
+              </li>
+              <li>
+                <a href="company-info.html#production">生産量・生産能力</a>
+              </li>
+              <li>
+                <a href="company-info.html#material-procurement">主要材料調達力</a>
+              </li>
+              <li>
+                <a href="company-info.html#facility">社内設備状況</a>
+              </li>
+              <li>
+                <a href="company-info.html#human-resource">ヒューマン<span class="textbr">リソース関連</span></a>
+              </li>
+              <li>
+                <a href="company-info.html#contract">契約書締結</a>
+              </li>
+              <li>
+                <a href="company-info.html#credit-survey">与信調査</a>
+              </li>
+              <li>
+                <a href="#" class="current">当社間活動記録</a>
+              </li>
+            </ul>
+          </div>
+          <!-- <a href="https://newji.jp/vr-factory" target="_blank" class="btn w-100 newji-btn--pink w-60--sp py-3 newji-btn--vr d-none d-md-block">NEWJI VRで<span class="textbr">この工場を視察する</span></a> -->
+          <!-- トップに戻るボタン IEのみ -->
+          <p class="page-top"><a href="#wrap">TOPに戻る</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+  <div class="w-100 text-center mt-5 margin-bottom30">
+    <a href="company-info.html#record" class="to-top">前に戻る</a>
+  </div>
+
+  <!-- モーダル -->
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-default">
+      <div class="modal-content">
+        <div class="modal-header modal-header--ordering">
+          <h6 class="modal-title">年月日：2020年1月2日<br />記入者：山田裕二</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="align-middle" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center pt-3">何をしますか？</h5>
+          <div class="w-100 flex text-center mt-3">
+            <button type="button" class="btn w-30 newji-btn--blue w-45--sp--450" role="button" data-target="#modal-default--hyouka" data-toggle="modal">情報を編集</button>
+            <button type="button" class="btn w-30 newji-btn--pink w-45--sp--450" role="button" data-target="#modal-default--delete" data-toggle="modal">削除</button>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between modal-footer--ordering">
+          <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- モーダル -->
+  <div class="modal fade" id="modal-default--hyouka">
+    <div class="modal-dialog modal-default">
+      <div class="modal-content">
+        <form action="#" method="post">
+          <div class="modal-header modal-header--ordering">
+            <h6 class="modal-title">年月日：2020年1月2日<br />記入者：山田裕二</h6>
+            <button type="reset" class="close" role="button" data-target="#modal-default--hyouka" data-toggle="modal">
+              <span class="align-middle" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center pt-3">以下を入力してください</h5>
+            <div class="input-group input-group--modal mt-5 mb-4">
+              <label for="form-modal-record">
+                <span class="required-txt">必須</span>
+                <span>年月日</span>
+              </label>
+              <input type="text" class="form-control form-control--ie form-control--readonly" id="form-modal-record" placeholder="希望日付を選択してください。" name="company-activity-date" readonly="readonly" value="2020/1/2">
+            </div>
+            <div class="input-group input-group--modal mt-5 mb-4">
+              <label for="form-modal-kubun">
+                <span class="required-txt">必須</span>
+                <span>主な事柄、所見</span>
+              </label>
+              <textarea type="text" class="form-control form-control--ie form-control--textarea" id="form-modal-kubun" placeholder="例)テキストテキストテキスト" name="company-activity-findings">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</textarea>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between modal-footer--ordering">
+            <button type="reset" class="btn btn-default" role="button" data-target="#modal-default--hyouka" data-toggle="modal">閉じる</button>
+            <button type="submit" class="btn newji-btn--pink">保存</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- モーダル -->
+  <div class="modal fade" id="modal-default--delete">
+    <div class="modal-dialog modal-default">
+      <div class="modal-content">
+        <form action="#" method="post">
+          <div class="modal-header modal-header--ordering">
+            <h6 class="modal-title">年月日：2020年1月2日<br />記入者：山田裕二</h6>
+            <button type="reset" class="close" role="button" data-target="#modal-default--delete" data-toggle="modal">
+              <span class="align-middle" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center pt-3">以下を内容を削除します。<span class="textbr">よろしいですか？</span></h5>
+            <table class="company-table company-table--yoko company-table--on-modal">
+              <tbody>
+                <tr>
+                  <th>
+                    年月日
+                  </th>
+                  <td>
+                    2020年<span class="textbr">1月2日</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    記入者
+                  </th>
+                  <td>
+                    山田<span class="textbr">裕司</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    主な事柄、所見
+                  </th>
+                  <td class="text-left">
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト<br />テキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer justify-content-between modal-footer--ordering">
+            <button type="reset" class="btn btn-default" role="button" data-target="modal-default--delete" data-toggle="modal">閉じる</button>
+            <button type="submit" class="btn newji-btn--pink">削除</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</section>

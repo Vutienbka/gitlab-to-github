@@ -140,6 +140,7 @@ Rails.application.routes.draw do
         post :list_auto
         get :claim_suggest_search
         get :sample_suggest_search
+        get :supplier_suggest_search
       end
     end
 
@@ -178,10 +179,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :suppliers, only: %i[index] do
+    resources :suppliers, only: %i[index show] do
       collection do
         get :introduce
         get :credit_registration
+      end
+      member do
+        get :company_hyouka_info
+        get :company_record_info
       end
     end
   end
