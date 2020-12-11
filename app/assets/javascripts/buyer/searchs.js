@@ -220,7 +220,7 @@ $(document).ready(function () {
       result_element.append(
         '<div class="suppliers">' +
           '<div class="supplier_detail" id="supplier_detail_' + data[i][0] + '">' +
-            '<div class="supplier_info" data-supplier-title="title_' + data[i][0] + '" data-sample-classify="code_' + data[i][0] + '">' + 'サンプルコード: ' + data[i][1] + ' | ' +'サプライヤー名: ' + data[i][2] +
+            '<div class="supplier_info" data-supplier-title="title_' + data[i][0] + '" data-sample-classify="code_' + data[i][0] + '">' + 'サプライヤーコード: ' + data[i][1] + ' | ' +'サプライヤー名: ' + data[i][2] +
             '</div>' +
           '</div>' +
         '</div>')
