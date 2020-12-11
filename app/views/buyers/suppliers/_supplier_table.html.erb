@@ -1,0 +1,22 @@
+
+<div id="supplier_detail_example">
+  <% if search_suppliers.present? %>
+    <div class="card mt-5">
+      <p class="breadcrumb-on-card">
+        ヒット件数:<%= search_suppliers.size %>件
+      </p>
+      <div class="card-body">
+        <ul class="text-left pl-0 serch-result-with-logo border-top">
+          <% search_suppliers.each do |supplier| %>
+            <li class="py-3">
+              <a href="/buyers/suppliers/<%= supplier.id %>" class="h5 d-flex align-items-center">
+              <span><img src="/assets/logo.png" width="50" class="mr-2" /></span>
+              <span></span><%= supplier.profile.company_name %></span>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

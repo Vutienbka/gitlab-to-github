@@ -107,7 +107,6 @@ $(document).ready(function () {
       success: function (data, textStatus, jqXHR) { },
       error: function (jqXHR, textStatus, errorThrown) { },
     }).done(function (data) {
-      console.log(data)
       $('#example2').replaceWith(data.html)
     })
       .fail(function (data) {
@@ -121,6 +120,32 @@ $(document).ready(function () {
     let data = $(this).val();
     suggest_search($("#supplier_search"), $("#supplier_result"), '/buyers/searchs/supplier_suggest_search', 'supplier', data)
   });
+
+
+  $(document).on('click', '.supplier_detail', function () {
+    $('#supplier_result').hide();
+    let supplier_id = $(this).attr('id').replace('supplier_detail_', '');
+    $.ajax({
+      type: 'GET',
+      url: '/buyers/suppliers/search_with_ajax',
+      data: {
+        'id': supplier_id
+      },
+      dataType: 'json',
+      headers: {
+        "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+      },
+      success: function (data, textStatus, jqXHR) { },
+      error: function (jqXHR, textStatus, errorThrown) { },
+    }).done(function (data) {
+      console.log(data)
+      $('#supplier_detail_example').replaceWith(data.html)
+    })
+      .fail(function (data) {
+        console.log('失敗しました');
+      })
+  })
+
 
   function suggest_search(text_element, result_element, url, append_type, query_string){
       $.ajax({
@@ -162,8 +187,7 @@ $(document).ready(function () {
         result_element.hide();
       } else {
         result_element.show();
-      }
-      console.log(url);
+     }
   }
 
   function append_claim(result_element, data){

@@ -4,48 +4,49 @@
 <%= stylesheets  "buyer/searchs" %>
 
 <% content_for :content_header do %>
-        <div class="card card--login">
-          <div class="card-body">
-            <p class="login-head text-center">取引先の企業を<span class="textbr">検索してください</span></p>
-            <%= search_form_for @q, url: buyers_suppliers_path, method: "get", html: { id: "form_suppliers_search", class: "form_suppliers_search" } do |f| %>
-            <input type='hidden' id='search_supplier_with_id' name='supplier_id'>
-              <div class="input-group mt-5">
-                <%= f.text_field :profile_company_name_cont, class: "form-control form-control--ie", placeholder: "〇〇、〇〇などで検索", id:"supplier_search", autocomplete: "off"%>
-                <div class="input-group-append">
-                  <!--PC,tabでこの検索ボタンを表示-->
-                  <%= f.submit '検索', class: "sbtn5" %>
-                </div>
-              </div>
-            <% end %>
-            <div class="input-group search_supplier_result_table">
-              <div id="supplier_result" class="list-supplier"></div>
-            </div>
-
-            <% if @search_suppliers.present? %>
-              <div class="card mt-5">
-                <p class="breadcrumb-on-card">
-                  ヒット件数:<%= @search_suppliers.size %>件
-                </p>
-                <div class="card-body">
-                  <ul class="text-left pl-0 serch-result-with-logo border-top">
-                    <% @search_suppliers.each do |supplier| %>
-                      <li class="py-3">
-                        <a href="/buyers/suppliers/<%= supplier.id %>" class="h5 d-flex align-items-center">
-                        <span><img src="/assets/logo.png" width="50" class="mr-2" /></span>
-                        <span></span><%= supplier.profile.company_name %></span>
-                        </a>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-            <% end %>
-            <div class="w-70 w-100--tab d-flex flex-wrap text-center mt-5">
-              <a href="<%= introduce_buyers_suppliers_path %>" class="btn w-45 newji-btn--blue mt-3 w-60--sp w-100--sp--450">サプライヤーを<span class="textbr">招待する</span></a>
-              <a href="<%= credit_registration_buyers_suppliers_path %>" class="btn w-45 newji-btn--dark-blue mt-3 w-60--sp w-100--sp--450">信用調査を<span class="textbr">依頼する</span></a>
-            </div>
+  <div class="card card--login">
+    <div class="card-body">
+      <p class="login-head text-center">取引先の企業を<span class="textbr">検索してください</span></p>
+      <%= search_form_for @q, url: buyers_suppliers_path, method: "get", html: { id: "form_suppliers_search", class: "form_suppliers_search" } do |f| %>
+      <input type='hidden' id='search_supplier_with_id' name='supplier_id'>
+        <div class="input-group mt-5">
+          <%= f.text_field :profile_company_name_cont, class: "form-control form-control--ie", placeholder: "〇〇、〇〇などで検索", id:"supplier_search", autocomplete: "off"%>
+          <div class="input-group-append">
+            <!--PC,tabでこの検索ボタンを表示-->
+            <%= f.submit '検索', class: "sbtn5" %>
           </div>
         </div>
+      <% end %>
+      <div class="input-group search_supplier_result_table">
+        <div id="supplier_result" class="list-supplier"></div>
+      </div>
+      <div id="supplier_detail_example">
+        <% if @search_suppliers.present? %>
+          <div class="card mt-5">
+            <p class="breadcrumb-on-card">
+              ヒット件数:<%= @search_suppliers.size %>件
+            </p>
+            <div class="card-body">
+              <ul class="text-left pl-0 serch-result-with-logo border-top">
+                <% @search_suppliers.each do |supplier| %>
+                  <li class="py-3">
+                    <a href="/buyers/suppliers/<%= supplier.id %>" class="h5 d-flex align-items-center">
+                    <span><img src="/assets/logo.png" width="50" class="mr-2" /></span>
+                    <span></span><%= supplier.profile.company_name %></span>
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="w-70 w-100--tab d-flex flex-wrap text-center mt-5">
+        <a href="<%= introduce_buyers_suppliers_path %>" class="btn w-45 newji-btn--blue mt-3 w-60--sp w-100--sp--450">サプライヤーを<span class="textbr">招待する</span></a>
+        <a href="<%= credit_registration_buyers_suppliers_path %>" class="btn w-45 newji-btn--dark-blue mt-3 w-60--sp w-100--sp--450">信用調査を<span class="textbr">依頼する</span></a>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>

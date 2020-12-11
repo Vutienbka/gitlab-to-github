@@ -183,6 +183,7 @@ Rails.application.routes.draw do
       collection do
         get :introduce
         get :credit_registration
+        get :search_with_ajax
       end
       member do
         get :company_hyouka_info
