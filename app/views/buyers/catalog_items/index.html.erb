@@ -28,7 +28,7 @@
       アイテムを選択
     </h5>
     <div class="row">
-      <% @@catalogs.each do |catalog_item| %>
+      <% @catalog_items.each do |catalog_item| %>
         <div hidden="true"><%= image_src= catalog_item.item_image.file_images.map { |image| image.url }.first %></div>
       <div class="col-md-3 col-sm-6 col-12 mb-1">
         <%= link_to buyers_catalog_catalog_item_path(@catalog, catalog_item),  class: "card shadow-none border text-center category-item-content" do %>
